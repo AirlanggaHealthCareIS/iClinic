@@ -159,12 +159,16 @@
                               </Group>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="IDRekam" pref="313" max="32767" attributes="0"/>
-                                      <Component id="IDPasien" max="32767" attributes="0"/>
-                                      <Component id="IDDiagnosa" max="32767" attributes="0"/>
-                                      <Component id="tglRekamM" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                                      <Component id="NoDetail" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="IDRekam" pref="313" max="32767" attributes="0"/>
+                                          <Component id="IDPasien" max="32767" attributes="0"/>
+                                          <Component id="IDDiagnosa" max="32767" attributes="0"/>
+                                          <Component id="tglRekamM" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+                                          <Component id="NoDetail" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Component id="detailTindakan" min="-2" pref="105" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="hasilPeriksa" min="-2" pref="549" max="-2" attributes="0"/>
                                   <Component id="tambahan" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
@@ -212,6 +216,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="noDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="NoDetail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="detailTindakan" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -434,6 +439,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clear1ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="detailTindakan">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Detail Tindakan"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

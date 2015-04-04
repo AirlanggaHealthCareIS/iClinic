@@ -128,6 +128,7 @@ public class FormDokter extends javax.swing.JFrame {
         tglRekamM = new javax.swing.JFormattedTextField();
         totalHarga1 = new javax.swing.JTextField();
         clear1 = new javax.swing.JButton();
+        detailTindakan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,6 +257,8 @@ public class FormDokter extends javax.swing.JFrame {
             }
         });
 
+        detailTindakan.setText("Detail Tindakan");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -279,12 +282,15 @@ public class FormDokter extends javax.swing.JFrame {
                             .addComponent(totalHarga))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(IDRekam, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                                .addComponent(IDPasien)
-                                .addComponent(IDDiagnosa)
-                                .addComponent(tglRekamM, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(NoDetail))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(IDRekam, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                                    .addComponent(IDPasien)
+                                    .addComponent(IDDiagnosa)
+                                    .addComponent(tglRekamM, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(NoDetail))
+                                .addGap(41, 41, 41)
+                                .addComponent(detailTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(hasilPeriksa, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tambahan, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -320,7 +326,8 @@ public class FormDokter extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noDetail)
-                    .addComponent(NoDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NoDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(detailTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -515,6 +522,7 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel beratBadan;
     private javax.swing.JTextField brtBadan;
     private javax.swing.JButton clear1;
+    private javax.swing.JButton detailTindakan;
     private javax.swing.JLabel hasilPemeriksaan;
     private javax.swing.JTextField hasilPeriksa;
     private javax.swing.JLabel idDiagnosa;
