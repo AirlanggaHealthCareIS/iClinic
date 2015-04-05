@@ -18,19 +18,11 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,69,0,0,4,0"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="RekamMedis" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="RekamMedis" alignment="0" max="32767" attributes="0"/>
-      </Group>
-    </DimensionLayout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+    <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="RekamMedis">
@@ -42,6 +34,11 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Rekam Medis"/>
       </AccessibilityProperties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="240" width="1020" height="550"/>
+        </Constraint>
+      </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -142,75 +139,132 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="idRekam" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="idPasien" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="idDiagnosa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="noDetail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tglRekam" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tinggiBadan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="beratBadan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tekananDarah" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="hasilPemeriksaan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alergi" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="layananTambahan" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalHarga" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="IDRekam" pref="313" max="32767" attributes="0"/>
-                                          <Component id="IDPasien" max="32767" attributes="0"/>
-                                          <Component id="IDDiagnosa" max="32767" attributes="0"/>
-                                          <Component id="tglRekamM" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
-                                          <Component id="NoDetail" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="idRekam" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="idDiagnosa" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="tinggiBadan" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                                                  <Component id="beratBadan" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="brtBadan" min="-2" pref="79" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="jLabel2" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                          <Component id="noDetail" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Component id="detailTindakan" min="-2" pref="105" max="-2" attributes="0"/>
+                                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                              <Component id="detailTindakan" min="-2" pref="105" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Component id="idPasien" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="tglRekam" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="tekananDarah" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="tknDarah" min="-2" pref="79" max="-2" attributes="0"/>
+                                                  <Component id="IDPasien" min="-2" pref="313" max="-2" attributes="0"/>
+                                                  <Component id="tglRekamM" min="-2" pref="169" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <Component id="hasilPeriksa" min="-2" pref="549" max="-2" attributes="0"/>
-                                  <Component id="tambahan" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="tknDarah" alignment="0" pref="79" max="32767" attributes="0"/>
-                                      <Component id="brtBadan" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="tggBadan" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="alergi" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="totalHarga" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
+                                                      <Component id="layananTambahan" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="tambahan" min="-2" pref="178" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                                      <Component id="totalHarga1" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="hasilPemeriksaan" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="Alergi" min="-2" pref="188" max="-2" attributes="0"/>
+                                                  <Component id="hasilPeriksa" min="-2" pref="719" max="-2" attributes="0"/>
+                                                  <Component id="NoDetail" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                                  <Component id="tggBadan" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                                  <Component id="IDDiagnosa" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                                  <Component id="IDRekam" alignment="0" min="-2" pref="313" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="Alergi" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Component id="totalHarga1" min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                               <Component id="submit" min="-2" pref="178" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Component id="clear1" min="-2" pref="168" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="Exit" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="306" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="idRekam" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="IDRekam" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="idPasien" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="IDPasien" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="idDiagnosa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tglRekamM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tglRekam" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="IDDiagnosa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="idDiagnosa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tinggiBadan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tggBadan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="beratBadan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="brtBadan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tekananDarah" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tknDarah" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -218,69 +272,30 @@
                           <Component id="NoDetail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="detailTindakan" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tglRekam" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tinggiBadan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tggBadan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="tglRekamM" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="beratBadan" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="brtBadan" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tekananDarah" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tknDarah" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="hasilPemeriksaan" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
-                              <Component id="alergi" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="totalHarga" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalHarga1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="hasilPeriksa" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Alergi" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              <Component id="layananTambahan" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="tambahan" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="hasilPemeriksaan" min="-2" max="-2" attributes="0"/>
+                          <Component id="hasilPeriksa" min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="submit" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Exit" max="32767" attributes="0"/>
-                                  <Component id="clear1" pref="58" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="alergi" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Alergi" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="layananTambahan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tambahan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="totalHarga" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalHarga1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="submit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clear1" alignment="3" max="32767" attributes="0"/>
+                          <Component id="Exit" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -445,9 +460,26 @@
                 <Property name="text" type="java.lang.String" value="Detail Tindakan"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Kondisi Pasien:"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/background/4.jpg"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="0" width="1020" height="840"/>
+        </Constraint>
+      </Constraints>
+    </Component>
   </SubComponents>
 </Form>
