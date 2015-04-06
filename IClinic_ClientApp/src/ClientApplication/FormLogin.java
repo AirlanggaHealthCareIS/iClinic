@@ -83,14 +83,20 @@ public class FormLogin extends javax.swing.JFrame {
         setTitle("Login");
         setMaximumSize(new java.awt.Dimension(1280, 730));
         setMinimumSize(new java.awt.Dimension(1280, 730));
+        setPreferredSize(new java.awt.Dimension(1280, 730));
+        setResizable(false);
         getContentPane().setLayout(null);
+
+        usernameField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         getContentPane().add(usernameField);
         usernameField.setBounds(610, 355, 180, 30);
+
+        passwordField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         getContentPane().add(passwordField);
         passwordField.setBounds(610, 402, 180, 30);
 
-        loginButton.setBackground(new java.awt.Color(255, 255, 255));
-        loginButton.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        loginButton.setBackground(java.awt.Color.gray);
+        loginButton.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         loginButton.setText("Login");
         loginButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +107,8 @@ public class FormLogin extends javax.swing.JFrame {
         getContentPane().add(loginButton);
         loginButton.setBounds(710, 450, 90, 40);
 
-        clearButton.setBackground(new java.awt.Color(255, 255, 255));
-        clearButton.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        clearButton.setBackground(java.awt.Color.gray);
+        clearButton.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         clearButton.setText("Clear");
         clearButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +117,7 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(clearButton);
-        clearButton.setBounds(620, 450, 80, 40);
+        clearButton.setBounds(610, 450, 90, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/1.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
