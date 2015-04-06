@@ -114,122 +114,123 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
         button_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
         getContentPane().add(button_Tunai);
-        button_Tunai.setBounds(40, 610, 65, 65);
+        button_Tunai.setBounds(40, 570, 65, 65);
 
         button_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
         getContentPane().add(button_Debit);
-        button_Debit.setBounds(150, 610, 65, 65);
+        button_Debit.setBounds(150, 570, 65, 65);
 
         button_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Printer.png"))); // NOI18N
         button_Print.setEnabled(false);
         getContentPane().add(button_Print);
-        button_Print.setBounds(450, 610, 65, 65);
+        button_Print.setBounds(450, 570, 65, 65);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel2.setText("Daftar Pembayaran");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(590, 210, 220, 29);
+        jLabel2.setBounds(590, 180, 220, 24);
 
         button_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Delete.png"))); // NOI18N
         getContentPane().add(button_Delete);
-        button_Delete.setBounds(1150, 380, 65, 65);
+        button_Delete.setBounds(1150, 340, 65, 65);
 
         button_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Update.png"))); // NOI18N
         getContentPane().add(button_Update);
-        button_Update.setBounds(1150, 270, 65, 65);
+        button_Update.setBounds(1150, 230, 65, 65);
 
         button_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Exit.png"))); // NOI18N
         getContentPane().add(button_Exit);
-        button_Exit.setBounds(1150, 610, 65, 65);
+        button_Exit.setBounds(1150, 570, 65, 65);
 
-        Label_RekamMedis.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_RekamMedis.setText("REKAM MEDIS");
         getContentPane().add(Label_RekamMedis);
-        Label_RekamMedis.setBounds(40, 410, 230, 29);
+        Label_RekamMedis.setBounds(40, 370, 230, 24);
 
         TextField_RekamMedis.setEditable(false);
-        TextField_RekamMedis.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_RekamMedis);
-        TextField_RekamMedis.setBounds(280, 410, 250, 30);
+        TextField_RekamMedis.setBounds(280, 370, 250, 30);
 
-        Label_Lab.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Lab.setText("LAB");
         getContentPane().add(Label_Lab);
-        Label_Lab.setBounds(40, 450, 230, 29);
+        Label_Lab.setBounds(40, 410, 230, 24);
 
         TextField_Lab.setEditable(false);
-        TextField_Lab.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Lab);
-        TextField_Lab.setBounds(280, 450, 250, 30);
+        TextField_Lab.setBounds(280, 410, 250, 30);
 
-        Label_Usg.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Usg.setText("USG");
         getContentPane().add(Label_Usg);
-        Label_Usg.setBounds(40, 490, 230, 29);
+        Label_Usg.setBounds(40, 450, 230, 24);
 
         TextField_Usg.setEditable(false);
-        TextField_Usg.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Usg);
-        TextField_Usg.setBounds(280, 490, 250, 30);
+        TextField_Usg.setBounds(280, 450, 250, 30);
 
-        Label_Kecantikan.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Kecantikan.setText("KECANTIKAN");
         getContentPane().add(Label_Kecantikan);
-        Label_Kecantikan.setBounds(40, 530, 230, 29);
+        Label_Kecantikan.setBounds(40, 490, 230, 24);
 
         TextField_Kecantikan.setEditable(false);
-        TextField_Kecantikan.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Kecantikan);
-        TextField_Kecantikan.setBounds(280, 530, 250, 30);
+        TextField_Kecantikan.setBounds(280, 490, 250, 30);
 
-        Label_totalPembayaran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_totalPembayaran.setText("TOTAL PEMBAYARAN");
         getContentPane().add(Label_totalPembayaran);
-        Label_totalPembayaran.setBounds(40, 570, 230, 29);
+        Label_totalPembayaran.setBounds(40, 530, 230, 24);
 
         TextField_totalPembayaran.setEditable(false);
-        TextField_totalPembayaran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_totalPembayaran);
-        TextField_totalPembayaran.setBounds(280, 570, 250, 30);
+        TextField_totalPembayaran.setBounds(280, 530, 250, 30);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
         getContentPane().add(jButton1);
-        jButton1.setBounds(460, 220, 40, 33);
+        jButton1.setBounds(460, 180, 40, 33);
 
-        Label_idPasien.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPasien.setText("ID PASIEN");
         getContentPane().add(Label_idPasien);
-        Label_idPasien.setBounds(40, 220, 150, 29);
+        Label_idPasien.setBounds(40, 180, 150, 24);
 
-        TextField_idPasien.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_idPasien);
-        TextField_idPasien.setBounds(200, 220, 250, 30);
+        TextField_idPasien.setBounds(200, 180, 250, 30);
 
-        Label_namaPasien.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_namaPasien.setText("NAMA PASIEN");
         getContentPane().add(Label_namaPasien);
-        Label_namaPasien.setBounds(40, 270, 150, 29);
+        Label_namaPasien.setBounds(40, 230, 150, 24);
 
         TextField_namaPasien.setEditable(false);
-        TextField_namaPasien.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_namaPasien);
-        TextField_namaPasien.setBounds(200, 270, 250, 30);
+        TextField_namaPasien.setBounds(200, 230, 250, 30);
 
-        Label_idPembayaran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPembayaran.setText("ID PEMBAYARAN");
         getContentPane().add(Label_idPembayaran);
-        Label_idPembayaran.setBounds(40, 330, 230, 29);
+        Label_idPembayaran.setBounds(40, 290, 230, 24);
 
         TextField_idPembayaran.setEditable(false);
-        TextField_idPembayaran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        TextField_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_idPembayaran);
-        TextField_idPembayaran.setBounds(280, 330, 250, 30);
+        TextField_idPembayaran.setBounds(280, 290, 250, 30);
 
-        Label_tglPembayaran.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_tglPembayaran.setText("TGL PEMBAYARAN");
         getContentPane().add(Label_tglPembayaran);
-        Label_tglPembayaran.setBounds(40, 370, 230, 29);
+        Label_tglPembayaran.setBounds(40, 330, 230, 24);
 
+        Table_Bahan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Table_Bahan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -244,15 +245,17 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Table_Bahan);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(590, 260, 550, 430);
+        jScrollPane1.setBounds(590, 230, 550, 430);
 
         TextField_tglPembayaran.setEditable(false);
         TextField_tglPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        TextField_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         TextField_tglPembayaran.setValue(new java.util.Date());
         getContentPane().add(TextField_tglPembayaran);
-        TextField_tglPembayaran.setBounds(280, 370, 250, 30);
+        TextField_tglPembayaran.setBounds(280, 330, 250, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/3.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/10.jpg"))); // NOI18N
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel1.setAlignmentY(0.0F);
         jLabel1.setMaximumSize(new java.awt.Dimension(1370, 730));
         jLabel1.setMinimumSize(new java.awt.Dimension(1370, 730));
