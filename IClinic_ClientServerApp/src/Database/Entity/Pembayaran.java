@@ -13,15 +13,16 @@ import java.util.Date;
  * @author Tiara Ratna Sari
  */
 public class Pembayaran implements Serializable  {
-    private int Id_Pembayaran;
+    private String Id_Pembayaran;
     private int Id_USG;
     private int Id_Detail_Lab;
     private int Id_Rekam;
     private int Id_Transaksi_Layanan;
     private Date Tanggal_Bayar;
     private int Total_Harga;
+    private String Status;
 
-    public int getId_Pembayaran() {
+    public String getId_Pembayaran() {
         return Id_Pembayaran;
     }
 
@@ -49,7 +50,11 @@ public class Pembayaran implements Serializable  {
         return Total_Harga;
     }
 
-    public void setId_Pembayaran(int Id_Pembayaran) {
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setId_Pembayaran(String Id_Pembayaran) {
         this.Id_Pembayaran = Id_Pembayaran;
     }
 
@@ -75,6 +80,10 @@ public class Pembayaran implements Serializable  {
 
     public void setTotal_Harga(int Total_Harga) {
         this.Total_Harga = Total_Harga;
+    }
+
+    public void setStatus(String Status) {
+        this.Status = Status;
     }
 
 }
