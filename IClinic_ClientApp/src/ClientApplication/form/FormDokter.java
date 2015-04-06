@@ -91,6 +91,8 @@ public class FormDokter extends javax.swing.JFrame {
 
         RekamMedis = new javax.swing.JTabbedPane();
         riwayatPasienPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         rekamMedisPanel = new javax.swing.JPanel();
         idRekam = new javax.swing.JLabel();
         idPasien = new javax.swing.JLabel();
@@ -161,15 +163,34 @@ public class FormDokter extends javax.swing.JFrame {
 
         RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout riwayatPasienPanelLayout = new javax.swing.GroupLayout(riwayatPasienPanel);
         riwayatPasienPanel.setLayout(riwayatPasienPanelLayout);
         riwayatPasienPanelLayout.setHorizontalGroup(
             riwayatPasienPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1205, Short.MAX_VALUE)
+            .addGroup(riwayatPasienPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1185, Short.MAX_VALUE)
+                .addContainerGap())
         );
         riwayatPasienPanelLayout.setVerticalGroup(
             riwayatPasienPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 432, Short.MAX_VALUE)
+            .addGroup(riwayatPasienPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         RekamMedis.addTab("Riwayat Pasien", riwayatPasienPanel);
@@ -800,6 +821,8 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JSpinner jumlahObatSpinner;
     private javax.swing.JTextField keteranganField;
     private javax.swing.JLabel keteranganLabel;
