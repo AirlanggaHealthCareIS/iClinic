@@ -1,0 +1,19 @@
+Format Penamaan Folder Feature/ Use Case/ Story Card:
+- Diawali dengan nomor use case/ story card sesuai dengan laporan yang ada di folder 'Deliverable'
+- Diikuti dengan nama use case/ story card sesuai dengan laporan yang ada di folder 'Deliverable'
+- Diakhiri dengan nama lengkap penanggung jawab di dalam tanda kurung
+Contoh: 01. Login (Kusumaningtyas Aditya Putri)
+
+Format File dan Penamaan di Setiap Folder:
+- Di setiap folder feature/ use case/ story card yang telah dibuat di atas, dimasukkan scenario-scenario yang mungkin terjadi.
+- Setiap scenario disimpan dalam satu file dengan ekstensi .txt
+- Penamaan diawali dengan nomor urut
+- Nomor 1 dimulai dari scenario normal/ berhasil dengan lancar
+- Nomor-nomor selanjutnya disarankan untuk meningkat sesuai tingkat kerumitan alternatif scenario
+- Penamaan diikuti dengan nama scenario dengan jelas
+Contoh: 01. Aktor berhasil login
+
+Keterangan:
+- Untuk pertanyaan lebih lanjut dapat disampaikan langsung di grup LINE ataupun FB
+- Konten di dalam masing-masing folder dan scenario adalah tanggung jawab yang bersangkutan
+- Untuk saling merevisi silakan dikomunikasikan terlebih dahulu dengan penanggung jawab terkait
