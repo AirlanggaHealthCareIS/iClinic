@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package ClientApplication.form;
+package ClientApplication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

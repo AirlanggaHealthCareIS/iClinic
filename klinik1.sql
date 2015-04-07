@@ -3,43 +3,6 @@
 /* Created on:     28/03/2015 12:19:34                          */
 /*==============================================================*/
 
-
-drop table if exists ANTRIAN;
-
-drop table if exists DETAIL_LAB;
-
-drop table if exists DETAIL_RESEP;
-
-drop table if exists DETAIL_TINDAKAN;
-
-drop table if exists DET_LAYANAN_KECANTIKAN;
-
-drop table if exists DIAGNOSA;
-
-drop table if exists LABORATORIUM;
-
-drop table if exists LAYANAN_KECANTIKAN;
-
-drop table if exists OBAT;
-
-drop table if exists PASIEN;
-
-drop table if exists PEMBAYARAN;
-
-drop table if exists PENYAKIT;
-
-drop table if exists REKAM_MEDIS;
-
-drop table if exists RESEP;
-
-drop table if exists TINDAKAN;
-
-drop table if exists TRANSAKSI_LAYANAN_KESEHATAN;
-
-drop table if exists TRANSAKSI_USG;
-
-drop table if exists USER;
-
 /*==============================================================*/
 /* Table: ANTRIAN                                               */
 /*==============================================================*/

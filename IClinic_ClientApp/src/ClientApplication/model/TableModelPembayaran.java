@@ -55,6 +55,7 @@ public class TableModelPembayaran extends AbstractTableModel {
             case 4 : return "Id_Transaksi_Layanan";
             case 5 : return "Tanggal_Bayar";
             case 6 : return "Total_Harga";
+            case 7 : return "Status";
             default : return null;
         }
     }
@@ -76,6 +77,7 @@ public class TableModelPembayaran extends AbstractTableModel {
             case 4 : return list.get(rowIndex).getId_Transaksi_Layanan();
             case 5 : return list.get(rowIndex).getTanggal_Bayar();
             case 6 : return list.get(rowIndex).getTotal_Harga();
+            case 7 : return list.get(rowIndex).getStatus();
             default : return null;
         }
     }

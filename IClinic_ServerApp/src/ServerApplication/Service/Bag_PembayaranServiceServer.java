@@ -34,20 +34,21 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_USG,ID_DETAIL_LAB,ID_REKAM,ID_TRANSAKSI_LAYANAN,TANGGAL_BAYAR,TOTAL_HARGA) values(?,?,?,?,?,?,?)"
+                   "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_USG,ID_DETAIL_LAB,ID_REKAM,ID_TRANSAKSI_LAYANAN,TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?)"
                    );
-           statement.setInt(1, pembayaran.getId_Pembayaran());
+           statement.setString(1, pembayaran.getId_Pembayaran());
            statement.setInt(2, pembayaran.getId_USG());
            statement.setInt(3, pembayaran.getId_Detail_Lab());
            statement.setInt(4, pembayaran.getId_Rekam());
            statement.setInt(5, pembayaran.getId_Transaksi_Layanan());
            statement.setDate(6, (Date) pembayaran.getTanggal_Bayar());
            statement.setInt(7, pembayaran.getTotal_Harga());
+           statement.setString(8, pembayaran.getStatus());
 
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
            if(result.next()){
-               pembayaran.setId_Pembayaran(result.getInt(1));
+               pembayaran.setId_Pembayaran(result.getString(1));
            }
         result.close();
         return pembayaran;
@@ -82,7 +83,8 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
            statement.setInt(4, pembayaran.getId_Transaksi_Layanan());
            statement.setDate(5, (Date) pembayaran.getTanggal_Bayar());
            statement.setInt(6, pembayaran.getTotal_Harga());
-           statement.setInt(7, pembayaran.getId_Pembayaran());
+           statement.setString(7, pembayaran.getStatus());
+           statement.setString(8, pembayaran.getId_Pembayaran());
 
            statement.executeUpdate();
 
@@ -140,13 +142,14 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
 
             if(result.next()){
                 pembayaran = new Pembayaran();
-                pembayaran.setId_Pembayaran(result.getInt("Id_Pembayaran"));
+                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
                 pembayaran.setId_USG(result.getInt("Id_USG"));
                 pembayaran.setId_Detail_Lab(result.getInt("Id_Detail_Lab"));
                 pembayaran.setId_Rekam(result.getInt("Id_Rekam"));
                 pembayaran.setId_Transaksi_Layanan(result.getInt("Id_Transaksi_Layanan"));
                 pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
                 pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
+                pembayaran.setStatus(result.getString("Status"));
             }
 
             return pembayaran;
@@ -179,13 +182,14 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
 
           while(result.next()){
                 Pembayaran pembayaran = new Pembayaran();
-                pembayaran.setId_Pembayaran(result.getInt("Id_Pembayaran"));
+                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
                 pembayaran.setId_USG(result.getInt("Id_USG"));
                 pembayaran.setId_Detail_Lab(result.getInt("Id_Detail_Lab"));
                 pembayaran.setId_Rekam(result.getInt("Id_Rekam"));
                 pembayaran.setId_Transaksi_Layanan(result.getInt("Id_Transaksi_Layanan"));
                 pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
                 pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
+                pembayaran.setStatus(result.getString("Status"));
                 list.add(pembayaran);
           }
 

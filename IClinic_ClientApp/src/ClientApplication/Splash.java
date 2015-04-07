@@ -13,6 +13,7 @@ import javax.swing.UIManager;
  *
  * @author Tiara Ratna Sari
  */
+
 public class Splash extends javax.swing.JFrame {
     Registry registry = LocateRegistry.getRegistry("localhost", 6789);
     final AdministratorService service = (AdministratorService) registry.lookup("service");
@@ -32,10 +33,11 @@ public class Splash extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Caviar Dreams", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HALO!");
 
+        oke.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         oke.setText("In");
         oke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,10 +88,7 @@ public class Splash extends javax.swing.JFrame {
                 }
             }
         });
-        
        
-    
-
     }
 
 
