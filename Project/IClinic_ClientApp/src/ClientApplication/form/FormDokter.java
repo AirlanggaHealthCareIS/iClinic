@@ -195,28 +195,40 @@ public class FormDokter extends javax.swing.JFrame {
 
         RekamMedis.addTab("Riwayat Pasien", riwayatPasienPanel);
 
+        idRekam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         idRekam.setText("ID Rekam");
 
+        idPasien.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         idPasien.setText("ID Pasien");
 
+        idDiagnosa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         idDiagnosa.setText("ID Diagnosa ");
 
+        noDetail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         noDetail.setText("Nomor Detail");
 
+        tglRekam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tglRekam.setText("Tanggal Rekam");
 
+        tinggiBadan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tinggiBadan.setText("Tinggi Badan");
 
+        beratBadan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         beratBadan.setText("Berat Badan");
 
+        tekananDarah.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tekananDarah.setText("Tekanan Darah");
 
+        hasilPemeriksaan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         hasilPemeriksaan.setText("Hasil Pemeriksaan");
 
+        alergi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         alergi.setText("Alergi");
 
+        totalHarga.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         totalHarga.setText("Total Harga");
 
+        layananTambahan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         layananTambahan.setText("Layanan Tambahan");
 
         IDRekam.addActionListener(new java.awt.event.ActionListener() {
@@ -300,6 +312,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         detailTindakan.setText("Detail Tindakan");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Kondisi Pasien:");
 
         javax.swing.GroupLayout rekamMedisPanelLayout = new javax.swing.GroupLayout(rekamMedisPanel);
@@ -310,6 +323,78 @@ public class FormDokter extends javax.swing.JFrame {
                 .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rekamMedisPanelLayout.createSequentialGroup()
                         .addContainerGap()
+<<<<<<< HEAD
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(idRekam)
+                                            .addComponent(noDetail))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(idPasien)
+                                            .addComponent(tglRekam)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(beratBadan)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(brtBadan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(tekananDarah)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tknDarah, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(IDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tglRekamM, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hasilPemeriksaan)
+                                    .addComponent(idDiagnosa)
+                                    .addComponent(alergi)
+                                    .addComponent(totalHarga))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalHarga1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(Alergi, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(layananTambahan))
+                                    .addComponent(hasilPeriksa, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(NoDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(detailTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tggBadan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(IDDiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(IDRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 142, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tinggiBadan)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(516, 516, 516)
+                                .addComponent(tambahan, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
                         .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(rekamMedisPanelLayout.createSequentialGroup()
                                 .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +470,7 @@ public class FormDokter extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> origin/master
                     .addComponent(idRekam)
                     .addComponent(IDRekam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idPasien)
@@ -395,16 +481,28 @@ public class FormDokter extends javax.swing.JFrame {
                     .addComponent(tglRekam)
                     .addComponent(IDDiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idDiagnosa))
+<<<<<<< HEAD
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
                 .addGap(68, 68, 68)
                 .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> origin/master
                     .addComponent(tinggiBadan)
                     .addComponent(tggBadan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(beratBadan)
                     .addComponent(brtBadan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tekananDarah)
                     .addComponent(tknDarah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+                .addGap(40, 40, 40)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
                 .addGap(18, 18, 18)
                 .addGroup(rekamMedisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> origin/master
                     .addComponent(noDetail)
                     .addComponent(NoDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(detailTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -664,12 +762,20 @@ public class FormDokter extends javax.swing.JFrame {
         RekamMedis.addTab("Resep", resepPanel);
 
         getContentPane().add(RekamMedis);
+<<<<<<< HEAD
+        RekamMedis.setBounds(0, 220, 1020, 550);
+=======
         RekamMedis.setBounds(30, 200, 1210, 470);
+>>>>>>> origin/master
         RekamMedis.getAccessibleContext().setAccessibleName("Rekam Medis");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/4.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
+<<<<<<< HEAD
+        jLabel1.setBounds(0, -20, 1020, 860);
+=======
         jLabel1.setBounds(0, 0, 1280, 750);
+>>>>>>> origin/master
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
