@@ -1,0 +1,16 @@
+Feature		Mengisi Resep Pasien
+Scenario	Dokter Gagal Memilih Lebih dari Satu Obat
+
+Given	Dokter telah melakukan login
+and	Sistem telah menampilkan frame khusus Dokter
+When	Dokter memilih tab 'Resep'
+and	Dokter memilih Nama Obat
+and	Dokter memberi jumlah Takaran
+and	Dokter memilih satuan Takaran waktu
+and	Dokter memilih Cara Pemakaian
+and	Dokter memberi Jumlah obat
+and	Dokter memilih Satuan obat
+and	Dokter mengisi Keterangan
+and	Dokter memilih tombol 'Pilih'
+and	Dokter memilih tombol 'Tambah Obat'
+Then	Sistem menampilkan pesan bahwa Dokter tidak dapat melakukan penambahan obat

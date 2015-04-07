@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Administrator Berhasil Login
+
+Given	Administrator telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Administrator memasukkan userID
+and	Administrator memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus Administrator
+and	Sistem menutup frame login

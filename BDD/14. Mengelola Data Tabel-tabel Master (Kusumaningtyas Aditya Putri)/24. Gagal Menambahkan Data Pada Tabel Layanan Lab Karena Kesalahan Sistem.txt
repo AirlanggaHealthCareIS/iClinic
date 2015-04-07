@@ -1,0 +1,12 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Gagal Menambahkan Data Pada Tabel Layanan Lab Karena Kesalahan Sistem
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Layanan Lab'
+and	Administrator memasukkan ID Lab
+and	Administrator memasukkan Jenis Pemeriksaan
+and	Administrator memasukkan Deskripsi
+and	Administrator memasukkan Harga
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menampilkan pesan bahwa data tidak berhasil ditambahkan karena kesalahan sistem

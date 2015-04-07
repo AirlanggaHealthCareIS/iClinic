@@ -1,0 +1,15 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menambahkan Data di Tabel Layanan Kecantikan
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Layanan Kecantikan'
+and	Administrator memasukkan ID Kecantikan
+and	Administrator memasukkan Jenis Layanan
+and	Administrator memasukkan Deskripsi
+and	Administrator memasukkan Harga
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menyimpan data baru ke tabel Layanan Kecantikan di database
+and	Sistem menampilkan pesan bahwa data telah berhasil disimpan
+and	Sistem menampilkan data yang telah dimasukkan di tabel Layanan Kecantikan
+and	Sistem menghapus isi seluruh field

@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Dokter Berhasil Login
+
+Given	Dokter telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Dokter memasukkan userID
+and	Dokter memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus dokter
+and	Sistem menutup frame login

@@ -1,0 +1,16 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menambahkan Data di Tabel Obat
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Obat'
+and	Administrator memasukkan ID Obat
+and	Administrator memasukkan Nama Obat
+and	Administrator memasukkan Jenis Obat
+and	Administrator memasukkan Harga Obat
+and	Administrator memilih Satuan
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menyimpan data baru ke tabel Obat di database
+and	Sistem menampilkan pesan bahwa data telah berhasil disimpan
+and	Sistem menampilkan data yang telah dimasukkan di tabel Obat
+and	Sistem menghapus isi seluruh field

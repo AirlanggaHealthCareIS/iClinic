@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Bagian Pendaftaran Berhasil Login
+
+Given	Pegawai bagian pendaftaran telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Pegawai bagian pendaftaran memasukkan userID
+and	Pegawai bagian pendaftaran memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus bagian pendaftaran
+and	Sistem menutup frame login

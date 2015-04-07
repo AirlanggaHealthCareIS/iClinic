@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Pegawai Bagian Layanan Kesehatan Lab Berhasil Login
+
+Given	Pegawai Bagian Layanan Kesehatan Lab telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Pegawai Bagian Layanan Kesehatan Lab memasukkan userID
+and	Pegawai Bagian Layanan Kesehatan Lab memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus Bagian Layanan Kesehatan Lab
+and	Sistem menutup frame login

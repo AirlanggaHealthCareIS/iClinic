@@ -1,0 +1,11 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Gagal Mengubah Data Karena Kesalahan Sistem
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Penyakit/ Tindakan/ Obat/ Layanan Lab/ Layanan Kecantikan'
+and	Administrator memilih salah satu baris data dari tabel Penyakit/ Tindakan/ Obat/ Layanan Lab/ Layanan Kecantikan
+and	Sistem menampilkan data yang dipilih kembali ke field-field
+and	Administrator mengubah data pada satu atau lebih field
+and	Administrator memilih tombol 'Ubah'
+Then	Sistem menampilkan pesan bahwa perubahan data gagal dilakukan karena kesalahan sistem

@@ -1,0 +1,15 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menambahkan Data di Tabel Layanan Lab
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Layanan Lab'
+and	Administrator memasukkan ID Lab
+and	Administrator memasukkan Jenis Pemeriksaan
+and	Administrator memasukkan Deskripsi
+and	Administrator memasukkan Harga
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menyimpan data baru ke tabel Layanan Lab di database
+and	Sistem menampilkan pesan bahwa data telah berhasil disimpan
+and	Sistem menampilkan data yang telah dimasukkan di tabel Layanan Lab
+and	Sistem menghapus isi seluruh field

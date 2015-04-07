@@ -1,0 +1,13 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Gagal Menambahkan Data Pada Tabel Obat Karena Pengisian Field Tidak Lengk
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Obat'
+and	Administrator memasukkan ID Obat
+or	Administrator memasukkan Nama Obat
+or	Administrator memasukkan Jenis Obat
+or	Administrator memasukkan Harga Obat
+or	Administrator memilih Satuan
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menampilkan pesan agar Administrator melengkapi seluruh field

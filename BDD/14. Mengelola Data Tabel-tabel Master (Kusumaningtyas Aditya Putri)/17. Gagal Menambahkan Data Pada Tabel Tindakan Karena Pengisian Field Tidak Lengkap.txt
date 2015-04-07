@@ -1,0 +1,13 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Gagal Menambahkan Data Pada Tabel Tindakan Karena Pengisian Field Tidak Lengkap
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Tindakan'
+or	Administrator memasukkan ID Tindakan
+or	Administrator memilih Spesialisasi
+or	Administrator memasukkan Nama Tindakan
+or	Administrator memasukkan Tarif
+or	Administrator memasukkan Keterangan
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menampilkan pesan agar Administrator melengkapi seluruh field

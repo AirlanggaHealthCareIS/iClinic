@@ -1,0 +1,14 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menambahkan Data di Tabel Penyakit
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Penyakit'
+and	Administrator memasukkan ID Penyakit
+and	Administrator memasukkan Nama Penyakit
+and	Administrator memasukkan Gejala
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menyimpan data baru ke tabel Penyakit di database
+and	Sistem menampilkan pesan bahwa data telah berhasil disimpan
+and	Sistem menampilkan data yang telah dimasukkan di tabel Penyakit
+and	Sistem menghapus isi seluruh field

@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Pegawai Bagian Apotek/ Apoteker Berhasil Login
+
+Given	Pegawai Bagian Apotek/ Apoteker telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Pegawai Bagian Apotek/ Apoteker memasukkan userID
+and	Pegawai Bagian Apotek/ Apoteker memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus bagian apotek
+and	Sistem menutup frame login

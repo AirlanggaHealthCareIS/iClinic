@@ -1,0 +1,8 @@
+Feature		Login
+Scenario	Aktor Gagal Login Karena Pengisian Field Kurang Lengkap
+
+Given	Aktor telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Aktor memasukkan userID
+or	Aktor memasukkan password
+Then	Sistem menampilkan pesan bagi aktor untuk melengkapi seluruh field

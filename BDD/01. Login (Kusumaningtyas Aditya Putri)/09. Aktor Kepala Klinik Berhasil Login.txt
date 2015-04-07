@@ -1,0 +1,10 @@
+Feature		Login
+Scenario	Aktor Kepala Klinik Berhasil Login
+
+Given	Kepala Klinik telah membuka aplikasi sistem informasi iClinic
+and	Sistem menampilkan form login
+When	Kepala Klinik memasukkan userID
+and	Kepala Klinik memasukkan password
+Then	Sistem menampilkan pesan selamat datang
+and	Sistem membuka frame khusus Kepala Klinik
+and	Sistem menutup frame login

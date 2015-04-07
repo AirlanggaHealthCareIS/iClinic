@@ -1,0 +1,15 @@
+Feature		Mengisi Resep Pasien
+Scenario	Dokter Gagal Mengisi Resep Karena Kesalahan Sistem
+
+Given	Dokter telah melakukan login
+and	Sistem telah menampilkan frame khusus Dokter
+When	Dokter memilih tab 'Resep'
+or	Dokter memilih Nama Obat
+or	Dokter memberi jumlah Takaran
+or	Dokter memilih satuan Takaran waktu
+or	Dokter memilih Cara Pemakaian
+or	Dokter memberi Jumlah obat
+or	Dokter memilih Satuan obat
+or	Dokter mengisi Keterangan
+or	Dokter memilih tombol 'Proses'
+Then	Sistem mmenampilkan pesan bahwa data gagal diproses karena kesalahan sistem

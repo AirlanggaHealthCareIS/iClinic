@@ -1,0 +1,12 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menghapus Data di Tabel Tindakan
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'Tindakan'
+and	Administrator memilih salah satu baris data dari tabel Tindakan
+and	Administrator memilih tombol 'Hapus'
+Then	Sistem menghapus data yang dipiliih dari tabel Tindakan di database
+and	Sistem menampilkan pesan bahwa data telah berhasil dihapus
+and	Sistem menampilkan data di tabel Tindakan
+and	Sistem menghapus isi seluruh field

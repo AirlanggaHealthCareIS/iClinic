@@ -1,0 +1,26 @@
+Feature		Mengisi Resep Pasien
+Scenario	Dokter Berhasil Mengisi Resep Pasien (Lebih dari Satu Obat)
+
+Given	Dokter telah melakukan login
+and	Sistem telah menampilkan frame khusus Dokter
+When	Dokter memilih tab 'Resep'
+and	Dokter memilih Nama Obat
+and	Dokter memberi jumlah Takaran
+and	Dokter memilih satuan Takaran waktu
+and	Dokter memilih Cara Pemakaian
+and	Dokter memberi Jumlah obat
+and	Dokter memilih Satuan obat
+and	Dokter mengisi Keterangan
+and	Dokter memilih tombol 'Pilih'
+and	Dokter memilih tombol 'Tambah Obat'
+and	Dokter mengisi kembali seluruh field
+and	Dokter memilih tombol 'Proses'
+Then	Sistem men-generate ID Resep baru
+and	Sistem men-generate No Detail Resep baru untuk setiap obat
+and	Sistem men-generate Harga setiap obat
+and	Sistem men-generate Total Harga
+and	Sistem menyimpan data resep baru ke tabel Resep dan Detail Resep di database
+and	Sistem menampilkan data yang telah dipilih di tabel Resep
+and	Sistem menampilkan pesan bahwa data telah berhasil diproses
+and	Sistem mengirimkan data resep pasien ke bagian apotek
+and	Sistem menghapus isi seluruh field
