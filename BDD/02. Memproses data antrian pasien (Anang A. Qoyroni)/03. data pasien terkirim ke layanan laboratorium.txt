@@ -1,0 +1,6 @@
+02. Memproses data antrian pasien
+Skenario data pasien terkirim ke layanan laboratorium
+given = sudah terdaftar sebagai pasien
+when  = memilih layanan laboratorium
+then  = pasien akan melihat nomor urut antrian yang dia terima di layanan laboratorium
+
