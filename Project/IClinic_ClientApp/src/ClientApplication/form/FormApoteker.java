@@ -81,8 +81,27 @@ public class FormApoteker extends javax.swing.JFrame {
         clear1 = new javax.swing.JButton();
         submit = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        submit1 = new javax.swing.JButton();
+        clear2 = new javax.swing.JButton();
+        Exit1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox();
+        jTextField11 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jTextField13 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,22 +240,104 @@ public class FormApoteker extends javax.swing.JFrame {
         jPanel2.add(Exit);
         Exit.setBounds(770, 690, 168, 58);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
-        jPanel2.add(jLabel13);
-        jLabel13.setBounds(0, 0, 1360, 800);
+        jLabel20.setText("Total Harga");
+        jPanel2.add(jLabel20);
+        jLabel20.setBounds(10, 640, 106, 22);
+        jPanel2.add(jTextField12);
+        jTextField12.setBounds(100, 640, 183, 22);
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
+        jLabel22.setText("jLabel22");
+        jPanel2.add(jLabel22);
+        jLabel22.setBounds(0, -40, 1280, 890);
 
         jTabbedPane1.addTab("PENUKARAN RESEP", jPanel2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 802, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(null);
+
+        submit1.setText("Simpan Data");
+        submit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(submit1);
+        submit1.setBounds(330, 690, 178, 54);
+
+        clear2.setText("Clear");
+        clear2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(clear2);
+        clear2.setBounds(550, 690, 168, 58);
+
+        Exit1.setText("Exit");
+        Exit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Exit1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Exit1);
+        Exit1.setBounds(770, 690, 168, 58);
+
+        jLabel15.setText("ID Pasien");
+        jPanel3.add(jLabel15);
+        jLabel15.setBounds(10, 250, 106, 22);
+
+        jLabel16.setText("ID Resep");
+        jPanel3.add(jLabel16);
+        jLabel16.setBounds(10, 300, 106, 22);
+
+        jLabel17.setText("Nama Obat");
+        jPanel3.add(jLabel17);
+        jLabel17.setBounds(10, 360, 106, 22);
+
+        jLabel18.setText("Kuantitas");
+        jPanel3.add(jLabel18);
+        jLabel18.setBounds(10, 410, 106, 22);
+
+        jLabel19.setText("Detail Resep");
+        jPanel3.add(jLabel19);
+        jLabel19.setBounds(10, 450, 106, 22);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nama Obat", "Jenis Obat", "Kuantitas", "Harga"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel3.add(jScrollPane3);
+        jScrollPane3.setBounds(10, 490, 999, 101);
+        jPanel3.add(jTextField9);
+        jTextField9.setBounds(100, 250, 183, 22);
+        jPanel3.add(jTextField10);
+        jTextField10.setBounds(100, 300, 183, 22);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(jComboBox2);
+        jComboBox2.setBounds(100, 360, 183, 22);
+        jPanel3.add(jTextField11);
+        jTextField11.setBounds(100, 410, 50, 22);
+
+        jLabel21.setText("Total Harga");
+        jPanel3.add(jLabel21);
+        jLabel21.setBounds(10, 630, 106, 22);
+        jPanel3.add(jTextField13);
+        jTextField13.setBounds(100, 630, 183, 22);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        jPanel3.add(jLabel12);
+        jLabel12.setBounds(0, 0, 1290, 810);
 
         jTabbedPane1.addTab("PEMBELIAN OBAT", jPanel3);
 
@@ -306,18 +407,41 @@ public class FormApoteker extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ExitActionPerformed
 
+    private void submit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submit1ActionPerformed
+
+    private void clear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clear2ActionPerformed
+
+    private void Exit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Exit1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Exit;
+    private javax.swing.JButton Exit1;
     private javax.swing.JButton clear1;
+    private javax.swing.JButton clear2;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -330,11 +454,17 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -342,7 +472,9 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton submit;
+    private javax.swing.JButton submit1;
     // End of variables declaration//GEN-END:variables
 
 }
