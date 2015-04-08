@@ -1,0 +1,10 @@
+Feature		Memproses Pembayaran Pasien
+Scenario	Karyawan Bagian Pembayaran TidakBerhasil Memproses Pembayaran Pasien dengan Tunai
+
+Given	Karyawan bagian Pembayaran sudah melakukan login
+and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
+and	Sistem telah menampilkan pemberitahuan tidak ada transaksi yang harus dibayar pasien
+When	Karyawan bagian Pembayaran menekan tombol pembayaran dengan menggunakan debit
+Then	Sistem tidak merespon karena tombol Tunai dalam keadaan disable
+and	Sistem menampilkan pemberitahuan bahwa terjadi kesalahan prosedur pembayaran
+and	Sistem menampilkan pemberitahuan untuk mengecek kembali ID Pasien yang dimasukkan

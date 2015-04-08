@@ -1,0 +1,9 @@
+Feature		Memproses Pembayaran Pasien
+Scenario	Karyawan Bagian Pembayaran Berhasil Memproses Pembayaran Pasien dengan Tunai
+
+Given	Karyawan bagian Pembayaran sudah melakukan login
+and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
+and	Sistem telah menampilkan seluruh total pembayaran pasien
+When	Karyawan bagian Pembayaran menekan tombol pembayaran dengan menggunakan tunai
+Then	Sistem mengganti keterangan belum lunas (hutang) menjadi lunas
+and	Sistem menampilkan pemberitahuan bahwa transaksitelah berhasil

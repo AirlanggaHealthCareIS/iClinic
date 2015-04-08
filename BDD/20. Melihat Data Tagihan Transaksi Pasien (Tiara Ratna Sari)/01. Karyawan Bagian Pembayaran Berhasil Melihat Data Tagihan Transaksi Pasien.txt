@@ -1,0 +1,9 @@
+Feature		Melihat Data Tagihan Transaksi Pasien
+Scenario	Karyawan Bagian Pembayaran Berhasil Melihat Data Tagihan Transaksi Pasien
+
+Given	Karyawan bagian Pembayaran sudah melakukan login
+and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
+When	Karyawan bagian Pembayaran memasukkan ID Pasien
+Then	Sistem mengecek data transaksi pembayaran di database dengan keterangan belum lunas dan tanggal/hari
+and	Sistem mengetahui pasien memiliki transaksi dengan keterangan belum lunas
+and	Sistem menampilkan seluruh total tagihan pembayaran pasien

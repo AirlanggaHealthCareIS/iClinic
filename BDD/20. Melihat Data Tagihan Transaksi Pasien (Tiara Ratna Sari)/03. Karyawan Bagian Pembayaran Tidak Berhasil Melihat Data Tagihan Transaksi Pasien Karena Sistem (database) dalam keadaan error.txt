@@ -1,0 +1,8 @@
+Feature		Melihat Data Tagihan Transaksi Pasien
+Scenario	Karyawan Bagian Pembayaran Tidak Berhasil Melihat Data Tagihan Transaksi Pasien Karena Sistem (database) dalam keadaan error
+
+Given	Karyawan bagian Pembayaran sudah melakukan login
+and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
+When	Karyawan bagian Pembayaran memasukkan ID Pasien
+Then	Sistem tidak berhasil mengecek data transaksi pembayaran di database dengan keterangan belum lunas dan tanggal/hari
+and	Sistem menampilkan pemberitahuan sistem sedang error
