@@ -115,7 +115,7 @@ public class FormApoteker extends javax.swing.JFrame {
 
         jLabel2.setText("ID Pasien");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(10, 260, 106, 22);
+        jLabel2.setBounds(10, 360, 106, 22);
 
         jLabel3.setText("Detail Resep");
         jPanel1.add(jLabel3);
@@ -143,7 +143,7 @@ public class FormApoteker extends javax.swing.JFrame {
 
         jLabel6.setText("ID Resep");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 360, 106, 22);
+        jLabel6.setBounds(10, 260, 106, 22);
         jPanel1.add(jTextField5);
         jTextField5.setBounds(120, 310, 183, 22);
 
@@ -169,13 +169,13 @@ public class FormApoteker extends javax.swing.JFrame {
 
         jLabel5.setText("ID Pasien");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(10, 250, 106, 22);
+        jLabel5.setBounds(10, 330, 106, 22);
         jPanel2.add(jTextField4);
         jTextField4.setBounds(100, 250, 183, 22);
 
         jLabel8.setText("ID Resep");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(10, 330, 106, 22);
+        jLabel8.setBounds(10, 250, 106, 22);
         jPanel2.add(jTextField7);
         jTextField7.setBounds(100, 290, 183, 22);
 

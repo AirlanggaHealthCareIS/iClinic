@@ -1,0 +1,15 @@
+Feature		Memproses Pembelian Obat
+Scenario	Memproses Pembelian Obat Gagal Karena Field Kosong
+Given	apoteker telah melakukan login
+And	sistem menampilkan form/frame apotek
+When 	apoteker menekan tab "Pembelian Obat"
+Then	sistem menampilkan form/frame pembelian obat
+When	apoteker mengisi field ID_Pasien
+And	apoteker tidak mengisi ID_Resep
+And	apoteker memilih nama obat
+And	apoteker tidak mengisikan kuantitas obat
+Then	sistem tidak menampilkan tabel detail resep secara lengkap
+And	sistem tidak menampilkan total harga
+When	apoteker menekan tombol simpan data
+Then	sistem tidak menyimpan data pada database
+And	sistem memunculkan error message bahwa field kosong
