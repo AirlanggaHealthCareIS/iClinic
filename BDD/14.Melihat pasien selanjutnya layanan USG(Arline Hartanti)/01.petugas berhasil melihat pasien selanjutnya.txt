@@ -1,0 +1,9 @@
+Fitur        Melihat pasien selanjutnya
+Skenario     Petugas berhasil melihat pasien selanjutnya di layanan USG
+
+Given 	     Petugas masuk ke halaman khusus layanan USG
+Then	     Sistem mengirimkan data pasien ke petugas layanan USG
+When 	     Petugas menginputkan data transaksi dengan benar
+And          Petugas meng-klik tombol "simpan" 
+Then 	     Sistem akan kembali ke halaman awal petugas layanan USG
+And          Sistem menampilkan data pasien yang mengantri selanjutnya seperti semula

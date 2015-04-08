@@ -1,0 +1,10 @@
+Fitur	        Melihat pasien selanjutnya
+Skenario	Petugas menemukan data (nama) pasien yang tidak sesuai 
+ 		
+
+Given 		Petugas masuk ke halaman khusus layanan USG
+Then		Sistem mengirimkan ID dan nama pasien ke layanan USG
+When 		Petugas	melakukan check nama pasien dan nama pasien tidak sesuai 
+Then 		Sistem akan kembali ke halaman awal  
+When		Petugas meng-klik tombol "selanjutnya"
+Then		Sistem menampilkan ID dan nama pasien yang berada pada daftar antrian selanjutnya
