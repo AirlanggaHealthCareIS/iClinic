@@ -1,0 +1,10 @@
+Feature 		Mengisi Rekam Medis
+Scenario		Gagal memasukkan data hasil pemeriksaan pasien
+
+GIVEN	Dokter menerima tampilan isian rekam medis pasien
+WHEN	Dokter memasukkan data hasil pemeriksaan pasien
+AND	Dokter menekan tombol submit untuk menginputkan isian data
+THEN	Sistem mengecek seluruh field dengan benar
+AND 	Isian dalam sistem terdapat kesalahan
+THEN	Data tidak berhasil diisi, tidak bisa disimpan di database
+AND 	Sistem menampilkan pesan bahwa data belum berhasil disimpan

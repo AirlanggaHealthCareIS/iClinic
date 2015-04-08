@@ -1,0 +1,10 @@
+Feature 		Mengisi Rekam Medis
+Scenario		Memasukkan data hasil pemeriksaan pasien
+
+GIVEN	Dokter menerima tampilan isian rekam medis pasien
+WHEN	Dokter memasukkan data hasil pemeriksaan pasien
+AND	Dokter menekan tombol submit untuk menginputkan isian data
+THEN	Sistem mengecek seluruh field dengan benar
+AND 	Isian dalam sistem benar
+THEN	Data berhasil diisi, data disimpan di basis data
+AND 	Sistem menampilkan pesan bahwa data sudah disimpan
