@@ -207,7 +207,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         Alamat.setBounds(40, 390, 80, 20);
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ClientApplication/form/2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 800);
 
