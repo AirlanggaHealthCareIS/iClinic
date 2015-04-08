@@ -1,0 +1,15 @@
+Feature		Memproses Pembelian Obat
+Scenario	Memproses Pembelian Obat Gagal Karena Kesalahan Sistem
+Given	apoteker telah melakukan login
+And	sistem menampilkan form/frame apotek
+When 	apoteker menekan tab "Pembelian Obat"
+Then	sistem menampilkan form/frame pembelian obat
+When	apoteker mengisi field ID_Pasien
+And	apoteker mengisi ID_Resep
+And	apoteker memilih nama obat
+And	apoteker mengisikan kuantitas obat
+Then	sistem menampilkan pada tabel detail resep
+And	sistem menampilkan total harga
+When	apoteker menekan tombol simpan data
+Then	sistem menyimpan data dalam database
+And	sistem mengirimkan total harga ke bagian pembayaran

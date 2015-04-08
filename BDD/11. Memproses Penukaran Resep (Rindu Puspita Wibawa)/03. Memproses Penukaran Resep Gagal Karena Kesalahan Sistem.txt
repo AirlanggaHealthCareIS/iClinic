@@ -1,0 +1,14 @@
+Feature		Memproses Penukaran Resep
+Scenario	Memproses Penukaran Resep Gagagl Karena Kesalahan Sistem
+
+Given	apoteker telah melakukan login
+And	sistem menampilkan form/frame apotek
+When 	apoteker menekan tab "Penukaran Resep"
+Then	sistem menampilkan form/frame penukaran resep
+When	apoteker merubah resep dengan memilih nama obat
+And	apoteker merubah kuantitas dengan mengisi kuantitas
+Then	sistem menampilkan detail perubahan pada tabel
+And	sistem menampilkan total harga baru
+When	apoteker menekan tombol simpan data
+Then	sistem menampilkan error message bahwa data gagal disimpan karena kesalahan sistem
+And	sistem tidak mengirim total harga ke bagian pembayaran
