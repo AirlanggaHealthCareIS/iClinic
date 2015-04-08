@@ -1,0 +1,11 @@
+Anang A. Qoyroni
+081211631059
+S1 - Sistem Informasi
+
+Skenario 2 = Data pasien baru tidak terdaftar
+given = sudah membuka halaman pendaftaran pasien baru
+when  = add new pasien
+then  = input data pasien baru
+when  = data incomplete
+then  = I click daftar
+and   = I should see " Tidak Terdaftar"
