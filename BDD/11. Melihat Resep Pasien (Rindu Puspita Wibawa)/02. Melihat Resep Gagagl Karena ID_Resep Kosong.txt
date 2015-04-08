@@ -1,0 +1,10 @@
+Feature		Melihat Resep Pasien
+Scenario 	Melihat Resep Pasien Gagal Karena ID_Resep Kosong
+
+Given	apoteker telah melakukan login dan sistem menampilkan form/frame apotek
+When	apoteker menekan tab "Lihat Resep"
+Then	sistem menampilkan form/frame resep
+When 	apoteker tidak mengisi ID_Resep pasien
+And	apoteker menekan enter
+Then	sistem tidak dapat menampilkan resep
+And	sistem mengeluarkan error message

@@ -11,7 +11,6 @@
 
 package ClientApplication.form;
 
-import com.mysql.jdbc.Statement;
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelObat_detailResep;
 import Database.Entity.Obat_detailResep;
@@ -83,6 +82,7 @@ public class FormApoteker extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,7 +138,7 @@ public class FormApoteker extends javax.swing.JFrame {
         jPanel1.add(jLabel14);
         jLabel14.setBounds(0, -30, 1280, 860);
 
-        jTabbedPane1.addTab("RESEP", jPanel1);
+        jTabbedPane1.addTab("LIHAT RESEP", jPanel1);
 
         jPanel2.setLayout(null);
         jPanel2.add(jTextField3);
@@ -225,7 +225,20 @@ public class FormApoteker extends javax.swing.JFrame {
         jPanel2.add(jLabel13);
         jLabel13.setBounds(0, 0, 1360, 800);
 
-        jTabbedPane1.addTab("PENEBUSAN RESEP", jPanel2);
+        jTabbedPane1.addTab("PENUKARAN RESEP", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 802, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("PEMBELIAN OBAT", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,6 +327,7 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
