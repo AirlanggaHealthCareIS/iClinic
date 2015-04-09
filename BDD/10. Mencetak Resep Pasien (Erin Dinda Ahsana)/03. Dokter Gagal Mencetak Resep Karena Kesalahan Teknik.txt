@@ -1,0 +1,11 @@
+Feature 	Mencetak Resep Pasien 
+Skenario 	Dokter Gagal Mencetak Resep Karena Kesalahan Teknik 
+
+Given 		Sistem telah menampilkan halaman bagian dokter dan tab resep 
+and 		Sistem menampilkan list resep pada tabel resep yang telah diinputkan oleh Dokter 
+When 		Dokter meng-klik button cetak resep 
+Then 		Sistem masuk ke frame atau menu pop up cetak resep berupa tampilan print out 
+When 		Dokter mengklik button OK pada menu pop up print
+Then		Sistem mmenampilkan pesan bahwa data gagal dicetak karena kesalahan secara teknik
+Then 		Sistem menampilkan pesan bahwa data gagal dicetak 
+and 		Sistem kembali ke halaman resep 

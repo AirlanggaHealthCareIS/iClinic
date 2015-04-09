@@ -1,0 +1,11 @@
+Feature 	Melihat Pasien Selanjutnya
+Scenario 	Petugas Laboratorium Berhasil Melihat Pasien Selanjutnya
+
+Given 		Petugas masuk ke halaman utama khusus laboratorium
+and 		Sistem mengirimkan nama beserta ID pasien ke layanan kesehatan laboratorium 
+When 		Petugas	menginputkan data transaksi 
+and 		Petugas meng-klik button "simpan" 
+Then 		Sistem akan kembali ke halaman utama laboratorium
+and 		sistem menampilkan nama beserta ID pasien yang mengantri selanjutnnya seperti semula
+
+

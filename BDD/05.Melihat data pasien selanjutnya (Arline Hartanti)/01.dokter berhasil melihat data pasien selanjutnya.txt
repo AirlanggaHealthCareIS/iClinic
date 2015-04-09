@@ -1,0 +1,9 @@
+Fitur        Melihat data pasien selanjutnya
+Skenario     Dokter berhasil melihat data pasien selanjutnya
+
+Given 	     Dokter masuk ke halaman khusus dokter
+Then	     Sistem mengirimkan data pasien ke dokter
+When 	     Dokter menginputkan data transaksi dengan benar
+And          Dokter meng-klik tombol "simpan" 
+Then 	     Sistem akan kembali ke halaman awal dokter
+And          Sistem menampilkan data pasien yang mengantri selanjutnnya seperti semula

@@ -1,0 +1,10 @@
+Fitur	     Memasukkan data transaksi layanan USG
+Skenario     Petugas berhasilmemasukkan data transaksi karena terdapat semua field tidak terisi/kosong
+
+Given	     Petugas masuk ke form data transaksi pasien
+When         Petugas menginputkan data pada form layanan USG
+And	     Semua field tidak diisi atau kosong
+And 	     Petugas mengklik tombol "simpan"
+Then         Sistem akan menampilkan pesan pemberitahuan bahwa tidak ada field yang diisi/semua field masih kosong
+When 	     Petugas mengklik tombol "ok"
+Then	     Sistem akan kembali ke form sebelumnya

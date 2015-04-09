@@ -1,0 +1,10 @@
+Feature 	Melihat Pasien Selanjutnya
+Scenario 	Petugas Laboratorium Menemukan Nama Pasien yang Tidak Sesuai 
+ 		
+
+Given 		Petugas masuk ke halaman utama khusus laboratorium
+and 		Sistem mengirimkan nama beserta ID pasien ke layanan kesehatan laboratorium 
+When 		Petugas	melakukan check nama pasien dan nama pasien tidak sesuai 
+Then 		Sistem akan kembali ke halaman utama  
+and		Petugas meng-klik tombol "next"
+Then		sistem menampilkan nama beserta ID pasien yang mengantri selanjutnya

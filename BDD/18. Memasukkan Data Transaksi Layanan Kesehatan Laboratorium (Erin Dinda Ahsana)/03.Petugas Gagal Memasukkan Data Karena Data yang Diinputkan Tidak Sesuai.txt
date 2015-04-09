@@ -1,0 +1,12 @@
+Feature 	Memasukkan Data Transaksi Layanan Kesehatan Laboratorium
+Scenario 	Petugas Gagal Memasukkan Data Transaksi Karena Data yang Diinputkan Tidak Sesuai
+
++Given 		Petugas masuk ke halaman atau form data transaksi pasien
++When 		Petugas memasukkan / menginputkan data pada form data transaksi pasien 
++and 		satu atu lebih field data yang diinputkan tidak sesuai 
++and 		Petugas meng-klik button "simpan"
++Then 		Sistem menampilkan pesan pemberitahuan bahwa ada satu atau lebih field pada form tersebut tidak sesuai
++when 		Petugas meng-klik button "OK"	
++Then		Sistem akan kembali ke form data transaksi sebelumnya 
++and 		satu atau lebih field data yang tidak sesuai otomatis dikosongkan 
+
