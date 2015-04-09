@@ -1,0 +1,11 @@
+Adam Muhammad
+081211633001
+S1 - Sistem Informasi
+
+Skenario 1 = Data pasien lama terdaftar
+given = sudah membuka halaman pendaftaran pasien lama
+when  = memasukkan Id pasien
+then  = lulu mannequin tombol cari
+when  = data pasien ditemukan
+then  = meng-klik tombol daftar antrian
+and   = pasien mendapat nomer antrian
