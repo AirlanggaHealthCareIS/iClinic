@@ -35,10 +35,10 @@ public class Splash extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HALO!");
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/adammuhammad/Desktop/UI IClinic/iClinic/iClinic.png")); // NOI18N
 
         oke.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
-        oke.setText("In");
+        oke.setText("IN");
         oke.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okeActionPerformed(evt);
@@ -55,7 +55,7 @@ public class Splash extends javax.swing.JFrame {
                 .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
