@@ -73,8 +73,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 800));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
@@ -259,10 +258,12 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Transaksi", jPanel2);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1280, 650));
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 150, 1280, 650);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/8.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1280, 800);
 
         pack();
         setLocationRelativeTo(null);
