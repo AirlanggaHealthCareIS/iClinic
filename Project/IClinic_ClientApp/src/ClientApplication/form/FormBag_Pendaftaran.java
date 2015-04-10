@@ -35,6 +35,7 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormBag_Pendaftaran extends javax.swing.JFrame {
     
+    
 
     public FormBag_Pendaftaran(Bag_PendaftaranService bag_PendaftaranService) {
     }
@@ -50,25 +51,25 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         PasienBaru = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jeniskelamin = new javax.swing.JPanel();
-        ID_Pasien = new javax.swing.JPanel();
-        NO_KTP = new javax.swing.JPanel();
-        NamaPasien = new javax.swing.JPanel();
-        alamat = new javax.swing.JPanel();
-        TTL = new javax.swing.JPanel();
-        usia = new javax.swing.JPanel();
-        Daftar = new javax.swing.JButton();
+        tombolDaftar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField15 = new javax.swing.JTextField();
-        No_HP = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        field_ID_Pasien = new javax.swing.JTextField();
+        field_No_Ktp = new javax.swing.JTextField();
+        field_Nama_Pasien = new javax.swing.JTextField();
+        field_Alamat = new javax.swing.JTextField();
+        field_TTL = new javax.swing.JTextField();
+        field_Usia = new javax.swing.JTextField();
+        field_No_HP = new javax.swing.JTextField();
+        field_Jenis_Kelamin = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No_Hp = new javax.swing.JLabel();
@@ -96,80 +97,14 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jTextField8.setText("ID_Pasien");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        tombolDaftar.setText("Daftar");
+        tombolDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                tombolDaftarActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField8);
-        jTextField8.setBounds(40, 290, 70, 20);
-
-        jTextField9.setText("NO KTP");
-        jPanel3.add(jTextField9);
-        jTextField9.setBounds(40, 320, 70, 20);
-
-        jTextField10.setText("Nama Pasien");
-        jPanel3.add(jTextField10);
-        jTextField10.setBounds(40, 350, 70, 20);
-
-        jTextField11.setText("Alamat");
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField11);
-        jTextField11.setBounds(40, 380, 70, 20);
-
-        jTextField12.setText("TTL");
-        jPanel3.add(jTextField12);
-        jTextField12.setBounds(40, 410, 70, 20);
-
-        jTextField13.setText("Usia");
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField13);
-        jTextField13.setBounds(40, 440, 70, 20);
-
-        jTextField14.setText("No HP");
-        jPanel3.add(jTextField14);
-        jTextField14.setBounds(40, 470, 70, 20);
-
-        jeniskelamin.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jeniskelamin);
-        jeniskelamin.setBounds(140, 500, 160, 20);
-
-        ID_Pasien.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(ID_Pasien);
-        ID_Pasien.setBounds(140, 290, 160, 20);
-
-        NO_KTP.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(NO_KTP);
-        NO_KTP.setBounds(140, 320, 160, 20);
-
-        NamaPasien.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(NamaPasien);
-        NamaPasien.setBounds(140, 350, 160, 20);
-
-        alamat.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(alamat);
-        alamat.setBounds(140, 380, 160, 20);
-
-        TTL.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(TTL);
-        TTL.setBounds(140, 410, 160, 20);
-
-        usia.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(usia);
-        usia.setBounds(140, 440, 160, 20);
-
-        Daftar.setText("Daftar");
-        jPanel3.add(Daftar);
-        Daftar.setBounds(60, 550, 230, 40);
+        jPanel3.add(tombolDaftar);
+        tombolDaftar.setBounds(60, 550, 230, 40);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,13 +130,71 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jScrollPane1);
         jScrollPane1.setBounds(330, 290, 452, 90);
 
-        jTextField15.setText("Jenis Kelamin");
-        jPanel3.add(jTextField15);
-        jTextField15.setBounds(40, 500, 70, 20);
+        jLabel3.setText("ID_Pasien");
+        jPanel3.add(jLabel3);
+        jLabel3.setBounds(40, 290, 70, 20);
 
-        No_HP.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(No_HP);
-        No_HP.setBounds(140, 470, 160, 20);
+        jLabel4.setText("NO KTP");
+        jPanel3.add(jLabel4);
+        jLabel4.setBounds(40, 320, 70, 20);
+
+        jLabel5.setText("Nama Pasien");
+        jPanel3.add(jLabel5);
+        jLabel5.setBounds(40, 350, 70, 20);
+
+        jLabel6.setText("Alamat");
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(40, 380, 70, 20);
+
+        jLabel7.setText("TTL");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(40, 410, 70, 20);
+
+        field_ID_Pasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_ID_PasienActionPerformed(evt);
+            }
+        });
+        jPanel3.add(field_ID_Pasien);
+        field_ID_Pasien.setBounds(140, 290, 150, 20);
+        jPanel3.add(field_No_Ktp);
+        field_No_Ktp.setBounds(140, 320, 150, 20);
+
+        field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_Nama_PasienActionPerformed(evt);
+            }
+        });
+        jPanel3.add(field_Nama_Pasien);
+        field_Nama_Pasien.setBounds(140, 350, 150, 20);
+        jPanel3.add(field_Alamat);
+        field_Alamat.setBounds(140, 380, 150, 20);
+        jPanel3.add(field_TTL);
+        field_TTL.setBounds(140, 410, 150, 20);
+        jPanel3.add(field_Usia);
+        field_Usia.setBounds(140, 440, 150, 20);
+        jPanel3.add(field_No_HP);
+        field_No_HP.setBounds(140, 470, 150, 20);
+
+        field_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                field_Jenis_KelaminActionPerformed(evt);
+            }
+        });
+        jPanel3.add(field_Jenis_Kelamin);
+        field_Jenis_Kelamin.setBounds(140, 500, 150, 20);
+
+        jLabel8.setText("Usia");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(40, 440, 70, 20);
+
+        jLabel9.setText("No HP");
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(40, 470, 70, 20);
+
+        jLabel10.setText("Jenis Kelamin");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(40, 500, 70, 20);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -380,61 +373,122 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
+    private void tombolDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolDaftarActionPerformed
+        boolean isi1 = false;
+        boolean isi2 = false;
+        boolean isi3 = false;
+        boolean isi4 = false;
+        boolean isi5 = false;
+        boolean isi6 = false;
+        boolean isi7 = false;
+        boolean isi8 = false;
+        
+        if(!field_ID_Pasien.getText().equals("")&&field_ID_Pasien.getText().length()<=12){
+            isi1 = true;
+        }
+        if(!field_No_Ktp.getText().equals("")&&field_No_Ktp.getText().length()<=16){
+            isi2 = true;
+        }
+        if((!field_Nama_Pasien.getText().equals(""))&&field_Nama_Pasien.getText().length()<=30){
+            isi3 = true;
+        }
+        if((!field_Alamat.getText().equals(""))&&field_Alamat.getText().length()<=100){
+            isi4 = true;
+        }
+        if(!field_TTL.getText().equals("")){
+            isi5 = true;
+        }
+        if(!field_Usia.getText().equals("")){
+            isi6 = true;
+        }
+        if(!field_No_HP.getText().equals("")){
+            isi7 = true;
+        }
+        if(!field_Jenis_Kelamin.getText().equals("")){
+            isi8 = true;
+        }
+        if(isi1&&isi2&&isi3&&isi4&&isi5&&isi6&&isi7&&isi8){
+           
+            int id_pasien = Integer.parseInt(field_ID_Pasien.getText());
+            int no_ktp = Integer.parseInt(field_No_Ktp.getText());
+            String nama_pasien = field_Nama_Pasien.getText();
+            String Alamat = field_Alamat.getText();
+            String TTL = field_TTL.getText();
+            int usia = Integer.parseInt(field_Usia.getText());
+            int No_HP = Integer.parseInt(field_No_HP.getText());
+            String Jenis_Kelamin = field_Jenis_Kelamin.getText();
+            try{
+                
+            }
+            catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try{
+                Pasien pendaftaran = new Pasien();
+                
+            }
+            
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+           
+        }
+    }//GEN-LAST:event_tombolDaftarActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void field_ID_PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_ID_PasienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_field_ID_PasienActionPerformed
 
+    private void field_Nama_PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_Nama_PasienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_Nama_PasienActionPerformed
+
+    private void field_Jenis_KelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_Jenis_KelaminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_field_Jenis_KelaminActionPerformed
+        
+        
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Alamat;
     private javax.swing.JButton Cari;
-    private javax.swing.JButton Daftar;
     private javax.swing.JButton DaftarAntrian;
     private javax.swing.JLabel Gender;
-    private javax.swing.JPanel ID_Pasien;
     private javax.swing.JLabel Id_Pasien;
     private javax.swing.JLabel Jenis_Kelamin;
-    private javax.swing.JPanel NO_KTP;
-    private javax.swing.JPanel NamaPasien;
     private javax.swing.JLabel Nama_Pasien;
-    private javax.swing.JPanel No_HP;
     private javax.swing.JLabel No_Hp;
     private javax.swing.JTabbedPane PasienBaru;
-    private javax.swing.JPanel TTL;
     private javax.swing.JLabel Usia;
-    private javax.swing.JPanel alamat;
+    private javax.swing.JTextField field_Alamat;
+    private javax.swing.JTextField field_ID_Pasien;
+    private javax.swing.JTextField field_Jenis_Kelamin;
+    private javax.swing.JTextField field_Nama_Pasien;
+    private javax.swing.JTextField field_No_HP;
+    private javax.swing.JTextField field_No_Ktp;
+    private javax.swing.JTextField field_TTL;
+    private javax.swing.JTextField field_Usia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JPanel jeniskelamin;
-    private javax.swing.JPanel usia;
+    private javax.swing.JButton tombolDaftar;
     // End of variables declaration//GEN-END:variables
 
 }
