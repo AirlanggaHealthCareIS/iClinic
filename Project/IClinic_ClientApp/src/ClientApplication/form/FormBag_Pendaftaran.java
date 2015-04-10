@@ -386,6 +386,51 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         if(!field_ID_Pasien.getText().equals("")&&field_ID_Pasien.getText().length()<=12){
             isi1 = true;
         }
+        if(!field_No_Ktp.getText().equals("")&&field_No_Ktp.getText().length()<=16){
+            isi2 = true;
+        }
+        if((!field_Nama_Pasien.getText().equals(""))&&field_Nama_Pasien.getText().length()<=30){
+            isi3 = true;
+        }
+        if((!field_Alamat.getText().equals(""))&&field_Alamat.getText().length()<=100){
+            isi4 = true;
+        }
+        if(!field_TTL.getText().equals("")){
+            isi5 = true;
+        }
+        if(!field_Usia.getText().equals("")){
+            isi6 = true;
+        }
+        if(!field_No_HP.getText().equals("")){
+            isi7 = true;
+        }
+        if(!field_Jenis_Kelamin.getText().equals("")){
+            isi8 = true;
+        }
+        if(isi1&&isi2&&isi3&&isi4&&isi5&&isi6&&isi7&&isi8){
+           
+            int id_pasien = Integer.parseInt(field_ID_Pasien.getText());
+            int no_ktp = Integer.parseInt(field_No_Ktp.getText());
+            String nama_pasien = field_Nama_Pasien.getText();
+            String Alamat = field_Alamat.getText();
+            String TTL = field_TTL.getText();
+            int usia = Integer.parseInt(field_Usia.getText());
+            int No_HP = Integer.parseInt(field_No_HP.getText());
+            String Jenis_Kelamin = field_Jenis_Kelamin.getText();
+            try{
+                
+            }
+            catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try{
+                Pasien pendaftaran = new Pasien();
+                
+            }
+            
+
+           
+        }
     }//GEN-LAST:event_tombolDaftarActionPerformed
 
     private void field_ID_PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_ID_PasienActionPerformed
