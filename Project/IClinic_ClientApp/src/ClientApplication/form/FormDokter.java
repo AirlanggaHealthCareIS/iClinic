@@ -8,6 +8,7 @@ import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelRekam_Medis;
 import Database.Entity.Rekam_Medis;
 import Database.Service.DokterService;
+import Database.Service.Rekam_MedisService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -23,10 +24,10 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormDokter extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormDokter2
-     */
-    public FormDokter(DokterService dokterService) {
+    private TableModelRekam_Medis tableModelRekamMedis = new TableModelRekam_Medis();
+    private Rekam_MedisService rekam_MedisService;
+    public FormDokter(DokterService dokterService, Rekam_MedisService rekam_medisService) {
+        this.rekam_MedisService = rekam_medisService;
         
     }
 
@@ -42,7 +43,10 @@ public class FormDokter extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        riwayat = new javax.swing.JTable();
+        tabelRiwayat = new javax.swing.JTable();
+        jLabel22 = new javax.swing.JLabel();
+        fieldIdPasien = new javax.swing.JTextField();
+        cariRMbyIdPasien = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -101,7 +105,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         jTabbedPane1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        riwayat.setModel(new javax.swing.table.DefaultTableModel(
+        tabelRiwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,7 +116,19 @@ public class FormDokter extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(riwayat);
+        jScrollPane1.setViewportView(tabelRiwayat);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setText("Id Pasien");
+
+        fieldIdPasien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        cariRMbyIdPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        cariRMbyIdPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariRMbyIdPasienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,14 +136,28 @@ public class FormDokter extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(fieldIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cariRMbyIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(fieldIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariRMbyIdPasien))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Riwayat", jPanel1);
@@ -281,9 +311,7 @@ public class FormDokter extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel21))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(totalHargaResep, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(totalHargaResep, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -529,7 +557,7 @@ public class FormDokter extends javax.swing.JFrame {
         jTabbedPane1.addTab("Rekam Medis", jPanel3);
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 220, 159, 550);
+        jTabbedPane1.setBounds(0, 220, 1024, 550);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/4.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -592,6 +620,16 @@ public class FormDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cariRMbyIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariRMbyIdPasienActionPerformed
+        String idPasien = fieldIdPasien.getText();
+        try{
+            tableModelRekamMedis.setData(this.rekam_MedisService.GetRekamMedikbyPasien(idPasien));
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+        tabelRiwayat.setModel(tableModelRekamMedis);
+    }//GEN-LAST:event_cariRMbyIdPasienActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BeratBadan;
@@ -599,8 +637,10 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JTextField Takaran;
     private javax.swing.JTextField TekananDarah;
     private javax.swing.JTextField alergi;
+    private javax.swing.JButton cariRMbyIdPasien;
     private javax.swing.JButton clean;
     private javax.swing.JButton exit;
+    private javax.swing.JTextField fieldIdPasien;
     private javax.swing.JTextField harga;
     private javax.swing.JTextField hasilPemeriksaan;
     private javax.swing.JTextField idObat;
@@ -626,6 +666,7 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -645,8 +686,8 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JTextField keterangan;
     private javax.swing.JComboBox layananTambahan;
     private javax.swing.JTextField noDetail;
-    private javax.swing.JTable riwayat;
     private javax.swing.JButton simpan;
+    private javax.swing.JTable tabelRiwayat;
     private javax.swing.JFormattedTextField tglRekam;
     private javax.swing.JTextField tinggiBadan;
     private javax.swing.JTextField totalHarga;
