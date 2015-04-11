@@ -33,8 +33,41 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
     public Pembayaran getPembayaran(int Id_Pembayaran) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
-        Pembayaran pembayaran = null;
+        PreparedStatement statement = null; 
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM pembayaran WHERE ID_PEMBAYARAN = ?");
+
+            ResultSet result = statement.executeQuery();
+
+            Pembayaran pembayaran = null;
+
+            if(result.next()){
+                pembayaran = new Pembayaran();
+                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
+                pembayaran.setId_USG(result.getString("Id_USG"));
+                pembayaran.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
+                pembayaran.setId_Resep(result.getString("Id_Resep"));
+                pembayaran.setId_Rekam(result.getString("Id_Rekam"));
+                pembayaran.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
+                pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
+                pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
+                pembayaran.setStatus(result.getString("Status"));
+            }
+            
         return pembayaran;
+    }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public List<Pembayaran> getPembayaran() throws RemoteException {
