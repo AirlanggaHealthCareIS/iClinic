@@ -34,16 +34,17 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_USG,ID_DETAIL_LAB,ID_REKAM,ID_TRANSAKSI_LAYANAN,TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?)"
+                   "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_USG,ID_DETAIL_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?,?)"
                    );
            statement.setString(1, pembayaran.getId_Pembayaran());
-           statement.setInt(2, pembayaran.getId_USG());
-           statement.setInt(3, pembayaran.getId_Detail_Lab());
-           statement.setInt(4, pembayaran.getId_Rekam());
-           statement.setInt(5, pembayaran.getId_Transaksi_Layanan());
-           statement.setDate(6, (Date) pembayaran.getTanggal_Bayar());
-           statement.setInt(7, pembayaran.getTotal_Harga());
-           statement.setString(8, pembayaran.getStatus());
+           statement.setString(2, pembayaran.getId_USG());
+           statement.setString(3, pembayaran.getId_Detail_Lab());
+           statement.setString(4, pembayaran.getId_Resep());
+           statement.setString(5, pembayaran.getId_Rekam());
+           statement.setString(6, pembayaran.getId_Transaksi_Layanan());
+           statement.setDate(7, (Date) pembayaran.getTanggal_Bayar());
+           statement.setInt(8, pembayaran.getTotal_Harga());
+           statement.setString(9, pembayaran.getStatus());
 
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
@@ -74,17 +75,18 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
                     "UPDATE pembayaran SET ID_USG = ?," +
-                 "ID_DETAIL_LAB = ?, ID_REKAM = ?, ID_TRANSAKSI_LAYANAN = ?, TANGGAL_BAYAR = ?, TOTAL_HARGA = ? " +
+                 "ID_DETAIL_LAB = ?, ID_RESEP = ?, ID_REKAM = ?, ID_TRANSAKSI_LAYANAN = ?, TANGGAL_BAYAR = ?, TOTAL_HARGA = ? " +
                  "WHERE ID_PEMBAYARAN = ?"
                    );
-           statement.setInt(1, pembayaran.getId_USG());
-           statement.setInt(2, pembayaran.getId_Detail_Lab());
-           statement.setInt(3, pembayaran.getId_Rekam());
-           statement.setInt(4, pembayaran.getId_Transaksi_Layanan());
-           statement.setDate(5, (Date) pembayaran.getTanggal_Bayar());
-           statement.setInt(6, pembayaran.getTotal_Harga());
-           statement.setString(7, pembayaran.getStatus());
-           statement.setString(8, pembayaran.getId_Pembayaran());
+           statement.setString(1, pembayaran.getId_USG());
+           statement.setString(2, pembayaran.getId_Detail_Lab());
+           statement.setString(3, pembayaran.getId_Resep());
+           statement.setString(4, pembayaran.getId_Rekam());
+           statement.setString(5, pembayaran.getId_Transaksi_Layanan());
+           statement.setDate(6, (Date) pembayaran.getTanggal_Bayar());
+           statement.setInt(7, pembayaran.getTotal_Harga());
+           statement.setString(8, pembayaran.getStatus());
+           statement.setString(9, pembayaran.getId_Pembayaran());
 
            statement.executeUpdate();
 
@@ -143,10 +145,11 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             if(result.next()){
                 pembayaran = new Pembayaran();
                 pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
-                pembayaran.setId_USG(result.getInt("Id_USG"));
-                pembayaran.setId_Detail_Lab(result.getInt("Id_Detail_Lab"));
-                pembayaran.setId_Rekam(result.getInt("Id_Rekam"));
-                pembayaran.setId_Transaksi_Layanan(result.getInt("Id_Transaksi_Layanan"));
+                pembayaran.setId_USG(result.getString("Id_USG"));
+                pembayaran.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
+                pembayaran.setId_Resep(result.getString("Id_Resep"));
+                pembayaran.setId_Rekam(result.getString("Id_Rekam"));
+                pembayaran.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
                 pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
                 pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
                 pembayaran.setStatus(result.getString("Status"));
@@ -183,10 +186,11 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
           while(result.next()){
                 Pembayaran pembayaran = new Pembayaran();
                 pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
-                pembayaran.setId_USG(result.getInt("Id_USG"));
-                pembayaran.setId_Detail_Lab(result.getInt("Id_Detail_Lab"));
-                pembayaran.setId_Rekam(result.getInt("Id_Rekam"));
-                pembayaran.setId_Transaksi_Layanan(result.getInt("Id_Transaksi_Layanan"));
+                pembayaran.setId_USG(result.getString("Id_USG"));
+                pembayaran.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
+                pembayaran.setId_Resep(result.getString("Id_Resep"));
+                pembayaran.setId_Rekam(result.getString("Id_Rekam"));
+                pembayaran.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
                 pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
                 pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
                 pembayaran.setStatus(result.getString("Status"));
@@ -196,6 +200,56 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
           result.close();
 
           return list;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    }
+    public Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                "SELECT pasien.NAMA_PASIEN,pembayaran.ID_PEMBAYARAN,transaksi_usg.HARGA,detail_lab.TOTAL_HARGA,resep.TOTAL_HARGA,rekam_medis.TOTAL_HARGA,transaksi_layanan_kecantikan.TOTAL_HARGA,pembayaran.TOTAL_HARGA,pembayaran.STATUS\n" +
+                "FROM pasien,transaksi_usg,detail_lab,resep,rekam_medis,transaksi_layanan_kecantikan,pembayaran\n" +
+                "WHERE pembayaran.ID_PASIEN = '"+Id_Pasien+"' \n" +
+                "AND pembayaran.TANGGAL_BAYAR = '2015-4-11'\n" +
+                "AND pasien.ID_PASIEN = pembayaran.ID_PASIEN\n" +
+                "AND pembayaran.ID_USG = transaksi_usg.ID_USG\n" +
+                "AND pembayaran.ID_DETAIL_LAB = detail_lab.ID_DETAIL_LAB\n" +
+                "AND pembayaran.ID_RESEP = resep.ID_RESEP\n" +
+                "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM\n" +
+                "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
+
+            ResultSet result = statement.executeQuery();
+
+            Pembayaran pembayaran = null;
+
+            if(result.next()){
+                pembayaran = new Pembayaran();
+                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
+                pembayaran.setNama_Pasien(result.getString("Nama_Pasien"));
+                pembayaran.setTotal_USG(result.getInt("HARGA"));
+                pembayaran.setTotal_Lab(result.getInt("Total_HARGA"));
+                pembayaran.setTotal_Resep(result.getInt("Total_HARGA"));
+                pembayaran.setTotal_Rekam(result.getInt("Total_HARGA"));
+                pembayaran.setTotal_Kecantikan(result.getInt("Total_HARGA"));
+                pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
+                pembayaran.setStatus(result.getString("Status"));
+            }
+
+            return pembayaran;
 
         }catch(SQLException exception){
           exception.printStackTrace();

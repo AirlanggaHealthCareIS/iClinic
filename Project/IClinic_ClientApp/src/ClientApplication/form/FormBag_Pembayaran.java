@@ -51,9 +51,11 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     TextField_tglPembayaran.setValue(pembayaran.getTanggal_Bayar());
                     TextField_Usg.setText(String.valueOf(pembayaran.getId_USG()));
                     TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
-                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getId_Rekam()));
+                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
+                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
                     TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
                     TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
+                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
                 }
             }
         });
@@ -67,8 +69,10 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         TextField_Kecantikan.setText("");
         TextField_Lab.setText("");
         TextField_RekamMedis.setText("");
+        TextField_Resep.setText("");
         TextField_Usg.setText("");
         TextField_totalPembayaran.setText("");
+        TextField_status.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -82,8 +86,8 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         button_Delete = new javax.swing.JButton();
         button_Update = new javax.swing.JButton();
         button_Exit = new javax.swing.JButton();
-        Label_RekamMedis = new javax.swing.JLabel();
-        TextField_RekamMedis = new javax.swing.JTextField();
+        Label_Resep = new javax.swing.JLabel();
+        TextField_Resep = new javax.swing.JTextField();
         Label_Lab = new javax.swing.JLabel();
         TextField_Lab = new javax.swing.JTextField();
         Label_Usg = new javax.swing.JLabel();
@@ -92,7 +96,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         TextField_Kecantikan = new javax.swing.JTextField();
         Label_totalPembayaran = new javax.swing.JLabel();
         TextField_totalPembayaran = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Button_search = new javax.swing.JButton();
         Label_idPasien = new javax.swing.JLabel();
         TextField_idPasien = new javax.swing.JTextField();
         Label_namaPasien = new javax.swing.JLabel();
@@ -103,6 +107,10 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table_Bahan = new javax.swing.JTable();
         TextField_tglPembayaran = new javax.swing.JFormattedTextField();
+        Label_RekamMedis = new javax.swing.JLabel();
+        TextField_RekamMedis = new javax.swing.JTextField();
+        Label_status = new javax.swing.JLabel();
+        TextField_status = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,16 +122,16 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
         button_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
         getContentPane().add(button_Tunai);
-        button_Tunai.setBounds(40, 570, 65, 65);
+        button_Tunai.setBounds(40, 620, 65, 65);
 
         button_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
         getContentPane().add(button_Debit);
-        button_Debit.setBounds(150, 570, 65, 65);
+        button_Debit.setBounds(150, 620, 65, 65);
 
         button_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Printer.png"))); // NOI18N
         button_Print.setEnabled(false);
         getContentPane().add(button_Print);
-        button_Print.setBounds(450, 570, 65, 65);
+        button_Print.setBounds(450, 620, 65, 65);
 
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel2.setText("Daftar Pembayaran");
@@ -142,93 +150,98 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         getContentPane().add(button_Exit);
         button_Exit.setBounds(1150, 570, 65, 65);
 
-        Label_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_RekamMedis.setText("REKAM MEDIS");
-        getContentPane().add(Label_RekamMedis);
-        Label_RekamMedis.setBounds(40, 370, 230, 24);
+        Label_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        Label_Resep.setText("RESEP");
+        getContentPane().add(Label_Resep);
+        Label_Resep.setBounds(40, 380, 230, 24);
 
-        TextField_RekamMedis.setEditable(false);
-        TextField_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_RekamMedis);
-        TextField_RekamMedis.setBounds(280, 370, 250, 30);
+        TextField_Resep.setEditable(false);
+        TextField_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        getContentPane().add(TextField_Resep);
+        TextField_Resep.setBounds(280, 380, 250, 30);
 
         Label_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Lab.setText("LAB");
         getContentPane().add(Label_Lab);
-        Label_Lab.setBounds(40, 410, 230, 24);
+        Label_Lab.setBounds(40, 420, 230, 24);
 
         TextField_Lab.setEditable(false);
         TextField_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Lab);
-        TextField_Lab.setBounds(280, 410, 250, 30);
+        TextField_Lab.setBounds(280, 420, 250, 30);
 
         Label_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Usg.setText("USG");
         getContentPane().add(Label_Usg);
-        Label_Usg.setBounds(40, 450, 230, 24);
+        Label_Usg.setBounds(40, 460, 230, 24);
 
         TextField_Usg.setEditable(false);
         TextField_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Usg);
-        TextField_Usg.setBounds(280, 450, 250, 30);
+        TextField_Usg.setBounds(280, 460, 250, 30);
 
         Label_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Kecantikan.setText("KECANTIKAN");
         getContentPane().add(Label_Kecantikan);
-        Label_Kecantikan.setBounds(40, 490, 230, 24);
+        Label_Kecantikan.setBounds(40, 500, 230, 24);
 
         TextField_Kecantikan.setEditable(false);
         TextField_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_Kecantikan);
-        TextField_Kecantikan.setBounds(280, 490, 250, 30);
+        TextField_Kecantikan.setBounds(280, 500, 250, 30);
 
         Label_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_totalPembayaran.setText("TOTAL PEMBAYARAN");
         getContentPane().add(Label_totalPembayaran);
-        Label_totalPembayaran.setBounds(40, 530, 230, 24);
+        Label_totalPembayaran.setBounds(40, 540, 230, 24);
 
         TextField_totalPembayaran.setEditable(false);
         TextField_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_totalPembayaran);
-        TextField_totalPembayaran.setBounds(280, 530, 250, 30);
+        TextField_totalPembayaran.setBounds(280, 540, 250, 30);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
-        getContentPane().add(jButton1);
-        jButton1.setBounds(460, 180, 40, 33);
+        Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        Button_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_searchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Button_search);
+        Button_search.setBounds(460, 170, 40, 33);
 
         Label_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPasien.setText("ID PASIEN");
         getContentPane().add(Label_idPasien);
-        Label_idPasien.setBounds(40, 180, 150, 24);
+        Label_idPasien.setBounds(40, 170, 150, 24);
 
         TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_idPasien);
-        TextField_idPasien.setBounds(200, 180, 250, 30);
+        TextField_idPasien.setBounds(200, 170, 250, 30);
 
         Label_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_namaPasien.setText("NAMA PASIEN");
         getContentPane().add(Label_namaPasien);
-        Label_namaPasien.setBounds(40, 230, 150, 24);
+        Label_namaPasien.setBounds(40, 210, 150, 24);
 
         TextField_namaPasien.setEditable(false);
         TextField_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_namaPasien);
-        TextField_namaPasien.setBounds(200, 230, 250, 30);
+        TextField_namaPasien.setBounds(200, 210, 250, 30);
 
         Label_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPembayaran.setText("ID PEMBAYARAN");
         getContentPane().add(Label_idPembayaran);
-        Label_idPembayaran.setBounds(40, 290, 230, 24);
+        Label_idPembayaran.setBounds(40, 260, 230, 24);
 
         TextField_idPembayaran.setEditable(false);
         TextField_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_idPembayaran);
-        TextField_idPembayaran.setBounds(280, 290, 250, 30);
+        TextField_idPembayaran.setBounds(280, 260, 250, 30);
 
         Label_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_tglPembayaran.setText("TGL PEMBAYARAN");
         getContentPane().add(Label_tglPembayaran);
-        Label_tglPembayaran.setBounds(40, 330, 230, 24);
+        Label_tglPembayaran.setBounds(40, 300, 230, 24);
 
         Table_Bahan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Table_Bahan.setModel(new javax.swing.table.DefaultTableModel(
@@ -252,7 +265,27 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         TextField_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         TextField_tglPembayaran.setValue(new java.util.Date());
         getContentPane().add(TextField_tglPembayaran);
-        TextField_tglPembayaran.setBounds(280, 330, 250, 30);
+        TextField_tglPembayaran.setBounds(280, 300, 250, 30);
+
+        Label_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        Label_RekamMedis.setText("REKAM MEDIS");
+        getContentPane().add(Label_RekamMedis);
+        Label_RekamMedis.setBounds(40, 340, 230, 24);
+
+        TextField_RekamMedis.setEditable(false);
+        TextField_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        getContentPane().add(TextField_RekamMedis);
+        TextField_RekamMedis.setBounds(280, 340, 250, 30);
+
+        Label_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        Label_status.setText("STATUS");
+        getContentPane().add(Label_status);
+        Label_status.setBounds(40, 580, 230, 24);
+
+        TextField_status.setEditable(false);
+        TextField_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        getContentPane().add(TextField_status);
+        TextField_status.setBounds(280, 580, 250, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/10.jpg"))); // NOI18N
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -268,29 +301,60 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
+        if(TextField_idPasien.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
+    }
+    else if( !TextField_idPasien.getText().equals("")){
+        try {
+            Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText());
+            if(pembayaran != null){
+                TextField_namaPasien.setText(pembayaran.getNama_Pasien());
+                TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
+                TextField_Usg.setText(String.valueOf(pembayaran.getTotal_USG()));
+                TextField_Lab.setText(String.valueOf(pembayaran.getTotal_Lab()));
+                TextField_Resep.setText(String.valueOf(pembayaran.getTotal_Resep()));
+                TextField_RekamMedis.setText(String.valueOf(pembayaran.getTotal_Rekam()));
+                TextField_Kecantikan.setText(String.valueOf(pembayaran.getTotal_Kecantikan()));
+                TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
+                TextField_status.setText(String.valueOf(pembayaran.getStatus()));}
+            else if(pembayaran == null){
+                JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }//GEN-LAST:event_Button_searchActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Button_search;
     private javax.swing.JLabel Label_Kecantikan;
     private javax.swing.JLabel Label_Lab;
     private javax.swing.JLabel Label_RekamMedis;
+    private javax.swing.JLabel Label_Resep;
     private javax.swing.JLabel Label_Usg;
     private javax.swing.JLabel Label_idPasien;
     private javax.swing.JLabel Label_idPembayaran;
     private javax.swing.JLabel Label_namaPasien;
+    private javax.swing.JLabel Label_status;
     private javax.swing.JLabel Label_tglPembayaran;
     private javax.swing.JLabel Label_totalPembayaran;
     private javax.swing.JTable Table_Bahan;
     private javax.swing.JTextField TextField_Kecantikan;
     private javax.swing.JTextField TextField_Lab;
     private javax.swing.JTextField TextField_RekamMedis;
+    private javax.swing.JTextField TextField_Resep;
     private javax.swing.JTextField TextField_Usg;
     private javax.swing.JTextField TextField_idPasien;
     private javax.swing.JTextField TextField_idPembayaran;
     private javax.swing.JTextField TextField_namaPasien;
+    private javax.swing.JTextField TextField_status;
     private javax.swing.JFormattedTextField TextField_tglPembayaran;
     private javax.swing.JTextField TextField_totalPembayaran;
     private javax.swing.JButton button_Debit;
@@ -299,7 +363,6 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private javax.swing.JButton button_Print;
     private javax.swing.JButton button_Tunai;
     private javax.swing.JButton button_Update;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

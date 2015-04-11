@@ -51,11 +51,12 @@ public class TableModelPembayaran extends AbstractTableModel {
             case 0 : return "Id_Pembayaran";
             case 1 : return "Id_USG";
             case 2 : return "Id_Detail_Lab";
-            case 3 : return "Id_Rekam";
-            case 4 : return "Id_Transaksi_Layanan";
-            case 5 : return "Tanggal_Bayar";
-            case 6 : return "Total_Harga";
-            case 7 : return "Status";
+            case 3 : return "Id_Resep";
+            case 4 : return "Id_Rekam";
+            case 5 : return "Id_Transaksi_Layanan";
+            case 6 : return "Tanggal_Bayar";
+            case 7 : return "Total_Harga";
+            case 8 : return "Status";
             default : return null;
         }
     }
@@ -73,11 +74,12 @@ public class TableModelPembayaran extends AbstractTableModel {
             case 0 : return list.get(rowIndex).getId_Pembayaran();
             case 1 : return list.get(rowIndex).getId_USG();
             case 2 : return list.get(rowIndex).getId_Detail_Lab();
-            case 3 : return list.get(rowIndex).getId_Rekam();
-            case 4 : return list.get(rowIndex).getId_Transaksi_Layanan();
-            case 5 : return list.get(rowIndex).getTanggal_Bayar();
-            case 6 : return list.get(rowIndex).getTotal_Harga();
-            case 7 : return list.get(rowIndex).getStatus();
+            case 3 : return list.get(rowIndex).getId_Resep();
+            case 4 : return list.get(rowIndex).getId_Rekam();
+            case 5 : return list.get(rowIndex).getId_Transaksi_Layanan();
+            case 6 : return list.get(rowIndex).getTanggal_Bayar();
+            case 7 : return list.get(rowIndex).getTotal_Harga();
+            case 8 : return list.get(rowIndex).getStatus();
             default : return null;
         }
     }

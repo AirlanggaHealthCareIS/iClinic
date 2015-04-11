@@ -167,7 +167,7 @@ public class FormLogin extends javax.swing.JFrame {
                     this.dispose();
                 }
                 else if(administratorService.loginUser(user, pass).equals("PEMBAYARAN")){
-                    JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pendaftaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pembayaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formBag_Pembayaran.setVisible(true);
                     this.dispose();
                 }
