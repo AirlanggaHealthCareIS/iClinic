@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Rindu Puspita
  */
 public interface ApotekerService extends Remote {
     Obat_tabelMaster insertObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException;
@@ -35,7 +35,7 @@ public interface ApotekerService extends Remote {
 
     Obat_detailResep getObat_detailResep(int No_Detail_Resep) throws RemoteException;
 
-    List<Obat_detailResep> getObat_detailResep() throws RemoteException;
+    List<Obat_detailResep> getObat_detailResep(String ID_RESEP) throws RemoteException;
 
     Obat_resep insertObat_resep(Obat_resep obat) throws RemoteException;
 

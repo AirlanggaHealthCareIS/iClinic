@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Rindu Puspita
  */
 public class TableModelObat_detailResep extends AbstractTableModel {
 

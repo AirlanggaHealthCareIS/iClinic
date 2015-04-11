@@ -8,17 +8,17 @@ import java.io.Serializable;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Rindu Puspita
  */
 public class Obat_tabelMaster implements Serializable{
 
-    private int Id_Obat;
+    private String Id_Obat;
     private String Nama_Obat;
     private String Jenis_Obat;
     private int Harga_Obat;
     private int Satuan;
 
-    public int getId_Obat() {
+    public String getId_Obat() {
         return Id_Obat;
     }
 
@@ -38,7 +38,7 @@ public class Obat_tabelMaster implements Serializable{
         return Satuan;
     }
 
-    public void setId_Obat(int Id_Obat) {
+    public void setId_Obat(String Id_Obat) {
         this.Id_Obat = Id_Obat;
     }
 
