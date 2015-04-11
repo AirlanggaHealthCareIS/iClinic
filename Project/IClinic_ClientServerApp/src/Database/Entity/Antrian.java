@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author none
  */
 public class Antrian implements Serializable {
     private int Id_Antrian;

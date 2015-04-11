@@ -21,12 +21,12 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author Afifah
  */
-public class FormDokter2 extends javax.swing.JFrame {
+public class FormDokter extends javax.swing.JFrame {
 
     /**
      * Creates new form FormDokter2
      */
-    public FormDokter2(DokterService dokterService) {
+    public FormDokter(DokterService dokterService) {
         
     }
 
@@ -289,7 +289,7 @@ public class FormDokter2 extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Resep", jPanel2);
@@ -529,7 +529,7 @@ public class FormDokter2 extends javax.swing.JFrame {
         jTabbedPane1.addTab("Rekam Medis", jPanel3);
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 220, 1024, 550);
+        jTabbedPane1.setBounds(0, 220, 159, 550);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/4.jpg"))); // NOI18N
         getContentPane().add(jLabel2);

@@ -417,17 +417,17 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             int usia = Integer.parseInt(field_Usia.getText());
             int No_HP = Integer.parseInt(field_No_HP.getText());
             String Jenis_Kelamin = field_Jenis_Kelamin.getText();
-            try{
+           // try{
                 
-            }
-            catch (RemoteException ex) {
-                Logger.getLogger(FormBag_Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try{
-                Pasien pendaftaran = new Pasien();
-                
-            }
-            
+           // }
+//            catch (RemoteException ex) {
+//                Logger.getLogger(FormBag_Pendaftaran.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            try{
+//                Pasien pendaftaran = new Pasien();
+//                
+//            }
+//            
 
            
         }
