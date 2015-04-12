@@ -18,8 +18,16 @@ public class Pasien implements Serializable  {
     private String Alamat;
     private Date TTL;
     private int Usia;
-    private String No_HP;
+    private int No_HP;
     private String Jenis_Kelamin;
+    private int No_Ktp;
+    
+    public void setNo_Ktp(int No_Ktp){
+        this.No_Ktp = No_Ktp;
+    }
+    public int getNo_Ktp(){
+        return No_Ktp;
+    }
 
     public int getId_Pasien() {
         return Id_Pasien;
@@ -41,7 +49,7 @@ public class Pasien implements Serializable  {
         return Usia;
     }
 
-    public String getNo_HP() {
+    public int getNo_HP() {
         return No_HP;
     }
 
@@ -69,7 +77,7 @@ public class Pasien implements Serializable  {
         this.Usia = Usia;
     }
 
-    public void setNo_HP(String No_HP) {
+    public void setNo_HP(int No_HP) {
         this.No_HP = No_HP;
     }
 
