@@ -4,9 +4,9 @@
  */
 
 /*
- * FormPenjualan.java
+ * Arlin
  *
- * Created on Jun 25, 2010, 9:53:47 PM
+ * 
  */
 
 package ClientApplication.form;
@@ -28,12 +28,48 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Arlin
  */
 public class FormUSG extends javax.swing.JFrame {
-
+private TableModelUSG tableModelusg = new TableModelUSG();
+    private USGService usgService;
+    
     public FormUSG(USGService usgService) {
+        this.usgService = usgService;
+        try{
+            tableModelusg.setData(this.usgService.getUSG());
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+        initComponents();
+        setLocationRelativeTo(this);
+        setSize(665, 730);
+
+        jTable1.setModel(tableModelusg);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                int row = jTable1.getSelectedRow();
+                if(row != -1){
+                    USG usg = tableModelusg.get(row);
+                    jTextField1.setText(usg.getId_pasien());
+                    jTextField4.setText(usg.getId_USG());
+//                    jTextField6.setset(usg.getHasil());
+                    jTextArea1.setText(usg.getDeskripsi());
+                    jTextField7.setText(String.valueOf(usg.getHarga()));
+                }
+            }
+        });
     }
+    
+    public void clear(){
+        jTextField1.setText("");
+        jTextField4.setText("");
+        jTextField6.setText("");
+        jTextArea1.setText("");
+        jTextField7.setText("");
+    }
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -188,7 +224,7 @@ public class FormUSG extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
         );
 
         pack();

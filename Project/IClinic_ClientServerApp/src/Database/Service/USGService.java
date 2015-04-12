@@ -12,16 +12,16 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Arlin
  */
 public interface USGService extends Remote {
     USG insertUSG(USG usg) throws RemoteException;
 
-    void updateUSG(USG usg) throws RemoteException;
+//    void updateUSG(USG usg) throws RemoteException;
+//
+//    void deleteUSG(String Id_USG) throws RemoteException;
 
-    void deleteUSG(int Id_USG) throws RemoteException;
-
-    USG getUSG(int Id_USG) throws RemoteException;
+    USG getUSG(String Id_USG) throws RemoteException;
 
     List<USG> getUSG() throws RemoteException;
 }

@@ -10,14 +10,32 @@ import java.util.Date;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Arline
  */
 public class USG implements Serializable {
-    private int Id_USG;
+    private String Id_USG;
     private Long Hasil;
     private int Harga;
+    private String Id_pasien;
+    private String Deskripsi;
 
-    public int getId_USG() {
+    public String getId_pasien() {
+        return Id_pasien;
+    }
+
+    public void setId_pasien(String Id_pasien) {
+        this.Id_pasien = Id_pasien;
+    }
+
+    public String getDeskripsi() {
+        return Deskripsi;
+    }
+
+    public void setDeskripsi(String Deskripsi) {
+        this.Deskripsi = Deskripsi;
+    }
+            
+    public String getId_USG() {
         return Id_USG;
     }
 
@@ -29,7 +47,7 @@ public class USG implements Serializable {
         return Harga;
     }
 
-    public void setId_USG(int Id_USG) {
+    public void setId_USG(String Id_USG) {
         this.Id_USG = Id_USG;
     }
 
