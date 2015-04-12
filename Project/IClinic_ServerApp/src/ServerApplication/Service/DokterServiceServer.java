@@ -185,18 +185,15 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "SELECT * FROM rekam_medis WHERE ID_PASIEN = ?");
-            int jumlahResult = 0;
             statement.setInt(1, Integer.parseInt(idpasien));
             ResultSet result = statement.executeQuery();
-            System.out.println(statement.toString());
             List<Rekam_Medis> rms = new ArrayList<Rekam_Medis>();
             if(result.next()){
-                jumlahResult ++;
                 Rekam_Medis rm = new Rekam_Medis();
-                rm.setId_Rekam(result.getInt("ID_REKAM"));
-                rm.setId_Diagnosa(result.getInt("ID_DIAGNOSA"));
-                rm.setId_Pasien(result.getInt("ID_PASIEN"));
-                rm.setNo_Detail(result.getInt("NO_DETAIL"));
+                rm.setId_Rekam(result.getString("ID_REKAM"));
+                rm.setId_Diagnosa(result.getString("ID_DIAGNOSA"));
+                rm.setId_Pasien(result.getString("ID_PASIEN"));
+                rm.setNo_Detail(result.getString("NO_DETAIL"));
                 rm.setTgl_Rekam(result.getDate("TGL_REKAM"));
                 rm.setTinggi(result.getInt("TINGGI"));
                 rm.setBerat(result.getInt("BERAT"));
@@ -207,7 +204,6 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
                 rm.setLayanan_Tambahan(result.getString("LAYANAN_TAMBAHAN"));
                 rms.add(rm);
             }
-            System.out.println(jumlahResult);
             return rms;
         } catch (SQLException exception){
             System.out.println(exception);

@@ -14,11 +14,10 @@ import java.util.Date;
  */
 public class Rekam_Medis implements Serializable {
 
-    private int Id_Rekam;
-    private int Id_Diagnosa;
-    private int Id_Pasien;
-    private int No_Detail;
-    private int Id_Resep;
+    private String Id_Rekam;
+    private String Id_Diagnosa;
+    private String Id_Pasien;
+    private String No_Detail;
     private Date Tgl_Rekam;
     private int Tinggi;
     private int Berat;
@@ -28,24 +27,20 @@ public class Rekam_Medis implements Serializable {
     private int Total_Harga;
     private String Layanan_Tambahan;
 
-    public int getId_Rekam() {
+    public String getId_Rekam() {
         return Id_Rekam;
     }
 
-    public int getId_Diagnosa() {
+    public String getId_Diagnosa() {
         return Id_Diagnosa;
     }
 
-    public int getId_Pasien() {
+    public String getId_Pasien() {
         return Id_Pasien;
     }
 
-    public int getNo_Detail() {
+    public String getNo_Detail() {
         return No_Detail;
-    }
-
-    public int getId_Resep() {
-        return Id_Resep;
     }
 
     public Date getTgl_Rekam() {
@@ -80,24 +75,20 @@ public class Rekam_Medis implements Serializable {
         return Layanan_Tambahan;
     }
 
-    public void setId_Rekam(int Id_Rekam) {
+    public void setId_Rekam(String Id_Rekam) {
         this.Id_Rekam = Id_Rekam;
     }
 
-    public void setId_Diagnosa(int Id_Diagnosa) {
+    public void setId_Diagnosa(String Id_Diagnosa) {
         this.Id_Diagnosa = Id_Diagnosa;
     }
 
-    public void setId_Pasien(int Id_Pasien) {
+    public void setId_Pasien(String Id_Pasien) {
         this.Id_Pasien = Id_Pasien;
     }
 
-    public void setNo_Detail(int No_Detail) {
+    public void setNo_Detail(String No_Detail) {
         this.No_Detail = No_Detail;
-    }
-
-    public void setId_Resep(int Id_Resep) {
-        this.Id_Resep = Id_Resep;
     }
 
     public void setTgl_Rekam(Date Tgl_Rekam) {

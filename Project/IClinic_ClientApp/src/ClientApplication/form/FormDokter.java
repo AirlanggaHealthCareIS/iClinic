@@ -120,13 +120,10 @@ public class FormDokter extends javax.swing.JFrame {
 
         tabelRiwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id_Rekam", "Id_Diagnosa", "Id_Pasien", "No_Detail", "Tgl_Rekam", "Tinggi", "Berat", "Tekanan_Darah", "Hasil_Pemeriksaan", "Alergi", "Total Harga", "Layanan_Tambahan"
             }
         ));
         jScrollPane1.setViewportView(tabelRiwayat);
