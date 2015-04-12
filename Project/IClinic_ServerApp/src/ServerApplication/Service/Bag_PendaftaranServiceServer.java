@@ -40,7 +40,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setString(3, pasien.getAlamat());
            statement.setDate( 4,(Date) pasien.getTTL());
            statement.setInt(5, pasien.getUsia());
-           statement.setString(6,pasien.getNo_HP());
+           statement.setInt(6,pasien.getNo_HP());
            statement.setString(7, pasien.getJenis_Kelamin());
            
            statement.executeUpdate();
@@ -80,7 +80,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setString(3, pasien.getAlamat());
            statement.setDate( 4,(Date) pasien.getTTL());
            statement.setInt(5, pasien.getUsia());
-           statement.setString(6,pasien.getNo_HP());
+           statement.setInt(6,pasien.getNo_HP());
            statement.setString(7, pasien.getJenis_Kelamin());
 
            statement.executeUpdate();
