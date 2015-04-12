@@ -23,7 +23,7 @@ public class Rekam_Medis implements Serializable {
     private int Tinggi;
     private int Berat;
     private int Tekanan_Darah;
-    private Long Hasil_Pemerikasaan;
+    private String Hasil_Pemerikasaan;
     private String Alergi;
     private int Total_Harga;
     private String Layanan_Tambahan;
@@ -64,7 +64,7 @@ public class Rekam_Medis implements Serializable {
         return Tekanan_Darah;
     }
 
-    public Long getHasil_Pemerikasaan() {
+    public String getHasil_Pemerikasaan() {
         return Hasil_Pemerikasaan;
     }
 
@@ -116,7 +116,7 @@ public class Rekam_Medis implements Serializable {
         this.Tekanan_Darah = Tekanan_Darah;
     }
 
-    public void setHasil_Pemerikasaan(Long Hasil_Pemerikasaan) {
+    public void setHasil_Pemerikasaan(String Hasil_Pemerikasaan) {
         this.Hasil_Pemerikasaan = Hasil_Pemerikasaan;
     }
 

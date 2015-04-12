@@ -8,7 +8,6 @@ import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelRekam_Medis;
 import Database.Entity.Rekam_Medis;
 import Database.Service.DokterService;
-import Database.Service.Rekam_MedisService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -20,15 +19,15 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Afifah + piudt
+ * @author Afifah + piudt + ayundhapus
  */
 public class FormDokter extends javax.swing.JFrame {
 
     private TableModelRekam_Medis tableModelRekamMedis = new TableModelRekam_Medis();
-    private Rekam_MedisService rekam_MedisService;
+    private DokterService dokterService;
     
-    public FormDokter(DokterService dokterService, Rekam_MedisService rekam_medisService) {
-        this.rekam_MedisService = rekam_medisService;
+    public FormDokter(DokterService dokterService) {
+        this.dokterService = dokterService;
         initComponents();
         setLocationRelativeTo(this);
     }
@@ -706,8 +705,9 @@ public class FormDokter extends javax.swing.JFrame {
 
     private void cariRMbyIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariRMbyIdPasienActionPerformed
         String idPasien = fieldIdPasien.getText();
+        System.out.println(idPasien);
         try{
-            tableModelRekamMedis.setData(this.rekam_MedisService.GetRekamMedikbyPasien(idPasien));
+            tableModelRekamMedis.setData(this.dokterService.GetRekam_MedisbyPasien(idPasien));
         }catch(RemoteException exception){
             exception.printStackTrace();
         }

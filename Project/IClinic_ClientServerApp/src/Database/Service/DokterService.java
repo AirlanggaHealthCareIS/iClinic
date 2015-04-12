@@ -69,5 +69,5 @@ public interface DokterService extends Remote {
 
     List<Tindakan_detailTindakan> getTindakan_detailTindakan() throws RemoteException;
     
-    
+    List<Rekam_Medis> GetRekam_MedisbyPasien(String idpasien) throws RemoteException;
 }
