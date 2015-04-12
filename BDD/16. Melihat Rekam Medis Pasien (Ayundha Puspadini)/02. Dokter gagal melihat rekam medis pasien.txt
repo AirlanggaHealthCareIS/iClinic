@@ -1,8 +1,0 @@
-Fitur	        Melihat rekam medis
-Skenario	Dokter gagal melihat rekam medis pasien
- 		
-
-Given 		Dokter telah melakukan log in
-And 		Dokter telah masuk ke dalam frame dokter tab rekam medis
-When 		Dokter mengklik perintah melihat rekam medis
-Then		Sistem tidak menampilkan rekam medis pasien
