@@ -13,26 +13,26 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author erin
  */
 public interface LabService extends Remote {
     Lab_detailLab insertLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
 
-    void updateLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
+//    void updateLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
+//
+//    void deleteLab_detailLab(String Id_Detail_Lab) throws RemoteException;
 
-    void deleteLab_detailLab(int Id_Detail_Lab) throws RemoteException;
-
-    Lab_detailLab getLab_detailLab(int Id_Detail_Lab) throws RemoteException;
+    Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException;
 
     List<Lab_detailLab> getLab_detailLab() throws RemoteException;
     
     Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException;
 
-    void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException;
+//    void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException;
+//
+//    void deleteLab_tabelMaster(String Id_Lab) throws RemoteException;
 
-    void deleteLab_tabelMaster(int Id_Lab) throws RemoteException;
-
-    Lab_tabelMaster getLab_tabelMaster(int Id_Lab) throws RemoteException;
+    Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
 
     List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException;
 }

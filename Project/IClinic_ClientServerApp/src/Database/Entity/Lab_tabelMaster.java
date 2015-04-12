@@ -9,14 +9,15 @@ import java.io.Serializable;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author erin
  */
 public class Lab_tabelMaster implements Serializable{
-    private int Id_Lab;
+    private String Id_Lab;
     private String Jenis_Pemeriksaan;
     private String Harga;
+    private String Deskripsi;
 
-    public int getId_Lab() {
+    public String getId_Lab() {
         return Id_Lab;
     }
 
@@ -27,8 +28,10 @@ public class Lab_tabelMaster implements Serializable{
     public String getHarga() {
         return Harga;
     }
-
-    public void setId_Lab(int Id_Lab) {
+    public String getDeskripsi() {
+        return Deskripsi;
+    }
+    public void setId_Lab(String Id_Lab) {
         this.Id_Lab = Id_Lab;
     }
 
@@ -38,6 +41,9 @@ public class Lab_tabelMaster implements Serializable{
 
     public void setHarga(String Harga) {
         this.Harga = Harga;
+    }
+ public void setDeskripsi(String Deskripsi) {
+        this.Deskripsi = Deskripsi;
     }
 
 }

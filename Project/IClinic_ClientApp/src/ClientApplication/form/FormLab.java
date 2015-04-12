@@ -29,14 +29,68 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
+
+
 /**
  *
  * @author Tiara Ratna Sari
  */
 public class FormLab extends javax.swing.JFrame {
-
+    
+    
+private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
+    private LabService labService;
+    
     public FormLab(LabService labService) {
+        this.labService = labService;
+        try{
+            tableModellab.setData(this.labService.getLab_detailLab());
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+        initComponents();
+        setLocationRelativeTo(this);
+        setSize(665, 730);
+
+        jTable1.setModel(tableModellab);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                int row = jTable1.getSelectedRow();
+                if(row != -1){
+                    Lab_detailLab lab = tableModellab.get(row);
+                    idpasien.setText(lab.getId_Pasien());
+                    //namapasien.setText(lab.get());
+                    jTextField8.setText(lab.getId_Lab());
+//                    TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
+//                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
+//                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
+//                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
+                    jTextField12.setText(String.valueOf(lab.getTotal_Harga()));
+//                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
+                }
+            }
+        });
     }
+    
+    
+    public void clear(){
+        idpasien.setText("");
+        jTextField8.setText("");
+        jTextField12.setText("");
+//        TextField_tglPembayaran.setText("");
+//        TextField_Kecantikan.setText("");
+//        TextField_Lab.setText("");
+//        TextField_RekamMedis.setText("");
+//        TextField_Resep.setText("");
+//        TextField_Usg.setText("");
+//        TextField_totalPembayaran.setText("");
+//        TextField_status.setText("");
+    }
+    
+
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -49,7 +103,7 @@ public class FormLab extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        idpasien = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -91,9 +145,9 @@ public class FormLab extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(190, 350, 160, 17);
 
-        jTextField1.setEditable(false);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(350, 320, 212, 20);
+        idpasien.setEditable(false);
+        getContentPane().add(idpasien);
+        idpasien.setBounds(350, 320, 212, 20);
 
         jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -266,6 +320,7 @@ public class FormLab extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField idpasien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -289,7 +344,6 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
