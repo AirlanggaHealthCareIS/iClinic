@@ -9,7 +9,6 @@ import ClientApplication.form.FormKecantikan;
 import ClientApplication.form.FormKepala_Klinik;
 import ClientApplication.form.FormLab;
 import ClientApplication.form.FormUSG;
-import ClientApplication.form.FormBag_Pembayaran;
 import Database.Service.AdministratorService;
 import Database.Service.ApotekerService;
 import Database.Service.Bag_PembayaranService;
@@ -58,7 +57,6 @@ public class FormLogin extends javax.swing.JFrame {
     private AdministratorService administratorService;
     
     public FormLogin(AdministratorService administratorService) throws RemoteException, NotBoundException{
-        setSize(1024, 768);
         this.administratorService = administratorService;
         initComponents();
         setLocationRelativeTo(this);
