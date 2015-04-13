@@ -139,7 +139,7 @@ public class FormLogin extends javax.swing.JFrame {
                     formBag_Pendaftaran.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("Dokter")){
+                else if(administratorService.loginUser(user, pass).equals("DOKTER")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Dokter!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formDokter.setVisible(true);
                     this.dispose();

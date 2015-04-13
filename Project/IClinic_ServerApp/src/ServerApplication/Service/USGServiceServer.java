@@ -36,7 +36,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO usg (ID_USG,ID_PASIEN,HASIL,HARGA,DESKRIPSI) values(?,?,?,?,?)"
+                   "INSERT INTO transaksi_usg (ID_USG,ID_PASIEN,HASIL,HARGA,DESKRIPSI) values(?,?,?,?,?)"
                    );
            statement.setString(1, usg.getId_USG());
            statement.setString(2, usg.getId_pasien());
@@ -130,7 +130,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                 "SELECT * FROM usg WHERE ID_USG = ?");
+                 "SELECT * FROM transaksi_usg WHERE ID_USG = ?");
 
             ResultSet result = statement.executeQuery();
 
@@ -169,7 +169,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         try{
           statement = DatabaseUtilities.getConnection().createStatement();
 
-          ResultSet result = statement.executeQuery("SELECT * FROM USG");
+          ResultSet result = statement.executeQuery("SELECT * FROM transaksi_usg");
 
           List<USG> list = new ArrayList<USG>();
 

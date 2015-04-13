@@ -258,7 +258,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 
           while(result.next()){
                 Lab_detailLab laboratorium = new Lab_detailLab();
-                laboratorium.setId_Detail_Lab(result.getString("Id_DetailLab"));
+                laboratorium.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
                 laboratorium.setId_Lab(result.getString("Id_Lab"));
                 laboratorium.setId_Pasien(result.getString("Id_Pasien"));
                 laboratorium.setKeterangan(result.getString("Keterangan"));
