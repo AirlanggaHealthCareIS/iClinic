@@ -1,15 +1,52 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     28/03/2015 12:19:34                          */
+/* Created on:     11/04/2015 20:56:03                          */
 /*==============================================================*/
+
+
+drop table if exists ANTRIAN;
+
+drop table if exists DETAIL_LAB;
+
+drop table if exists DETAIL_RESEP;
+
+drop table if exists DETAIL_TINDAKAN;
+
+drop table if exists DET_LAYANAN_KECANTIKAN;
+
+drop table if exists DIAGNOSA;
+
+drop table if exists LABORATORIUM;
+
+drop table if exists LAYANAN_KECANTIKAN;
+
+drop table if exists OBAT;
+
+drop table if exists PASIEN;
+
+drop table if exists PEMBAYARAN;
+
+drop table if exists PENYAKIT;
+
+drop table if exists REKAM_MEDIS;
+
+drop table if exists RESEP;
+
+drop table if exists TINDAKAN;
+
+drop table if exists TRANSAKSI_LAYANAN_KECANTIKAN;
+
+drop table if exists TRANSAKSI_USG;
+
+drop table if exists USER;
 
 /*==============================================================*/
 /* Table: ANTRIAN                                               */
 /*==============================================================*/
 create table ANTRIAN
 (
-   ID_ANTRIAN           int not null,
-   ID_PASIEN            int,
+   ID_ANTRIAN           varchar(10) not null,
+   ID_PASIEN            varchar(10),
    JENIS_ANTRIAN        varchar(30),
    KETERANGAN           varchar(100),
    primary key (ID_ANTRIAN)
@@ -20,8 +57,9 @@ create table ANTRIAN
 /*==============================================================*/
 create table DETAIL_LAB
 (
-   ID_DETAIL_LAB        int not null,
-   ID_LAB               int,
+   ID_DETAIL_LAB        varchar(10) not null,
+   ID_LAB               varchar(10),
+   ID_PASIEN            varchar(10),
    KETERANGAN           varchar(100),
    HASIL                longblob,
    TANGGAL              date,
@@ -34,9 +72,9 @@ create table DETAIL_LAB
 /*==============================================================*/
 create table DETAIL_RESEP
 (
-   NO_DETAIL_RESEP      int not null,
-   ID_RESEP             int,
-   ID_OBAT              int,
+   NO_DETAIL_RESEP      varchar(10) not null,
+   ID_RESEP             varchar(10),
+   ID_OBAT              varchar(10),
    TAKARAN              varchar(30),
    PEMAKAIAN            varchar(30),
    JUMLAH               int,
@@ -49,8 +87,8 @@ create table DETAIL_RESEP
 /*==============================================================*/
 create table DETAIL_TINDAKAN
 (
-   NO_DETAIL            int not null,
-   ID_TINDAKAN          int,
+   NO_DETAIL            varchar(10) not null,
+   ID_TINDAKAN          varchar(10),
    KETERANGAN           varchar(100),
    primary key (NO_DETAIL)
 );
@@ -60,8 +98,8 @@ create table DETAIL_TINDAKAN
 /*==============================================================*/
 create table DET_LAYANAN_KECANTIKAN
 (
-   ID_DET_KESEHATAN     int not null,
-   ID_KECANTIKAN        int,
+   ID_DET_KESEHATAN     varchar(10) not null,
+   ID_KECANTIKAN        varchar(10),
    KETERANGAN           varchar(100),
    primary key (ID_DET_KESEHATAN)
 );
@@ -71,8 +109,8 @@ create table DET_LAYANAN_KECANTIKAN
 /*==============================================================*/
 create table DIAGNOSA
 (
-   ID_DIAGNOSA          int not null,
-   ID_PENYAKIT          int,
+   ID_DIAGNOSA          varchar(10) not null,
+   ID_PENYAKIT          varchar(10),
    DIAGNOSA             varchar(30),
    KETERANGAN           varchar(100),
    primary key (ID_DIAGNOSA)
@@ -83,9 +121,10 @@ create table DIAGNOSA
 /*==============================================================*/
 create table LABORATORIUM
 (
-   ID_LAB               int not null,
+   ID_LAB               varchar(10) not null,
    JENIS_PEMERIKSAAN    varchar(30),
    HARGA                int,
+   DESKRIPSI            varchar(50),
    primary key (ID_LAB)
 );
 
@@ -94,9 +133,10 @@ create table LABORATORIUM
 /*==============================================================*/
 create table LAYANAN_KECANTIKAN
 (
-   ID_KECANTIKAN        int not null,
+   ID_KECANTIKAN        varchar(10) not null,
    JENIS_LAYANAN        varchar(30),
    TARIF                int,
+   DESKRIPSI            varchar(50),
    primary key (ID_KECANTIKAN)
 );
 
@@ -105,7 +145,7 @@ create table LAYANAN_KECANTIKAN
 /*==============================================================*/
 create table OBAT
 (
-   ID_OBAT              int not null,
+   ID_OBAT              varchar(10) not null,
    NAMA_OBAT            varchar(30),
    JENIS_OBAT           varchar(30),
    HARGA_OBAT           int,
@@ -118,7 +158,7 @@ create table OBAT
 /*==============================================================*/
 create table PASIEN
 (
-   ID_PASIEN            int not null,
+   ID_PASIEN            varchar(10) not null,
    NAMA_PASIEN          varchar(30),
    ALAMAT               varchar(100),
    TTL                  date,
@@ -133,13 +173,15 @@ create table PASIEN
 /*==============================================================*/
 create table PEMBAYARAN
 (
-   ID_PEMBAYARAN        int not null,
-   ID_USG               int,
-   ID_DETAIL_LAB        int,
-   ID_REKAM             int,
-   ID_TRANSAKSI_LAYANAN int,
+   ID_PEMBAYARAN        varchar(10) not null,
+   ID_USG               varchar(10),
+   ID_DETAIL_LAB        varchar(10),
+   ID_RESEP             varchar(10),
+   ID_REKAM             varchar(10),
+   ID_TRANSAKSI_LAYANAN varchar(10),
    TANGGAL_BAYAR        date,
    TOTAL_HARGA          int,
+   STATUS               varchar(9),
    primary key (ID_PEMBAYARAN)
 );
 
@@ -148,7 +190,7 @@ create table PEMBAYARAN
 /*==============================================================*/
 create table PENYAKIT
 (
-   ID_PENYAKIT          int not null,
+   ID_PENYAKIT          varchar(10) not null,
    PENYAKIT             varchar(50),
    GEJALA               varchar(100),
    primary key (ID_PENYAKIT)
@@ -159,16 +201,15 @@ create table PENYAKIT
 /*==============================================================*/
 create table REKAM_MEDIS
 (
-   ID_REKAM             int not null,
-   ID_DIAGNOSA          int,
-   ID_PASIEN            int,
-   NO_DETAIL            int,
-   ID_RESEP             int,
+   ID_REKAM             varchar(10) not null,
+   ID_DIAGNOSA          varchar(10),
+   ID_PASIEN            varchar(10),
+   NO_DETAIL            varchar(10),
    TGL_REKAM            date,
    TINGGI               int,
    BERAT                int,
    TEKANAN_DARAH        int,
-   HASIL_PEMERIKSAAN    longblob,
+   HASIL_PEMERIKSAAN    varchar(30),
    ALERGI               varchar(30),
    TOTAL_HARGA          int,
    LAYANAN_TAMBAHAN     varchar(30),
@@ -180,7 +221,8 @@ create table REKAM_MEDIS
 /*==============================================================*/
 create table RESEP
 (
-   ID_RESEP             int not null,
+   ID_RESEP             varchar(10) not null,
+   ID_REKAM             varchar(10),
    TOTAL_HARGA          int,
    primary key (ID_RESEP)
 );
@@ -190,7 +232,7 @@ create table RESEP
 /*==============================================================*/
 create table TINDAKAN
 (
-   ID_TINDAKAN          int not null,
+   ID_TINDAKAN          varchar(10) not null,
    SPESIALISASI         varchar(30),
    NAMA_TINDAKAN        varchar(30),
    TARIF                int,
@@ -199,13 +241,15 @@ create table TINDAKAN
 );
 
 /*==============================================================*/
-/* Table: TRANSAKSI_LAYANAN_KESEHATAN                           */
+/* Table: TRANSAKSI_LAYANAN_KECANTIKAN                          */
 /*==============================================================*/
-create table TRANSAKSI_LAYANAN_KESEHATAN
+create table TRANSAKSI_LAYANAN_KECANTIKAN
 (
-   ID_TRANSAKSI_LAYANAN int not null,
-   ID_DET_KESEHATAN     int,
+   ID_TRANSAKSI_LAYANAN varchar(10) not null,
+   ID_PASIEN            varchar(10),
+   ID_DET_KESEHATAN     varchar(10),
    TOTAL_HARGA          int,
+   TANGGAL              date,
    primary key (ID_TRANSAKSI_LAYANAN)
 );
 
@@ -214,9 +258,11 @@ create table TRANSAKSI_LAYANAN_KESEHATAN
 /*==============================================================*/
 create table TRANSAKSI_USG
 (
-   ID_USG               int not null,
+   ID_USG               varchar(10) not null,
+   ID_PASIEN            varchar(10),
    HASIL                longblob,
    HARGA                int,
+   DESKRIPSI            varchar(50),
    primary key (ID_USG)
 );
 
@@ -225,7 +271,7 @@ create table TRANSAKSI_USG
 /*==============================================================*/
 create table USER
 (
-   ID_USER              int not null,
+   ID_USER              varchar(10) not null,
    NAMA_USER            varchar(30),
    JABATAN              varchar(100),
    USERNAME             varchar(30),
@@ -238,6 +284,9 @@ alter table ANTRIAN add constraint FK_RELATIONSHIP_17 foreign key (ID_PASIEN)
 
 alter table DETAIL_LAB add constraint FK_RELATIONSHIP_16 foreign key (ID_LAB)
       references LABORATORIUM (ID_LAB) on delete restrict on update restrict;
+
+alter table DETAIL_LAB add constraint FK_RELATIONSHIP_30 foreign key (ID_PASIEN)
+      references PASIEN (ID_PASIEN) on delete restrict on update restrict;
 
 alter table DETAIL_RESEP add constraint FK_RELATIONSHIP_11 foreign key (ID_RESEP)
       references RESEP (ID_RESEP) on delete restrict on update restrict;
@@ -261,10 +310,13 @@ alter table PEMBAYARAN add constraint FK_RELATIONSHIP_21 foreign key (ID_REKAM)
       references REKAM_MEDIS (ID_REKAM) on delete restrict on update restrict;
 
 alter table PEMBAYARAN add constraint FK_RELATIONSHIP_25 foreign key (ID_TRANSAKSI_LAYANAN)
-      references TRANSAKSI_LAYANAN_KESEHATAN (ID_TRANSAKSI_LAYANAN) on delete restrict on update restrict;
+      references TRANSAKSI_LAYANAN_KECANTIKAN (ID_TRANSAKSI_LAYANAN) on delete restrict on update restrict;
 
 alter table PEMBAYARAN add constraint FK_RELATIONSHIP_28 foreign key (ID_USG)
       references TRANSAKSI_USG (ID_USG) on delete restrict on update restrict;
+
+alter table PEMBAYARAN add constraint FK_RELATIONSHIP_29 foreign key (ID_RESEP)
+      references RESEP (ID_RESEP) on delete restrict on update restrict;
 
 alter table REKAM_MEDIS add constraint FK_RELATIONSHIP_1 foreign key (ID_PASIEN)
       references PASIEN (ID_PASIEN) on delete restrict on update restrict;
@@ -275,9 +327,15 @@ alter table REKAM_MEDIS add constraint FK_RELATIONSHIP_20 foreign key (NO_DETAIL
 alter table REKAM_MEDIS add constraint FK_RELATIONSHIP_22 foreign key (ID_DIAGNOSA)
       references DIAGNOSA (ID_DIAGNOSA) on delete restrict on update restrict;
 
-alter table REKAM_MEDIS add constraint FK_RELATIONSHIP_23 foreign key (ID_RESEP)
-      references RESEP (ID_RESEP) on delete restrict on update restrict;
+alter table RESEP add constraint FK_RELATIONSHIP_23 foreign key (ID_REKAM)
+      references REKAM_MEDIS (ID_REKAM) on delete restrict on update restrict;
 
-alter table TRANSAKSI_LAYANAN_KESEHATAN add constraint FK_RELATIONSHIP_26 foreign key (ID_DET_KESEHATAN)
+alter table TRANSAKSI_LAYANAN_KECANTIKAN add constraint FK_RELATIONSHIP_26 foreign key (ID_DET_KESEHATAN)
       references DET_LAYANAN_KECANTIKAN (ID_DET_KESEHATAN) on delete restrict on update restrict;
+
+alter table TRANSAKSI_LAYANAN_KECANTIKAN add constraint FK_RELATIONSHIP_31 foreign key (ID_PASIEN)
+      references PASIEN (ID_PASIEN) on delete restrict on update restrict;
+
+alter table TRANSAKSI_USG add constraint FK_RELATIONSHIP_32 foreign key (ID_PASIEN)
+      references PASIEN (ID_PASIEN) on delete restrict on update restrict;
 

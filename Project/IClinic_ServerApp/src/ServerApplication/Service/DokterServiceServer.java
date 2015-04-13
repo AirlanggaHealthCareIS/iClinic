@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -33,7 +34,44 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
     public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
 
        System.out.println("Client Melakukan Proses Insert pada Tabel Rekam Medis");
-       return rekam_medis;
+    PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                   "INSERT INTO rekam_medis (ID_REKAM, ID_DIAGNOSA, ID_PASIEN, NO_DETAIL, TGL_REKAM, TINGGI, "
+                           + "BERAT, TEKANAN_DARAH, HASIL_PEMERIKSAAN, ALERGI, TOTAL_HARGA, LAYANAN_TAMBAHAN) values(?,?,?,?,?,?,?,?,?,?,?,?)"
+                   );
+           statement.setString(1, rekam_medis.getId_Rekam());
+           statement.setString(2, rekam_medis.getId_Diagnosa());
+           statement.setString(3, rekam_medis.getId_Pasien());
+           statement.setString(4, rekam_medis.getNo_Detail());
+           statement.setDate(7, (Date) rekam_medis.getTgl_Rekam());
+           statement.setInt(6, rekam_medis.getTinggi());
+           statement.setInt(7, rekam_medis.getBerat());
+           statement.setInt(8, rekam_medis.getTekanan_Darah());
+           statement.setString(9, rekam_medis.getHasil_Pemerikasaan());
+           statement.setString(10, rekam_medis.getAlergi());
+           statement.setInt(11, rekam_medis.getTotal_Harga());
+           statement.setString(12, rekam_medis.getLayanan_Tambahan());
+
+           statement.executeUpdate();
+           ResultSet result = statement.getGeneratedKeys();
+//           if(result.next()){
+//               rekam_medis.setId_Rekam_Medis(result.getString(1));
+//           }
+        result.close();
+        return rekam_medis;
+       }catch(SQLException exception){
+        exception.printStackTrace();
+            return null;
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+
+               }
+           }
+       }
     }
 
     public void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
@@ -49,15 +87,91 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
     public Rekam_Medis getRekam_Medis(int Id_Rekam) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Rekam Medis");
-        Rekam_Medis rekam_medis = null;
-        return rekam_medis;
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM rekam_medis WHERE ID_REKAM = ?");
+
+            ResultSet result = statement.executeQuery();
+
+            Rekam_Medis rekam_medis = null;
+
+            if(result.next()){
+                rekam_medis = new Rekam_Medis();
+                
+                rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
+                rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
+                rekam_medis.setId_Pasien(result.getString("Id_Detail_Lab"));
+                rekam_medis.setNo_Detail(result.getString("Id_Resep"));
+                rekam_medis.setTgl_Rekam(result.getDate("Id_Rekam"));
+                rekam_medis.setBerat(result.getInt("Id_Transaksi_Layanan"));
+                rekam_medis.setTekanan_Darah(result.getInt("Tanggal_Bayar"));
+                rekam_medis.setHasil_Pemerikasaan(result.getString("Total_Harga"));
+                rekam_medis.setAlergi(result.getString("Status"));
+                rekam_medis.setTotal_Harga(result.getInt("Status"));
+                rekam_medis.setLayanan_Tambahan(result.getString("Status"));
+                 
+            }
+
+            return rekam_medis;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public List<Rekam_Medis> getRekam_Medis() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Rekam Medis");
-        List<Rekam_Medis> list = new ArrayList<Rekam_Medis>();
-        return list;
+        Statement statement = null;
+        try{
+          statement = DatabaseUtilities.getConnection().createStatement();
+
+          ResultSet result = statement.executeQuery("SELECT * FROM rekam_medis");
+
+          List<Rekam_Medis> list = new ArrayList<Rekam_Medis>();
+
+          while(result.next()){
+                Rekam_Medis rekam_medis = new Rekam_Medis();
+                rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
+                rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
+                rekam_medis.setId_Pasien(result.getString("Id_Detail_Lab"));
+                rekam_medis.setNo_Detail(result.getString("Id_Resep"));
+                rekam_medis.setTgl_Rekam(result.getDate("Id_Rekam"));
+                rekam_medis.setBerat(result.getInt("Id_Transaksi_Layanan"));
+                rekam_medis.setTekanan_Darah(result.getInt("Tanggal_Bayar"));
+                rekam_medis.setHasil_Pemerikasaan(result.getString("Total_Harga"));
+                rekam_medis.setAlergi(result.getString("Status"));
+                rekam_medis.setTotal_Harga(result.getInt("Status"));
+                rekam_medis.setLayanan_Tambahan(result.getString("Status"));
+                list.add(rekam_medis);
+          }
+
+          result.close();
+
+          return list;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public Penyakit_tabelMaster insertPenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {

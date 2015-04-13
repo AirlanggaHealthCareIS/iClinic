@@ -12,11 +12,11 @@ import java.io.Serializable;
  * @author Tiara Ratna Sari
  */
 public class Penyakit_tabelMaster implements Serializable {
-    private int Id_Penyakit;
+    private String Id_Penyakit;
     private String Penyakit;
     private String Gejala;
 
-    public int getId_Penyakit() {
+    public String getId_Penyakit() {
         return Id_Penyakit;
     }
 
@@ -28,7 +28,7 @@ public class Penyakit_tabelMaster implements Serializable {
         return Gejala;
     }
 
-    public void setId_Penyakit(int Id_Penyakit) {
+    public void setId_Penyakit(String Id_Penyakit) {
         this.Id_Penyakit = Id_Penyakit;
     }
 

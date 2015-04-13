@@ -12,13 +12,13 @@ import java.io.Serializable;
  * @author Tiara Ratna Sari
  */
 public class Tindakan_tabelMaster implements Serializable{
-    private int Id_Tindakan;
+    private String Id_Tindakan;
     private String Spesialisasi;
     private String Nama_Tindakan;
     private int Tarif;
     private String Keterangan;
 
-    public int getId_Tindakan() {
+    public String getId_Tindakan() {
         return Id_Tindakan;
     }
 
@@ -38,7 +38,7 @@ public class Tindakan_tabelMaster implements Serializable{
         return Keterangan;
     }
 
-    public void setId_Tindakan(int Id_Tindakan) {
+    public void setId_Tindakan(String Id_Tindakan) {
         this.Id_Tindakan = Id_Tindakan;
     }
 
