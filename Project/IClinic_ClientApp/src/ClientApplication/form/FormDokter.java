@@ -271,7 +271,7 @@ this.dokterService = dokterService;
         clean.setText("CLEAN");
 
         tglRekam.setEditable(false);
-        tglRekam.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        tglRekam.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
         tglRekam.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         tglRekam.setValue(new java.util.Date());
 
@@ -390,7 +390,7 @@ this.dokterService = dokterService;
                     .addComponent(jLabel12)
                     .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(layananTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dokterTabPane.addTab("Rekam Medis", jPanel3);

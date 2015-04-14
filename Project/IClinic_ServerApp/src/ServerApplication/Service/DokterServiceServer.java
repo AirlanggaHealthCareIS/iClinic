@@ -44,7 +44,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
            statement.setString(2, rekam_medis.getId_Diagnosa());
            statement.setString(3, rekam_medis.getId_Pasien());
            statement.setString(4, rekam_medis.getNo_Detail());
-           statement.setDate(7, (Date) rekam_medis.getTgl_Rekam());
+           statement.setDate(5, new Date(rekam_medis.getTgl_Rekam().getTime()));
            statement.setInt(6, rekam_medis.getTinggi());
            statement.setInt(7, rekam_medis.getBerat());
            statement.setInt(8, rekam_medis.getTekanan_Darah());
@@ -54,11 +54,11 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
            statement.setString(12, rekam_medis.getLayanan_Tambahan());
 
            statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
+//           ResultSet result = statement.getGeneratedKeys();
 //           if(result.next()){
 //               rekam_medis.setId_Rekam_Medis(result.getString(1));
 //           }
-        result.close();
+  //      result.close();
         return rekam_medis;
        }catch(SQLException exception){
         exception.printStackTrace();
