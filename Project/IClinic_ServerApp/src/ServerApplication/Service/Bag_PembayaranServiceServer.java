@@ -103,7 +103,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
        }
     }
 
-    public void deletePembayaran(int Id_Pembayaran) throws RemoteException {
+    public void deletePembayaran(String Id_Pembayaran) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Pembayaran");
 
@@ -112,7 +112,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
            statement = DatabaseUtilities.getConnection().prepareStatement(
                     "DELETE FROM pembayaran WHERE ID_PEMBAYARAN = ?");
 
-           statement.setLong(1, Id_Pembayaran);
+           statement.setString(1, Id_Pembayaran);
 
            statement.executeUpdate();
 
@@ -129,7 +129,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
        }
     }
 
-    public Pembayaran getPembayaran(int Id_Pembayaran) throws RemoteException {
+    public Pembayaran getPembayaran(String Id_Pembayaran) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
 
@@ -264,5 +264,32 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
+    
+    public void updateStatusPembayaranTunai(String Id_Pembayaran, String Status) throws RemoteException {
 
+        System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+
+        PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE pembayaran SET SATUS = ? " +
+                    "WHERE ID_PEMBAYARAN = ?"
+                   );
+           statement.setString(1, Status);
+           statement.setString(2, Id_Pembayaran);
+
+           statement.executeUpdate();
+
+       }catch(SQLException exception){
+        exception.printStackTrace();
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+                exception.printStackTrace();
+               }
+           }
+       }
+    }
 }

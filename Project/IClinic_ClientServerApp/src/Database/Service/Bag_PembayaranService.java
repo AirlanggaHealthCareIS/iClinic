@@ -19,11 +19,13 @@ public interface Bag_PembayaranService extends Remote {
 
     void updatePembayaran(Pembayaran pembayaran) throws RemoteException;
 
-    void deletePembayaran(int Id_Pembayaran) throws RemoteException;
+    void deletePembayaran(String Id_Pembayaran) throws RemoteException;
 
-    Pembayaran getPembayaran(int Id_Pembayaran) throws RemoteException;
+    Pembayaran getPembayaran(String Id_Pembayaran) throws RemoteException;
 
     List<Pembayaran> getPembayaran() throws RemoteException;
     
     Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien) throws RemoteException;
+    
+    void updateStatusPembayaranTunai(String Id_Pembayaran, String Status) throws RemoteException;
 }
