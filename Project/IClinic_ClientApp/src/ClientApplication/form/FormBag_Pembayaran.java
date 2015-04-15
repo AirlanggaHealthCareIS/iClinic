@@ -121,6 +121,11 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         button_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
+        button_Tunai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_TunaiActionPerformed(evt);
+            }
+        });
         getContentPane().add(button_Tunai);
         button_Tunai.setBounds(40, 620, 65, 65);
 
@@ -303,29 +308,43 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
     private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
         if(TextField_idPasien.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
-    }
-    else if( !TextField_idPasien.getText().equals("")){
-        try {
-            Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText());
-            if(pembayaran != null){
-                TextField_namaPasien.setText(pembayaran.getNama_Pasien());
-                TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
-                TextField_Usg.setText(String.valueOf(pembayaran.getTotal_USG()));
-                TextField_Lab.setText(String.valueOf(pembayaran.getTotal_Lab()));
-                TextField_Resep.setText(String.valueOf(pembayaran.getTotal_Resep()));
-                TextField_RekamMedis.setText(String.valueOf(pembayaran.getTotal_Rekam()));
-                TextField_Kecantikan.setText(String.valueOf(pembayaran.getTotal_Kecantikan()));
-                TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
-                TextField_status.setText(String.valueOf(pembayaran.getStatus()));}
-            else if(pembayaran == null){
-                JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
         }
-    }
+        else if( !TextField_idPasien.getText().equals("")){
+            try {
+                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText());
+                if(pembayaran != null){
+                    TextField_namaPasien.setText(pembayaran.getNama_Pasien());
+                    TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
+                    TextField_Usg.setText(String.valueOf(pembayaran.getTotal_USG()));
+                    TextField_Lab.setText(String.valueOf(pembayaran.getTotal_Lab()));
+                    TextField_Resep.setText(String.valueOf(pembayaran.getTotal_Resep()));
+                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTotal_Rekam()));
+                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTotal_Kecantikan()));
+                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
+                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));}
+                else if(pembayaran == null){
+                    JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_Button_searchActionPerformed
+
+    private void button_TunaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_TunaiActionPerformed
+        if(TextField_idPembayaran.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Anda Harus mencari ID PASIEN terlebih dahulu");
+        }
+        else if(!TextField_idPembayaran.getText().equals("")){
+            String Status = "LUNAS TUNAI";
+            try {
+                bag_PembayaranService.updateStatusPembayaranTunai(TextField_idPembayaran.getText(), Status);
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_button_TunaiActionPerformed
 
     /**
      * @param args the command line arguments
