@@ -272,7 +272,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE pembayaran SET SATUS = ? " +
+                    "UPDATE pembayaran SET STATUS = ? " +
                     "WHERE ID_PEMBAYARAN = ?"
                    );
            statement.setString(1, Status);
