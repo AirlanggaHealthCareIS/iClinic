@@ -8,6 +8,7 @@ package Database.Service;
 import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public interface Bag_PembayaranService extends Remote {
 
     List<Pembayaran> getPembayaran() throws RemoteException;
     
-    Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien) throws RemoteException;
+    Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien,Date tanggal) throws RemoteException;
     
     void updateStatusPembayaranTunai(String Id_Pembayaran, String Status) throws RemoteException;
 }

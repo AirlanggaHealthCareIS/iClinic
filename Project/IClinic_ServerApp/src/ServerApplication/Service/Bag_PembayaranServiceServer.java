@@ -42,7 +42,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
            statement.setString(4, pembayaran.getId_Resep());
            statement.setString(5, pembayaran.getId_Rekam());
            statement.setString(6, pembayaran.getId_Transaksi_Layanan());
-           statement.setDate(7, (Date) pembayaran.getTanggal_Bayar());
+           statement.setDate(7, new Date(pembayaran.getTanggal_Bayar().getTime()));
            statement.setInt(8, pembayaran.getTotal_Harga());
            statement.setString(9, pembayaran.getStatus());
 
@@ -83,7 +83,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
            statement.setString(3, pembayaran.getId_Resep());
            statement.setString(4, pembayaran.getId_Rekam());
            statement.setString(5, pembayaran.getId_Transaksi_Layanan());
-           statement.setDate(6, (Date) pembayaran.getTanggal_Bayar());
+           statement.setDate(6, new Date(pembayaran.getTanggal_Bayar().getTime()));
            statement.setInt(7, pembayaran.getTotal_Harga());
            statement.setString(8, pembayaran.getStatus());
            statement.setString(9, pembayaran.getId_Pembayaran());
@@ -214,17 +214,18 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
-    public Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien) throws RemoteException {
+    public Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien, java.util.Date tanggal) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
 
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                "SELECT pasien.NAMA_PASIEN,pembayaran.ID_PEMBAYARAN,transaksi_usg.HARGA,detail_lab.TOTAL_HARGA,resep.TOTAL_HARGA,rekam_medis.TOTAL_HARGA,transaksi_layanan_kecantikan.TOTAL_HARGA,pembayaran.TOTAL_HARGA,pembayaran.STATUS\n" +
+                "SELECT pasien.NAMA_PASIEN, pembayaran.ID_PEMBAYARAN, transaksi_usg.HARGA AS USG, detail_lab.TOTAL_HARGA AS LAB, resep.TOTAL_HARGA AS RESEP, rekam_medis.TOTAL_HARGA AS REKAM, transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS \n" +
                 "FROM pasien,transaksi_usg,detail_lab,resep,rekam_medis,transaksi_layanan_kecantikan,pembayaran\n" +
                 "WHERE pembayaran.ID_PASIEN = '"+Id_Pasien+"' \n" +
-                "AND pembayaran.TANGGAL_BAYAR = '2015-4-11'\n" +
+                "AND pembayaran.TANGGAL_BAYAR = '"+new Date(tanggal.getTime())+"'\n" +
+                "AND pembayaran.STATUS = 'HUTANG'\n" +
                 "AND pasien.ID_PASIEN = pembayaran.ID_PASIEN\n" +
                 "AND pembayaran.ID_USG = transaksi_usg.ID_USG\n" +
                 "AND pembayaran.ID_DETAIL_LAB = detail_lab.ID_DETAIL_LAB\n" +
@@ -238,15 +239,15 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
 
             if(result.next()){
                 pembayaran = new Pembayaran();
-                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
-                pembayaran.setNama_Pasien(result.getString("Nama_Pasien"));
-                pembayaran.setTotal_USG(result.getInt("HARGA"));
-                pembayaran.setTotal_Lab(result.getInt("Total_HARGA"));
-                pembayaran.setTotal_Resep(result.getInt("Total_HARGA"));
-                pembayaran.setTotal_Rekam(result.getInt("Total_HARGA"));
-                pembayaran.setTotal_Kecantikan(result.getInt("Total_HARGA"));
-                pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
-                pembayaran.setStatus(result.getString("Status"));
+                pembayaran.setId_Pembayaran(result.getString("ID_PEMBAYARAN"));
+                pembayaran.setNama_Pasien(result.getString("NAMA_PASIEN"));
+                pembayaran.setTotal_USG(result.getInt("USG"));
+                pembayaran.setTotal_Lab(result.getInt("LAB"));
+                pembayaran.setTotal_Resep(result.getInt("RESEP"));
+                pembayaran.setTotal_Rekam(result.getInt("REKAM"));
+                pembayaran.setTotal_Kecantikan(result.getInt("KECANTIKAN"));
+                pembayaran.setTotal_Harga(result.getInt("TOTAL_HARGA"));
+                pembayaran.setStatus(result.getString("STATUS"));
             }
 
             return pembayaran;
@@ -292,4 +293,5 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
            }
        }
     }
+    
 }

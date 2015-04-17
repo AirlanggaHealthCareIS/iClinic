@@ -44,22 +44,22 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         initComponents();
         setLocationRelativeTo(this);
         setSize(665, 730);
-
-        jTable1.setModel(tableModelusg);
-        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            public void valueChanged(ListSelectionEvent e) {
-                int row = jTable1.getSelectedRow();
-                if(row != -1){
-                    USG usg = tableModelusg.get(row);
-                    idpasien.setText(usg.getId_pasien());
-                    idusg.setText(usg.getId_USG());
-//                    jTextField6.setset(usg.getHasil());
-                    deskrip.setText(usg.getDeskripsi());
-                    harga.setText(String.valueOf(usg.getHarga()));
-                }
-            }
-        });
+//
+//        jTable1.setModel(tableModelusg);
+//        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//
+//            public void valueChanged(ListSelectionEvent e) {
+//                int row = jTable1.getSelectedRow();
+//                if(row != -1){
+//                    USG usg = tableModelusg.get(row);
+//                    idpasien.setText(usg.getId_pasien());
+//                    idusg.setText(usg.getId_USG());
+////                    jTextField6.setset(usg.getHasil());
+//                    deskrip.setText(usg.getDeskripsi());
+//                    harga.setText(String.valueOf(usg.getHarga()));
+//                }
+//            }
+//        });
     }
     
     public void clear(){
