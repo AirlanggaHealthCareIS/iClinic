@@ -12,6 +12,7 @@ import Database.Entity.Pembayaran;
 import Database.Service.Bag_PembayaranService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         }
         initComponents();
         setLocationRelativeTo(this);
-        setSize(665, 730);
+        setSize(1278, 730);
 
         Table_Bahan.setModel(tableModelPembayaran);
         Table_Bahan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -115,12 +116,13 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FORM PEMBAYARAN");
-        setMaximumSize(new java.awt.Dimension(1370, 730));
-        setMinimumSize(new java.awt.Dimension(1370, 730));
+        setMaximumSize(new java.awt.Dimension(1278, 730));
+        setMinimumSize(new java.awt.Dimension(1278, 730));
         setResizable(false);
         getContentPane().setLayout(null);
 
         button_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
+        button_Tunai.setEnabled(false);
         button_Tunai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_TunaiActionPerformed(evt);
@@ -130,6 +132,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         button_Tunai.setBounds(40, 620, 65, 65);
 
         button_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
+        button_Debit.setEnabled(false);
         getContentPane().add(button_Debit);
         button_Debit.setBounds(150, 620, 65, 65);
 
@@ -300,7 +303,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         jLabel1.setName(""); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1370, 730));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1500, 730);
+        jLabel1.setBounds(0, 0, 1280, 730);
 
         pack();
         setLocationRelativeTo(null);
@@ -312,7 +315,8 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         }
         else if( !TextField_idPasien.getText().equals("")){
             try {
-                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText());
+                Date tanggal = (Date)TextField_tglPembayaran.getValue();
+                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText(), tanggal);
                 if(pembayaran != null){
                     TextField_namaPasien.setText(pembayaran.getNama_Pasien());
                     TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
@@ -322,7 +326,10 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     TextField_RekamMedis.setText(String.valueOf(pembayaran.getTotal_Rekam()));
                     TextField_Kecantikan.setText(String.valueOf(pembayaran.getTotal_Kecantikan()));
                     TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
-                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));}
+                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
+                    button_Tunai.setEnabled(true);
+                    button_Debit.setEnabled(true);
+                }
                 else if(pembayaran == null){
                     JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
                 }
@@ -339,11 +346,18 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         else if(!TextField_idPembayaran.getText().equals("")){
             String Status = "LUNAS TUNAI";
             try {
-                bag_PembayaranService.updateStatusPembayaranTunai(TextField_idPembayaran.getText(), Status);
+                bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
+                String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
+                JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Tunai Berhasil");
+                TextField_status.setText(newStatus);
+                button_Print.setEnabled(true);
+                button_Tunai.setEnabled(false);
+                button_Debit.setEnabled(false);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }//GEN-LAST:event_button_TunaiActionPerformed
 
     /**

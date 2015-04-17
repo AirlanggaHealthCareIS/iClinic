@@ -266,7 +266,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         }
     }
     
-    public void updateStatusPembayaranTunai(String Id_Pembayaran, String Status) throws RemoteException {
+    public void updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
 
@@ -294,4 +294,24 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
        }
     }
     
+    public String getStatus(String Id_Pembayaran) throws RemoteException{
+        System.out.println("Client Melakukan Proses Get Status dengan Mengakses Tabel Pembayaran");
+        Statement state = null;
+        ResultSet rs = null;
+        String newStatus = "0";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT STATUS FROM pembayaran WHERE ID_PEMBAYARAN = '"+Id_Pembayaran+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                newStatus = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(newStatus);
+        return newStatus;
+    }
+
 }
