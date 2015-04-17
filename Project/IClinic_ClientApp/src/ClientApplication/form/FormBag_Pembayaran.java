@@ -353,11 +353,16 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
             try {
                 bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
                 String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
-                JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Tunai Berhasil");
-                TextField_status.setText(newStatus);
-                button_Print.setEnabled(true);
-                button_Tunai.setEnabled(false);
-                button_Debit.setEnabled(false);
+                if(newStatus.equals("LUNAS TUNAI")){
+                    JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Tunai Berhasil");
+                    TextField_status.setText(newStatus);
+                    button_Print.setEnabled(true);
+                    button_Tunai.setEnabled(false);
+                    button_Debit.setEnabled(false);
+                }
+                else if(newStatus.equals("HUTANG")){
+                    JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Tunai Tidak Berhasil");
+                }
             } catch (RemoteException ex) {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
             }
