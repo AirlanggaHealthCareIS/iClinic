@@ -157,7 +157,7 @@ private TableModelObat_detailResep tableModelObat_detailResep = new TableModelOb
         jScrollPane1.setViewportView(Table_Apotek);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(590, 230, 550, 430);
+        jScrollPane1.setBounds(60, 500, 610, 100);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
         jPanel1.add(jLabel13);
