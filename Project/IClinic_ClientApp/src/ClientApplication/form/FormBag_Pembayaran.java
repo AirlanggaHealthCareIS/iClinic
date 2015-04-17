@@ -133,6 +133,11 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
         button_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
         button_Debit.setEnabled(false);
+        button_Debit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_DebitActionPerformed(evt);
+            }
+        });
         getContentPane().add(button_Debit);
         button_Debit.setBounds(150, 620, 65, 65);
 
@@ -357,8 +362,27 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }//GEN-LAST:event_button_TunaiActionPerformed
+
+    private void button_DebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DebitActionPerformed
+         if(TextField_idPembayaran.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Anda Harus mencari ID PASIEN terlebih dahulu");
+        }
+        else if(!TextField_idPembayaran.getText().equals("")){
+            String Status = "LUNAS DEBIT";
+            try {
+                bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
+                String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
+                JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Debit Berhasil");
+                TextField_status.setText(newStatus);
+                button_Print.setEnabled(true);
+                button_Tunai.setEnabled(false);
+                button_Debit.setEnabled(false);
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_button_DebitActionPerformed
 
     /**
      * @param args the command line arguments
