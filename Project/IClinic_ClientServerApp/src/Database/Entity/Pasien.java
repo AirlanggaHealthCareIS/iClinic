@@ -16,7 +16,8 @@ public class Pasien implements Serializable  {
     private int Id_Pasien;
     private String Nama_Pasien;
     private String Alamat;
-    private Date TTL;
+    private Date Tanggal_lahir;
+    private Date Tanggal_Daftar;
     private int Usia;
     private int No_HP;
     private String Jenis_Kelamin;
@@ -41,8 +42,11 @@ public class Pasien implements Serializable  {
         return Alamat;
     }
 
-    public Date getTTL() {
-        return TTL;
+    public Date getTanggal_lahir() {
+        return Tanggal_lahir;
+    }
+    public Date getTanggal_Daftar() {
+        return Tanggal_Daftar;
     }
 
     public int getUsia() {
@@ -69,8 +73,11 @@ public class Pasien implements Serializable  {
         this.Alamat = Alamat;
     }
 
-    public void setTTL(Date TTL) {
-        this.TTL = TTL;
+    public void setTanggal_Lahir(Date Tanggal_lahir) {
+        this.Tanggal_lahir = Tanggal_lahir;
+    }
+    public void setTanggal_Daftar(Date Tanggal_Daftar) {
+        this.Tanggal_Daftar = Tanggal_Daftar;
     }
 
     public void setUsia(int Usia) {
