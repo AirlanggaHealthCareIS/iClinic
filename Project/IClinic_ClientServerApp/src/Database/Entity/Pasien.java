@@ -13,24 +13,24 @@ import java.util.Date;
  * @author Tiara Ratna Sari
  */
 public class Pasien implements Serializable  {
-    private int Id_Pasien;
+    private String Id_Pasien;
     private String Nama_Pasien;
     private String Alamat;
     private Date Tanggal_lahir;
     private Date Tanggal_Daftar;
     private int Usia;
-    private int No_HP;
+    private String No_HP;
     private String Jenis_Kelamin;
-    private int No_Ktp;
+    private String No_Ktp;
     
-    public void setNo_Ktp(int No_Ktp){
+    public void setNo_Ktp(String No_Ktp){
         this.No_Ktp = No_Ktp;
     }
-    public int getNo_Ktp(){
+    public String getNo_Ktp(){
         return No_Ktp;
     }
 
-    public int getId_Pasien() {
+    public String getId_Pasien() {
         return Id_Pasien;
     }
 
@@ -53,7 +53,7 @@ public class Pasien implements Serializable  {
         return Usia;
     }
 
-    public int getNo_HP() {
+    public String getNo_HP() {
         return No_HP;
     }
 
@@ -61,7 +61,7 @@ public class Pasien implements Serializable  {
         return Jenis_Kelamin;
     }
 
-    public void setId_Pasien(int Id_Pasien) {
+    public void setId_Pasien(String Id_Pasien) {
         this.Id_Pasien = Id_Pasien;
     }
 
@@ -84,7 +84,7 @@ public class Pasien implements Serializable  {
         this.Usia = Usia;
     }
 
-    public void setNo_HP(int No_HP) {
+    public void setNo_HP(String No_HP) {
         this.No_HP = No_HP;
     }
 

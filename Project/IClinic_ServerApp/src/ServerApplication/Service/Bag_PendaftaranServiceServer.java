@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,32 +29,32 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
     public Bag_PendaftaranServiceServer() throws RemoteException {
     }
-    
-    public Pasien insertPasien(Pasien pasien) throws RemoteException {
+    @Override
+    public void insertPasien(Pasien pasien) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Pasien Lama");
          PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO pasien (Id_Pasien,Nama_Pasien,Alamat,TTL,Usia,No_Hp,Jenis_Kelamin) values(?,?,?,?,?,?,?,?)"
+                   "INSERT INTO pasien (ID_PASIEN,NO_KTP, NAMA_PASIEN,ALAMAT,TGL_LAHIR,TGL_DAFTAR, USIA,NO_HP,JENIS_KELAMIN) values(?,?,?,?,?,?,?,?,?)"
                    );
-           statement.setInt(1, pasien.getId_Pasien());
-           statement.setString(2, pasien.getNama_Pasien());
-           statement.setString(3, pasien.getAlamat());
-           statement.setDate( 4,(Date) pasien.getTTL());
-           statement.setInt(5, pasien.getUsia());
-           statement.setInt(6,pasien.getNo_HP());
-           statement.setString(7, pasien.getJenis_Kelamin());
+           statement.setString(1, pasien.getId_Pasien());
+           statement.setString(2, pasien.getNo_Ktp());
+           statement.setString(3, pasien.getNama_Pasien());
+           statement.setString(4, pasien.getAlamat());
+           statement.setDate( 5,new Date(pasien.getTanggal_lahir().getTime()));
+           statement.setDate( 6,new Date(pasien.getTanggal_Daftar().getTime()));
+           statement.setInt(7, pasien.getUsia());
+           statement.setString(8,pasien.getNo_HP());
+           statement.setString(9, pasien.getJenis_Kelamin());
            
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
            if(result.next()){
-               pasien.setId_Pasien(result.getInt(1));
+               pasien.setId_Pasien(result.getString(1));
            }
         result.close();
-        return pasien;
        }catch(SQLException exception){
         exception.printStackTrace();
-            return null;
        }finally{
            if(statement != null){
                try{
@@ -75,12 +77,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
                  "Nama_Pasien = ?, Alamat = ?, TTL = ?, Usia = ?, No_Hp = ? " +
                  "WHERE Id_Pasien = ?"
                    );
-           statement.setInt(1, pasien.getId_Pasien());
+           statement.setString(1, pasien.getId_Pasien());
            statement.setString(2, pasien.getNama_Pasien());
            statement.setString(3, pasien.getAlamat());
-           statement.setDate( 4,(Date) pasien.getTTL());
+           statement.setDate( 4, new Date(pasien.getTanggal_lahir().getTime()));
            statement.setInt(5, pasien.getUsia());
-           statement.setInt(6,pasien.getNo_HP());
+           statement.setString(6,pasien.getNo_HP());
            statement.setString(7, pasien.getJenis_Kelamin());
 
            statement.executeUpdate();

@@ -16,7 +16,7 @@ import java.util.List;
  * @author Tiara Ratna Sari
  */
 public interface Bag_PendaftaranService extends Remote {
-    Pasien insertPasien(Pasien pasien) throws RemoteException;
+    void insertPasien(Pasien pasien) throws RemoteException;
 
     void updatePasien(Pasien pasien) throws RemoteException;
 

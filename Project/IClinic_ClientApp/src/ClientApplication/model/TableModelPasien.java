@@ -51,7 +51,7 @@ public class TableModelPasien extends AbstractTableModel {
             case 0 : return "Id_Pasien";
             case 1 : return "Nama_Pasien";
             case 2 : return "Alamat";
-            case 3 : return "TTL";
+            case 3 : return "Tanggal Lahir";
             case 4 : return "Usia";
             case 5 : return "No_HP";
             case 6 : return "Jenis_Kelamin";
@@ -72,7 +72,7 @@ public class TableModelPasien extends AbstractTableModel {
             case 0 : return list.get(rowIndex).getId_Pasien();
             case 1 : return list.get(rowIndex).getNama_Pasien();
             case 2 : return list.get(rowIndex).getAlamat();
-            case 3 : return list.get(rowIndex).getTTL();
+            case 3 : return list.get(rowIndex).getTanggal_lahir();
             case 4 : return list.get(rowIndex).getUsia();
             case 5 : return list.get(rowIndex).getNo_HP();
             case 6 : return list.get(rowIndex).getJenis_Kelamin();
