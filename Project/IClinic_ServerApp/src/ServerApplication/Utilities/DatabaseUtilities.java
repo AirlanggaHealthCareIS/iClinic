@@ -22,7 +22,7 @@ public class DatabaseUtilities {
        if(connection == null){
             try {
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/klinik2","root","");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/klinik","root","");
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseUtilities.class.getName()).log(Level.SEVERE, null, ex);
             }
