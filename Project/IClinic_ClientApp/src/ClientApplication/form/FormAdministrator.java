@@ -35,7 +35,7 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author piudt
  */
 public class FormAdministrator extends javax.swing.JFrame {
 
@@ -168,6 +168,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         simpanPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanPenyakitButton.setText("Simpan");
+        simpanPenyakitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanPenyakitButtonActionPerformed(evt);
+            }
+        });
 
         clearPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearPenyakitButton.setText("Clear");
@@ -182,11 +187,6 @@ public class FormAdministrator extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         gejalaField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        gejalaField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gejalaFieldActionPerformed(evt);
-            }
-        });
 
         hapusPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusPenyakitButton.setText("Hapus");
@@ -779,9 +779,9 @@ public class FormAdministrator extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_clearPenyakitButtonActionPerformed
 
-    private void gejalaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gejalaFieldActionPerformed
+    private void simpanPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanPenyakitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gejalaFieldActionPerformed
+    }//GEN-LAST:event_simpanPenyakitButtonActionPerformed
 
     
 
