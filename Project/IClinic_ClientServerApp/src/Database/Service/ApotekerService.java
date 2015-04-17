@@ -46,4 +46,7 @@ public interface ApotekerService extends Remote {
     Obat_resep getObat_resep(int Id_Resep) throws RemoteException;
 
     List<Obat_resep> getObat_resep() throws RemoteException;
-}
+    
+    String mencocokan_IdResep(String Id_Resep) throws RemoteException;
+    
+    }

@@ -526,4 +526,23 @@ PreparedStatement statement = null;
             }
         }
     }
+    public String mencocokan_IdResep (String Id_Resep){
+         System.out.println("Client Melakukan Proses Pencocokan ID RESEP");
+         Statement state = null;
+         ResultSet rs = null;
+        
+        String menemukan_Id = "";
+       try{
+           state = (Statement) DatabaseUtilities.getConnection().createStatement();
+           String sql = "SELECT ID_RESEP FROM resep WHERE ID_RESEP = '"+Id_Resep+"'";
+           rs = state.executeQuery(sql);
+           while (rs.next()){
+               menemukan_Id = rs.getString(1);
+           }
+
+       }catch(SQLException exception){
+        exception.printStackTrace();
+       }
+        return menemukan_Id;
+    }
 }
