@@ -463,6 +463,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanTindakanButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="hapusTindakanButton">
               <Properties>
@@ -487,6 +490,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearTindakanButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

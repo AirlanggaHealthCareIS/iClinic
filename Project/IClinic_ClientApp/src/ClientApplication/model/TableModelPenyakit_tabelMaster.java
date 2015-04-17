@@ -37,9 +37,9 @@ public class TableModelPenyakit_tabelMaster extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Penyakit";
-            case 1 : return "Penyakit";
-            case 2 : return "Gejala";
+            case 0 : return "ID PENYAKIT";
+            case 1 : return "NAMA PENYAKIT";
+            case 2 : return "GEJALA";
             default : return null;
         }
     }

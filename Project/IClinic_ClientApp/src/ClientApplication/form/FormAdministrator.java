@@ -57,6 +57,21 @@ public class FormAdministrator extends javax.swing.JFrame {
                 }
             }
         });
+        
+        tindakanTabel.setModel(tableMasterTindakan);
+        tindakanTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent lse) {
+                int row = tindakanTabel.getSelectedRow();
+                if(row != -1){
+                    Tindakan_tabelMaster tindakan = tableMasterTindakan.get(row);
+                    idTindakanField.setText(tindakan.getId_Tindakan());
+                    namaTindakanField.setText(tindakan.getNama_Tindakan());
+                    spesialisasiComboBox.setSelectedItem(tindakan.getSpesialisasi());
+                    tarifField.setText(String.valueOf(tindakan.getTarif()));
+                    keteranganField.setText(tindakan.getKeterangan());
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -322,6 +337,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         simpanTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanTindakanButton.setText("Simpan");
+        simpanTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanTindakanButtonActionPerformed(evt);
+            }
+        });
 
         hapusTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusTindakanButton.setText("Hapus");
@@ -331,6 +351,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         clearTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearTindakanButton.setText("Clear");
+        clearTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearTindakanButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tindakanPanelLayout = new javax.swing.GroupLayout(tindakanPanel);
         tindakanPanel.setLayout(tindakanPanelLayout);
@@ -788,10 +813,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clearPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearPenyakitButtonActionPerformed
-        idPenyakitField.setText("");
-        namaPenyakitField.setText("");
-        gejalaField.setText("");
-        idPenyakitField.getFocusListeners();
+        clearPenyakit();
     }//GEN-LAST:event_clearPenyakitButtonActionPerformed
 
     private void simpanPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanPenyakitButtonActionPerformed
@@ -803,18 +825,48 @@ public class FormAdministrator extends javax.swing.JFrame {
             
             Penyakit_tabelMaster penyakit1 = serviceAdmin.insertPenyakit_tabelMaster(penyakit);
             tableMasterPenyakit.insert(penyakit1);
-            clear();
+            clearPenyakit();
         }catch(RemoteException exception){
             exception.printStackTrace();
         }
     }//GEN-LAST:event_simpanPenyakitButtonActionPerformed
 
-    private void clear() {
+    private void simpanTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButtonActionPerformed
+        try{
+            Tindakan_tabelMaster tindakan = new Tindakan_tabelMaster();
+            tindakan.setId_Tindakan(idTindakanField.getText());
+            tindakan.setNama_Tindakan(namaTindakanField.getText());
+            tindakan.setSpesialisasi(spesialisasiComboBox.getSelectedItem().toString());
+            tindakan.setTarif(Integer.parseInt(tarifField.getText()));
+            tindakan.setKeterangan(keteranganField.getText());
+            
+            Tindakan_tabelMaster tindakan1 = serviceAdmin.insertTindakan_tabelMaster(tindakan);
+            tableMasterTindakan.insert(tindakan1);
+            clearTindakan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_simpanTindakanButtonActionPerformed
+
+    private void clearTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTindakanButtonActionPerformed
+        clearTindakan();
+    }//GEN-LAST:event_clearTindakanButtonActionPerformed
+
+    private void clearPenyakit() {
         idPenyakitField.setText("");
         namaPenyakitField.setText("");
         gejalaField.setText("");
         idPenyakitField.getFocusListeners();
-    }    
+    }
+    
+    private void clearTindakan(){
+        idTindakanField.setText("");
+        namaTindakanField.setText("");
+        spesialisasiComboBox.setSelectedIndex(0);
+        tarifField.setText("");
+        keteranganField.setText("");
+        idTindakanField.getFocusListeners();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane adminTabPane;

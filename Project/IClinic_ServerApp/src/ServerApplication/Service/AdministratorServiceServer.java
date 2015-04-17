@@ -159,8 +159,29 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
     
     public Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
-        
         System.out.println("Client Melakukan Proses Insert pada Tabel Tindakan");
+        
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "INSERT INTO tindakan (ID_TINDAKAN, SPESIALISI, NAMA_TINDAKAN, TARIF, KETERANGAN)" + "VALUES (?,?,?,?,?)");
+            statement.setString(1, tindakan.getId_Tindakan());
+            statement.setString(2, tindakan.getSpesialisasi());
+            statement.setString(3, tindakan.getNama_Tindakan());
+            statement.setInt(4, tindakan.getTarif());
+            statement.setString(5, tindakan.getKeterangan());
+            
+            statement.executeUpdate();
+        } catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if(statement != null){
+                try {
+                    statement.close();
+                } catch(SQLException exception){}
+            }
+        }
         return tindakan;
     }
 

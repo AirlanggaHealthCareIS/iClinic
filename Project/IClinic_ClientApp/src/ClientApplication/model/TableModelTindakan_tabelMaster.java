@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.Tindakan_tabelMaster;
@@ -10,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class TableModelTindakan_tabelMaster extends AbstractTableModel {
-
     private List<Tindakan_tabelMaster> list = new ArrayList<Tindakan_tabelMaster>();
 
-    public TableModelTindakan_tabelMaster(){
-    }
+    public TableModelTindakan_tabelMaster(){}
 
     public Tindakan_tabelMaster get(int row){
         return list.get(row);
@@ -48,11 +37,11 @@ public class TableModelTindakan_tabelMaster extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Tindakan";
-            case 1 : return "Spesialisasi";
-            case 2 : return "Nama_Tindakan";
-            case 3 : return "Tarif";
-            case 4 : return "Keterangan";
+            case 0 : return "ID TINDAKAN";
+            case 1 : return "SPESIALISASI";
+            case 2 : return "NAMA TINDAKAN";
+            case 3 : return "TARIF";
+            case 4 : return "KETERANGAN";
             default : return null;
         }
     }
