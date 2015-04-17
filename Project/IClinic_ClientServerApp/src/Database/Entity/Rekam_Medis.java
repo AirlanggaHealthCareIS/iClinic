@@ -122,5 +122,9 @@ public class Rekam_Medis implements Serializable {
     public void setLayanan_Tambahan(String Layanan_Tambahan) {
         this.Layanan_Tambahan = Layanan_Tambahan;
     }
+
+    public void setId_Diagnosa(Penyakit_diagnosa id_diagnosa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

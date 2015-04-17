@@ -31,7 +31,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
     public DokterServiceServer() throws RemoteException {
     }
 
-    public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
+public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
 
        System.out.println("Client Melakukan Proses Insert pada Tabel Rekam Medis");
     PreparedStatement statement = null;
@@ -79,12 +79,12 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         System.out.println("Client Melakukan Proses Update pada Tabel Rekam Medis");
     }
 
-    public void deleteRekam_Medis(int Id_Rekam) throws RemoteException {
+    public void deleteRekam_Medis(String Id_Rekam) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Rekam Medis");
     }
 
-    public Rekam_Medis getRekam_Medis(int Id_Rekam) throws RemoteException {
+    public Rekam_Medis getRekam_Medis(String Id_Rekam) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Rekam Medis");
         PreparedStatement statement = null;
@@ -101,15 +101,16 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
                 
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
                 rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
-                rekam_medis.setId_Pasien(result.getString("Id_Detail_Lab"));
-                rekam_medis.setNo_Detail(result.getString("Id_Resep"));
-                rekam_medis.setTgl_Rekam(result.getDate("Id_Rekam"));
-                rekam_medis.setBerat(result.getInt("Id_Transaksi_Layanan"));
-                rekam_medis.setTekanan_Darah(result.getInt("Tanggal_Bayar"));
-                rekam_medis.setHasil_Pemerikasaan(result.getString("Total_Harga"));
-                rekam_medis.setAlergi(result.getString("Status"));
-                rekam_medis.setTotal_Harga(result.getInt("Status"));
-                rekam_medis.setLayanan_Tambahan(result.getString("Status"));
+                rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
+                rekam_medis.setNo_Detail(result.getString("No_Detail"));
+                rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
+                rekam_medis.setTinggi(result.getInt("Tinggi"));
+                rekam_medis.setBerat(result.getInt("Berat"));
+                rekam_medis.setTekanan_Darah(result.getInt("Tekanan_Darah"));
+                rekam_medis.setHasil_Pemerikasaan(result.getString("Hasil_Pemeriksaan"));
+                rekam_medis.setAlergi(result.getString("Alergi"));
+                rekam_medis.setTotal_Harga(result.getInt("Total_Harga"));
+                rekam_medis.setLayanan_Tambahan(result.getString("Layanan_Tambahan"));
                  
             }
 
@@ -142,18 +143,20 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
           while(result.next()){
                 Rekam_Medis rekam_medis = new Rekam_Medis();
+                
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
                 rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
-                rekam_medis.setId_Pasien(result.getString("Id_Detail_Lab"));
-                rekam_medis.setNo_Detail(result.getString("Id_Resep"));
-                rekam_medis.setTgl_Rekam(result.getDate("Id_Rekam"));
-                rekam_medis.setBerat(result.getInt("Id_Transaksi_Layanan"));
-                rekam_medis.setTekanan_Darah(result.getInt("Tanggal_Bayar"));
-                rekam_medis.setHasil_Pemerikasaan(result.getString("Total_Harga"));
-                rekam_medis.setAlergi(result.getString("Status"));
-                rekam_medis.setTotal_Harga(result.getInt("Status"));
-                rekam_medis.setLayanan_Tambahan(result.getString("Status"));
-                list.add(rekam_medis);
+                rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
+                rekam_medis.setNo_Detail(result.getString("No_Detail"));
+                rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
+                rekam_medis.setTinggi(result.getInt("Tinggi"));
+                rekam_medis.setBerat(result.getInt("Berat"));
+                rekam_medis.setTekanan_Darah(result.getInt("Tekanan_Darah"));
+                rekam_medis.setHasil_Pemerikasaan(result.getString("Hasil_Pemeriksaan"));
+                rekam_medis.setAlergi(result.getString("Alergi"));
+                rekam_medis.setTotal_Harga(result.getInt("Total_Harga"));
+                rekam_medis.setLayanan_Tambahan(result.getString("Layanan_Tambahan"));
+                 list.add(rekam_medis);
           }
 
           result.close();
@@ -174,125 +177,8 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
     }
 
-    public Penyakit_tabelMaster insertPenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
-        
-        System.out.println("Client Melakukan Proses Insert pada Tabel Penyakit_tabelMaster");
-        return penyakit;
-    }
 
-    public void updatePenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Update pada Tabel Penyakit_tabelMaster");
-    }
-
-    public void deletePenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Delete pada Tabel Penyakit_tabelMaster");
-    }
-
-    public Penyakit_tabelMaster getPenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Penyakit_tabelMaster");
-        Penyakit_tabelMaster penyakit = null;
-        return penyakit;
-    }
-
-    public List<Penyakit_tabelMaster> getPenyakit_tabelMaster() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel Penyakit_tabelMaster");
-        List<Penyakit_tabelMaster> list = new ArrayList<Penyakit_tabelMaster>();
-        return list;
-    }
-    
-    public Penyakit_diagnosa insertPenyakit_diagnosa(Penyakit_diagnosa diagnosa) throws RemoteException {
-        
-        System.out.println("Client Melakukan Proses Insert pada Tabel Penyakit_diagnosa");
-        return diagnosa;
-    }
-
-    public void updatePenyakit_diagnosa(Penyakit_diagnosa diagnosa) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Penyakit_diagnosa");
-    }
-
-    public void deletePenyakit_diagnosa(int Id_Penyakit_diagnosa) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Delete pada Tabel Penyakit_diagnosa");
-    }
-
-    public Penyakit_diagnosa getPenyakit_diagnosa(int Id_Penyakit_diagnosa) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Penyakit_diagnosa");
-        Penyakit_diagnosa diagnosa = null;
-        return diagnosa;
-    }
-
-    public List<Penyakit_diagnosa> getPenyakit_diagnosa() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel Penyakit_diagnosa");
-        List<Penyakit_diagnosa> list = new ArrayList<Penyakit_diagnosa>();
-        return list;
-    }
-    
-    public Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
-        
-        System.out.println("Client Melakukan Proses Insert pada Tabel Tindakan");
-        return tindakan;
-    }
-
-    public void updateTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Tindakan");
-    }
-
-    public void deleteTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Delete pada Tabel Tindakan");
-    }
-
-    public Tindakan_tabelMaster getTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Tindakan");
-        Tindakan_tabelMaster tindakan = null;
-        return tindakan;
-    }
-
-    public List<Tindakan_tabelMaster> getTindakan_tabelMaster() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel Tindakan");
-        List<Tindakan_tabelMaster> list = new ArrayList<Tindakan_tabelMaster>();
-        return list;
-    }
-    
-    public Tindakan_detailTindakan insertTindakan_detailTindakan(Tindakan_detailTindakan detail_tindakan) throws RemoteException {
-        
-        System.out.println("Client Melakukan Proses Insert pada Tabel Tindakan");
-        return detail_tindakan;
-    }
-
-    public void updateTindakan_detailTindakan(Tindakan_detailTindakan detail_tindakan) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Tindakan");
-    }
-
-    public void deleteTindakan_detailTindakan(int No_Detail) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Delete pada Tabel Tindakan");
-    }
-
-    public Tindakan_detailTindakan getTindakan_detailTindakan(int No_Detail) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Tindakan");
-        Tindakan_detailTindakan detail_tindakan = null;
-        return detail_tindakan;
-    }
-
-    public List<Tindakan_detailTindakan> getTindakan_detailTindakan() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel Tindakan");
-        List<Tindakan_detailTindakan> list = new ArrayList<Tindakan_detailTindakan>();
-        return list;
-    }
 
     public List<Rekam_Medis> GetRekam_MedisbyPasien(String idpasien) throws RemoteException {
         PreparedStatement statement = null;
@@ -332,4 +218,137 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
             }
         }
     }
+
+
+   
+    public List getNamaDiagnosa() throws RemoteException {
+   Statement statement = null;
+	ResultSet resultSet = null;
+        List product_code = new ArrayList();
+	try {
+	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+	    resultSet = statement.executeQuery("SELECT DIAGNOSA from diagnosa");
+	    while (resultSet.next()) {
+		product_code.add(resultSet.getString("diagnosa"));
+	    }
+	}
+        catch (SQLException ex) {}
+         finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	    try {
+		if (statement != null) {
+		    statement.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	}
+        return product_code;
+    }
+
+    public String getIdDiagnosa(String namaDiagnosa) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Nama Diagnosa");
+        Statement state = null;
+        ResultSet rs = null;
+        String idDiagnosa = "";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_DIAGNOSA FROM DIAGNOSA WHERE  DIAGNOSA = '"+namaDiagnosa+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                idDiagnosa = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(idDiagnosa);
+        return idDiagnosa;
+    }
+
+//    public List getAntrian() throws RemoteException {
+//        Statement statement = null;
+//	ResultSet resultSet = null;
+//        List id_pasien = new ArrayList();
+//	try {
+//	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+//	    resultSet = statement.executeQuery("SELECT ID_PASIEN FROM antrian");
+//	    while (resultSet.next()) {
+//		id_pasien.add(resultSet.getString("ID_PASIEN"));
+//	    }
+//	}
+//        catch (SQLException ex) {}
+//         finally {
+//	    try {
+//		if (resultSet != null) {
+//		    resultSet.close();
+//		}
+//	    }
+//            catch (SQLException ex) {}
+//	    try {
+//		if (statement != null) {
+//		    statement.close();
+//		}
+//	    }
+//            catch (SQLException ex) {}
+//	}
+//        return id_pasien;
+//    }
+//
+
+    public List getNamaDetail() throws RemoteException {
+        Statement statement = null;
+	ResultSet resultSet = null;
+        List product_code = new ArrayList();
+	try {
+	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+	    resultSet = statement.executeQuery("SELECT NO_DETAIL from DETAIL_TINDAKAN");
+	    while (resultSet.next()) {
+		product_code.add(resultSet.getString("NO_DETAIL"));
+	    }
+	}
+        catch (SQLException ex) {}
+         finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	    try {
+		if (statement != null) {
+		    statement.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	}
+        return product_code;
+    }
+
+    public String getIdDetail(String namaDetail) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Jenis Tindakan");
+        Statement state = null;
+        ResultSet rs = null;
+        String noDetail = "";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT NO_DETAIL FROM DETAIL_TINDAKAN WHERE  ID_TINDAKAN = '"+namaDetail+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                noDetail = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(noDetail);
+        return noDetail;}
+
+    
+    
+    
 }
