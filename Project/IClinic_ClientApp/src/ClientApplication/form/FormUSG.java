@@ -52,22 +52,22 @@ private TableModelUSG tableModelusg = new TableModelUSG();
                 int row = jTable1.getSelectedRow();
                 if(row != -1){
                     USG usg = tableModelusg.get(row);
-                    jTextField1.setText(usg.getId_pasien());
-                    jTextField4.setText(usg.getId_USG());
+                    idpasien.setText(usg.getId_pasien());
+                    idusg.setText(usg.getId_USG());
 //                    jTextField6.setset(usg.getHasil());
-                    jTextArea1.setText(usg.getDeskripsi());
-                    jTextField7.setText(String.valueOf(usg.getHarga()));
+                    deskrip.setText(usg.getDeskripsi());
+                    harga.setText(String.valueOf(usg.getHarga()));
                 }
             }
         });
     }
     
     public void clear(){
-        jTextField1.setText("");
-        jTextField4.setText("");
-        jTextField6.setText("");
-        jTextArea1.setText("");
-        jTextField7.setText("");
+        idpasien.setText("");
+        idusg.setText("");
+        hasil.setText("");
+        deskrip.setText("");
+        harga.setText("");
     }
     
 
@@ -83,30 +83,21 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        idpasien = new javax.swing.JTextField();
+        namapasien = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        tanggal = new javax.swing.JTextField();
+        idusg = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        hasil = new javax.swing.JTextField();
+        unggah = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel9 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        deskrip = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        harga = new javax.swing.JTextField();
+        simpan = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,10 +111,10 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         jLabel3.setText("Nama Pasien         :");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(150, 230, 100, 14);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(250, 200, 80, 20);
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(250, 230, 180, 20);
+        jPanel1.add(idpasien);
+        idpasien.setBounds(250, 200, 80, 20);
+        jPanel1.add(namapasien);
+        namapasien.setBounds(250, 230, 180, 20);
 
         jLabel4.setText("Tanggal Pemerikasaan :");
         jPanel1.add(jLabel4);
@@ -132,83 +123,41 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         jLabel5.setText("ID USG          :");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(530, 200, 70, 14);
-
-        jLabel6.setText("ID Petugas    :");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(530, 230, 90, 14);
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(660, 170, 80, 20);
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(660, 200, 80, 20);
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(660, 230, 80, 20);
+        jPanel1.add(tanggal);
+        tanggal.setBounds(660, 170, 80, 20);
+        jPanel1.add(idusg);
+        idusg.setBounds(660, 200, 80, 20);
 
         jLabel7.setText("Hasil pemeriksaan :");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(150, 270, 100, 14);
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(250, 270, 260, 20);
+        jPanel1.add(hasil);
+        hasil.setBounds(250, 270, 260, 20);
 
-        jButton1.setText("Unggah");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(530, 270, 69, 23);
+        unggah.setText("Unggah");
+        jPanel1.add(unggah);
+        unggah.setBounds(530, 270, 69, 23);
 
         jLabel8.setText("Keterangan          :");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(150, 300, 100, 14);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        deskrip.setColumns(20);
+        deskrip.setRows(5);
+        jScrollPane1.setViewportView(deskrip);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(250, 300, 260, 150);
 
-        jLabel9.setText("Fasilitas               :");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(150, 460, 100, 14);
-
-        jRadioButton1.setText("Foto USG");
-        jPanel1.add(jRadioButton1);
-        jRadioButton1.setBounds(250, 460, 71, 23);
-
-        jRadioButton2.setText("CD usg");
-        jPanel1.add(jRadioButton2);
-        jRadioButton2.setBounds(450, 460, 59, 23);
-
-        jRadioButton3.setText("Vitamin/Suplemen");
-        jPanel1.add(jRadioButton3);
-        jRadioButton3.setBounds(250, 490, 120, 23);
-
-        jLabel10.setText("Detail transaksi   :");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(150, 520, 90, 14);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Fasilitas", "Biaya"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(250, 520, 270, 100);
-
         jLabel11.setText("Total transasksi :");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(150, 630, 90, 14);
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(250, 630, 140, 20);
+        jLabel11.setBounds(150, 470, 90, 14);
+        jPanel1.add(harga);
+        harga.setBounds(250, 470, 140, 20);
 
-        jButton2.setText("Simpan");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(540, 650, 67, 23);
+        simpan.setText("Simpan");
+        jPanel1.add(simpan);
+        simpan.setBounds(540, 480, 67, 23);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
         jPanel1.add(jLabel12);
@@ -233,34 +182,25 @@ private TableModelUSG tableModelusg = new TableModelUSG();
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JTextArea deskrip;
+    private javax.swing.JTextField harga;
+    private javax.swing.JTextField hasil;
+    private javax.swing.JTextField idpasien;
+    private javax.swing.JTextField idusg;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField namapasien;
+    private javax.swing.JButton simpan;
+    private javax.swing.JTextField tanggal;
+    private javax.swing.JButton unggah;
     // End of variables declaration//GEN-END:variables
 
 }
