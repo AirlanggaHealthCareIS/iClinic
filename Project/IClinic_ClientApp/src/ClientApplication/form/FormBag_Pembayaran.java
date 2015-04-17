@@ -370,7 +370,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     }//GEN-LAST:event_button_TunaiActionPerformed
 
     private void button_DebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DebitActionPerformed
-         if(TextField_idPembayaran.getText().equals("")){
+        if(TextField_idPembayaran.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Anda Harus mencari ID PASIEN terlebih dahulu");
         }
         else if(!TextField_idPembayaran.getText().equals("")){
@@ -378,15 +378,21 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
             try {
                 bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
                 String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
-                JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Debit Berhasil");
-                TextField_status.setText(newStatus);
-                button_Print.setEnabled(true);
-                button_Tunai.setEnabled(false);
-                button_Debit.setEnabled(false);
+                if(newStatus.equals("LUNAS DEBIT")){
+                    JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Debit Berhasil");
+                    TextField_status.setText(newStatus);
+                    button_Print.setEnabled(true);
+                    button_Tunai.setEnabled(false);
+                    button_Debit.setEnabled(false);
+                }
+                else if(newStatus.equals("HUTANG")){
+                    JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Debit Tidak Berhasil");
+                }
             } catch (RemoteException ex) {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
     }//GEN-LAST:event_button_DebitActionPerformed
 
     /**
