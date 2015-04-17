@@ -123,7 +123,7 @@ public class FormAdministrator extends javax.swing.JFrame {
         satuanLabel = new javax.swing.JLabel();
         idObatField = new javax.swing.JTextField();
         namaObatField = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jenisObatField = new javax.swing.JTextField();
         hargaObatField = new javax.swing.JTextField();
         satuanComboBox = new javax.swing.JComboBox();
         labPanel = new javax.swing.JPanel();
@@ -461,9 +461,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         simpanTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanTindakanButton1.setText("Simpan");
+        simpanTindakanButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanTindakanButton1ActionPerformed(evt);
+            }
+        });
 
         clearTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearTindakanButton1.setText("Clear");
+        clearTindakanButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearTindakanButton1ActionPerformed(evt);
+            }
+        });
 
         ubahTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahTindakanButton1.setText("Ubah");
@@ -490,7 +500,7 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         namaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jenisObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         hargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
@@ -532,7 +542,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                                 .addGap(22, 22, 22)
                                 .addGroup(obatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(namaObatField, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jenisObatField, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(idObatField, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -555,7 +565,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     .addComponent(namaObatLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(obatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jenisObatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jenisObatLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(obatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -852,6 +862,27 @@ public class FormAdministrator extends javax.swing.JFrame {
         clearTindakan();
     }//GEN-LAST:event_clearTindakanButtonActionPerformed
 
+    private void simpanTindakanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButton1ActionPerformed
+        try{
+            Obat_tabelMaster obat = new Obat_tabelMaster();
+            obat.setId_Obat(idObatField.getText());
+            obat.setNama_Obat(namaObatField.getText());
+            obat.setJenis_Obat(jenisObatField.getText());
+            obat.setHarga_Obat(Integer.parseInt(hargaObatField.getText()));
+            obat.setSatuan(satuanComboBox.getSelectedItem().toString());
+            
+            Obat_tabelMaster obat1 = serviceAdmin.insertObat_tabelMaster(obat);
+            tableMasterObat.insert(obat1);
+            clearObat();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_simpanTindakanButton1ActionPerformed
+
+    private void clearTindakanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTindakanButton1ActionPerformed
+        clearObat();
+    }//GEN-LAST:event_clearTindakanButton1ActionPerformed
+
     private void clearPenyakit() {
         idPenyakitField.setText("");
         namaPenyakitField.setText("");
@@ -866,6 +897,15 @@ public class FormAdministrator extends javax.swing.JFrame {
         tarifField.setText("");
         keteranganField.setText("");
         idTindakanField.getFocusListeners();
+    }
+    
+    private void clearObat(){
+        idObatField.setText("");
+        namaObatField.setText("");
+        jenisObatField.setText("");
+        hargaField.setText("");
+        satuanComboBox.setSelectedIndex(0);
+        idObatField.getFocusListeners();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -904,9 +944,9 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jenisLayananKecantikanField;
     private javax.swing.JLabel jenisLayananLabel;
+    private javax.swing.JTextField jenisObatField;
     private javax.swing.JLabel jenisObatLabel;
     private javax.swing.JTextField jenisPemeriksaanLabField;
     private javax.swing.JLabel jenisPemeriksaanLabel;

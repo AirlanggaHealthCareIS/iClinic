@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2015 at 11:31 AM
+-- Generation Time: Apr 17, 2015 at 06:37 PM
 -- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `obat` (
   `NAMA_OBAT` varchar(30) DEFAULT NULL,
   `JENIS_OBAT` varchar(30) DEFAULT NULL,
   `HARGA_OBAT` int(11) DEFAULT NULL,
-  `SATUAN` int(11) DEFAULT NULL
+  `SATUAN` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

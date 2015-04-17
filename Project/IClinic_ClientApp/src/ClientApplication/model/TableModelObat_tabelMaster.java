@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.Obat_tabelMaster;
@@ -10,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Rindu Puspita
- */
 public class TableModelObat_tabelMaster extends AbstractTableModel {
-
     private List<Obat_tabelMaster> list = new ArrayList<Obat_tabelMaster>(); //ambil list office dari bridge
 
-    public TableModelObat_tabelMaster(){
-    }
+    public TableModelObat_tabelMaster(){}
 
     public Obat_tabelMaster get(int row){
         return list.get(row);
@@ -48,11 +37,11 @@ public class TableModelObat_tabelMaster extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Obat";
-            case 1 : return "Nama_Obat";
-            case 2 : return "Jenis_Obat";
-            case 3 : return "Harga_Obat";
-            case 4 : return "Satuan";
+            case 0 : return "ID OBAT";
+            case 1 : return "NAMA OBAT";
+            case 2 : return "JENIS OBAT";
+            case 3 : return "HARGA OBAT";
+            case 4 : return "SATUAN";
             default: return null;
         }
     }
