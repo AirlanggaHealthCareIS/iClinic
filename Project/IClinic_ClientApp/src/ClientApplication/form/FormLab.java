@@ -51,33 +51,33 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         initComponents();
         setLocationRelativeTo(this);
         setSize(665, 730);
-
-        jTable1.setModel(tableModellab);
-        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            public void valueChanged(ListSelectionEvent e) {
-                int row = jTable1.getSelectedRow();
-                if(row != -1){
-                    Lab_detailLab lab = tableModellab.get(row);
-                    idpasien.setText(lab.getId_Pasien());
-                    //namapasien.setText(lab.get());
-                    jTextField8.setText(lab.getId_Lab());
-//                    TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
-//                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
-//                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
-//                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
-                    jTextField12.setText(String.valueOf(lab.getTotal_Harga()));
-//                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
-                }
-            }
-        });
-    }
-    
-    
-    public void clear(){
-        idpasien.setText("");
-        jTextField8.setText("");
-        jTextField12.setText("");
+//
+//        jTable1.setModel(tableModellab);
+//        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//
+//            public void valueChanged(ListSelectionEvent e) {
+//                int row = jTable1.getSelectedRow();
+//                if(row != -1){
+//                    Lab_detailLab lab = tableModellab.get(row);
+//                    idpasien.setText(lab.getId_Pasien());
+//                    //namapasien.setText(lab.get());
+//                    idLab.setText(lab.getId_Lab());
+////                    TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
+////                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
+////                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
+////                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
+//                    totalTransaksi.setText(String.valueOf(lab.getTotal_Harga()));
+////                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
+//                }
+//            }
+//        });
+//    }
+//    
+//    
+//    public void clear(){
+//        idpasien.setText("");
+//        idLab.setText("");
+//        totalTransaksi.setText("");
 //        TextField_tglPembayaran.setText("");
 //        TextField_Kecantikan.setText("");
 //        TextField_Lab.setText("");
@@ -104,33 +104,34 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         idpasien = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        namaPasien = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        tanggal = new javax.swing.JTextField();
+        idLab = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
-        jTextField10 = new javax.swing.JTextField();
+        hasilPemeriksaan = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Keterangan = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        totalTransaksi = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
+        tesDarah = new javax.swing.JTextField();
+        tesHIV = new javax.swing.JTextField();
+        tesUrine = new javax.swing.JTextField();
+        tesKimia = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -149,14 +150,14 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(idpasien);
         idpasien.setBounds(350, 320, 212, 20);
 
-        jTextField2.setEditable(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        namaPasien.setEditable(false);
+        namaPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                namaPasienActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(350, 350, 212, 20);
+        getContentPane().add(namaPasien);
+        namaPasien.setBounds(350, 350, 212, 20);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Tanggal Pemeriksaan      : ");
@@ -168,31 +169,31 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(jLabel9);
         jLabel9.setBounds(730, 270, 158, 17);
 
-        jTextField7.setEditable(false);
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(890, 240, 220, 20);
+        tanggal.setEditable(false);
+        getContentPane().add(tanggal);
+        tanggal.setBounds(890, 240, 220, 20);
 
-        jTextField8.setEditable(false);
-        getContentPane().add(jTextField8);
-        jTextField8.setBounds(890, 270, 220, 20);
+        idLab.setEditable(false);
+        getContentPane().add(idLab);
+        idLab.setBounds(890, 270, 220, 20);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Jenis Pemeriksaan           : ");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(190, 420, 162, 17);
+        jLabel11.setBounds(190, 410, 162, 17);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Hasil Pemeriksaan           :");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(190, 500, 155, 17);
+        jLabel12.setBounds(730, 350, 155, 17);
 
         jCheckBox1.setText("Tes Darah");
         getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(350, 410, 75, 23);
+        jCheckBox1.setBounds(350, 410, 80, 23);
 
         jCheckBox2.setText("Tes HIV");
         getContentPane().add(jCheckBox2);
-        jCheckBox2.setBounds(350, 450, 75, 23);
+        jCheckBox2.setBounds(350, 450, 80, 23);
 
         jCheckBox3.setText("Tes Kimia");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -201,50 +202,29 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
             }
         });
         getContentPane().add(jCheckBox3);
-        jCheckBox3.setBounds(440, 410, 69, 23);
+        jCheckBox3.setBounds(350, 540, 80, 23);
 
         jCheckBox4.setText("Tes Urine");
         getContentPane().add(jCheckBox4);
-        jCheckBox4.setBounds(440, 450, 71, 23);
-        getContentPane().add(jTextField10);
-        jTextField10.setBounds(350, 500, 220, 20);
+        jCheckBox4.setBounds(350, 490, 80, 23);
+        getContentPane().add(hasilPemeriksaan);
+        hasilPemeriksaan.setBounds(890, 350, 220, 20);
 
         jButton1.setText("Browser");
         getContentPane().add(jButton1);
-        jButton1.setBounds(580, 500, 71, 23);
+        jButton1.setBounds(1120, 350, 71, 23);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Keterangan                    :");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(190, 550, 168, 17);
+        jLabel13.setBounds(730, 390, 168, 17);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setText("Detail Transaksi               :");
-        getContentPane().add(jLabel14);
-        jLabel14.setBounds(730, 380, 158, 17);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        Keterangan.setColumns(20);
+        Keterangan.setRows(5);
+        jScrollPane2.setViewportView(Keterangan);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(350, 550, 220, 96);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Jenis Pemeriksaan", "Tarif"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(890, 380, 270, 107);
+        jScrollPane2.setBounds(890, 390, 220, 96);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Total Tansaksi                 :");
@@ -274,11 +254,11 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Total Transaksi               :");
         getContentPane().add(jLabel18);
-        jLabel18.setBounds(730, 510, 160, 17);
+        jLabel18.setBounds(720, 560, 160, 17);
 
-        jTextField12.setEditable(false);
-        getContentPane().add(jTextField12);
-        jTextField12.setBounds(890, 510, 270, 20);
+        totalTransaksi.setEditable(false);
+        getContentPane().add(totalTransaksi);
+        totalTransaksi.setBounds(890, 560, 270, 20);
 
         jButton3.setText("Simpan ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -287,19 +267,27 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(1090, 560, 69, 23);
+        jButton3.setBounds(1090, 600, 69, 23);
+        getContentPane().add(tesDarah);
+        tesDarah.setBounds(450, 410, 150, 20);
+        getContentPane().add(tesHIV);
+        tesHIV.setBounds(450, 450, 150, 20);
+        getContentPane().add(tesUrine);
+        tesUrine.setBounds(450, 490, 150, 20);
+        getContentPane().add(tesKimia);
+        tesKimia.setBounds(450, 540, 150, 20);
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/7.jpg"))); // NOI18N
-        jLabel17.setText("jLabel17");
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(0, 0, 1230, 800);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/7.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 1230, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void namaPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaPasienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_namaPasienActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
@@ -320,6 +308,9 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Keterangan;
+    private javax.swing.JTextField hasilPemeriksaan;
+    private javax.swing.JTextField idLab;
     private javax.swing.JTextField idpasien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -332,24 +323,22 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField namaPasien;
+    private javax.swing.JTextField tanggal;
+    private javax.swing.JTextField tesDarah;
+    private javax.swing.JTextField tesHIV;
+    private javax.swing.JTextField tesKimia;
+    private javax.swing.JTextField tesUrine;
+    private javax.swing.JTextField totalTransaksi;
     // End of variables declaration//GEN-END:variables
 
 }
