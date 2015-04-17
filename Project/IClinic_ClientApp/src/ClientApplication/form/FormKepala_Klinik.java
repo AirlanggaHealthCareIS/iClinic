@@ -34,8 +34,13 @@ import javax.swing.event.ListSelectionListener;
  * @author Tiara Ratna Sari
  */
 public class FormKepala_Klinik extends javax.swing.JFrame {
+    Kepala_KlinikService a;
+    TableModelPembayaran b = new TableModelPembayaran();
+    Pembayaran c = new Pembayaran();
+    
 
     public FormKepala_Klinik(Kepala_KlinikService kepala_KlinikService) {
+        a=kepala_KlinikService;
     }
 
     /** This method is called from within the constructor to
@@ -51,26 +56,31 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table_Bahan = new javax.swing.JTable();
+        Table_Pembayaran = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton1.setText("Keuangan");
+        jButton1.setText("Pembayaran");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
-        jButton1.setBounds(33, 280, 130, 40);
+        jButton1.setBounds(140, 240, 130, 40);
 
         jButton2.setText("Jumlah Pasien");
         getContentPane().add(jButton2);
-        jButton2.setBounds(33, 343, 130, 40);
+        jButton2.setBounds(440, 240, 130, 40);
 
         jButton3.setText("Cetak Rekam Medis");
         getContentPane().add(jButton3);
-        jButton3.setBounds(30, 410, 130, 40);
+        jButton3.setBounds(780, 240, 130, 40);
 
-        Table_Bahan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Table_Bahan.setModel(new javax.swing.table.DefaultTableModel(
+        Table_Pembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        Table_Pembayaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -81,10 +91,10 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(Table_Bahan);
+        jScrollPane1.setViewportView(Table_Pembayaran);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(210, 270, 550, 90);
+        jScrollPane1.setBounds(220, 340, 550, 90);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/9.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -93,10 +103,19 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            b.setData(a.getPembayaran());
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormKepala_Klinik.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Table_Pembayaran.setModel(b);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Table_Bahan;
+    private javax.swing.JTable Table_Pembayaran;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
