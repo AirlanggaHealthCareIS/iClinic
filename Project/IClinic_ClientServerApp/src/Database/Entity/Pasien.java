@@ -16,12 +16,11 @@ public class Pasien implements Serializable  {
     private int Id_Pasien;
     private String Nama_Pasien;
     private String Alamat;
-    private Date Tanggal_Lahir;
+    private Date TTL;
     private int Usia;
     private int No_HP;
     private String Jenis_Kelamin;
     private int No_Ktp;
-    private Date Tanggal_Daftar;
     
     public void setNo_Ktp(int No_Ktp){
         this.No_Ktp = No_Ktp;
@@ -42,15 +41,12 @@ public class Pasien implements Serializable  {
         return Alamat;
     }
 
-    public Date Tanggal_Lahir() {
-        return Tanggal_Lahir;
+    public Date getTTL() {
+        return TTL;
     }
 
     public int getUsia() {
         return Usia;
-    }
-    public Date getTanggal_Daftar() {
-        return Tanggal_Daftar;
     }
 
     public int getNo_HP() {
@@ -73,14 +69,11 @@ public class Pasien implements Serializable  {
         this.Alamat = Alamat;
     }
 
-    public void setTanggal_Lahir(Date Tanggal_Lahir) {
-        this.Tanggal_Lahir = Tanggal_Lahir;
+    public void setTTL(Date TTL) {
+        this.TTL = TTL;
     }
 
     public void setUsia(int Usia) {
-        this.Usia = Usia;
-    }
-    public void setTanggal_Daftar(Date Tanggal_Daftar) {
         this.Usia = Usia;
     }
 
