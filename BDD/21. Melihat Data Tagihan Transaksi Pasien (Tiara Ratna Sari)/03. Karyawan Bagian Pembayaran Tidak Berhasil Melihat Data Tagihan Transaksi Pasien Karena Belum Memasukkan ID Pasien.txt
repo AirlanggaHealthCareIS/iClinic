@@ -1,0 +1,7 @@
+Feature		Melihat Data Tagihan Transaksi Pasien
+Scenario	Karyawan Bagian Pembayaran Tidak Berhasil Melihat Data Tagihan Transaksi Pasien Karena Belum Memasukkan ID Pasien
+
+Given	Karyawan bagian Pembayaran sudah melakukan login
+and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
+When	Karyawan bagian Pembayaran menekan tombol search
+and	Sistem menampilkan pemberitahuan bahwa Karyawan bagian Pembayaran belum memasukkan ID Pasien
