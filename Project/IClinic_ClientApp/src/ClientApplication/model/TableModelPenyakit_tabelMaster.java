@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.Penyakit_tabelMaster;
@@ -10,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class TableModelPenyakit_tabelMaster extends AbstractTableModel {
-
     private List<Penyakit_tabelMaster> list = new ArrayList<Penyakit_tabelMaster>();
 
-    public TableModelPenyakit_tabelMaster(){
-    }
+    public TableModelPenyakit_tabelMaster(){}
 
     public Penyakit_tabelMaster get(int row){
         return list.get(row);

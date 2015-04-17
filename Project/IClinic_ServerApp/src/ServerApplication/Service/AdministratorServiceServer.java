@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ServerApplication.Service;
 
 import Database.Entity.Kecantikan_tabelMaster;
@@ -22,14 +17,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class AdministratorServiceServer extends UnicastRemoteObject implements AdministratorService{
 
-    public AdministratorServiceServer() throws RemoteException {
-    }
+    public AdministratorServiceServer() throws RemoteException {}
     
     public String loginUser(String Username, String Password) throws RemoteException {
         System.out.println("Client Melakukan Proses Login dengan Mengakses Tabel User");
@@ -120,8 +110,27 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
     
     public Penyakit_tabelMaster insertPenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
-        
         System.out.println("Client Melakukan Proses Insert pada Tabel Penyakit_tabelMaster");
+        
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "INSERT INTO penyakit (ID_PENYAKIT, PENYAKIT, GEJALA)" + "VALUES (?,?,?)");
+            statement.setString(1, penyakit.getId_Penyakit());
+            statement.setString(2, penyakit.getPenyakit());
+            statement.setString(3, penyakit.getGejala());
+            
+            statement.executeUpdate();
+        } catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if(statement != null){
+                try {
+                    statement.close();
+                } catch(SQLException exception){}
+            }
+        }
         return penyakit;
     }
 
