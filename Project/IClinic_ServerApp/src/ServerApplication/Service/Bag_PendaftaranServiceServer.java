@@ -129,14 +129,32 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
         
     public Pasien getPasien(int Id_Pasien) throws RemoteException {
-        
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
+         System.out.println("Client Melakukan Proses Get Status dengan Mengakses Tabel Pasien");
+        Statement state = null;
+        ResultSet rs = null;
+        String newStatus = "0";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT STATUS FROM pembayaran WHERE ID_PASIEN = '"+Id_Pasien+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                newStatus = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+       System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
         Pasien pasien = null;
         return pasien;
     }
 
+
+
+        
+
     public List<Pasien> getPasien() throws RemoteException {
+        
         
         System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
         List<Pasien> list = new ArrayList<Pasien>();
