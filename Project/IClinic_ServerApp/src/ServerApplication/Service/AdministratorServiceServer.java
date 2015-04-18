@@ -42,9 +42,31 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
     
      public User insertUser(User user) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Insert pada Tabel User");
-        return user;
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "INSERT INTO user(ID_USER, NAMA_USER, JABATAN, USERNAME, PASSWORD)" + "VALUES(?,?,?,?,?)");
+            statement.setString(1, user.getId_User());
+            statement.setString(2, user.getNama_User());
+            statement.setString(3, user.getJabatan());
+            statement.setString(4, user.getUsername());
+            statement.setString(5, user.getPassword());
+            
+            statement.executeUpdate();
+            return user;
+        } catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        } finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }
+                catch(SQLException exception){}
+            }
+        }
     }
 
     public void updateUser(User user) throws RemoteException {
@@ -68,11 +90,37 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<User> getUser() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel User");
 
-        List<User> list = new ArrayList<User>();
-        return list;
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM user");
+            
+            List<User> list = new ArrayList<User>();
+            while(result.next()){
+                User user = new User();
+                user.setId_User(result.getString("ID_USER"));
+                user.setNama_User(result.getString("NAMA_USER"));
+                user.setJabatan(result.getString("JABATAN"));
+                user.setUsername(result.getString("USERNAME"));
+                user.setPassword(result.getString("PASSWORD"));
+                list.add(user);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
     
     public Obat_tabelMaster insertObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
@@ -152,10 +200,35 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<Penyakit_tabelMaster> getPenyakit_tabelMaster() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel Penyakit_tabelMaster");
-        List<Penyakit_tabelMaster> list = new ArrayList<Penyakit_tabelMaster>();
-        return list;
+        
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM penyakit");
+            
+            List<Penyakit_tabelMaster> list = new ArrayList<Penyakit_tabelMaster>();
+            while(result.next()){
+                Penyakit_tabelMaster penyakit = new Penyakit_tabelMaster();
+                penyakit.setId_Penyakit(result.getString("ID_PENYAKIT"));
+                penyakit.setPenyakit(result.getString("PENYAKIT"));
+                penyakit.setGejala(result.getString("GEJALA"));
+                list.add(penyakit);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
     
     public Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
@@ -203,10 +276,37 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<Tindakan_tabelMaster> getTindakan_tabelMaster() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel Tindakan");
-        List<Tindakan_tabelMaster> list = new ArrayList<Tindakan_tabelMaster>();
-        return list;
+        
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM tindakan");
+            
+            List<Tindakan_tabelMaster> list = new ArrayList<Tindakan_tabelMaster>();
+            while(result.next()){
+                Tindakan_tabelMaster tindakan = new Tindakan_tabelMaster();
+                tindakan.setId_Tindakan(result.getString("ID_TINDAKAN"));
+                tindakan.setSpesialisasi(result.getString("SPESIALISASI"));
+                tindakan.setNama_Tindakan(result.getString("NAMA_TINDAKAN"));
+                tindakan.setTarif(result.getInt("TARIF"));
+                tindakan.setKeterangan(result.getString("KETERANGAN"));
+                list.add(tindakan);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
     
     public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {

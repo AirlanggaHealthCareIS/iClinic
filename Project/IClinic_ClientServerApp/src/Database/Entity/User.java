@@ -1,25 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Database.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class User implements Serializable {
-    private int Id_User;
+    private String Id_User;
     private String Nama_User;
     private String Jabatan;
     private String Username;
     private String Password;
 
-    public int getId_User() {
+    public String getId_User() {
         return Id_User;
     }
 
@@ -39,7 +30,7 @@ public class User implements Serializable {
         return Password;
     }
 
-    public void setId_User(int Id_User) {
+    public void setId_User(String Id_User) {
         this.Id_User = Id_User;
     }
 

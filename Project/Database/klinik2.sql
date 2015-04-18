@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2015 at 06:37 PM
+-- Generation Time: Apr 18, 2015 at 02:37 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -292,7 +292,16 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`ID_USER`, `NAMA_USER`, `JABATAN`, `USERNAME`, `PASSWORD`) VALUES
-('U0002', 'anang', 'PENDAFTARAN', 'Adam', 'buka');
+('U0001', 'Kusumaningtyas Aditya Putri', 'ADMINISTRATOR', 'Putri', 'Putri'),
+('U0002', 'Adam Muhammad', 'PENDAFTARAN', 'Adam', 'Adam'),
+('U0003', 'Anang Q.', 'PENDAFTARAN', 'Anang', 'Anang'),
+('U0004', 'Afifah Nurrosyidah', 'DOKTER', 'Afifah', 'Afifah'),
+('U0005', 'Rindu Puspita Wibawa', 'APOTEKER', 'Rindu', 'Rindu'),
+('U0006', 'Erin Dinda Ahsana', 'LAB', 'Erin', 'Erin'),
+('U0007', 'Arline Hartanti', 'USG', 'Arline', 'Arline'),
+('U0008', 'Ayundha Puspadini', 'KECANTIKAN', 'Dini', 'Dini'),
+('U0009', 'Tiara Ratna Sari', 'PEMBAYARAN', 'Tiara', 'Tiara'),
+('U0010', 'Harris Bimo Aditya', 'KEP.KLINIK', 'Bimo', 'Bimo');
 
 --
 -- Indexes for dumped tables

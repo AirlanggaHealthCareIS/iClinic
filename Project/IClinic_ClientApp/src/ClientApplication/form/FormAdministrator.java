@@ -10,7 +10,9 @@ import Database.Entity.Obat_tabelMaster;
 import ClientApplication.model.TableModelPenyakit_tabelMaster;
 import Database.Entity.Penyakit_tabelMaster;
 import ClientApplication.model.TableModelTindakan_tabelMaster;
+import ClientApplication.model.TableModelUser;
 import Database.Entity.Tindakan_tabelMaster;
+import Database.Entity.User;
 import Database.Service.AdministratorService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -22,7 +24,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class FormAdministrator extends javax.swing.JFrame {
-
+    
+    private TableModelUser tableMasterUser = new TableModelUser();
     private TableModelPenyakit_tabelMaster tableMasterPenyakit = new TableModelPenyakit_tabelMaster();
     private TableModelTindakan_tabelMaster tableMasterTindakan = new TableModelTindakan_tabelMaster();
     private TableModelObat_tabelMaster tableMasterObat = new TableModelObat_tabelMaster();
@@ -34,6 +37,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     public FormAdministrator(AdministratorService administratorService){
         serviceAdmin = administratorService;
         try{
+            tableMasterUser.setData(serviceAdmin.getUser());
             tableMasterPenyakit.setData(serviceAdmin.getPenyakit_tabelMaster());
             tableMasterTindakan.setData(serviceAdmin.getTindakan_tabelMaster());
             tableMasterObat.setData(serviceAdmin.getObat_tabelMaster());
@@ -44,6 +48,22 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         initComponents();
         setLocationRelativeTo(this);
+        
+        userTabel.setModel(tableMasterUser);
+        userTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent lse) {
+                int row = userTabel.getSelectedRow();
+                if(row != -1){
+                    User user = tableMasterUser.get(row);
+                    idUserField.setText(user.getId_User());
+                    namaUserField.setText(user.getNama_User());
+                    jabatanComboBox.setSelectedItem(user.getJabatan());
+                    usernameField.setText(user.getUsername());
+                    passwordUserPasswordField.setText(user.getPassword());
+                }
+            }
+        });
         
         penyakitTabel.setModel(tableMasterPenyakit);
         penyakitTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -79,6 +99,23 @@ public class FormAdministrator extends javax.swing.JFrame {
     private void initComponents() {
 
         adminTabPane = new javax.swing.JTabbedPane();
+        userPanel = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        userTabel = new javax.swing.JTable();
+        idUserLabel = new javax.swing.JLabel();
+        namaUserLabel = new javax.swing.JLabel();
+        jabatanLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        idUserField = new javax.swing.JTextField();
+        namaUserField = new javax.swing.JTextField();
+        jabatanComboBox = new javax.swing.JComboBox();
+        usernameField = new javax.swing.JTextField();
+        simpanUserButton = new javax.swing.JButton();
+        ubahUserButton = new javax.swing.JButton();
+        hapusUserButton = new javax.swing.JButton();
+        clearUserButton = new javax.swing.JButton();
+        passwordUserPasswordField = new javax.swing.JPasswordField();
         penyakitPanel = new javax.swing.JPanel();
         idPenyakitLabel = new javax.swing.JLabel();
         penyakitLabel = new javax.swing.JLabel();
@@ -161,6 +198,149 @@ public class FormAdministrator extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         adminTabPane.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+
+        userTabel.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
+        userTabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID User", "Nama User", "Jabatan", "Username", "Title 5"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(userTabel);
+
+        idUserLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        idUserLabel.setText("ID User");
+
+        namaUserLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        namaUserLabel.setText("Nama User");
+
+        jabatanLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jabatanLabel.setText("Jabatan");
+
+        usernameLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        usernameLabel.setText("Username");
+
+        passwordLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        passwordLabel.setText("Password");
+
+        idUserField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        namaUserField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        jabatanComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jabatanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Jabatan --", "ADMINISTRATOR", "PENDAFTARAN", "DOKTER", "APOTEKER", "LAB", "USG", "KECANTIKAN", "PEMBAYARAN", "KEP.KLINIK" }));
+
+        usernameField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        simpanUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        simpanUserButton.setText("Simpan");
+        simpanUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanUserButtonActionPerformed(evt);
+            }
+        });
+
+        ubahUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        ubahUserButton.setText("Ubah");
+
+        hapusUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        hapusUserButton.setText("Hapus");
+
+        clearUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        clearUserButton.setText("Clear");
+        clearUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearUserButtonActionPerformed(evt);
+            }
+        });
+
+        passwordUserPasswordField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
+        userPanel.setLayout(userPanelLayout);
+        userPanelLayout.setHorizontalGroup(
+            userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idUserLabel)
+                            .addComponent(namaUserLabel)
+                            .addComponent(jabatanLabel)
+                            .addComponent(usernameLabel)
+                            .addComponent(passwordLabel))
+                        .addGap(22, 22, 22)
+                        .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(idUserField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namaUserField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jabatanComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(passwordUserPasswordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addComponent(usernameField, javax.swing.GroupLayout.Alignment.LEADING))))
+                    .addGroup(userPanelLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(simpanUserButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ubahUserButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hapusUserButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clearUserButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        userPanelLayout.setVerticalGroup(
+            userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(userPanelLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idUserLabel)
+                    .addComponent(idUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namaUserLabel)
+                    .addComponent(namaUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jabatanLabel)
+                    .addComponent(jabatanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameLabel)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordUserPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(simpanUserButton)
+                    .addComponent(ubahUserButton)
+                    .addComponent(hapusUserButton)
+                    .addComponent(clearUserButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        adminTabPane.addTab("User", userPanel);
 
         idPenyakitLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idPenyakitLabel.setText("ID Penyakit");
@@ -333,7 +513,7 @@ public class FormAdministrator extends javax.swing.JFrame {
         tarifField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         spesialisasiComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        spesialisasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Spesialisasi --" }));
+        spesialisasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Spesialisasi --", "UMUM", "GIGI", "KANDUNGAN", "KULIT", "PENYAKIT DALAM", "ANAK" }));
 
         simpanTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanTindakanButton.setText("Simpan");
@@ -505,7 +685,7 @@ public class FormAdministrator extends javax.swing.JFrame {
         hargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         satuanComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Satuan --" }));
+        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Satuan --", "PIL", "KAPSUL", "TABLET", "AMPUL" }));
 
         javax.swing.GroupLayout obatPanelLayout = new javax.swing.GroupLayout(obatPanel);
         obatPanel.setLayout(obatPanelLayout);
@@ -883,6 +1063,36 @@ public class FormAdministrator extends javax.swing.JFrame {
         clearObat();
     }//GEN-LAST:event_clearTindakanButton1ActionPerformed
 
+    private void simpanUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanUserButtonActionPerformed
+        try{
+            User user = new User();
+            user.setId_User(idUserField.getText());
+            user.setNama_User(namaUserField.getText());
+            user.setJabatan(jabatanComboBox.getSelectedItem().toString());
+            user.setUsername(usernameField.getText());
+            user.setPassword(String.valueOf(passwordUserPasswordField.getPassword()));
+            
+            User user1 = serviceAdmin.insertUser(user);
+            tableMasterUser.insert(user1);
+            clearUser();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_simpanUserButtonActionPerformed
+
+    private void clearUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearUserButtonActionPerformed
+        clearUser();
+    }//GEN-LAST:event_clearUserButtonActionPerformed
+
+    private void clearUser(){
+        idUserField.setText("");
+        namaUserField.setText("");
+        jabatanComboBox.setSelectedIndex(0);
+        usernameField.setText("");
+        passwordUserPasswordField.setText("");
+        idUserField.getFocusListeners();
+    }
+    
     private void clearPenyakit() {
         idPenyakitField.setText("");
         namaPenyakitField.setText("");
@@ -916,12 +1126,14 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton clearTindakanButton1;
     private javax.swing.JButton clearTindakanButton2;
     private javax.swing.JButton clearTindakanButton3;
+    private javax.swing.JButton clearUserButton;
     private javax.swing.JTextField gejalaField;
     private javax.swing.JButton hapusPenyakitButton;
     private javax.swing.JButton hapusTindakanButton;
     private javax.swing.JButton hapusTindakanButton1;
     private javax.swing.JButton hapusTindakanButton2;
     private javax.swing.JButton hapusTindakanButton3;
+    private javax.swing.JButton hapusUserButton;
     private javax.swing.JTextField hargaField;
     private javax.swing.JTextField hargaKecantikanField;
     private javax.swing.JLabel hargaKecantikanLabel;
@@ -938,12 +1150,17 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JLabel idPenyakitLabel;
     private javax.swing.JTextField idTindakanField;
     private javax.swing.JLabel idTindakanLabel;
+    private javax.swing.JTextField idUserField;
+    private javax.swing.JLabel idUserLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JComboBox jabatanComboBox;
+    private javax.swing.JLabel jabatanLabel;
     private javax.swing.JTextField jenisLayananKecantikanField;
     private javax.swing.JLabel jenisLayananLabel;
     private javax.swing.JTextField jenisObatField;
@@ -961,8 +1178,12 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JTextField namaPenyakitField;
     private javax.swing.JTextField namaTindakanField;
     private javax.swing.JLabel namaTindakanLabel;
+    private javax.swing.JTextField namaUserField;
+    private javax.swing.JLabel namaUserLabel;
     private javax.swing.JPanel obatPanel;
     private javax.swing.JTable obatTabel;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPasswordField passwordUserPasswordField;
     private javax.swing.JLabel penyakitLabel;
     private javax.swing.JPanel penyakitPanel;
     private javax.swing.JTable penyakitTabel;
@@ -973,6 +1194,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton simpanTindakanButton1;
     private javax.swing.JButton simpanTindakanButton2;
     private javax.swing.JButton simpanTindakanButton3;
+    private javax.swing.JButton simpanUserButton;
     private javax.swing.JComboBox spesialisasiComboBox;
     private javax.swing.JLabel spesialisasiLabel;
     private javax.swing.JTextField tarifField;
@@ -984,6 +1206,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton ubahTindakanButton1;
     private javax.swing.JButton ubahTindakanButton2;
     private javax.swing.JButton ubahTindakanButton3;
+    private javax.swing.JButton ubahUserButton;
+    private javax.swing.JPanel userPanel;
+    private javax.swing.JTable userTabel;
+    private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
 }

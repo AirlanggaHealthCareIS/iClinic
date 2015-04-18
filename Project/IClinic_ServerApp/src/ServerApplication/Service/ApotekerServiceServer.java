@@ -40,7 +40,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
            statement.setString(2, obat.getNama_Obat());
            statement.setString(3, obat.getJenis_Obat());
            statement.setInt(4, obat.getHarga_Obat());
-           statement.setInt(5, obat.getSatuan());
+           statement.setString(5, obat.getSatuan());
            
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
@@ -76,7 +76,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
            statement.setString(2, obat.getNama_Obat());
            statement.setString(3, obat.getJenis_Obat());
            statement.setInt(4, obat.getHarga_Obat());
-           statement.setInt(5, obat.getSatuan());
+           statement.setString(5, obat.getSatuan());
 
            statement.executeUpdate();
 
@@ -137,7 +137,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 obat.setNama_Obat(result.getString("Nama_Obat"));
                 obat.setJenis_Obat(result.getString("Jenis_Obat"));
                 obat.setHarga_Obat(result.getInt("Harga_Obat"));
-                obat.setSatuan(result.getInt("Satuan"));
+                obat.setSatuan(result.getString("Satuan"));
             }
         
         return obat;
@@ -174,7 +174,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 obat.setNama_Obat(result.getString("Nama_Obat"));
                 obat.setJenis_Obat(result.getString("Jenis_Obat"));
                 obat.setHarga_Obat(result.getInt("Harga_Obat"));
-                obat.setSatuan(result.getInt("Satuan"));
+                obat.setSatuan(result.getString("Satuan"));
                 list.add(obat);
           }
 

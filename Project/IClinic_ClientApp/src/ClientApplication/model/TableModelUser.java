@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.User;
@@ -10,16 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class TableModelUser extends AbstractTableModel {
-
     private List<User> list = new ArrayList<User>();
 
-    public TableModelUser(){
-    }
+    public TableModelUser(){}
 
     public User get(int row){
         return list.get(row);
@@ -48,11 +37,11 @@ public class TableModelUser extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_User";
-            case 1 : return "Nama_User";
-            case 2 : return "Jabatan";
-            case 3 : return "Username";
-            case 4 : return "Password";
+            case 0 : return "ID USER";
+            case 1 : return "NAMA USER";
+            case 2 : return "JABATAN";
+            case 3 : return "USERNAME";
+            case 4 : return "PASSWORD";
             default : return null;
         }
     }
