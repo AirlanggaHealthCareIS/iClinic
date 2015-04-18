@@ -180,10 +180,38 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
 
     public void updateAntrian(Antrian antrian) throws RemoteException {
-       
-        System.out.println("Client Melakukan Proses Update pada Tabel Antrian");
+         System.out.println("Client Melakukan Proses Update pada Tabel Antrian");
 
+        PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE antrian SET Id_Antrian = ?," +
+                 "Id_Pasien = ?, Jenis_Antrian = ?, Keterangan = ? " +
+                 "WHERE Id_Antrian = ?"
+                   );
+           statement.setInt(1, antrian.getId_Antrian());
+           statement.setInt(2, antrian.getId_Pasien());
+           statement.setString(3, antrian.getJenis_Antrian());
+           statement.setString(4, antrian.getKeterangan());
+           
+
+           statement.executeUpdate();
+
+       }catch(SQLException exception){
+        exception.printStackTrace();
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+                exception.printStackTrace();
+               }
+           }
+       }
     }
+
+       
+        
 
     public void deleteAntrian(int Id_Antrian) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel Pendaftaran");
