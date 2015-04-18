@@ -1,22 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Database.Entity;
-
 import java.io.Serializable;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class Kecantikan_tabelMaster implements Serializable{
 
-    private int Id_Kecantikan;
+    private String Id_Kecantikan;
     private String Jenis_Layanan;
-    private String Tarif;
+    private String Deskripsi;
+    private int Tarif;
 
-    public int getId_Kecantikan() {
+    public String getId_Kecantikan() {
         return Id_Kecantikan;
     }
 
@@ -24,11 +16,11 @@ public class Kecantikan_tabelMaster implements Serializable{
         return Jenis_Layanan;
     }
 
-    public String getTarif() {
+    public int getTarif() {
         return Tarif;
     }
 
-    public void setId_Kecantikan(int Id_Kecantikan) {
+    public void setId_Kecantikan(String Id_Kecantikan) {
         this.Id_Kecantikan = Id_Kecantikan;
     }
 
@@ -36,8 +28,16 @@ public class Kecantikan_tabelMaster implements Serializable{
         this.Jenis_Layanan = Jenis_Layanan;
     }
 
-    public void setTarif(String Tarif) {
+    public void setTarif(int Tarif) {
         this.Tarif = Tarif;
+    }
+
+    public String getDeskripsi() {
+        return Deskripsi;
+    }
+
+    public void setDeskripsi(String Deskripsi) {
+        this.Deskripsi = Deskripsi;
     }
 
 }

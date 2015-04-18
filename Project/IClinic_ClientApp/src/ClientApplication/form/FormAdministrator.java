@@ -105,6 +105,20 @@ public class FormAdministrator extends javax.swing.JFrame {
                 }
             }
         });
+        
+        layananKecantikanTabel.setModel(tableMasterKecantikan);
+        layananKecantikanTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent lse) {
+                int row = layananKecantikanTabel.getSelectedRow();
+                if(row != -1){
+                    Kecantikan_tabelMaster kecantikan = tableMasterKecantikan.get(row);
+                    idLayananKecantikanField.setText(kecantikan.getId_Kecantikan());
+                    jenisLayananKecantikanField.setText(kecantikan.getJenis_Layanan());
+                    deskripsiKecantikanField.setText(kecantikan.getDeskripsi());
+                    tarifKecantikanField.setText(String.valueOf(kecantikan.getTarif()));
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -203,7 +217,9 @@ public class FormAdministrator extends javax.swing.JFrame {
         hargaKecantikanLabel = new javax.swing.JLabel();
         idLayananKecantikanField = new javax.swing.JTextField();
         jenisLayananKecantikanField = new javax.swing.JTextField();
-        hargaKecantikanField = new javax.swing.JTextField();
+        tarifKecantikanField = new javax.swing.JTextField();
+        deskripsiKecantikanField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -943,9 +959,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         simpanTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanTindakanButton3.setText("Simpan");
+        simpanTindakanButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanTindakanButton3ActionPerformed(evt);
+            }
+        });
 
         clearTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearTindakanButton3.setText("Clear");
+        clearTindakanButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearTindakanButton3ActionPerformed(evt);
+            }
+        });
 
         ubahTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahTindakanButton3.setText("Ubah");
@@ -966,7 +992,12 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         jenisLayananKecantikanField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
-        hargaKecantikanField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        tarifKecantikanField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        deskripsiKecantikanField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel3.setText("Deskripsi");
 
         javax.swing.GroupLayout kecantikanPanelLayout = new javax.swing.GroupLayout(kecantikanPanel);
         kecantikanPanel.setLayout(kecantikanPanelLayout);
@@ -979,7 +1010,8 @@ public class FormAdministrator extends javax.swing.JFrame {
                         .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idLayananKecantikanLabel)
                             .addComponent(jenisLayananLabel)
-                            .addComponent(hargaKecantikanLabel))
+                            .addComponent(hargaKecantikanLabel)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kecantikanPanelLayout.createSequentialGroup()
@@ -988,7 +1020,8 @@ public class FormAdministrator extends javax.swing.JFrame {
                             .addGroup(kecantikanPanelLayout.createSequentialGroup()
                                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jenisLayananKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(hargaKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tarifKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(deskripsiKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))))
                     .addGroup(kecantikanPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
@@ -1010,7 +1043,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kecantikanPanelLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(71, 71, 71)
                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLayananKecantikanLabel)
                     .addComponent(idLayananKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1018,10 +1051,14 @@ public class FormAdministrator extends javax.swing.JFrame {
                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jenisLayananLabel)
                     .addComponent(jenisLayananKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deskripsiKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hargaKecantikanLabel)
-                    .addComponent(hargaKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tarifKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpanTindakanButton3)
@@ -1136,7 +1173,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             
             Lab_tabelMaster lab1 = serviceAdmin.insertLab_tabelMaster(lab);
             tableMasterLab.insert(lab1);
-            clearUser();
+            clearLab();
         }catch(RemoteException exception){
             exception.printStackTrace();
         }
@@ -1145,6 +1182,26 @@ public class FormAdministrator extends javax.swing.JFrame {
     private void clearLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLabButtonActionPerformed
         clearLab();
     }//GEN-LAST:event_clearLabButtonActionPerformed
+
+    private void simpanTindakanButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButton3ActionPerformed
+        try{
+            Kecantikan_tabelMaster kecantikan = new Kecantikan_tabelMaster();
+            kecantikan.setId_Kecantikan(idLayananKecantikanField.getText());
+            kecantikan.setJenis_Layanan(jenisLayananKecantikanField.getText());
+            kecantikan.setDeskripsi(deskripsiKecantikanField.getText());
+            kecantikan.setTarif(Integer.parseInt(tarifKecantikanField.getText()));
+            
+            Kecantikan_tabelMaster kecantikan1 =serviceAdmin.insertKecantikan_tabelMaster(kecantikan);
+            tableMasterKecantikan.insert(kecantikan1);
+            clearKecantikan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_simpanTindakanButton3ActionPerformed
+
+    private void clearTindakanButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTindakanButton3ActionPerformed
+        clearKecantikan();
+    }//GEN-LAST:event_clearTindakanButton3ActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
@@ -1185,6 +1242,15 @@ public class FormAdministrator extends javax.swing.JFrame {
         jenisPemeriksaanLabField.setText("");
         deskripsiLabField.setText("");
         hargaLabField.setText("");
+        idLayananLabField.getFocusListeners();
+    }
+    
+    private void clearKecantikan(){
+        idLayananKecantikanField.setText("");
+        jenisLayananKecantikanField.setText("");
+        deskripsiKecantikanField.setText("");
+        tarifKecantikanField.setText("");
+        idLayananKecantikanField.getFocusListeners();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1196,6 +1262,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton clearTindakanButton1;
     private javax.swing.JButton clearTindakanButton3;
     private javax.swing.JButton clearUserButton;
+    private javax.swing.JTextField deskripsiKecantikanField;
     private javax.swing.JTextField deskripsiLabField;
     private javax.swing.JTextField gejalaField;
     private javax.swing.JButton hapusLabButton;
@@ -1204,7 +1271,6 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton hapusTindakanButton1;
     private javax.swing.JButton hapusTindakanButton3;
     private javax.swing.JButton hapusUserButton;
-    private javax.swing.JTextField hargaKecantikanField;
     private javax.swing.JLabel hargaKecantikanLabel;
     private javax.swing.JTextField hargaLabField;
     private javax.swing.JLabel hargaLabel;
@@ -1224,6 +1290,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JLabel idUserLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1269,6 +1336,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JComboBox spesialisasiComboBox;
     private javax.swing.JLabel spesialisasiLabel;
     private javax.swing.JTextField tarifField;
+    private javax.swing.JTextField tarifKecantikanField;
     private javax.swing.JLabel tarifLabel;
     private javax.swing.JPanel tindakanPanel;
     private javax.swing.JTable tindakanTabel;

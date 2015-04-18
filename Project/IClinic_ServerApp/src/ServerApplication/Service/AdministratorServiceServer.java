@@ -388,9 +388,32 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
     
     public Kecantikan_tabelMaster insertKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Insert pada Tabel Kecantikan");
-        return kecantikan;
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO layanan_kecantikan (ID_KECANTIKAN, LAYANAN_KECANTIKAN, TARIF, DESKRIPSI)" + 
+                            "VALUES (?,?,?,?)");
+            statement.setString(1, kecantikan.getId_Kecantikan());
+            statement.setString(2, kecantikan.getJenis_Layanan());
+            statement.setInt(3, kecantikan.getTarif());
+            statement.setString(4, kecantikan.getDeskripsi());
+            
+            statement.executeUpdate();
+            return kecantikan;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public void updateKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
@@ -414,10 +437,35 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<Kecantikan_tabelMaster> getKecantikan_tabelMaster() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel Kecantikan");
 
-        List<Kecantikan_tabelMaster> list = new ArrayList<Kecantikan_tabelMaster>();
-        return list;
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM layanan_kecantikan");
+            
+            List<Kecantikan_tabelMaster> list = new ArrayList<Kecantikan_tabelMaster>();
+            while(result.next()){
+                Kecantikan_tabelMaster kecantikan = new Kecantikan_tabelMaster();
+                kecantikan.setId_Kecantikan(result.getString("ID_KECANTIKAN"));
+                kecantikan.setJenis_Layanan(result.getString("JENIS_LAYANAN"));
+                kecantikan.setTarif(result.getInt("TARIF"));
+                kecantikan.setDeskripsi(result.getString("DESKRIPSI"));
+                list.add(kecantikan);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 }

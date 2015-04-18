@@ -1252,6 +1252,7 @@
                                   <Component id="idLayananKecantikanLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jenisLayananLabel" min="-2" max="-2" attributes="0"/>
                                   <Component id="hargaKecantikanLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1262,7 +1263,8 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jenisLayananKecantikanField" min="-2" pref="311" max="-2" attributes="0"/>
-                                          <Component id="hargaKecantikanField" min="-2" pref="177" max="-2" attributes="0"/>
+                                          <Component id="tarifKecantikanField" min="-2" pref="177" max="-2" attributes="0"/>
+                                          <Component id="deskripsiKecantikanField" min="-2" pref="311" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="23" max="32767" attributes="0"/>
                                   </Group>
@@ -1293,7 +1295,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="idLayananKecantikanLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="idLayananKecantikanField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1303,10 +1305,15 @@
                           <Component id="jenisLayananLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jenisLayananKecantikanField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="deskripsiKecantikanField" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="hargaKecantikanLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hargaKecantikanField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tarifKecantikanField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1353,6 +1360,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanTindakanButton3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="clearTindakanButton3">
               <Properties>
@@ -1361,6 +1371,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearTindakanButton3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="ubahTindakanButton3">
               <Properties>
@@ -1416,11 +1429,26 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="hargaKecantikanField">
+            <Component class="javax.swing.JTextField" name="tarifKecantikanField">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="deskripsiKecantikanField">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Caviar Dreams" size="14" style="0"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Caviar Dreams" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Deskripsi"/>
               </Properties>
             </Component>
           </SubComponents>
