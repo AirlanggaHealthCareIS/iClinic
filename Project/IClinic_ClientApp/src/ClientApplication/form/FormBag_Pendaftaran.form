@@ -241,6 +241,7 @@
                 </Constraint>
               </Constraints>
             </Component>
+<<<<<<< Updated upstream
             <Component class="com.toedter.calendar.JDateChooser" name="DateChooser_Tanggal_Lahir">
               <Properties>
                 <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
@@ -264,6 +265,8 @@
                 </Constraint>
               </Constraints>
             </Component>
+=======
+>>>>>>> Stashed changes
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
