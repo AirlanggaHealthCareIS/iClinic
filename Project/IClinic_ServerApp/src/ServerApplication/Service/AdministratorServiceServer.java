@@ -310,9 +310,31 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
     
     public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
-        
         System.out.println("Client Melakukan Proses Insert pada Tabel Laboratorium");
-        return lab;
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "INSERT INTO laboratorium (ID_LAB, JENIS_PEMERIKSAAN, HARGA, DESKRIPSI)" + "VALUES (?,?,?,?)");
+            statement.setString(1, lab.getId_Lab());
+            statement.setString(2, lab.getJenis_Pemeriksaan());
+            statement.setInt(3, lab.getHarga());
+            statement.setString(4, lab.getDeskripsi());
+            
+            statement.executeUpdate();
+            return lab;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
@@ -333,10 +355,36 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
-        List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
-        return list;
+
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM laboratorium");
+            
+            List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
+            while(result.next()){
+                Lab_tabelMaster lab = new Lab_tabelMaster();
+                lab.setId_Lab(result.getString("ID_LAB"));
+                lab.setJenis_Pemeriksaan(result.getString("JENIS_PEMERIKSAAN"));
+                lab.setHarga(result.getInt("HARGA"));
+                lab.setDeskripsi(result.getString("DESKRIPSI"));
+                list.add(lab);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
     
     public Kecantikan_tabelMaster insertKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {

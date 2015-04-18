@@ -1,20 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Database.Entity;
 
 import java.io.Serializable;
 
-/**
- *
- * @author erin
- */
 public class Lab_tabelMaster implements Serializable{
     private String Id_Lab;
     private String Jenis_Pemeriksaan;
-    private String Harga;
+    private int Harga;
     private String Deskripsi;
 
     public String getId_Lab() {
@@ -25,7 +16,7 @@ public class Lab_tabelMaster implements Serializable{
         return Jenis_Pemeriksaan;
     }
 
-    public String getHarga() {
+    public int getHarga() {
         return Harga;
     }
     public String getDeskripsi() {
@@ -39,7 +30,7 @@ public class Lab_tabelMaster implements Serializable{
         this.Jenis_Pemeriksaan = Jenis_Pemeriksaan;
     }
 
-    public void setHarga(String Harga) {
+    public void setHarga(int Harga) {
         this.Harga = Harga;
     }
  public void setDeskripsi(String Deskripsi) {

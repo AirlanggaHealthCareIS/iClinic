@@ -51,7 +51,6 @@ public class FormAdministrator extends javax.swing.JFrame {
         
         userTabel.setModel(tableMasterUser);
         userTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
             public void valueChanged(ListSelectionEvent lse) {
                 int row = userTabel.getSelectedRow();
                 if(row != -1){
@@ -89,6 +88,20 @@ public class FormAdministrator extends javax.swing.JFrame {
                     spesialisasiComboBox.setSelectedItem(tindakan.getSpesialisasi());
                     tarifField.setText(String.valueOf(tindakan.getTarif()));
                     keteranganField.setText(tindakan.getKeterangan());
+                }
+            }
+        });
+        
+        layananLabTabel.setModel(tableMasterLab);
+        layananLabTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent lse) {
+                int row = layananLabTabel.getSelectedRow();
+                if(row != -1){
+                    Lab_tabelMaster lab = tableMasterLab.get(row);
+                    idLayananLabField.setText(lab.getId_Lab());
+                    jenisPemeriksaanLabField.setText(lab.getJenis_Pemeriksaan());
+                    deskripsiLabField.setText(lab.getDeskripsi());
+                    hargaLabField.setText(String.valueOf(lab.getHarga()));
                 }
             }
         });
@@ -166,16 +179,18 @@ public class FormAdministrator extends javax.swing.JFrame {
         labPanel = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         layananLabTabel = new javax.swing.JTable();
-        simpanTindakanButton2 = new javax.swing.JButton();
-        clearTindakanButton2 = new javax.swing.JButton();
-        ubahTindakanButton2 = new javax.swing.JButton();
-        hapusTindakanButton2 = new javax.swing.JButton();
+        simpanLabButton = new javax.swing.JButton();
+        clearLabButton = new javax.swing.JButton();
+        ubahLabButton = new javax.swing.JButton();
+        hapusLabButton = new javax.swing.JButton();
         idLayananLabLabel = new javax.swing.JLabel();
         jenisPemeriksaanLabel = new javax.swing.JLabel();
         hargaLabel = new javax.swing.JLabel();
         idLayananLabField = new javax.swing.JTextField();
         jenisPemeriksaanLabField = new javax.swing.JTextField();
-        hargaField = new javax.swing.JTextField();
+        hargaLabField = new javax.swing.JTextField();
+        deskripsiLabField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         kecantikanPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         layananKecantikanTabel = new javax.swing.JTable();
@@ -788,17 +803,27 @@ public class FormAdministrator extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(layananLabTabel);
 
-        simpanTindakanButton2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        simpanTindakanButton2.setText("Simpan");
+        simpanLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        simpanLabButton.setText("Simpan");
+        simpanLabButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanLabButtonActionPerformed(evt);
+            }
+        });
 
-        clearTindakanButton2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        clearTindakanButton2.setText("Clear");
+        clearLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        clearLabButton.setText("Clear");
+        clearLabButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearLabButtonActionPerformed(evt);
+            }
+        });
 
-        ubahTindakanButton2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        ubahTindakanButton2.setText("Ubah");
+        ubahLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        ubahLabButton.setText("Ubah");
 
-        hapusTindakanButton2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        hapusTindakanButton2.setText("Hapus");
+        hapusLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        hapusLabButton.setText("Hapus");
 
         idLayananLabLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idLayananLabLabel.setText("ID Layanan Lab");
@@ -813,7 +838,12 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         jenisPemeriksaanLabField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
-        hargaField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        hargaLabField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        deskripsiLabField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel2.setText("Deskripsi");
 
         javax.swing.GroupLayout labPanelLayout = new javax.swing.GroupLayout(labPanel);
         labPanel.setLayout(labPanelLayout);
@@ -824,25 +854,33 @@ public class FormAdministrator extends javax.swing.JFrame {
                 .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(labPanelLayout.createSequentialGroup()
                         .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jenisPemeriksaanLabel)
-                            .addComponent(idLayananLabLabel)
+                            .addGroup(labPanelLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(simpanLabButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(hargaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idLayananLabField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jenisPemeriksaanLabField, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hargaField, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(labPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(hapusLabButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ubahLabButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clearLabButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(labPanelLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(hargaLabField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56))
                     .addGroup(labPanelLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(simpanTindakanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapusTindakanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ubahTindakanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clearTindakanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jenisPemeriksaanLabel)
+                            .addComponent(jLabel2)
+                            .addComponent(idLayananLabLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(deskripsiLabField)
+                            .addComponent(idLayananLabField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jenisPemeriksaanLabField, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -857,20 +895,24 @@ public class FormAdministrator extends javax.swing.JFrame {
                 .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLayananLabLabel)
                     .addComponent(idLayananLabField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jenisPemeriksaanLabel)
                     .addComponent(jenisPemeriksaanLabField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deskripsiLabField, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hargaLabel)
-                    .addComponent(hargaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hargaLabField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(labPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpanTindakanButton2)
-                    .addComponent(hapusTindakanButton2)
-                    .addComponent(ubahTindakanButton2)
-                    .addComponent(clearTindakanButton2))
+                    .addComponent(simpanLabButton)
+                    .addComponent(hapusLabButton)
+                    .addComponent(ubahLabButton)
+                    .addComponent(clearLabButton))
                 .addGap(170, 170, 170))
         );
 
@@ -1084,6 +1126,26 @@ public class FormAdministrator extends javax.swing.JFrame {
         clearUser();
     }//GEN-LAST:event_clearUserButtonActionPerformed
 
+    private void simpanLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanLabButtonActionPerformed
+        try{
+            Lab_tabelMaster lab = new Lab_tabelMaster();
+            lab.setId_Lab(idLayananLabField.getText());
+            lab.setJenis_Pemeriksaan(jenisPemeriksaanLabField.getText());
+            lab.setDeskripsi(deskripsiLabField.getText());
+            lab.setHarga(Integer.parseInt(hargaLabField.getText()));
+            
+            Lab_tabelMaster lab1 = serviceAdmin.insertLab_tabelMaster(lab);
+            tableMasterLab.insert(lab1);
+            clearUser();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_simpanLabButtonActionPerformed
+
+    private void clearLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLabButtonActionPerformed
+        clearLab();
+    }//GEN-LAST:event_clearLabButtonActionPerformed
+
     private void clearUser(){
         idUserField.setText("");
         namaUserField.setText("");
@@ -1113,30 +1175,38 @@ public class FormAdministrator extends javax.swing.JFrame {
         idObatField.setText("");
         namaObatField.setText("");
         jenisObatField.setText("");
-        hargaField.setText("");
+        hargaLabField.setText("");
         satuanComboBox.setSelectedIndex(0);
         idObatField.getFocusListeners();
+    }
+    
+    private void clearLab(){
+        idLayananLabField.setText("");
+        jenisPemeriksaanLabField.setText("");
+        deskripsiLabField.setText("");
+        hargaLabField.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane adminTabPane;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JButton clearLabButton;
     private javax.swing.JButton clearPenyakitButton;
     private javax.swing.JButton clearTindakanButton;
     private javax.swing.JButton clearTindakanButton1;
-    private javax.swing.JButton clearTindakanButton2;
     private javax.swing.JButton clearTindakanButton3;
     private javax.swing.JButton clearUserButton;
+    private javax.swing.JTextField deskripsiLabField;
     private javax.swing.JTextField gejalaField;
+    private javax.swing.JButton hapusLabButton;
     private javax.swing.JButton hapusPenyakitButton;
     private javax.swing.JButton hapusTindakanButton;
     private javax.swing.JButton hapusTindakanButton1;
-    private javax.swing.JButton hapusTindakanButton2;
     private javax.swing.JButton hapusTindakanButton3;
     private javax.swing.JButton hapusUserButton;
-    private javax.swing.JTextField hargaField;
     private javax.swing.JTextField hargaKecantikanField;
     private javax.swing.JLabel hargaKecantikanLabel;
+    private javax.swing.JTextField hargaLabField;
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JTextField hargaObatField;
     private javax.swing.JLabel hargaObatLabel;
@@ -1153,6 +1223,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JTextField idUserField;
     private javax.swing.JLabel idUserLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1189,10 +1260,10 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JTable penyakitTabel;
     private javax.swing.JComboBox satuanComboBox;
     private javax.swing.JLabel satuanLabel;
+    private javax.swing.JButton simpanLabButton;
     private javax.swing.JButton simpanPenyakitButton;
     private javax.swing.JButton simpanTindakanButton;
     private javax.swing.JButton simpanTindakanButton1;
-    private javax.swing.JButton simpanTindakanButton2;
     private javax.swing.JButton simpanTindakanButton3;
     private javax.swing.JButton simpanUserButton;
     private javax.swing.JComboBox spesialisasiComboBox;
@@ -1201,10 +1272,10 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JLabel tarifLabel;
     private javax.swing.JPanel tindakanPanel;
     private javax.swing.JTable tindakanTabel;
+    private javax.swing.JButton ubahLabButton;
     private javax.swing.JButton ubahPenyakitButton;
     private javax.swing.JButton ubahTindakanButton;
     private javax.swing.JButton ubahTindakanButton1;
-    private javax.swing.JButton ubahTindakanButton2;
     private javax.swing.JButton ubahTindakanButton3;
     private javax.swing.JButton ubahUserButton;
     private javax.swing.JPanel userPanel;
