@@ -188,7 +188,7 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
             statement.setInt(1, Integer.parseInt(idpasien));
             ResultSet result = statement.executeQuery();
             List<Rekam_Medis> rms = new ArrayList<Rekam_Medis>();
-            if(result.next()){
+            while(result.next()){
                 Rekam_Medis rm = new Rekam_Medis();
                 rm.setId_Rekam(result.getString("ID_REKAM"));
                 rm.setId_Diagnosa(result.getString("ID_DIAGNOSA"));

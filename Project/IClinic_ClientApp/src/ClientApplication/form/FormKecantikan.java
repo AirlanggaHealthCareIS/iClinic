@@ -14,9 +14,11 @@ package ClientApplication.form;
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelKecantikan_detailLayanan;
 import Database.Entity.Kecantikan_detailLayanan;
+import Database.Entity.Kecantikan_tabelMaster;
 import Database.Service.KecantikanService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,11 +29,15 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author ayundhapus
  */
 public class FormKecantikan extends javax.swing.JFrame {
-
+    
+    KecantikanService kecantikanService;
+    public List<Kecantikan_tabelMaster> listLayananKecantikan = new ArrayList<Kecantikan_tabelMaster>();
+    
     public FormKecantikan(KecantikanService kecantikanService) {
+        this.kecantikanService = kecantikanService;
     }
 
     /** This method is called from within the constructor to
@@ -71,14 +77,14 @@ public class FormKecantikan extends javax.swing.JFrame {
         tabelLayanan = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         comboLayanan = new javax.swing.JComboBox();
-        jButton2 = new javax.swing.JButton();
+        buttonTambahLayanan = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         fieldHarga = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         fieldNoDetailLayanan = new javax.swing.JTextField();
         fieldKeterangan = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        buttonHapusLayanan = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -116,18 +122,6 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("No. HP :");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setText("OK");
@@ -212,11 +206,6 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel12.setText("Total Harga");
 
         fieldIDTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        fieldIDTransaksi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldIDTransaksiActionPerformed(evt);
-            }
-        });
 
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel13.setText("ID Pasien");
@@ -249,9 +238,28 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         comboLayanan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         comboLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Jenis Layanan" }));
+        comboLayanan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLayananItemStateChanged(evt);
+            }
+        });
+        comboLayanan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboLayananPopupMenuWillBecomeVisible(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton2.setText("Tambah Layanan");
+        buttonTambahLayanan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonTambahLayanan.setText("Tambah Layanan");
+        buttonTambahLayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTambahLayananActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel11.setText("Keterangan");
@@ -268,8 +276,13 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel10.setText("Jenis Layanan");
 
-        jButton3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton3.setText("Hapus Layanan");
+        buttonHapusLayanan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonHapusLayanan.setText("Hapus Layanan");
+        buttonHapusLayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHapusLayananActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel15.setText("Harga");
@@ -298,9 +311,9 @@ public class FormKecantikan extends javax.swing.JFrame {
                         .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(buttonTambahLayanan)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton3)
+                        .addComponent(buttonHapusLayanan)
                         .addGap(25, 25, 25))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -323,9 +336,9 @@ public class FormKecantikan extends javax.swing.JFrame {
                     .addComponent(fieldKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonHapusLayanan)
+                    .addComponent(buttonTambahLayanan))
                 .addContainerGap())
         );
 
@@ -410,25 +423,41 @@ public class FormKecantikan extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void fieldIDTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIDTransaksiActionPerformed
+    private void comboLayananPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboLayananPopupMenuWillBecomeVisible
+        comboLayanan.removeAllItems();        
+        try {
+            listLayananKecantikan =  kecantikanService.getLayananKecantikan();
+            for (int i = 0; i < listLayananKecantikan.size(); i++) {
+                comboLayanan.addItem(listLayananKecantikan.get(i).getJenis_Layanan());
+            }
+        } 
+        catch (RemoteException ex) {
+            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboLayananPopupMenuWillBecomeVisible
+
+    private void comboLayananItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLayananItemStateChanged
+        String harga = Integer.toString(listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif());
+        fieldHarga.setText(harga);
+    }//GEN-LAST:event_comboLayananItemStateChanged
+
+    private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
+        
+    }//GEN-LAST:event_buttonTambahLayananActionPerformed
+
+    private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldIDTransaksiActionPerformed
+    }//GEN-LAST:event_buttonHapusLayananActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonHapusLayanan;
+    private javax.swing.JButton buttonTambahLayanan;
     private javax.swing.JComboBox comboLayanan;
     private javax.swing.JTextField fieldHarga;
     private javax.swing.JTextField fieldIDPasien;
@@ -437,8 +466,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNoDetailLayanan;
     private javax.swing.JTextField fieldTotalHarga;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

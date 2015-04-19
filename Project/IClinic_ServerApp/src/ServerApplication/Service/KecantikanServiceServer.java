@@ -6,6 +6,7 @@
 package ServerApplication.Service;
 
 import Database.Entity.Kecantikan_detailLayanan;
+import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
 import Database.Service.KecantikanService;
 import ServerApplication.Utilities.DatabaseUtilities;
@@ -20,7 +21,7 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author ayundhapus
  */
 public class KecantikanServiceServer extends UnicastRemoteObject implements KecantikanService{
 
@@ -93,5 +94,33 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
         List<Kecantikan_transaksiLayanan> list = new ArrayList<Kecantikan_transaksiLayanan>();
         return list;
+    }
+
+    public List<Kecantikan_tabelMaster> getLayananKecantikan() throws RemoteException {
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT JENIS_LAYANAN, TARIF FROM layanan_kecantikan");
+            ResultSet result = statement.executeQuery();
+            List<Kecantikan_tabelMaster> jenislayanan = new ArrayList<Kecantikan_tabelMaster>();
+            while(result.next()){
+                Kecantikan_tabelMaster kec = new Kecantikan_tabelMaster();
+                kec.setJenis_Layanan(result.getString("JENIS_LAYANAN"));
+                kec.setTarif(Integer.parseInt(result.getString("TARIF")));
+                jenislayanan.add(kec);
+            }
+            return jenislayanan;
+        } catch (SQLException exception){
+            System.out.println(exception);
+            return null;
+        } finally{
+            if (statement != null){
+                try{
+                    statement.close();
+                } catch(SQLException exception){
+                        
+                }
+            }
+        }
     }
 }

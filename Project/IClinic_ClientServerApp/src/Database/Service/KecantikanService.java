@@ -6,6 +6,7 @@
 package Database.Service;
 
 import Database.Entity.Kecantikan_detailLayanan;
+import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -13,9 +14,11 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author ayundhapus
  */
 public interface KecantikanService extends Remote {
+    List<Kecantikan_tabelMaster> getLayananKecantikan() throws RemoteException;
+    
     Kecantikan_detailLayanan insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
 
     void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
