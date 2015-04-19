@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 18, 2015 at 02:37 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Inang: 127.0.0.1
+-- Waktu pembuatan: 19 Apr 2015 pada 15.02
+-- Versi Server: 5.5.27
+-- Versi PHP: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,26 +17,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `klinik2`
+-- Basis data: `klinik2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `antrian`
+-- Struktur dari tabel `antrian`
 --
 
 CREATE TABLE IF NOT EXISTS `antrian` (
   `ID_ANTRIAN` varchar(10) NOT NULL,
   `ID_PASIEN` varchar(10) DEFAULT NULL,
   `JENIS_ANTRIAN` varchar(30) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_ANTRIAN`),
+  KEY `FK_RELATIONSHIP_17` (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_lab`
+-- Struktur dari tabel `detail_lab`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_lab` (
@@ -46,13 +48,16 @@ CREATE TABLE IF NOT EXISTS `detail_lab` (
   `KETERANGAN` varchar(100) DEFAULT NULL,
   `HASIL` longblob,
   `TANGGAL` date DEFAULT NULL,
-  `TOTAL_HARGA` int(11) DEFAULT NULL
+  `TOTAL_HARGA` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_DETAIL_LAB`),
+  KEY `FK_RELATIONSHIP_16` (`ID_LAB`),
+  KEY `FK_RELATIONSHIP_30` (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_resep`
+-- Struktur dari tabel `detail_resep`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_resep` (
@@ -62,76 +67,89 @@ CREATE TABLE IF NOT EXISTS `detail_resep` (
   `TAKARAN` varchar(30) DEFAULT NULL,
   `PEMAKAIAN` varchar(30) DEFAULT NULL,
   `JUMLAH` int(11) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`NO_DETAIL_RESEP`),
+  KEY `FK_RELATIONSHIP_11` (`ID_RESEP`),
+  KEY `FK_RELATIONSHIP_24` (`ID_OBAT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_tindakan`
+-- Struktur dari tabel `detail_tindakan`
 --
 
 CREATE TABLE IF NOT EXISTS `detail_tindakan` (
   `NO_DETAIL` varchar(10) NOT NULL,
   `ID_TINDAKAN` varchar(10) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`NO_DETAIL`),
+  KEY `FK_RELATIONSHIP_19` (`ID_TINDAKAN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `det_layanan_kecantikan`
+-- Struktur dari tabel `det_layanan_kecantikan`
 --
 
 CREATE TABLE IF NOT EXISTS `det_layanan_kecantikan` (
   `ID_DET_KESEHATAN` varchar(10) NOT NULL,
+  `ID_TRANSAKSI_LAYANAN` varchar(10) NOT NULL,
   `ID_KECANTIKAN` varchar(10) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_DET_KESEHATAN`),
+  UNIQUE KEY `ID_TRANSAKSI_LAYANAN` (`ID_TRANSAKSI_LAYANAN`),
+  KEY `FK_RELATIONSHIP_27` (`ID_KECANTIKAN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diagnosa`
+-- Struktur dari tabel `diagnosa`
 --
 
 CREATE TABLE IF NOT EXISTS `diagnosa` (
   `ID_DIAGNOSA` varchar(10) NOT NULL,
   `ID_PENYAKIT` varchar(10) DEFAULT NULL,
   `DIAGNOSA` varchar(30) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_DIAGNOSA`),
+  KEY `FK_RELATIONSHIP_10` (`ID_PENYAKIT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laboratorium`
+-- Struktur dari tabel `laboratorium`
 --
 
 CREATE TABLE IF NOT EXISTS `laboratorium` (
   `ID_LAB` varchar(10) NOT NULL,
   `JENIS_PEMERIKSAAN` varchar(30) DEFAULT NULL,
   `HARGA` int(11) DEFAULT NULL,
-  `DESKRIPSI` varchar(50) DEFAULT NULL
+  `DESKRIPSI` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_LAB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `layanan_kecantikan`
+-- Struktur dari tabel `layanan_kecantikan`
 --
 
 CREATE TABLE IF NOT EXISTS `layanan_kecantikan` (
   `ID_KECANTIKAN` varchar(10) NOT NULL,
   `JENIS_LAYANAN` varchar(30) DEFAULT NULL,
   `TARIF` int(11) DEFAULT NULL,
-  `DESKRIPSI` varchar(50) DEFAULT NULL
+  `DESKRIPSI` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_KECANTIKAN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE IF NOT EXISTS `obat` (
@@ -139,13 +157,14 @@ CREATE TABLE IF NOT EXISTS `obat` (
   `NAMA_OBAT` varchar(30) DEFAULT NULL,
   `JENIS_OBAT` varchar(30) DEFAULT NULL,
   `HARGA_OBAT` int(11) DEFAULT NULL,
-  `SATUAN` varchar(10) DEFAULT NULL
+  `SATUAN` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID_OBAT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE IF NOT EXISTS `pasien` (
@@ -157,11 +176,12 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `TGL_DAFTAR` date NOT NULL,
   `USIA` int(3) NOT NULL,
   `NO_HP` varchar(13) NOT NULL,
-  `JENIS_KELAMIN` varchar(1) NOT NULL
+  `JENIS_KELAMIN` varchar(1) NOT NULL,
+  PRIMARY KEY (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien`
+-- Dumping data untuk tabel `pasien`
 --
 
 INSERT INTO `pasien` (`ID_PASIEN`, `NO_KTP`, `NAMA_PASIEN`, `ALAMAT`, `TGL_LAHIR`, `TGL_DAFTAR`, `USIA`, `NO_HP`, `JENIS_KELAMIN`) VALUES
@@ -171,7 +191,7 @@ INSERT INTO `pasien` (`ID_PASIEN`, `NO_KTP`, `NAMA_PASIEN`, `ALAMAT`, `TGL_LAHIR
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE IF NOT EXISTS `pembayaran` (
@@ -183,25 +203,32 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `ID_TRANSAKSI_LAYANAN` varchar(10) DEFAULT NULL,
   `TANGGAL_BAYAR` date DEFAULT NULL,
   `TOTAL_HARGA` int(11) DEFAULT NULL,
-  `STATUS` varchar(9) DEFAULT NULL
+  `STATUS` varchar(9) DEFAULT NULL,
+  PRIMARY KEY (`ID_PEMBAYARAN`),
+  KEY `FK_RELATIONSHIP_18` (`ID_DETAIL_LAB`),
+  KEY `FK_RELATIONSHIP_21` (`ID_REKAM`),
+  KEY `FK_RELATIONSHIP_25` (`ID_TRANSAKSI_LAYANAN`),
+  KEY `FK_RELATIONSHIP_28` (`ID_USG`),
+  KEY `FK_RELATIONSHIP_29` (`ID_RESEP`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penyakit`
+-- Struktur dari tabel `penyakit`
 --
 
 CREATE TABLE IF NOT EXISTS `penyakit` (
   `ID_PENYAKIT` varchar(10) NOT NULL,
   `PENYAKIT` varchar(50) DEFAULT NULL,
-  `GEJALA` varchar(100) DEFAULT NULL
+  `GEJALA` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_PENYAKIT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rekam_medis`
+-- Struktur dari tabel `rekam_medis`
 --
 
 CREATE TABLE IF NOT EXISTS `rekam_medis` (
@@ -216,25 +243,31 @@ CREATE TABLE IF NOT EXISTS `rekam_medis` (
   `HASIL_PEMERIKSAAN` varchar(30) DEFAULT NULL,
   `ALERGI` varchar(30) DEFAULT NULL,
   `TOTAL_HARGA` int(11) DEFAULT NULL,
-  `LAYANAN_TAMBAHAN` varchar(30) DEFAULT NULL
+  `LAYANAN_TAMBAHAN` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`ID_REKAM`),
+  KEY `FK_RELATIONSHIP_1` (`ID_PASIEN`),
+  KEY `FK_RELATIONSHIP_20` (`NO_DETAIL`),
+  KEY `FK_RELATIONSHIP_22` (`ID_DIAGNOSA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resep`
+-- Struktur dari tabel `resep`
 --
 
 CREATE TABLE IF NOT EXISTS `resep` (
   `ID_RESEP` varchar(10) NOT NULL,
   `ID_REKAM` varchar(10) DEFAULT NULL,
-  `TOTAL_HARGA` int(11) DEFAULT NULL
+  `TOTAL_HARGA` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_RESEP`),
+  KEY `FK_RELATIONSHIP_23` (`ID_REKAM`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tindakan`
+-- Struktur dari tabel `tindakan`
 --
 
 CREATE TABLE IF NOT EXISTS `tindakan` (
@@ -242,27 +275,29 @@ CREATE TABLE IF NOT EXISTS `tindakan` (
   `SPESIALISASI` varchar(30) DEFAULT NULL,
   `NAMA_TINDAKAN` varchar(30) DEFAULT NULL,
   `TARIF` int(11) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL
+  `KETERANGAN` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID_TINDAKAN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi_layanan_kecantikan`
+-- Struktur dari tabel `transaksi_layanan_kecantikan`
 --
 
 CREATE TABLE IF NOT EXISTS `transaksi_layanan_kecantikan` (
   `ID_TRANSAKSI_LAYANAN` varchar(10) NOT NULL,
   `ID_PASIEN` varchar(10) DEFAULT NULL,
-  `ID_DET_KESEHATAN` varchar(10) DEFAULT NULL,
   `TOTAL_HARGA` int(11) DEFAULT NULL,
-  `TANGGAL` date DEFAULT NULL
+  `TANGGAL` date DEFAULT NULL,
+  PRIMARY KEY (`ID_TRANSAKSI_LAYANAN`),
+  KEY `FK_RELATIONSHIP_31` (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi_usg`
+-- Struktur dari tabel `transaksi_usg`
 --
 
 CREATE TABLE IF NOT EXISTS `transaksi_usg` (
@@ -270,13 +305,15 @@ CREATE TABLE IF NOT EXISTS `transaksi_usg` (
   `ID_PASIEN` varchar(10) DEFAULT NULL,
   `HASIL` longblob,
   `HARGA` int(11) DEFAULT NULL,
-  `DESKRIPSI` varchar(50) DEFAULT NULL
+  `DESKRIPSI` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_USG`),
+  KEY `FK_RELATIONSHIP_32` (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -284,11 +321,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `NAMA_USER` varchar(30) DEFAULT NULL,
   `JABATAN` varchar(100) DEFAULT NULL,
   `USERNAME` varchar(30) DEFAULT NULL,
-  `PASSWORD` varchar(30) DEFAULT NULL
+  `PASSWORD` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`ID_USER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`ID_USER`, `NAMA_USER`, `JABATAN`, `USERNAME`, `PASSWORD`) VALUES
@@ -304,195 +342,83 @@ INSERT INTO `user` (`ID_USER`, `NAMA_USER`, `JABATAN`, `USERNAME`, `PASSWORD`) V
 ('U0010', 'Harris Bimo Aditya', 'KEP.KLINIK', 'Bimo', 'Bimo');
 
 --
--- Indexes for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Indexes for table `antrian`
+-- Ketidakleluasaan untuk tabel `antrian`
 --
 ALTER TABLE `antrian`
- ADD PRIMARY KEY (`ID_ANTRIAN`), ADD KEY `FK_RELATIONSHIP_17` (`ID_PASIEN`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
 
 --
--- Indexes for table `detail_lab`
+-- Ketidakleluasaan untuk tabel `detail_lab`
 --
 ALTER TABLE `detail_lab`
- ADD PRIMARY KEY (`ID_DETAIL_LAB`), ADD KEY `FK_RELATIONSHIP_16` (`ID_LAB`), ADD KEY `FK_RELATIONSHIP_30` (`ID_PASIEN`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_LAB`) REFERENCES `laboratorium` (`ID_LAB`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_30` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
 
 --
--- Indexes for table `detail_resep`
+-- Ketidakleluasaan untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
- ADD PRIMARY KEY (`NO_DETAIL_RESEP`), ADD KEY `FK_RELATIONSHIP_11` (`ID_RESEP`), ADD KEY `FK_RELATIONSHIP_24` (`ID_OBAT`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_11` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`);
 
 --
--- Indexes for table `detail_tindakan`
+-- Ketidakleluasaan untuk tabel `detail_tindakan`
 --
 ALTER TABLE `detail_tindakan`
- ADD PRIMARY KEY (`NO_DETAIL`), ADD KEY `FK_RELATIONSHIP_19` (`ID_TINDAKAN`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`ID_TINDAKAN`) REFERENCES `tindakan` (`ID_TINDAKAN`);
 
 --
--- Indexes for table `det_layanan_kecantikan`
+-- Ketidakleluasaan untuk tabel `det_layanan_kecantikan`
 --
 ALTER TABLE `det_layanan_kecantikan`
- ADD PRIMARY KEY (`ID_DET_KESEHATAN`), ADD KEY `FK_RELATIONSHIP_27` (`ID_KECANTIKAN`);
+  ADD CONSTRAINT `det_layanan_kecantikan_ibfk_2` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`),
+  ADD CONSTRAINT `det_layanan_kecantikan_ibfk_1` FOREIGN KEY (`ID_KECANTIKAN`) REFERENCES `layanan_kecantikan` (`ID_KECANTIKAN`);
 
 --
--- Indexes for table `diagnosa`
+-- Ketidakleluasaan untuk tabel `diagnosa`
 --
 ALTER TABLE `diagnosa`
- ADD PRIMARY KEY (`ID_DIAGNOSA`), ADD KEY `FK_RELATIONSHIP_10` (`ID_PENYAKIT`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_10` FOREIGN KEY (`ID_PENYAKIT`) REFERENCES `penyakit` (`ID_PENYAKIT`);
 
 --
--- Indexes for table `laboratorium`
---
-ALTER TABLE `laboratorium`
- ADD PRIMARY KEY (`ID_LAB`);
-
---
--- Indexes for table `layanan_kecantikan`
---
-ALTER TABLE `layanan_kecantikan`
- ADD PRIMARY KEY (`ID_KECANTIKAN`);
-
---
--- Indexes for table `obat`
---
-ALTER TABLE `obat`
- ADD PRIMARY KEY (`ID_OBAT`);
-
---
--- Indexes for table `pasien`
---
-ALTER TABLE `pasien`
- ADD PRIMARY KEY (`ID_PASIEN`);
-
---
--- Indexes for table `pembayaran`
+-- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
- ADD PRIMARY KEY (`ID_PEMBAYARAN`), ADD KEY `FK_RELATIONSHIP_18` (`ID_DETAIL_LAB`), ADD KEY `FK_RELATIONSHIP_21` (`ID_REKAM`), ADD KEY `FK_RELATIONSHIP_25` (`ID_TRANSAKSI_LAYANAN`), ADD KEY `FK_RELATIONSHIP_28` (`ID_USG`), ADD KEY `FK_RELATIONSHIP_29` (`ID_RESEP`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_18` FOREIGN KEY (`ID_DETAIL_LAB`) REFERENCES `detail_lab` (`ID_DETAIL_LAB`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_21` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_25` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_28` FOREIGN KEY (`ID_USG`) REFERENCES `transaksi_usg` (`ID_USG`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_29` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
 
 --
--- Indexes for table `penyakit`
---
-ALTER TABLE `penyakit`
- ADD PRIMARY KEY (`ID_PENYAKIT`);
-
---
--- Indexes for table `rekam_medis`
+-- Ketidakleluasaan untuk tabel `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
- ADD PRIMARY KEY (`ID_REKAM`), ADD KEY `FK_RELATIONSHIP_1` (`ID_PASIEN`), ADD KEY `FK_RELATIONSHIP_20` (`NO_DETAIL`), ADD KEY `FK_RELATIONSHIP_22` (`ID_DIAGNOSA`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_20` FOREIGN KEY (`NO_DETAIL`) REFERENCES `detail_tindakan` (`NO_DETAIL`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`ID_DIAGNOSA`) REFERENCES `diagnosa` (`ID_DIAGNOSA`);
 
 --
--- Indexes for table `resep`
+-- Ketidakleluasaan untuk tabel `resep`
 --
 ALTER TABLE `resep`
- ADD PRIMARY KEY (`ID_RESEP`), ADD KEY `FK_RELATIONSHIP_23` (`ID_REKAM`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_23` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`);
 
 --
--- Indexes for table `tindakan`
---
-ALTER TABLE `tindakan`
- ADD PRIMARY KEY (`ID_TINDAKAN`);
-
---
--- Indexes for table `transaksi_layanan_kecantikan`
+-- Ketidakleluasaan untuk tabel `transaksi_layanan_kecantikan`
 --
 ALTER TABLE `transaksi_layanan_kecantikan`
- ADD PRIMARY KEY (`ID_TRANSAKSI_LAYANAN`), ADD KEY `FK_RELATIONSHIP_26` (`ID_DET_KESEHATAN`), ADD KEY `FK_RELATIONSHIP_31` (`ID_PASIEN`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_31` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
 
 --
--- Indexes for table `transaksi_usg`
+-- Ketidakleluasaan untuk tabel `transaksi_usg`
 --
 ALTER TABLE `transaksi_usg`
- ADD PRIMARY KEY (`ID_USG`), ADD KEY `FK_RELATIONSHIP_32` (`ID_PASIEN`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`ID_USER`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `antrian`
---
-ALTER TABLE `antrian`
-ADD CONSTRAINT `FK_RELATIONSHIP_17` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
-
---
--- Constraints for table `detail_lab`
---
-ALTER TABLE `detail_lab`
-ADD CONSTRAINT `FK_RELATIONSHIP_16` FOREIGN KEY (`ID_LAB`) REFERENCES `laboratorium` (`ID_LAB`),
-ADD CONSTRAINT `FK_RELATIONSHIP_30` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
-
---
--- Constraints for table `detail_resep`
---
-ALTER TABLE `detail_resep`
-ADD CONSTRAINT `FK_RELATIONSHIP_11` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
-ADD CONSTRAINT `FK_RELATIONSHIP_24` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`);
-
---
--- Constraints for table `detail_tindakan`
---
-ALTER TABLE `detail_tindakan`
-ADD CONSTRAINT `FK_RELATIONSHIP_19` FOREIGN KEY (`ID_TINDAKAN`) REFERENCES `tindakan` (`ID_TINDAKAN`);
-
---
--- Constraints for table `det_layanan_kecantikan`
---
-ALTER TABLE `det_layanan_kecantikan`
-ADD CONSTRAINT `FK_RELATIONSHIP_27` FOREIGN KEY (`ID_KECANTIKAN`) REFERENCES `layanan_kecantikan` (`ID_KECANTIKAN`);
-
---
--- Constraints for table `diagnosa`
---
-ALTER TABLE `diagnosa`
-ADD CONSTRAINT `FK_RELATIONSHIP_10` FOREIGN KEY (`ID_PENYAKIT`) REFERENCES `penyakit` (`ID_PENYAKIT`);
-
---
--- Constraints for table `pembayaran`
---
-ALTER TABLE `pembayaran`
-ADD CONSTRAINT `FK_RELATIONSHIP_18` FOREIGN KEY (`ID_DETAIL_LAB`) REFERENCES `detail_lab` (`ID_DETAIL_LAB`),
-ADD CONSTRAINT `FK_RELATIONSHIP_21` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`),
-ADD CONSTRAINT `FK_RELATIONSHIP_25` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`),
-ADD CONSTRAINT `FK_RELATIONSHIP_28` FOREIGN KEY (`ID_USG`) REFERENCES `transaksi_usg` (`ID_USG`),
-ADD CONSTRAINT `FK_RELATIONSHIP_29` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
-
---
--- Constraints for table `rekam_medis`
---
-ALTER TABLE `rekam_medis`
-ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
-ADD CONSTRAINT `FK_RELATIONSHIP_20` FOREIGN KEY (`NO_DETAIL`) REFERENCES `detail_tindakan` (`NO_DETAIL`),
-ADD CONSTRAINT `FK_RELATIONSHIP_22` FOREIGN KEY (`ID_DIAGNOSA`) REFERENCES `diagnosa` (`ID_DIAGNOSA`);
-
---
--- Constraints for table `resep`
---
-ALTER TABLE `resep`
-ADD CONSTRAINT `FK_RELATIONSHIP_23` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`);
-
---
--- Constraints for table `transaksi_layanan_kecantikan`
---
-ALTER TABLE `transaksi_layanan_kecantikan`
-ADD CONSTRAINT `FK_RELATIONSHIP_26` FOREIGN KEY (`ID_DET_KESEHATAN`) REFERENCES `det_layanan_kecantikan` (`ID_DET_KESEHATAN`),
-ADD CONSTRAINT `FK_RELATIONSHIP_31` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
-
---
--- Constraints for table `transaksi_usg`
---
-ALTER TABLE `transaksi_usg`
-ADD CONSTRAINT `FK_RELATIONSHIP_32` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_32` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
