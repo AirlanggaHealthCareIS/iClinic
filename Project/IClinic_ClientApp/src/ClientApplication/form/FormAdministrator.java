@@ -1002,6 +1002,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahKecantikanButton.setText("Ubah");
+        ubahKecantikanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahKecantikanButtonActionPerformed(evt);
+            }
+        });
 
         hapusKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusKecantikanButton.setText("Hapus");
@@ -1376,6 +1381,27 @@ public class FormAdministrator extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }//GEN-LAST:event_ubahLabButtonActionPerformed
+
+    private void ubahKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahKecantikanButtonActionPerformed
+        try{
+            int row = layananKecantikanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Kecantikan_tabelMaster kecantikan = tableMasterKecantikan.get(row);
+            kecantikan.setId_Kecantikan(idLayananKecantikanField.getText());
+            kecantikan.setJenis_Layanan(jenisLayananKecantikanField.getText());
+            kecantikan.setTarif(Integer.parseInt(tarifKecantikanField.getText()));
+            kecantikan.setDeskripsi(deskripsiKecantikanField.getText());
+            
+            serviceAdmin.updateKecantikan_tabelMaster(kecantikan);
+            tableMasterKecantikan.update(row, kecantikan);
+            clearKecantikan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_ubahKecantikanButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");

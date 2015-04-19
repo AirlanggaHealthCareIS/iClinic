@@ -524,7 +524,27 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     public void updateKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
         System.out.println("Client Melakukan Proses Update pada Tabel Kecantikan");
         
-        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE JENIS_LAYANAN = ?, TARIF = ?, DESKRIPSI = ?" + "WHERE ID_KECANTIKAN = ?");
+            
+            statement.setString(1, kecantikan.getJenis_Layanan());
+            statement.setInt(2, kecantikan.getTarif());
+            statement.setString(3, kecantikan.getDeskripsi());
+            statement.setString(4, kecantikan.getId_Kecantikan());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public void deleteKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException {
