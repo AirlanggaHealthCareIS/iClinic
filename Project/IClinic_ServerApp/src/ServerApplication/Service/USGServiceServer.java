@@ -40,7 +40,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                    );
            statement.setString(1, usg.getId_USG());
            statement.setString(2, usg.getId_pasien());
-           statement.setLong(3, usg.getHasil());
+           statement.setBlob(3, usg.getHasil());
            statement.setInt(4, usg.getHarga());
            statement.setString(5, usg.getDeskripsi());
 
@@ -140,7 +140,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                 usg = new USG();
                 usg.setId_USG(result.getString("Id_USG"));
                 usg.setId_pasien(result.getString("Id_Pasien"));
-                usg.setHasil(result.getLong("Hasil"));
+                usg.setHasil(result.getBlob("Hasil"));
                 usg.setHarga(result.getInt("Harga"));
                 usg.setDeskripsi(result.getString("Deskripsi"));
             }
@@ -177,7 +177,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                 USG usg = new USG();
                 usg.setId_USG(result.getString("ID_USG"));
                 usg.setId_pasien(result.getString("Id_PASIEN"));
-                usg.setHasil(result.getLong("HASIL"));
+                usg.setHasil(result.getBlob("HASIL"));
                 usg.setHarga(result.getInt("HARGA"));
                 usg.setDeskripsi(result.getString("DESKRIPSI"));
                 list.add(usg);

@@ -6,6 +6,7 @@
 package Database.Entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 public class USG implements Serializable {
     private String Id_USG;
-    private Long Hasil;
+    private Blob Hasil;
     private int Harga;
     private String Id_pasien;
     private String Deskripsi;
@@ -39,7 +40,7 @@ public class USG implements Serializable {
         return Id_USG;
     }
 
-    public Long getHasil() {
+    public Blob getHasil() {
         return Hasil;
     }
 
@@ -51,7 +52,7 @@ public class USG implements Serializable {
         this.Id_USG = Id_USG;
     }
 
-    public void setHasil(Long Hasil) {
+    public void setHasil(Blob Hasil) {
         this.Hasil = Hasil;
     }
 

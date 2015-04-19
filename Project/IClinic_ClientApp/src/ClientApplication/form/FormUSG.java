@@ -31,19 +31,20 @@ import javax.swing.event.ListSelectionListener;
  * @author Arlin
  */
 public class FormUSG extends javax.swing.JFrame {
-private TableModelUSG tableModelusg = new TableModelUSG();
+    private FormUSG f;
     private USGService usgService;
     
     public FormUSG(USGService usgService) {
         this.usgService = usgService;
-        try{
-            tableModelusg.setData(this.usgService.getUSG());
-        }catch(RemoteException exception){
-            exception.printStackTrace();
-        }
-        initComponents();
-        setLocationRelativeTo(this);
-        setSize(665, 730);
+    }
+//        try{
+//            tableModelusg.setData(this.usgService.getUSG());
+//        }catch(RemoteException exception){
+//            exception.printStackTrace();
+//        }
+//        initComponents();
+//        setLocationRelativeTo(this);
+//        setSize(665, 730);
 //
 //        jTable1.setModel(tableModelusg);
 //        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -60,7 +61,6 @@ private TableModelUSG tableModelusg = new TableModelUSG();
 //                }
 //            }
 //        });
-    }
     
     public void clear(){
         idpasien.setText("");
@@ -134,9 +134,9 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         jPanel1.add(hasil);
         hasil.setBounds(250, 270, 260, 20);
 
-        unggah.setText("Unggah");
+        unggah.setText("Pilih");
         jPanel1.add(unggah);
-        unggah.setBounds(530, 270, 69, 23);
+        unggah.setBounds(530, 270, 51, 23);
 
         jLabel8.setText("Keterangan          :");
         jPanel1.add(jLabel8);
@@ -156,6 +156,11 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         harga.setBounds(250, 470, 140, 20);
 
         simpan.setText("Simpan");
+        simpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanActionPerformed(evt);
+            }
+        });
         jPanel1.add(simpan);
         simpan.setBounds(540, 480, 67, 23);
 
@@ -179,7 +184,56 @@ private TableModelUSG tableModelusg = new TableModelUSG();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
+ boolean isi1 = false;
+        boolean isi2 = false;
+        boolean isi3 = false;
+        boolean isi4 = false;
+        boolean isi5 = false;
+        boolean isi6 = false;
+        boolean isi7 = false;
+//        boolean isi8 = false;
+//        boolean isi9 = false;
+
+        if(!idpasien.getText().equals("")&&idpasien.getText().length()<=12){
+            isi1 = true;
+        }
+        if(!namapasien.getText().equals("")&&namapasien.getText().length()<=30){
+            isi2 = true;
+        }
+        if((!idusg.getText().equals(""))&&idusg.getText().length()<=16){
+            isi3 = true;
+        }
+        if(!hasil.getText().equals("")){
+            isi4 = true;
+        }
+        if(!deskrip.getText().equals("")){
+            isi5 = true;
+        }
+        if(!harga.getText().equals("")){
+            isi6 = true;
+        }
+        if(!tanggal.getText().equals("")){
+            isi7 = true;
+        }
+//       if(!tanggal.getCalendar().equals("")){
+//            isi5 = true;
+//       }
+        
+        
+        if(isi1&&isi2&&isi3&&isi4&&isi5&&isi6){
+            String a = idpasien.getText();
+            String b = namapasien.getText();
+            String c = idusg.getText();
+            String d = hasil.getText();
+            String e = deskrip.getText();
+            int f = Integer.parseInt(harga.getText());
+            //Date h = tanggal.getText();
+            
+            JOptionPane.showMessageDialog(null, "Data Anda Berhasil Di Inputkan");
+            clear();
+        }          
+    }//GEN-LAST:event_simpanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea deskrip;
