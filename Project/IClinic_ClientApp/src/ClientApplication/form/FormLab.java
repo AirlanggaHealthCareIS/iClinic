@@ -4,7 +4,7 @@
  */
 
 /*
- * FormPembelian.java
+ * 
  *
  * Created on Jun 25, 2010, 9:45:09 PM
  */
@@ -50,9 +50,6 @@ public class FormLab extends javax.swing.JFrame {
         totalHarga.setText("");
         //tanggal.setDate("");
 }
-
-
-
 
 
     /** This method is called from within the constructor to
@@ -280,11 +277,12 @@ public class FormLab extends javax.swing.JFrame {
     private void jCheckBox3tesKimiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3tesKimiaActionPerformed
         // TODO add your handling code here:
         if(jCheckBox3tesKimia.isSelected() == true){
-            tesKimia.setEditable(true);
+            int biayatK = 450000;
+            tesKimia.setText(String.valueOf(biayatK));
         }
         else {
-            tesKimia.setEditable(false);
-            tesKimia.setText("");
+            int biayatK = 0;
+            tesKimia.setText(String.valueOf(biayatK));
         }
                                                      
     
@@ -352,28 +350,52 @@ public class FormLab extends javax.swing.JFrame {
 
     private void HitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HitungActionPerformed
         // TODO add your handling code here:
+        int Total = 0;
+        if(jCheckBox1tesDarah.isSelected()){
+            String tD = tesDarah.getText();
+            int hargatD = 750000;
+            Total = hargatD;
     }//GEN-LAST:event_HitungActionPerformed
-
+         
+        if(jCheckBox2tesHIV.isSelected()){
+            String tH = tesHIV.getText();
+            int hargatH = 2000000;
+            Total = hargatH;
+        }
+        if(jCheckBox3tesKimia.isSelected()){
+            String tK = tesKimia.getText();
+            int hargatK = 450000;
+            Total = hargatK;
+        }
+        if(jCheckBox4tesUrine.isSelected()){
+            String tU = tesUrine.getText();
+            int hargatU = 9000000;
+            Total = hargatU;
+        }
+        totalHarga.setText(""+Total);
+    }
     private void jCheckBox1tesDarahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1tesDarahActionPerformed
         // TODO add your handling code here:
-         if(jCheckBox1tesDarah.isSelected()== true){
-            tesDarah.setEditable(true); 
+         if(jCheckBox1tesDarah.isSelected()){
+            int biayatD = 750000;
+            tesDarah.setText(String.valueOf(biayatD));
     }                                                  
         else{
-            tesDarah.setEditable(false); 
-            tesDarah.setText("");
+            int biayatD = 0;
+            tesDarah.setText(String.valueOf(biayatD));
         }
            
     }//GEN-LAST:event_jCheckBox1tesDarahActionPerformed
 
     private void jCheckBox2tesHIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2tesHIVActionPerformed
         // TODO add your handling code here:
-         if(jCheckBox2tesHIV.isSelected() == true){
-            tesHIV.setEditable(true);
+         if(jCheckBox2tesHIV.isSelected()){
+             int biayatH = 2000000;
+            tesHIV.setText(String.valueOf(biayatH));
         }
         else {
-            tesHIV.setEditable(false);
-            tesHIV.setText("");
+            int biayatH = 0;
+            tesHIV.setText(String.valueOf(biayatH));
         }
                                                     
 
@@ -381,12 +403,13 @@ public class FormLab extends javax.swing.JFrame {
 
     private void jCheckBox4tesUrineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4tesUrineActionPerformed
         // TODO add your handling code here:
-        if(jCheckBox4tesUrine.isSelected () == true){
-            tesUrine.setEditable(true);
+        if(jCheckBox4tesUrine.isSelected ()){
+            int biayatU = 900000;
+            tesUrine.setText(String.valueOf(biayatU));
         }
         else {
-            tesUrine.setEditable(false);
-            tesUrine.setText("");
+           int biayatU = 0;
+            tesUrine.setText(String.valueOf(biayatU));
         }
              
     }//GEN-LAST:event_jCheckBox4tesUrineActionPerformed
