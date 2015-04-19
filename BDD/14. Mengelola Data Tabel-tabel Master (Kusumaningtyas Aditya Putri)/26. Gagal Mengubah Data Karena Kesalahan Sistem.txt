@@ -1,5 +1,5 @@
 Feature		Mengelola Data Tabel-tabel Master
-Scenario	Gagal Mengubah Data Karena Kesalahan Sistem
+Scenario	Gagal Mengubah Data Karena Kesalahan Sistem atau Field yang Tidak Terisi Lengkap
 
 Given	Administrator telah melakukan login
 and	Sistem telah menampilkan frame khusus Administrator
@@ -8,4 +8,4 @@ and	Administrator memilih salah satu baris data dari tabel User/ Penyakit/ Tinda
 and	Sistem menampilkan data yang dipilih kembali ke field-field
 and	Administrator mengubah data pada satu atau lebih field
 and	Administrator memilih tombol 'Ubah'
-Then	Sistem menampilkan pesan bahwa perubahan data gagal dilakukan karena kesalahan sistem
+Then	Sistem menampilkan pesan bahwa perubahan data gagal dilakukan karena kesalahan sistem atau field yang belum terisi lengkap

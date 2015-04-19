@@ -291,6 +291,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         hapusUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusUserButton.setText("Hapus");
+        hapusUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusUserButtonActionPerformed(evt);
+            }
+        });
 
         clearUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearUserButton.setText("Clear");
@@ -1438,6 +1443,20 @@ public class FormAdministrator extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ubahKecantikanButtonActionPerformed
+
+    private void hapusUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusUserButtonActionPerformed
+        try{
+            int row = userTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDUser = tableMasterUser.get(row).getId_User();
+            serviceAdmin.deleteUser(hapusIDUser);
+            clearUser();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusUserButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");

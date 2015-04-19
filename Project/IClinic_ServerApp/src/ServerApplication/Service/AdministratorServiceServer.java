@@ -96,13 +96,30 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deleteUser(int Id_User) throws RemoteException {
-
+    public void deleteUser(String Id_User) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel User");
 
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM user WHERE ID_USER = ?");
+            
+            statement.setString(1, Id_User);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public User getUser(int Id_User) throws RemoteException {
+    public User getUser(String Id_User) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel User");
 
@@ -177,13 +194,13 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deleteObat_tabelMaster(int Id_Obat) throws RemoteException {
+    public void deleteObat_tabelMaster(String Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Obat");
 
     }
 
-    public Obat_tabelMaster getObat_tabelMaster(int Id_Obat) throws RemoteException {
+    public Obat_tabelMaster getObat_tabelMaster(String Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Obat");
 
@@ -249,12 +266,12 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deletePenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
+    public void deletePenyakit_tabelMaster(String Id_Penyakit) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Penyakit_tabelMaster");
     }
 
-    public Penyakit_tabelMaster getPenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
+    public Penyakit_tabelMaster getPenyakit_tabelMaster(String Id_Penyakit) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Penyakit_tabelMaster");
         Penyakit_tabelMaster penyakit = null;
@@ -347,12 +364,12 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deleteTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
+    public void deleteTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Tindakan");
     }
 
-    public Tindakan_tabelMaster getTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
+    public Tindakan_tabelMaster getTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Tindakan");
         Tindakan_tabelMaster tindakan = null;
@@ -447,12 +464,12 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deleteLab_tabelMaster(int Id_Lab) throws RemoteException {
+    public void deleteLab_tabelMaster(String Id_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Laboratorium");
     }
 
-    public Lab_tabelMaster getLab_tabelMaster(int Id_Lab) throws RemoteException {
+    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Laboratorium");
         Lab_tabelMaster lab = null;
@@ -547,13 +564,13 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
-    public void deleteKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException {
+    public void deleteKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Kecantikan");
 
     }
 
-    public Kecantikan_tabelMaster getKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException {
+    public Kecantikan_tabelMaster getKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Kecantikan");
 
@@ -593,4 +610,5 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             }
         }
     }
+
 }
