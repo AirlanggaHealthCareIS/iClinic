@@ -571,6 +571,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahTindakanButton.setText("Ubah");
+        ubahTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahTindakanButtonActionPerformed(evt);
+            }
+        });
 
         clearTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearTindakanButton.setText("Clear");
@@ -700,6 +705,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahObatButton.setText("Ubah");
+        ubahObatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahObatButtonActionPerformed(evt);
+            }
+        });
 
         hapusObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusObatButton.setText("Hapus");
@@ -1294,6 +1304,10 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
 
     private void hapusTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusTindakanButtonActionPerformed
+        
+    }//GEN-LAST:event_hapusTindakanButtonActionPerformed
+
+    private void ubahTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahTindakanButtonActionPerformed
         try{
             int row = tindakanTabel.getSelectedRow();
             if(row == -1){
@@ -1313,7 +1327,29 @@ public class FormAdministrator extends javax.swing.JFrame {
         }catch(RemoteException exception){
             exception.printStackTrace();
         }
-    }//GEN-LAST:event_hapusTindakanButtonActionPerformed
+    }//GEN-LAST:event_ubahTindakanButtonActionPerformed
+
+    private void ubahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahObatButtonActionPerformed
+        try{
+            int row = obatTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Obat_tabelMaster obat = tableMasterObat.get(row);
+            obat.setId_Obat(idObatField.getText());
+            obat.setNama_Obat(namaObatField.getText());
+            obat.setJenis_Obat(jenisObatField.getText());
+            obat.setHarga_Obat(Integer.parseInt(hargaObatField.getText()));
+            obat.setSatuan(satuanComboBox.getSelectedItem().toString());
+            
+            serviceAdmin.updateObat_tabelMaster(obat);
+            tableMasterObat.update(row, obat);
+            clearObat();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_ubahObatButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
