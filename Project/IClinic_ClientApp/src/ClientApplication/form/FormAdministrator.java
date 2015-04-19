@@ -176,10 +176,10 @@ public class FormAdministrator extends javax.swing.JFrame {
         obatPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         obatTabel = new javax.swing.JTable();
-        simpanTindakanButton1 = new javax.swing.JButton();
-        clearTindakanButton1 = new javax.swing.JButton();
-        ubahTindakanButton1 = new javax.swing.JButton();
-        hapusTindakanButton1 = new javax.swing.JButton();
+        simpanObatButton = new javax.swing.JButton();
+        clearObatButton = new javax.swing.JButton();
+        ubahObatButton = new javax.swing.JButton();
+        hapusObatButton = new javax.swing.JButton();
         idObatLabel = new javax.swing.JLabel();
         namaObatLabel = new javax.swing.JLabel();
         jenisObatLabel = new javax.swing.JLabel();
@@ -208,10 +208,10 @@ public class FormAdministrator extends javax.swing.JFrame {
         kecantikanPanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         layananKecantikanTabel = new javax.swing.JTable();
-        simpanTindakanButton3 = new javax.swing.JButton();
-        clearTindakanButton3 = new javax.swing.JButton();
-        ubahTindakanButton3 = new javax.swing.JButton();
-        hapusTindakanButton3 = new javax.swing.JButton();
+        simpanKecantikanButton = new javax.swing.JButton();
+        clearKecantikanButton = new javax.swing.JButton();
+        ubahKecantikanButton = new javax.swing.JButton();
+        hapusKecantikanButton = new javax.swing.JButton();
         idLayananKecantikanLabel = new javax.swing.JLabel();
         jenisLayananLabel = new javax.swing.JLabel();
         hargaKecantikanLabel = new javax.swing.JLabel();
@@ -670,27 +670,27 @@ public class FormAdministrator extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(obatTabel);
 
-        simpanTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        simpanTindakanButton1.setText("Simpan");
-        simpanTindakanButton1.addActionListener(new java.awt.event.ActionListener() {
+        simpanObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        simpanObatButton.setText("Simpan");
+        simpanObatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpanTindakanButton1ActionPerformed(evt);
+                simpanObatButtonActionPerformed(evt);
             }
         });
 
-        clearTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        clearTindakanButton1.setText("Clear");
-        clearTindakanButton1.addActionListener(new java.awt.event.ActionListener() {
+        clearObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        clearObatButton.setText("Clear");
+        clearObatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearTindakanButton1ActionPerformed(evt);
+                clearObatButtonActionPerformed(evt);
             }
         });
 
-        ubahTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        ubahTindakanButton1.setText("Ubah");
+        ubahObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        ubahObatButton.setText("Ubah");
 
-        hapusTindakanButton1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        hapusTindakanButton1.setText("Hapus");
+        hapusObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        hapusObatButton.setText("Hapus");
 
         idObatLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idObatLabel.setText("ID Obat");
@@ -726,13 +726,13 @@ public class FormAdministrator extends javax.swing.JFrame {
                 .addGroup(obatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(obatPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(simpanTindakanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(simpanObatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapusTindakanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hapusObatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ubahTindakanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ubahObatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clearTindakanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clearObatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))
                     .addGroup(obatPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -788,10 +788,10 @@ public class FormAdministrator extends javax.swing.JFrame {
                     .addComponent(satuanComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(obatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpanTindakanButton1)
-                    .addComponent(hapusTindakanButton1)
-                    .addComponent(ubahTindakanButton1)
-                    .addComponent(clearTindakanButton1))
+                    .addComponent(simpanObatButton)
+                    .addComponent(hapusObatButton)
+                    .addComponent(ubahObatButton)
+                    .addComponent(clearObatButton))
                 .addGap(134, 134, 134))
         );
 
@@ -957,27 +957,27 @@ public class FormAdministrator extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(layananKecantikanTabel);
 
-        simpanTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        simpanTindakanButton3.setText("Simpan");
-        simpanTindakanButton3.addActionListener(new java.awt.event.ActionListener() {
+        simpanKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        simpanKecantikanButton.setText("Simpan");
+        simpanKecantikanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpanTindakanButton3ActionPerformed(evt);
+                simpanKecantikanButtonActionPerformed(evt);
             }
         });
 
-        clearTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        clearTindakanButton3.setText("Clear");
-        clearTindakanButton3.addActionListener(new java.awt.event.ActionListener() {
+        clearKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        clearKecantikanButton.setText("Clear");
+        clearKecantikanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearTindakanButton3ActionPerformed(evt);
+                clearKecantikanButtonActionPerformed(evt);
             }
         });
 
-        ubahTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        ubahTindakanButton3.setText("Ubah");
+        ubahKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        ubahKecantikanButton.setText("Ubah");
 
-        hapusTindakanButton3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        hapusTindakanButton3.setText("Hapus");
+        hapusKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        hapusKecantikanButton.setText("Hapus");
 
         idLayananKecantikanLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idLayananKecantikanLabel.setText("ID Layanan Kecantikan");
@@ -1025,13 +1025,13 @@ public class FormAdministrator extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))))
                     .addGroup(kecantikanPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(simpanTindakanButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(simpanKecantikanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapusTindakanButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hapusKecantikanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ubahTindakanButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ubahKecantikanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clearTindakanButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clearKecantikanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1061,10 +1061,10 @@ public class FormAdministrator extends javax.swing.JFrame {
                     .addComponent(tarifKecantikanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(kecantikanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpanTindakanButton3)
-                    .addComponent(hapusTindakanButton3)
-                    .addComponent(ubahTindakanButton3)
-                    .addComponent(clearTindakanButton3))
+                    .addComponent(simpanKecantikanButton)
+                    .addComponent(hapusKecantikanButton)
+                    .addComponent(ubahKecantikanButton)
+                    .addComponent(clearKecantikanButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1086,7 +1086,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearPenyakitButtonActionPerformed
 
     private void simpanPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanPenyakitButtonActionPerformed
-        try{
+        if((idPenyakitField.getText().equalsIgnoreCase(""))||(namaPenyakitField.getText().equalsIgnoreCase(""))||(gejalaField.getText().equalsIgnoreCase(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            try{
             Penyakit_tabelMaster penyakit = new Penyakit_tabelMaster();
             penyakit.setId_Penyakit(idPenyakitField.getText());
             penyakit.setPenyakit(namaPenyakitField.getText());
@@ -1095,13 +1099,18 @@ public class FormAdministrator extends javax.swing.JFrame {
             Penyakit_tabelMaster penyakit1 = serviceAdmin.insertPenyakit_tabelMaster(penyakit);
             tableMasterPenyakit.insert(penyakit1);
             clearPenyakit();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
     }//GEN-LAST:event_simpanPenyakitButtonActionPerformed
 
     private void simpanTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButtonActionPerformed
-        try{
+        if((idTindakanField.getText().equalsIgnoreCase(""))||(namaTindakanField.getText().equalsIgnoreCase(""))||(spesialisasiComboBox.getSelectedIndex()==0)||(tarifField.getText().equalsIgnoreCase(""))||(keteranganField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR);
+        }
+        else{
+            try{
             Tindakan_tabelMaster tindakan = new Tindakan_tabelMaster();
             tindakan.setId_Tindakan(idTindakanField.getText());
             tindakan.setNama_Tindakan(namaTindakanField.getText());
@@ -1112,8 +1121,9 @@ public class FormAdministrator extends javax.swing.JFrame {
             Tindakan_tabelMaster tindakan1 = serviceAdmin.insertTindakan_tabelMaster(tindakan);
             tableMasterTindakan.insert(tindakan1);
             clearTindakan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
     }//GEN-LAST:event_simpanTindakanButtonActionPerformed
 
@@ -1121,8 +1131,12 @@ public class FormAdministrator extends javax.swing.JFrame {
         clearTindakan();
     }//GEN-LAST:event_clearTindakanButtonActionPerformed
 
-    private void simpanTindakanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButton1ActionPerformed
-        try{
+    private void simpanObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanObatButtonActionPerformed
+        if((idObatField.getText().equalsIgnoreCase(""))||(namaObatField.getText().equalsIgnoreCase(""))||(jenisObatField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))||(satuanComboBox.getSelectedIndex()==0)){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             Obat_tabelMaster obat = new Obat_tabelMaster();
             obat.setId_Obat(idObatField.getText());
             obat.setNama_Obat(namaObatField.getText());
@@ -1133,17 +1147,22 @@ public class FormAdministrator extends javax.swing.JFrame {
             Obat_tabelMaster obat1 = serviceAdmin.insertObat_tabelMaster(obat);
             tableMasterObat.insert(obat1);
             clearObat();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
-    }//GEN-LAST:event_simpanTindakanButton1ActionPerformed
+    }//GEN-LAST:event_simpanObatButtonActionPerformed
 
-    private void clearTindakanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTindakanButton1ActionPerformed
+    private void clearObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearObatButtonActionPerformed
         clearObat();
-    }//GEN-LAST:event_clearTindakanButton1ActionPerformed
+    }//GEN-LAST:event_clearObatButtonActionPerformed
 
     private void simpanUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanUserButtonActionPerformed
-        try{
+        if((idUserField.getText().equalsIgnoreCase(""))||(namaUserField.getText().equalsIgnoreCase(""))||(jabatanComboBox.getSelectedIndex()==0)||(usernameField.getText().equalsIgnoreCase(""))||(passwordUserPasswordField.getPassword().equals(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             User user = new User();
             user.setId_User(idUserField.getText());
             user.setNama_User(namaUserField.getText());
@@ -1154,8 +1173,9 @@ public class FormAdministrator extends javax.swing.JFrame {
             User user1 = serviceAdmin.insertUser(user);
             tableMasterUser.insert(user1);
             clearUser();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
     }//GEN-LAST:event_simpanUserButtonActionPerformed
 
@@ -1164,7 +1184,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearUserButtonActionPerformed
 
     private void simpanLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanLabButtonActionPerformed
-        try{
+        if((idLayananLabField.getText().equalsIgnoreCase(""))||(jenisPemeriksaanLabField.getText().equalsIgnoreCase(""))||(deskripsiLabField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             Lab_tabelMaster lab = new Lab_tabelMaster();
             lab.setId_Lab(idLayananLabField.getText());
             lab.setJenis_Pemeriksaan(jenisPemeriksaanLabField.getText());
@@ -1174,8 +1198,9 @@ public class FormAdministrator extends javax.swing.JFrame {
             Lab_tabelMaster lab1 = serviceAdmin.insertLab_tabelMaster(lab);
             tableMasterLab.insert(lab1);
             clearLab();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
     }//GEN-LAST:event_simpanLabButtonActionPerformed
 
@@ -1183,8 +1208,12 @@ public class FormAdministrator extends javax.swing.JFrame {
         clearLab();
     }//GEN-LAST:event_clearLabButtonActionPerformed
 
-    private void simpanTindakanButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButton3ActionPerformed
-        try{
+    private void simpanKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanKecantikanButtonActionPerformed
+        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             Kecantikan_tabelMaster kecantikan = new Kecantikan_tabelMaster();
             kecantikan.setId_Kecantikan(idLayananKecantikanField.getText());
             kecantikan.setJenis_Layanan(jenisLayananKecantikanField.getText());
@@ -1194,14 +1223,15 @@ public class FormAdministrator extends javax.swing.JFrame {
             Kecantikan_tabelMaster kecantikan1 =serviceAdmin.insertKecantikan_tabelMaster(kecantikan);
             tableMasterKecantikan.insert(kecantikan1);
             clearKecantikan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+            }
         }
-    }//GEN-LAST:event_simpanTindakanButton3ActionPerformed
+    }//GEN-LAST:event_simpanKecantikanButtonActionPerformed
 
-    private void clearTindakanButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTindakanButton3ActionPerformed
+    private void clearKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearKecantikanButtonActionPerformed
         clearKecantikan();
-    }//GEN-LAST:event_clearTindakanButton3ActionPerformed
+    }//GEN-LAST:event_clearKecantikanButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
@@ -1256,20 +1286,20 @@ public class FormAdministrator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane adminTabPane;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JButton clearKecantikanButton;
     private javax.swing.JButton clearLabButton;
+    private javax.swing.JButton clearObatButton;
     private javax.swing.JButton clearPenyakitButton;
     private javax.swing.JButton clearTindakanButton;
-    private javax.swing.JButton clearTindakanButton1;
-    private javax.swing.JButton clearTindakanButton3;
     private javax.swing.JButton clearUserButton;
     private javax.swing.JTextField deskripsiKecantikanField;
     private javax.swing.JTextField deskripsiLabField;
     private javax.swing.JTextField gejalaField;
+    private javax.swing.JButton hapusKecantikanButton;
     private javax.swing.JButton hapusLabButton;
+    private javax.swing.JButton hapusObatButton;
     private javax.swing.JButton hapusPenyakitButton;
     private javax.swing.JButton hapusTindakanButton;
-    private javax.swing.JButton hapusTindakanButton1;
-    private javax.swing.JButton hapusTindakanButton3;
     private javax.swing.JButton hapusUserButton;
     private javax.swing.JLabel hargaKecantikanLabel;
     private javax.swing.JTextField hargaLabField;
@@ -1327,11 +1357,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JTable penyakitTabel;
     private javax.swing.JComboBox satuanComboBox;
     private javax.swing.JLabel satuanLabel;
+    private javax.swing.JButton simpanKecantikanButton;
     private javax.swing.JButton simpanLabButton;
+    private javax.swing.JButton simpanObatButton;
     private javax.swing.JButton simpanPenyakitButton;
     private javax.swing.JButton simpanTindakanButton;
-    private javax.swing.JButton simpanTindakanButton1;
-    private javax.swing.JButton simpanTindakanButton3;
     private javax.swing.JButton simpanUserButton;
     private javax.swing.JComboBox spesialisasiComboBox;
     private javax.swing.JLabel spesialisasiLabel;
@@ -1340,11 +1370,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     private javax.swing.JLabel tarifLabel;
     private javax.swing.JPanel tindakanPanel;
     private javax.swing.JTable tindakanTabel;
+    private javax.swing.JButton ubahKecantikanButton;
     private javax.swing.JButton ubahLabButton;
+    private javax.swing.JButton ubahObatButton;
     private javax.swing.JButton ubahPenyakitButton;
     private javax.swing.JButton ubahTindakanButton;
-    private javax.swing.JButton ubahTindakanButton1;
-    private javax.swing.JButton ubahTindakanButton3;
     private javax.swing.JButton ubahUserButton;
     private javax.swing.JPanel userPanel;
     private javax.swing.JTable userTabel;

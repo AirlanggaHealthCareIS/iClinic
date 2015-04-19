@@ -1,0 +1,12 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menghapus Data di Tabel User
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'User'
+and	Administrator memilih salah satu baris data dari tabel User
+and	Administrator memilih tombol 'Hapus'
+Then	Sistem menghapus data yang dipiliih dari tabel User di database
+and	Sistem menampilkan pesan bahwa data telah berhasil dihapus
+and	Sistem menampilkan data di tabel User
+and	Sistem menghapus isi seluruh field

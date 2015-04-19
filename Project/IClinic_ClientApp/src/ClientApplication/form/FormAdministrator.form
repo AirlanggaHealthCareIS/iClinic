@@ -769,13 +769,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="simpanTindakanButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="simpanObatButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="hapusTindakanButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="hapusObatButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ubahTindakanButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="ubahObatButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="clearTindakanButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="clearObatButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -849,10 +849,10 @@
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="simpanTindakanButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hapusTindakanButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ubahTindakanButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clearTindakanButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="simpanObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hapusObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ubahObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clearObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
@@ -885,7 +885,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="simpanTindakanButton1">
+            <Component class="javax.swing.JButton" name="simpanObatButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -893,10 +893,10 @@
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanTindakanButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanObatButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="clearTindakanButton1">
+            <Component class="javax.swing.JButton" name="clearObatButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -904,10 +904,10 @@
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearTindakanButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearObatButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="ubahTindakanButton1">
+            <Component class="javax.swing.JButton" name="ubahObatButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -915,7 +915,7 @@
                 <Property name="text" type="java.lang.String" value="Ubah"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="hapusTindakanButton1">
+            <Component class="javax.swing.JButton" name="hapusObatButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -1272,13 +1272,13 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="simpanTindakanButton3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="simpanKecantikanButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="hapusTindakanButton3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="hapusKecantikanButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ubahTindakanButton3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="ubahKecantikanButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="clearTindakanButton3" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="clearKecantikanButton" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1317,10 +1317,10 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="simpanTindakanButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hapusTindakanButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ubahTindakanButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clearTindakanButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="simpanKecantikanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hapusKecantikanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ubahKecantikanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clearKecantikanButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -1353,7 +1353,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="simpanTindakanButton3">
+            <Component class="javax.swing.JButton" name="simpanKecantikanButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -1361,10 +1361,10 @@
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanTindakanButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanKecantikanButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="clearTindakanButton3">
+            <Component class="javax.swing.JButton" name="clearKecantikanButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -1372,10 +1372,10 @@
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearTindakanButton3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearKecantikanButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="ubahTindakanButton3">
+            <Component class="javax.swing.JButton" name="ubahKecantikanButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
@@ -1383,7 +1383,7 @@
                 <Property name="text" type="java.lang.String" value="Ubah"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="hapusTindakanButton3">
+            <Component class="javax.swing.JButton" name="hapusKecantikanButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>

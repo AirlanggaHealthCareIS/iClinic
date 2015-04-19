@@ -1,0 +1,16 @@
+Feature		Mengelola Data Tabel-tabel Master
+Scenario	Berhasil Menambahkan Data di Tabel User
+
+Given	Administrator telah melakukan login
+and	Sistem telah menampilkan frame khusus Administrator
+When	Administrator memilih tab 'User'
+and	Administrator memasukkan ID User
+and	Administrator memasukkan Nama User
+and	Administrator memilih Jabatan
+and	Administrator memasukkan username
+and	Administrator memasukkan password
+and	Administrator memilih tombol 'Tambah'
+Then	Sistem menyimpan data baru ke tabel Penyakit di database
+and	Sistem menampilkan pesan bahwa data telah berhasil disimpan
+and	Sistem menampilkan data yang telah dimasukkan di tabel Penyakit
+and	Sistem menghapus isi seluruh field
