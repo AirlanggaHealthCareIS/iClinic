@@ -1101,6 +1101,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearPenyakit();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanPenyakitButtonActionPerformed
@@ -1123,6 +1124,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearTindakan();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanTindakanButtonActionPerformed
@@ -1149,6 +1151,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearObat();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanObatButtonActionPerformed
@@ -1175,6 +1178,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearUser();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanUserButtonActionPerformed
@@ -1200,6 +1204,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearLab();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanLabButtonActionPerformed
@@ -1225,6 +1230,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             clearKecantikan();
             }catch(RemoteException exception){
                 exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-input data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_simpanKecantikanButtonActionPerformed
