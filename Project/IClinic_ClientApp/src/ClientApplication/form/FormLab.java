@@ -15,15 +15,22 @@ package ClientApplication.form;
 import ClientApplication.FormLogin;
 import Database.Entity.Lab_detailLab;
 import Database.Service.LabService;
+import java.io.File;
+import java.io.FileFilter;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
+
 
 
 
@@ -76,7 +83,7 @@ public class FormLab extends javax.swing.JFrame {
         jCheckBox3tesKimia = new javax.swing.JCheckBox();
         jCheckBox4tesUrine = new javax.swing.JCheckBox();
         hasilPemeriksaan = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Upload = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Keterangan = new javax.swing.JTextArea();
@@ -186,9 +193,14 @@ public class FormLab extends javax.swing.JFrame {
         getContentPane().add(hasilPemeriksaan);
         hasilPemeriksaan.setBounds(890, 350, 220, 20);
 
-        jButton1.setText("Browser");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(1120, 350, 71, 23);
+        Upload.setText("Browser");
+        Upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Upload);
+        Upload.setBounds(1120, 350, 71, 23);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Keterangan                    :");
@@ -303,31 +315,34 @@ public class FormLab extends javax.swing.JFrame {
         boolean d = false;
         boolean e = false;
         boolean f = false;
-        boolean g = false;
-//        boolean h = false;
+        boolean g = false;  
+        boolean h = false;
 //        boolean i = false;
 
-        if(!idDetailLab.getText().equals("")&&idDetailLab.getText().length()<=12){
+        if(!idDetailLab.getText().equals("")&&idDetailLab.getText().length()<=10){
             a = true;
         }
 //        if(!idLab.getText().equals("")&&idLab.getText().length()<=30){
 //            b = true;
 //        }
-        if((!idPasien.getText().equals(""))&&idPasien.getText().length()<=16){
+        if((!idPasien.getText().equals(""))){
             c = true;
         }
         if(!namaPasien.getText().equals("")){
             d = true;
         }
-        if(!Keterangan.getText().equals("")){
+        if(!Keterangan.getText().equals("")&&Keterangan.getText().length()<=100){
             f = true;
         }
+        //if(!hasil.getBlob().equals("") if(!hasil.getBlob().equals("")){
+            //g = true;
+       
+         
         if(!totalHarga.getText().equals("")){
-            g = true;
+            h = true;
         }
-
 //       if(!tanggal.getCalendar().equals("")){
-//            h = true;
+//            i = true;
 //       }
         
         
@@ -346,6 +361,7 @@ public class FormLab extends javax.swing.JFrame {
         }          
                                           
 
+                                 
     }//GEN-LAST:event_SimpanActionPerformed
 
     private void HitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HitungActionPerformed
@@ -414,16 +430,32 @@ public class FormLab extends javax.swing.JFrame {
              
     }//GEN-LAST:event_jCheckBox4tesUrineActionPerformed
 
+    private void UploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jfc = new JFileChooser("D:\\");
+        jfc.showOpenDialog(null);
+        File file = jfc.getSelectedFile();
+        String dir = file.getAbsolutePath();
+        //labelURL.setText(dir);
+        
+        
+
+
+//   if (jfc.showOpenDialog(this) == jfc.APPROVE_OPTION) {
+    
+    
+    }//GEN-LAST:event_UploadActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Hitung;
     private javax.swing.JTextArea Keterangan;
     private javax.swing.JButton Simpan;
+    private javax.swing.JButton Upload;
     private javax.swing.JTextField hasilPemeriksaan;
     private javax.swing.JTextField idDetailLab;
     private javax.swing.JTextField idPasien;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1tesDarah;
     private javax.swing.JCheckBox jCheckBox2tesHIV;
