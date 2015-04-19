@@ -6,6 +6,7 @@
 package Database.Entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class Lab_detailLab implements Serializable{
     private String Id_Lab;
     private String Id_Pasien;
     private String Keterangan;
-    private Long Hasil;
+    private Blob Hasil;
     private Date Tanggal;
     private int Total_Harga;
 
@@ -35,7 +36,7 @@ public class Lab_detailLab implements Serializable{
         return Keterangan;
     }
 
-    public Long getHasil() {
+    public Blob getHasil() {
         return Hasil;
     }
 
@@ -58,7 +59,7 @@ public class Lab_detailLab implements Serializable{
     public void setKeterangan(String Keterangan) {
         this.Keterangan = Keterangan;
     }
-    public void setHasil(Long Hasil) {
+    public void setHasil(Blob Hasil) {
         this.Hasil = Hasil;
     }
 
@@ -73,5 +74,7 @@ public class Lab_detailLab implements Serializable{
     public void setTotal_Harga(int Total_Harga) {
         this.Total_Harga = Total_Harga;
     }
+
+   
 
 }

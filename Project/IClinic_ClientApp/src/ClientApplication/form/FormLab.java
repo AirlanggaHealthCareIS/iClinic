@@ -11,15 +11,12 @@
 
 package ClientApplication.form;
 
-import com.mysql.jdbc.Statement;
+
 import ClientApplication.FormLogin;
-import ClientApplication.model.TableModelLab_detailLab;
 import Database.Entity.Lab_detailLab;
 import Database.Service.LabService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,64 +27,30 @@ import javax.swing.event.ListSelectionListener;
 
 
 
-
 /**
  *
- * @author Tiara Ratna Sari
+ * @author erin
  */
 public class FormLab extends javax.swing.JFrame {
-    
-    
-private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
+    private FormLab l;
     private LabService labService;
     
     public FormLab(LabService labService) {
         this.labService = labService;
-        try{
-            tableModellab.setData(this.labService.getLab_detailLab());
-        }catch(RemoteException exception){
-            exception.printStackTrace();
-        }
-        initComponents();
-        setLocationRelativeTo(this);
-        setSize(665, 730);
-//
-//        jTable1.setModel(tableModellab);
-//        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//
-//            public void valueChanged(ListSelectionEvent e) {
-//                int row = jTable1.getSelectedRow();
-//                if(row != -1){
-//                    Lab_detailLab lab = tableModellab.get(row);
-//                    idpasien.setText(lab.getId_Pasien());
-//                    //namapasien.setText(lab.get());
-//                    idLab.setText(lab.getId_Lab());
-////                    TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
-////                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
-////                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
-////                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
-//                    totalTransaksi.setText(String.valueOf(lab.getTotal_Harga()));
-////                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
-//                }
-//            }
-//        });
-//    }
-//    
-//    
-//    public void clear(){
-//        idpasien.setText("");
-//        idLab.setText("");
-//        totalTransaksi.setText("");
-//        TextField_tglPembayaran.setText("");
-//        TextField_Kecantikan.setText("");
-//        TextField_Lab.setText("");
-//        TextField_RekamMedis.setText("");
-//        TextField_Resep.setText("");
-//        TextField_Usg.setText("");
-//        TextField_totalPembayaran.setText("");
-//        TextField_status.setText("");
     }
     
+
+        public void clear(){
+        idDetailLab.setText("");
+//        idLab.setText("");
+//        idJenisPemeriksaan.setText("");
+        idPasien.setText("");
+        namaPasien.setText("");
+        Keterangan.setText("");
+        totalHarga.setText("");
+        //tanggal.setDate("");
+}
+
 
 
 
@@ -103,18 +66,18 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        idpasien = new javax.swing.JTextField();
+        idPasien = new javax.swing.JTextField();
         namaPasien = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         tanggal = new javax.swing.JTextField();
-        idLab = new javax.swing.JTextField();
+        idDetailLab = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox1tesDarah = new javax.swing.JCheckBox();
+        jCheckBox2tesHIV = new javax.swing.JCheckBox();
+        jCheckBox3tesKimia = new javax.swing.JCheckBox();
+        jCheckBox4tesUrine = new javax.swing.JCheckBox();
         hasilPemeriksaan = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -125,12 +88,13 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         jButton2 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        totalTransaksi = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        totalHarga = new javax.swing.JTextField();
+        Simpan = new javax.swing.JButton();
         tesDarah = new javax.swing.JTextField();
         tesHIV = new javax.swing.JTextField();
         tesUrine = new javax.swing.JTextField();
         tesKimia = new javax.swing.JTextField();
+        Hitung = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,9 +110,9 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(jLabel2);
         jLabel2.setBounds(190, 350, 160, 17);
 
-        idpasien.setEditable(false);
-        getContentPane().add(idpasien);
-        idpasien.setBounds(350, 320, 212, 20);
+        idPasien.setEditable(false);
+        getContentPane().add(idPasien);
+        idPasien.setBounds(350, 320, 212, 20);
 
         namaPasien.setEditable(false);
         namaPasien.addActionListener(new java.awt.event.ActionListener() {
@@ -165,17 +129,17 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         jLabel8.setBounds(730, 240, 161, 17);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("ID LAB                            :");
+        jLabel9.setText("ID Detail LAB                  :");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(730, 270, 158, 17);
+        jLabel9.setBounds(730, 270, 160, 17);
 
         tanggal.setEditable(false);
         getContentPane().add(tanggal);
         tanggal.setBounds(890, 240, 220, 20);
 
-        idLab.setEditable(false);
-        getContentPane().add(idLab);
-        idLab.setBounds(890, 270, 220, 20);
+        idDetailLab.setEditable(false);
+        getContentPane().add(idDetailLab);
+        idDetailLab.setBounds(890, 270, 220, 20);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Jenis Pemeriksaan           : ");
@@ -187,26 +151,41 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(jLabel12);
         jLabel12.setBounds(730, 350, 155, 17);
 
-        jCheckBox1.setText("Tes Darah");
-        getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(350, 410, 80, 23);
-
-        jCheckBox2.setText("Tes HIV");
-        getContentPane().add(jCheckBox2);
-        jCheckBox2.setBounds(350, 450, 80, 23);
-
-        jCheckBox3.setText("Tes Kimia");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox1tesDarah.setText("Tes Darah");
+        jCheckBox1tesDarah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                jCheckBox1tesDarahActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox3);
-        jCheckBox3.setBounds(350, 540, 80, 23);
+        getContentPane().add(jCheckBox1tesDarah);
+        jCheckBox1tesDarah.setBounds(350, 410, 80, 23);
 
-        jCheckBox4.setText("Tes Urine");
-        getContentPane().add(jCheckBox4);
-        jCheckBox4.setBounds(350, 490, 80, 23);
+        jCheckBox2tesHIV.setText("Tes HIV");
+        jCheckBox2tesHIV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2tesHIVActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox2tesHIV);
+        jCheckBox2tesHIV.setBounds(350, 450, 80, 23);
+
+        jCheckBox3tesKimia.setText("Tes Kimia");
+        jCheckBox3tesKimia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3tesKimiaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox3tesKimia);
+        jCheckBox3tesKimia.setBounds(350, 540, 80, 23);
+
+        jCheckBox4tesUrine.setText("Tes Urine");
+        jCheckBox4tesUrine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4tesUrineActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox4tesUrine);
+        jCheckBox4tesUrine.setBounds(350, 490, 80, 23);
         getContentPane().add(hasilPemeriksaan);
         hasilPemeriksaan.setBounds(890, 350, 220, 20);
 
@@ -256,18 +235,18 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(jLabel18);
         jLabel18.setBounds(720, 560, 160, 17);
 
-        totalTransaksi.setEditable(false);
-        getContentPane().add(totalTransaksi);
-        totalTransaksi.setBounds(890, 560, 270, 20);
+        totalHarga.setEditable(false);
+        getContentPane().add(totalHarga);
+        totalHarga.setBounds(890, 560, 270, 20);
 
-        jButton3.setText("Simpan ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Simpan.setText("Simpan ");
+        Simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                SimpanActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(1090, 600, 69, 23);
+        getContentPane().add(Simpan);
+        Simpan.setBounds(1090, 600, 69, 23);
         getContentPane().add(tesDarah);
         tesDarah.setBounds(450, 410, 150, 20);
         getContentPane().add(tesHIV);
@@ -277,10 +256,19 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         getContentPane().add(tesKimia);
         tesKimia.setBounds(450, 540, 150, 20);
 
+        Hitung.setText("Hitung Total");
+        Hitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HitungActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Hitung);
+        Hitung.setBounds(500, 610, 100, 23);
+
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/7.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1230, 800);
+        jLabel3.setBounds(0, 0, 1318, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,9 +277,18 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         // TODO add your handling code here:
     }//GEN-LAST:event_namaPasienActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void jCheckBox3tesKimiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3tesKimiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+        if(jCheckBox3tesKimia.isSelected() == true){
+            tesKimia.setEditable(true);
+        }
+        else {
+            tesKimia.setEditable(false);
+            tesKimia.setText("");
+        }
+                                                     
+    
+    }//GEN-LAST:event_jCheckBox3tesKimiaActionPerformed
 
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
@@ -301,24 +298,114 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
+        boolean a = false;
+        boolean b = false;
+        boolean c = false;
+        boolean d = false;
+        boolean e = false;
+        boolean f = false;
+        boolean g = false;
+//        boolean h = false;
+//        boolean i = false;
+
+        if(!idDetailLab.getText().equals("")&&idDetailLab.getText().length()<=12){
+            a = true;
+        }
+//        if(!idLab.getText().equals("")&&idLab.getText().length()<=30){
+//            b = true;
+//        }
+        if((!idPasien.getText().equals(""))&&idPasien.getText().length()<=16){
+            c = true;
+        }
+        if(!namaPasien.getText().equals("")){
+            d = true;
+        }
+        if(!Keterangan.getText().equals("")){
+            f = true;
+        }
+        if(!totalHarga.getText().equals("")){
+            g = true;
+        }
+
+//       if(!tanggal.getCalendar().equals("")){
+//            h = true;
+//       }
+        
+        
+        if(a&&b&&c&&d&&e&&f){
+            String idd = idDetailLab.getText();
+            //String idl = idLab.getText();
+            String idp = idPasien.getText();
+            String np = namaPasien.getText();
+            String k = Keterangan.getText();
+            String th = totalHarga.getText();
+            //int f = Integer.parseInt(harga.getText());
+            //Date h = tanggal.getText();
+            
+            JOptionPane.showMessageDialog(null, "Data telah Berhasil Diinputkan dan Tersimpan pada Database");
+            clear();
+        }          
+                                          
+
+    }//GEN-LAST:event_SimpanActionPerformed
+
+    private void HitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HitungActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_HitungActionPerformed
+
+    private void jCheckBox1tesDarahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1tesDarahActionPerformed
+        // TODO add your handling code here:
+         if(jCheckBox1tesDarah.isSelected()== true){
+            tesDarah.setEditable(true); 
+    }                                                  
+        else{
+            tesDarah.setEditable(false); 
+            tesDarah.setText("");
+        }
+           
+    }//GEN-LAST:event_jCheckBox1tesDarahActionPerformed
+
+    private void jCheckBox2tesHIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2tesHIVActionPerformed
+        // TODO add your handling code here:
+         if(jCheckBox2tesHIV.isSelected() == true){
+            tesHIV.setEditable(true);
+        }
+        else {
+            tesHIV.setEditable(false);
+            tesHIV.setText("");
+        }
+                                                    
+
+    }//GEN-LAST:event_jCheckBox2tesHIVActionPerformed
+
+    private void jCheckBox4tesUrineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4tesUrineActionPerformed
+        // TODO add your handling code here:
+        if(jCheckBox4tesUrine.isSelected () == true){
+            tesUrine.setEditable(true);
+        }
+        else {
+            tesUrine.setEditable(false);
+            tesUrine.setText("");
+        }
+             
+    }//GEN-LAST:event_jCheckBox4tesUrineActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Hitung;
     private javax.swing.JTextArea Keterangan;
+    private javax.swing.JButton Simpan;
     private javax.swing.JTextField hasilPemeriksaan;
-    private javax.swing.JTextField idLab;
-    private javax.swing.JTextField idpasien;
+    private javax.swing.JTextField idDetailLab;
+    private javax.swing.JTextField idPasien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox1tesDarah;
+    private javax.swing.JCheckBox jCheckBox2tesHIV;
+    private javax.swing.JCheckBox jCheckBox3tesKimia;
+    private javax.swing.JCheckBox jCheckBox4tesUrine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -338,7 +425,7 @@ private TableModelLab_detailLab tableModellab = new TableModelLab_detailLab();
     private javax.swing.JTextField tesHIV;
     private javax.swing.JTextField tesKimia;
     private javax.swing.JTextField tesUrine;
-    private javax.swing.JTextField totalTransaksi;
+    private javax.swing.JTextField totalHarga;
     // End of variables declaration//GEN-END:variables
 
 }
