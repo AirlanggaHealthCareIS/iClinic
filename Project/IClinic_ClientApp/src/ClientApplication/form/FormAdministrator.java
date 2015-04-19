@@ -563,6 +563,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         hapusTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusTindakanButton.setText("Hapus");
+        hapusTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusTindakanButtonActionPerformed(evt);
+            }
+        });
 
         ubahTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahTindakanButton.setText("Ubah");
@@ -1287,6 +1292,28 @@ public class FormAdministrator extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
+
+    private void hapusTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusTindakanButtonActionPerformed
+        try{
+            int row = tindakanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Tindakan_tabelMaster tindakan = tableMasterTindakan.get(row);
+            tindakan.setId_Tindakan(idTindakanField.getText());
+            tindakan.setNama_Tindakan(namaTindakanField.getText());
+            tindakan.setSpesialisasi(spesialisasiComboBox.getSelectedItem().toString());
+            tindakan.setTarif(Integer.parseInt(tarifField.getText()));
+            tindakan.setKeterangan(keteranganField.getText());
+            
+            serviceAdmin.updateTindakan_tabelMaster(tindakan);
+            tableMasterTindakan.update(row, tindakan);
+            clearTindakan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusTindakanButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
