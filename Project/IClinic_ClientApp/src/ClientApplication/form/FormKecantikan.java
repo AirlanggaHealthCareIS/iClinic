@@ -13,6 +13,7 @@ package ClientApplication.form;
 
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelKecantikan_detailLayanan;
+import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Service.KecantikanService;
@@ -38,6 +39,11 @@ public class FormKecantikan extends javax.swing.JFrame {
     
     public FormKecantikan(KecantikanService kecantikanService) {
         this.kecantikanService = kecantikanService;
+        try {
+            listLayananKecantikan = kecantikanService.getLayananKecantikan();
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -446,7 +452,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLayananItemStateChanged
 
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
-        
+
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
     private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed

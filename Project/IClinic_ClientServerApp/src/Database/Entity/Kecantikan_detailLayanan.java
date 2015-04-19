@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Kecantikan_detailLayanan implements Serializable{
 
     private int Id_Det_Kesehatan;
+    private int Id_Trans_Layanan;
     private int Id_Kecantikan;
     private String Keterangan;
 
@@ -38,6 +39,14 @@ public class Kecantikan_detailLayanan implements Serializable{
 
     public void setKeterangan(String Keterangan) {
         this.Keterangan = Keterangan;
+    }
+
+    public int getId_Trans_Layanan() {
+        return Id_Trans_Layanan;
+    }
+
+    public void setId_Trans_Layanan(int Id_Trans_Layanan) {
+        this.Id_Trans_Layanan = Id_Trans_Layanan;
     }
 
 }

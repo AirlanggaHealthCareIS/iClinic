@@ -49,8 +49,9 @@ public class TableModelKecantikan_transaksiLayanan extends AbstractTableModel {
     public String getColumnName(int column) {
         switch(column){
             case 0 : return "Id_Transaksi_Layanan";
-            case 1 : return "Id_Det_Kesehatan";
-            case 2 : return "Total_Harga";
+            case 1 : return "Id_Pasien";
+            case 2 : return "Tanggal";
+            case 3 : return "Total_Harga";
             default: return null;
         }
     }
@@ -62,14 +63,15 @@ public class TableModelKecantikan_transaksiLayanan extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 2;
+        return 4;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0 : return list.get(rowIndex).getId_Transaksi_Layanan();
-            case 1 : return list.get(rowIndex).getId_Det_Kesehatan();
-            case 2 : return list.get(rowIndex).getTotal_Harga();
+            case 1 : return list.get(rowIndex).getId_Pasien();
+            case 2 : return list.get(rowIndex).getTanggal();
+            case 3 : return list.get(rowIndex).getTotal_Harga();
             default : return null;
         }
     }

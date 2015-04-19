@@ -48,9 +48,10 @@ public class TableModelKecantikan_detailLayanan extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Det_Kesehatan";
-            case 1 : return "Id_Kecantikan";
-            case 2 : return "Keterangan";
+            case 0 : return "No Detail Layanan";
+            case 1 : return "Id Transaksi Layanan";
+            case 2 : return "Id Kecantikan";
+            case 3 : return "Keterangan";
             default: return null;
         }
     }
@@ -62,14 +63,15 @@ public class TableModelKecantikan_detailLayanan extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0 : return list.get(rowIndex).getId_Det_Kesehatan();
-            case 1 : return list.get(rowIndex).getId_Kecantikan();
-            case 2 : return list.get(rowIndex).getKeterangan();
+            case 1 : return list.get(rowIndex).getId_Trans_Layanan();
+            case 2 : return list.get(rowIndex).getId_Kecantikan();
+            case 3 : return list.get(rowIndex).getKeterangan();
             default : return null;
         }
     }

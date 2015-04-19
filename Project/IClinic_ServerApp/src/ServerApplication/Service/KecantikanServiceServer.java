@@ -100,11 +100,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT JENIS_LAYANAN, TARIF FROM layanan_kecantikan");
+                    "SELECT * FROM layanan_kecantikan");
             ResultSet result = statement.executeQuery();
             List<Kecantikan_tabelMaster> jenislayanan = new ArrayList<Kecantikan_tabelMaster>();
             while(result.next()){
                 Kecantikan_tabelMaster kec = new Kecantikan_tabelMaster();
+                kec.setId_Kecantikan(result.getString("ID_KECANTIKAN"));
                 kec.setJenis_Layanan(result.getString("JENIS_LAYANAN"));
                 kec.setTarif(Integer.parseInt(result.getString("TARIF")));
                 jenislayanan.add(kec);
