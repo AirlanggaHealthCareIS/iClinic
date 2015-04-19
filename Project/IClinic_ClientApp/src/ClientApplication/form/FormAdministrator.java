@@ -1272,7 +1272,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearKecantikanButtonActionPerformed
 
     private void ubahUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahUserButtonActionPerformed
-        try{
+        if((idUserField.getText().equalsIgnoreCase(""))||(namaUserField.getText().equalsIgnoreCase(""))||(jabatanComboBox.getSelectedIndex()==0)||(usernameField.getText().equalsIgnoreCase(""))||(passwordUserPasswordField.getPassword().equals(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = userTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1288,13 +1292,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updateUser(user);
             tableMasterUser.update(row, user);
             clearUser();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahUserButtonActionPerformed
 
     private void ubahPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahPenyakitButtonActionPerformed
-        try{
+        if((idPenyakitField.getText().equalsIgnoreCase(""))||(namaPenyakitField.getText().equalsIgnoreCase(""))||(gejalaField.getText().equalsIgnoreCase(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = penyakitTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1308,8 +1318,10 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updatePenyakit_tabelMaster(penyakit);
             tableMasterPenyakit.update(row, penyakit);
             clearPenyakit();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
 
@@ -1318,7 +1330,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_hapusTindakanButtonActionPerformed
 
     private void ubahTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahTindakanButtonActionPerformed
-        try{
+        if((idTindakanField.getText().equalsIgnoreCase(""))||(namaTindakanField.getText().equalsIgnoreCase(""))||(spesialisasiComboBox.getSelectedIndex()==0)||(tarifField.getText().equalsIgnoreCase(""))||(keteranganField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR);
+        }
+        else{
+            try{
             int row = tindakanTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1334,13 +1350,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updateTindakan_tabelMaster(tindakan);
             tableMasterTindakan.update(row, tindakan);
             clearTindakan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahTindakanButtonActionPerformed
 
     private void ubahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahObatButtonActionPerformed
-        try{
+        if((idObatField.getText().equalsIgnoreCase(""))||(namaObatField.getText().equalsIgnoreCase(""))||(jenisObatField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))||(satuanComboBox.getSelectedIndex()==0)){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = obatTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1356,13 +1378,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updateObat_tabelMaster(obat);
             tableMasterObat.update(row, obat);
             clearObat();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahObatButtonActionPerformed
 
     private void ubahLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahLabButtonActionPerformed
-        try{
+        if((idLayananLabField.getText().equalsIgnoreCase(""))||(jenisPemeriksaanLabField.getText().equalsIgnoreCase(""))||(deskripsiLabField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = layananLabTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1377,13 +1405,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updateLab_tabelMaster(lab);
             tableMasterLab.update(row, lab);
             clearLab();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahLabButtonActionPerformed
 
     private void ubahKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahKecantikanButtonActionPerformed
-        try{
+        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = layananKecantikanTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1398,8 +1432,10 @@ public class FormAdministrator extends javax.swing.JFrame {
             serviceAdmin.updateKecantikan_tabelMaster(kecantikan);
             tableMasterKecantikan.update(row, kecantikan);
             clearKecantikan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ubahKecantikanButtonActionPerformed
 
