@@ -1351,7 +1351,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
 
     private void hapusTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusTindakanButtonActionPerformed
-        try{
+        if(idTindakanField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = tindakanTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1359,8 +1363,10 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
             serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
             clearTindakan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusTindakanButtonActionPerformed
 
@@ -1475,7 +1481,11 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_ubahKecantikanButtonActionPerformed
 
     private void hapusUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusUserButtonActionPerformed
-        try{
+        if(idUserField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = userTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1483,13 +1493,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDUser = tableMasterUser.get(row).getId_User();
             serviceAdmin.deleteUser(hapusIDUser);
             clearUser();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusUserButtonActionPerformed
 
     private void hapusPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusPenyakitButtonActionPerformed
-        try{
+        if(idPenyakitField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = penyakitTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1497,13 +1513,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDPenyakit = tableMasterPenyakit.get(row).getId_Penyakit();
             serviceAdmin.deletePenyakit_tabelMaster(hapusIDPenyakit);
             clearPenyakit();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusPenyakitButtonActionPerformed
 
     private void hapusObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusObatButtonActionPerformed
-        try{
+        if(idObatField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = obatTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1511,13 +1533,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDObat = tableMasterObat.get(row).getId_Obat();
             serviceAdmin.deleteObat_tabelMaster(hapusIDObat);
             clearObat();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusObatButtonActionPerformed
 
     private void hapusLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusLabButtonActionPerformed
-        try{
+        if(idLayananLabField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = layananLabTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1525,13 +1553,19 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDLab = tableMasterLab.get(row).getId_Lab();
             serviceAdmin.deleteLab_tabelMaster(hapusIDLab);
             clearLab();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusLabButtonActionPerformed
 
     private void hapusKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusKecantikanButtonActionPerformed
-        try{
+        if(idLayananKecantikanField.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Pilih data yang ingin dihapus terlebih dahulu!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
             int row = layananKecantikanTabel.getSelectedRow();
             if(row == -1){
                 return;
@@ -1539,8 +1573,10 @@ public class FormAdministrator extends javax.swing.JFrame {
             String hapusIDKecantikan = tableMasterKecantikan.get(row).getId_Kecantikan();
             serviceAdmin.deleteKecantikan_tabelMaster(hapusIDKecantikan);
             clearKecantikan();
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_hapusKecantikanButtonActionPerformed
 
