@@ -1,6 +1,5 @@
 package ClientApplication.form;
 
-import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_tabelMaster;
 import ClientApplication.model.TableModelLab_tabelMaster;
@@ -14,9 +13,7 @@ import ClientApplication.model.TableModelUser;
 import Database.Entity.Tindakan_tabelMaster;
 import Database.Entity.User;
 import Database.Service.AdministratorService;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -286,6 +283,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahUserButton.setText("Ubah");
+        ubahUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahUserButtonActionPerformed(evt);
+            }
+        });
 
         hapusUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusUserButton.setText("Hapus");
@@ -1238,6 +1240,28 @@ public class FormAdministrator extends javax.swing.JFrame {
     private void clearKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearKecantikanButtonActionPerformed
         clearKecantikan();
     }//GEN-LAST:event_clearKecantikanButtonActionPerformed
+
+    private void ubahUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahUserButtonActionPerformed
+        try{
+            int row = userTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            User user = tableMasterUser.get(row);
+            user.setId_User(idUserField.getText());
+            user.setNama_User(namaUserField.getText());
+            user.setJabatan(jabatanComboBox.getSelectedItem().toString());
+            user.setUsername(usernameField.getText());
+            user.setPassword(passwordUserPasswordField.getPassword().toString());
+            
+            serviceAdmin.updateUser(user);
+            tableMasterUser.update(row, user);
+            clearUser();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_ubahUserButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
