@@ -15,6 +15,7 @@ import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelUSG;
 import Database.Entity.USG;
 import Database.Service.USGService;
+import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -232,7 +233,32 @@ public class FormUSG extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Data Anda Berhasil Di Inputkan");
             clear();
-        }          
+        }
+        else{
+            if(!isi1){
+                idpasien.setBackground(Color.red);
+            }
+            if(!isi2){
+                namapasien.setBackground(Color.red);
+            }
+            if(!isi3){
+                idusg.setBackground(Color.red);
+            }
+            if(!isi4){
+                hasil.setBackground(Color.red);
+            }
+            if(!isi5){
+                deskrip.setBackground(Color.red);
+            }
+            if(!isi6){
+                harga.setBackground(Color.red);
+            }
+            if(!isi7){
+                tanggal.setBackground(Color.red);
+            }
+            JOptionPane.showMessageDialog(null, "Ada kesalahan pada kolom isian Anda. Mohon memperbaiki field yang berwarna merah untuk melanjutkan.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_simpanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
