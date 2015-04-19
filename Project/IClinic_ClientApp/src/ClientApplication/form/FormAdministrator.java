@@ -1,6 +1,5 @@
 package ClientApplication.form;
 
-import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_tabelMaster;
 import ClientApplication.model.TableModelLab_tabelMaster;
@@ -14,9 +13,7 @@ import ClientApplication.model.TableModelUser;
 import Database.Entity.Tindakan_tabelMaster;
 import Database.Entity.User;
 import Database.Service.AdministratorService;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -286,9 +283,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahUserButton.setText("Ubah");
+        ubahUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahUserButtonActionPerformed(evt);
+            }
+        });
 
         hapusUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusUserButton.setText("Hapus");
+        hapusUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusUserButtonActionPerformed(evt);
+            }
+        });
 
         clearUserButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearUserButton.setText("Clear");
@@ -428,9 +435,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         hapusPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusPenyakitButton.setText("Hapus");
+        hapusPenyakitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusPenyakitButtonActionPerformed(evt);
+            }
+        });
 
         ubahPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahPenyakitButton.setText("Ubah");
+        ubahPenyakitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahPenyakitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout penyakitPanelLayout = new javax.swing.GroupLayout(penyakitPanel);
         penyakitPanel.setLayout(penyakitPanelLayout);
@@ -556,9 +573,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         hapusTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusTindakanButton.setText("Hapus");
+        hapusTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusTindakanButtonActionPerformed(evt);
+            }
+        });
 
         ubahTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahTindakanButton.setText("Ubah");
+        ubahTindakanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahTindakanButtonActionPerformed(evt);
+            }
+        });
 
         clearTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         clearTindakanButton.setText("Clear");
@@ -688,9 +715,19 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahObatButton.setText("Ubah");
+        ubahObatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahObatButtonActionPerformed(evt);
+            }
+        });
 
         hapusObatButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusObatButton.setText("Hapus");
+        hapusObatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusObatButtonActionPerformed(evt);
+            }
+        });
 
         idObatLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idObatLabel.setText("ID Obat");
@@ -837,6 +874,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahLabButton.setText("Ubah");
+        ubahLabButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahLabButtonActionPerformed(evt);
+            }
+        });
 
         hapusLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusLabButton.setText("Hapus");
@@ -975,6 +1017,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahKecantikanButton.setText("Ubah");
+        ubahKecantikanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahKecantikanButtonActionPerformed(evt);
+            }
+        });
 
         hapusKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusKecantikanButton.setText("Hapus");
@@ -1238,6 +1285,226 @@ public class FormAdministrator extends javax.swing.JFrame {
     private void clearKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearKecantikanButtonActionPerformed
         clearKecantikan();
     }//GEN-LAST:event_clearKecantikanButtonActionPerformed
+
+    private void ubahUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahUserButtonActionPerformed
+        if((idUserField.getText().equalsIgnoreCase(""))||(namaUserField.getText().equalsIgnoreCase(""))||(jabatanComboBox.getSelectedIndex()==0)||(usernameField.getText().equalsIgnoreCase(""))||(passwordUserPasswordField.getPassword().equals(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
+            int row = userTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            User user = tableMasterUser.get(row);
+            user.setId_User(idUserField.getText());
+            user.setNama_User(namaUserField.getText());
+            user.setJabatan(jabatanComboBox.getSelectedItem().toString());
+            user.setUsername(usernameField.getText());
+            user.setPassword(passwordUserPasswordField.getPassword().toString());
+            
+            serviceAdmin.updateUser(user);
+            tableMasterUser.update(row, user);
+            clearUser();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahUserButtonActionPerformed
+
+    private void ubahPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahPenyakitButtonActionPerformed
+        if((idPenyakitField.getText().equalsIgnoreCase(""))||(namaPenyakitField.getText().equalsIgnoreCase(""))||(gejalaField.getText().equalsIgnoreCase(""))){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
+            int row = penyakitTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Penyakit_tabelMaster penyakit = tableMasterPenyakit.get(row);
+            penyakit.setId_Penyakit(idPenyakitField.getText());
+            penyakit.setPenyakit(namaPenyakitField.getText());
+            penyakit.setGejala(gejalaField.getText());
+            
+            serviceAdmin.updatePenyakit_tabelMaster(penyakit);
+            tableMasterPenyakit.update(row, penyakit);
+            clearPenyakit();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
+
+    private void hapusTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusTindakanButtonActionPerformed
+        try{
+            int row = tindakanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
+            serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
+            clearTindakan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusTindakanButtonActionPerformed
+
+    private void ubahTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahTindakanButtonActionPerformed
+        if((idTindakanField.getText().equalsIgnoreCase(""))||(namaTindakanField.getText().equalsIgnoreCase(""))||(spesialisasiComboBox.getSelectedIndex()==0)||(tarifField.getText().equalsIgnoreCase(""))||(keteranganField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR);
+        }
+        else{
+            try{
+            int row = tindakanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Tindakan_tabelMaster tindakan = tableMasterTindakan.get(row);
+            tindakan.setId_Tindakan(idTindakanField.getText());
+            tindakan.setNama_Tindakan(namaTindakanField.getText());
+            tindakan.setSpesialisasi(spesialisasiComboBox.getSelectedItem().toString());
+            tindakan.setTarif(Integer.parseInt(tarifField.getText()));
+            tindakan.setKeterangan(keteranganField.getText());
+            
+            serviceAdmin.updateTindakan_tabelMaster(tindakan);
+            tableMasterTindakan.update(row, tindakan);
+            clearTindakan();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahTindakanButtonActionPerformed
+
+    private void ubahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahObatButtonActionPerformed
+        if((idObatField.getText().equalsIgnoreCase(""))||(namaObatField.getText().equalsIgnoreCase(""))||(jenisObatField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))||(satuanComboBox.getSelectedIndex()==0)){
+           JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
+            int row = obatTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Obat_tabelMaster obat = tableMasterObat.get(row);
+            obat.setId_Obat(idObatField.getText());
+            obat.setNama_Obat(namaObatField.getText());
+            obat.setJenis_Obat(jenisObatField.getText());
+            obat.setHarga_Obat(Integer.parseInt(hargaObatField.getText()));
+            obat.setSatuan(satuanComboBox.getSelectedItem().toString());
+            
+            serviceAdmin.updateObat_tabelMaster(obat);
+            tableMasterObat.update(row, obat);
+            clearObat();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahObatButtonActionPerformed
+
+    private void ubahLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahLabButtonActionPerformed
+        if((idLayananLabField.getText().equalsIgnoreCase(""))||(jenisPemeriksaanLabField.getText().equalsIgnoreCase(""))||(deskripsiLabField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
+            int row = layananLabTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Lab_tabelMaster lab = tableMasterLab.get(row);
+            lab.setId_Lab(idLayananLabField.getText());
+            lab.setJenis_Pemeriksaan(jenisPemeriksaanLabField.getText());
+            lab.setHarga(Integer.parseInt(hargaLabField.getText()));
+            lab.setDeskripsi(deskripsiLabField.getText());
+            
+            serviceAdmin.updateLab_tabelMaster(lab);
+            tableMasterLab.update(row, lab);
+            clearLab();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahLabButtonActionPerformed
+
+    private void ubahKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahKecantikanButtonActionPerformed
+        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifField.getText().equalsIgnoreCase(""))){
+            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{
+            int row = layananKecantikanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Kecantikan_tabelMaster kecantikan = tableMasterKecantikan.get(row);
+            kecantikan.setId_Kecantikan(idLayananKecantikanField.getText());
+            kecantikan.setJenis_Layanan(jenisLayananKecantikanField.getText());
+            kecantikan.setTarif(Integer.parseInt(tarifKecantikanField.getText()));
+            kecantikan.setDeskripsi(deskripsiKecantikanField.getText());
+            
+            serviceAdmin.updateKecantikan_tabelMaster(kecantikan);
+            tableMasterKecantikan.update(row, kecantikan);
+            clearKecantikan();
+            }catch(RemoteException exception){
+                exception.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Gagal meng-update data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ubahKecantikanButtonActionPerformed
+
+    private void hapusUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusUserButtonActionPerformed
+        try{
+            int row = userTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDUser = tableMasterUser.get(row).getId_User();
+            serviceAdmin.deleteUser(hapusIDUser);
+            clearUser();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusUserButtonActionPerformed
+
+    private void hapusPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusPenyakitButtonActionPerformed
+        try{
+            int row = penyakitTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDPenyakit = tableMasterPenyakit.get(row).getId_Penyakit();
+            serviceAdmin.deletePenyakit_tabelMaster(hapusIDPenyakit);
+            clearPenyakit();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusPenyakitButtonActionPerformed
+
+    private void hapusObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusObatButtonActionPerformed
+        try{
+            int row = obatTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDObat = tableMasterObat.get(row).getId_Obat();
+            serviceAdmin.deleteObat_tabelMaster(hapusIDObat);
+            clearObat();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusObatButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");

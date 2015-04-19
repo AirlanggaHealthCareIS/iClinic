@@ -17,9 +17,9 @@ public interface AdministratorService extends Remote {
 
     void updateUser(User user) throws RemoteException;
 
-    void deleteUser(int Id_User) throws RemoteException;
+    void deleteUser(String Id_User) throws RemoteException;
 
-    User getUser(int Id_User) throws RemoteException;
+    User getUser(String Id_User) throws RemoteException;
 
     List<User> getUser() throws RemoteException;
     
@@ -27,9 +27,9 @@ public interface AdministratorService extends Remote {
 
     void updateObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException;
 
-    void deleteObat_tabelMaster(int Id_Obat) throws RemoteException;
+    void deleteObat_tabelMaster(String Id_Obat) throws RemoteException;
 
-    Obat_tabelMaster getObat_tabelMaster(int Id_Obat) throws RemoteException;
+    Obat_tabelMaster getObat_tabelMaster(String Id_Obat) throws RemoteException;
 
     List<Obat_tabelMaster> getObat_tabelMaster() throws RemoteException;
     
@@ -37,9 +37,9 @@ public interface AdministratorService extends Remote {
 
     void updatePenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException;
 
-    void deletePenyakit_tabelMaster(int Id_Penyakit) throws RemoteException;
+    void deletePenyakit_tabelMaster(String Id_Penyakit) throws RemoteException;
 
-    Penyakit_tabelMaster getPenyakit_tabelMaster(int Id_Penyakit) throws RemoteException;
+    Penyakit_tabelMaster getPenyakit_tabelMaster(String Id_Penyakit) throws RemoteException;
 
     List<Penyakit_tabelMaster> getPenyakit_tabelMaster() throws RemoteException;
     
@@ -47,9 +47,9 @@ public interface AdministratorService extends Remote {
 
     void updateTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException;
 
-    void deleteTindakan_tabelMaster(int Id_Tindakan) throws RemoteException;
+    void deleteTindakan_tabelMaster(String Id_Tindakan) throws RemoteException;
 
-    Tindakan_tabelMaster getTindakan_tabelMaster(int Id_Tindakan) throws RemoteException;
+    Tindakan_tabelMaster getTindakan_tabelMaster(String Id_Tindakan) throws RemoteException;
 
     List<Tindakan_tabelMaster> getTindakan_tabelMaster() throws RemoteException;
     
@@ -57,9 +57,9 @@ public interface AdministratorService extends Remote {
 
     void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException;
 
-    void deleteLab_tabelMaster(int Id_Lab) throws RemoteException;
+    void deleteLab_tabelMaster(String Id_Lab) throws RemoteException;
 
-    Lab_tabelMaster getLab_tabelMaster(int Id_Lab) throws RemoteException;
+    Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
 
     List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException;
     
@@ -67,9 +67,9 @@ public interface AdministratorService extends Remote {
 
     void updateKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException;
 
-    void deleteKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException;
+    void deleteKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException;
 
-    Kecantikan_tabelMaster getKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException;
+    Kecantikan_tabelMaster getKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException;
 
     List<Kecantikan_tabelMaster> getKecantikan_tabelMaster() throws RemoteException;
 

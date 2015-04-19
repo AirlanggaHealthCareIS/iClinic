@@ -70,18 +70,56 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updateUser(User user) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel User");
-
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE user SET NAMA_USER = ?, JABATAN = ?, USERNAME = ?, PASSWORD = ?" + "WHERE ID_USER = ?");
+        
+            statement.setString(1, user.getNama_User());
+            statement.setString(2, user.getJabatan());
+            statement.setString(3, user.getUsername());
+            statement.setString(4, user.getPassword());
+            statement.setString(5, user.getId_User());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteUser(int Id_User) throws RemoteException {
-
+    public void deleteUser(String Id_User) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel User");
 
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM user WHERE ID_USER = ?");
+            
+            statement.setString(1, Id_User);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public User getUser(int Id_User) throws RemoteException {
+    public User getUser(String Id_User) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel User");
 
@@ -130,18 +168,56 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updateObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel Obat");
-
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE obat SET NAMA_OBAT = ?, JENIS_OBAT = ?, HARGA_OBAT = ?, SATUAN = ?" + "WHERE ID_OBAT = ?");
+            
+            statement.setString(1, obat.getNama_Obat());
+            statement.setString(2, obat.getJenis_Obat());
+            statement.setInt(3, obat.getHarga_Obat());
+            statement.setString(4, obat.getSatuan());
+            statement.setString(5, obat.getId_Obat());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteObat_tabelMaster(int Id_Obat) throws RemoteException {
-
+    public void deleteObat_tabelMaster(String Id_Obat) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel Obat");
 
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM obat WHERE ID_OBAT = ?");
+            
+            statement.setString(1, Id_Obat);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public Obat_tabelMaster getObat_tabelMaster(int Id_Obat) throws RemoteException {
+    public Obat_tabelMaster getObat_tabelMaster(String Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Obat");
 
@@ -183,16 +259,54 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updatePenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel Penyakit_tabelMaster");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE penyakit SET NAMA_PENYAKIT = ?, GEJALA = ?" + "WHERE ID_PENYAKIT = ?");
+            
+            statement.setString(1, penyakit.getPenyakit());
+            statement.setString(2, penyakit.getGejala());
+            statement.setString(3, penyakit.getId_Penyakit());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deletePenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
-
+    public void deletePenyakit_tabelMaster(String Id_Penyakit) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel Penyakit_tabelMaster");
+
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM penyakit WHERE ID_PENYAKIT = ?");
+            
+            statement.setString(1, Id_Penyakit);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public Penyakit_tabelMaster getPenyakit_tabelMaster(int Id_Penyakit) throws RemoteException {
+    public Penyakit_tabelMaster getPenyakit_tabelMaster(String Id_Penyakit) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Penyakit_tabelMaster");
         Penyakit_tabelMaster penyakit = null;
@@ -259,16 +373,56 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updateTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel Tindakan");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE tindakan SET SPESIALISASI = ?, NAMA_TINDAKAN = ?, TARIF = ?, KETERANGAN = ?" + "WHERE ID_TINDAKAN = ?");
+        
+            statement.setString(1, tindakan.getSpesialisasi());
+            statement.setString(2, tindakan.getNama_Tindakan());
+            statement.setInt(3, tindakan.getTarif());
+            statement.setString(4, tindakan.getKeterangan());
+            statement.setString(5, tindakan.getId_Tindakan());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
-
+    public void deleteTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel Tindakan");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM tindakan WHERE ID_TINDAKAN = ?");
+            
+            statement.setString(1, Id_Tindakan);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public Tindakan_tabelMaster getTindakan_tabelMaster(int Id_Tindakan) throws RemoteException {
+    public Tindakan_tabelMaster getTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Tindakan");
         Tindakan_tabelMaster tindakan = null;
@@ -338,16 +492,37 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel Laboratorium");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE laboratorium SET JENIS_PEMERIKSAAN = ?, HARGA = ?, DESKRIPSI = ?" + "WHERE ID_LAB = ?");
+            
+            statement.setString(1, lab.getJenis_Pemeriksaan());
+            statement.setInt(2, lab.getHarga());
+            statement.setString(3, lab.getDeskripsi());
+            statement.setString(4, lab.getId_Lab());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteLab_tabelMaster(int Id_Lab) throws RemoteException {
+    public void deleteLab_tabelMaster(String Id_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Laboratorium");
     }
 
-    public Lab_tabelMaster getLab_tabelMaster(int Id_Lab) throws RemoteException {
+    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Laboratorium");
         Lab_tabelMaster lab = null;
@@ -417,18 +592,38 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void updateKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Update pada Tabel Kecantikan");
-
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE JENIS_LAYANAN = ?, TARIF = ?, DESKRIPSI = ?" + "WHERE ID_KECANTIKAN = ?");
+            
+            statement.setString(1, kecantikan.getJenis_Layanan());
+            statement.setInt(2, kecantikan.getTarif());
+            statement.setString(3, kecantikan.getDeskripsi());
+            statement.setString(4, kecantikan.getId_Kecantikan());
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
-    public void deleteKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException {
+    public void deleteKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Kecantikan");
 
     }
 
-    public Kecantikan_tabelMaster getKecantikan_tabelMaster(int Id_Kecantikan) throws RemoteException {
+    public Kecantikan_tabelMaster getKecantikan_tabelMaster(String Id_Kecantikan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Kecantikan");
 
@@ -468,4 +663,5 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             }
         }
     }
+
 }
