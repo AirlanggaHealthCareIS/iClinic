@@ -1336,7 +1336,17 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
 
     private void hapusTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusTindakanButtonActionPerformed
-        
+        try{
+            int row = tindakanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
+            serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
+            clearTindakan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
     }//GEN-LAST:event_hapusTindakanButtonActionPerformed
 
     private void ubahTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahTindakanButtonActionPerformed

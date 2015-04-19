@@ -383,8 +383,26 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public void deleteTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Delete pada Tabel Tindakan");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELET FROM tindakan WHERE ID_TINDAKAN = ?");
+            
+            statement.setString(1, Id_Tindakan);
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public Tindakan_tabelMaster getTindakan_tabelMaster(String Id_Tindakan) throws RemoteException {
