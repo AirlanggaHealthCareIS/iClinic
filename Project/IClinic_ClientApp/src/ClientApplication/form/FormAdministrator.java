@@ -433,6 +433,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahPenyakitButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahPenyakitButton.setText("Ubah");
+        ubahPenyakitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahPenyakitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout penyakitPanelLayout = new javax.swing.GroupLayout(penyakitPanel);
         penyakitPanel.setLayout(penyakitPanelLayout);
@@ -1262,6 +1267,26 @@ public class FormAdministrator extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }//GEN-LAST:event_ubahUserButtonActionPerformed
+
+    private void ubahPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahPenyakitButtonActionPerformed
+        try{
+            int row = penyakitTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Penyakit_tabelMaster penyakit = tableMasterPenyakit.get(row);
+            penyakit.setId_Penyakit(idPenyakitField.getText());
+            penyakit.setPenyakit(namaPenyakitField.getText());
+            penyakit.setGejala(gejalaField.getText());
+            
+            serviceAdmin.updatePenyakit_tabelMaster(penyakit);
+            tableMasterPenyakit.update(row, penyakit);
+            clearPenyakit();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_ubahPenyakitButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
