@@ -1030,6 +1030,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         hapusKecantikanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusKecantikanButton.setText("Hapus");
+        hapusKecantikanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusKecantikanButtonActionPerformed(evt);
+            }
+        });
 
         idLayananKecantikanLabel.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         idLayananKecantikanLabel.setText("ID Layanan Kecantikan");
@@ -1524,6 +1529,20 @@ public class FormAdministrator extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }//GEN-LAST:event_hapusLabButtonActionPerformed
+
+    private void hapusKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusKecantikanButtonActionPerformed
+        try{
+            int row = layananKecantikanTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            String hapusIDKecantikan = tableMasterKecantikan.get(row).getId_Kecantikan();
+            serviceAdmin.deleteKecantikan_tabelMaster(hapusIDKecantikan);
+            clearKecantikan();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_hapusKecantikanButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
