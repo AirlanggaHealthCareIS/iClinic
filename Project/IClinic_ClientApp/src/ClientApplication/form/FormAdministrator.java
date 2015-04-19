@@ -859,6 +859,11 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         ubahLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         ubahLabButton.setText("Ubah");
+        ubahLabButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahLabButtonActionPerformed(evt);
+            }
+        });
 
         hapusLabButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusLabButton.setText("Hapus");
@@ -1350,6 +1355,27 @@ public class FormAdministrator extends javax.swing.JFrame {
             exception.printStackTrace();
         }
     }//GEN-LAST:event_ubahObatButtonActionPerformed
+
+    private void ubahLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahLabButtonActionPerformed
+        try{
+            int row = layananLabTabel.getSelectedRow();
+            if(row == -1){
+                return;
+            }
+            
+            Lab_tabelMaster lab = tableMasterLab.get(row);
+            lab.setId_Lab(idLayananLabField.getText());
+            lab.setJenis_Pemeriksaan(jenisPemeriksaanLabField.getText());
+            lab.setHarga(Integer.parseInt(hargaLabField.getText()));
+            lab.setDeskripsi(deskripsiLabField.getText());
+            
+            serviceAdmin.updateLab_tabelMaster(lab);
+            tableMasterLab.update(row, lab);
+            clearLab();
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+    }//GEN-LAST:event_ubahLabButtonActionPerformed
 
     private void clearUser(){
         idUserField.setText("");
