@@ -64,7 +64,6 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         PasienBaru = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        tombolDaftar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -82,11 +81,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         box_Jenis_Kelamin = new javax.swing.JComboBox();
         Formatted_Tanggal_Daftar = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-<<<<<<< Updated upstream
         DateChooser_Tanggal_Lahir = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-=======
->>>>>>> Stashed changes
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No_Hp = new javax.swing.JLabel();
@@ -114,15 +110,6 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        tombolDaftar.setText("Daftar");
-        tombolDaftar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tombolDaftarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(tombolDaftar);
-        tombolDaftar.setBounds(60, 580, 230, 40);
-
         jLabel3.setText("ID_Pasien");
         jPanel3.add(jLabel3);
         jLabel3.setBounds(40, 290, 70, 20);
@@ -143,9 +130,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(40, 440, 90, 20);
         jPanel3.add(field_ID_Pasien);
-        field_ID_Pasien.setBounds(140, 290, 150, 28);
+        field_ID_Pasien.setBounds(140, 290, 150, 20);
         jPanel3.add(field_No_Ktp);
-        field_No_Ktp.setBounds(140, 320, 150, 28);
+        field_No_Ktp.setBounds(140, 320, 150, 20);
 
         field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,13 +140,13 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Nama_Pasien);
-        field_Nama_Pasien.setBounds(140, 350, 150, 28);
+        field_Nama_Pasien.setBounds(140, 350, 150, 20);
         jPanel3.add(field_Alamat);
-        field_Alamat.setBounds(140, 380, 150, 28);
+        field_Alamat.setBounds(140, 380, 150, 20);
         jPanel3.add(field_Usia);
-        field_Usia.setBounds(140, 470, 150, 28);
+        field_Usia.setBounds(140, 470, 150, 20);
         jPanel3.add(field_No_HP);
-        field_No_HP.setBounds(140, 500, 150, 28);
+        field_No_HP.setBounds(140, 500, 150, 20);
 
         jLabel8.setText("Usia");
         jPanel3.add(jLabel8);
@@ -175,12 +162,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         box_Jenis_Kelamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         box_Jenis_Kelamin.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
             }
         });
         box_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +176,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Jenis_Kelamin);
-        box_Jenis_Kelamin.setBounds(140, 530, 150, 27);
+        box_Jenis_Kelamin.setBounds(140, 530, 150, 20);
 
         Formatted_Tanggal_Daftar.setEditable(false);
         Formatted_Tanggal_Daftar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
@@ -200,28 +187,24 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Formatted_Tanggal_Daftar);
-        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 28);
+        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 20);
 
         jLabel11.setText("Tanggal Lahir");
         jPanel3.add(jLabel11);
-<<<<<<< Updated upstream
         jLabel11.setBounds(40, 410, 80, 14);
 
         DateChooser_Tanggal_Lahir.setDateFormatString("yyyy-MM-dd");
         jPanel3.add(DateChooser_Tanggal_Lahir);
         DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
-=======
-        jLabel11.setBounds(40, 410, 80, 16);
->>>>>>> Stashed changes
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Daftar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel3.add(jButton1);
-        jButton1.setBounds(310, 580, 73, 23);
+        jButton1.setBounds(140, 563, 150, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -324,7 +307,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Cari);
-        Cari.setBounds(970, 490, 120, 29);
+        Cari.setBounds(970, 490, 120, 27);
 
         DaftarAntrian.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         DaftarAntrian.setText("Cari");
@@ -334,7 +317,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(DaftarAntrian);
-        DaftarAntrian.setBounds(320, 310, 97, 29);
+        DaftarAntrian.setBounds(320, 310, 97, 27);
 
         jTextField7.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -363,121 +346,6 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tombolDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolDaftarActionPerformed
-        boolean isi1 = false;
-        boolean isi2 = false;
-        boolean isi3 = false;
-        boolean isi4 = false;
-        boolean isi5 = false;
-        boolean isi6 = false;
-        boolean isi7 = false;
-        boolean isi8 = false;
-        boolean isi9 = false;
-
-        if(!field_ID_Pasien.getText().equals("")&&field_ID_Pasien.getText().length()<=12){
-            isi1 = true;
-        }
-        if(!field_No_Ktp.getText().equals("")&&field_No_Ktp.getText().length()<=16){
-            isi2 = true;
-        }
-        if((!field_Nama_Pasien.getText().equals(""))&&field_Nama_Pasien.getText().length()<=30){
-            isi3 = true;
-        }
-        if((!field_Alamat.getText().equals(""))&&field_Alamat.getText().length()<=100){
-            isi4 = true;
-        }
-        if(!DateChooser_Tanggal_Lahir.getCalendar().equals("")){
-            isi5 = true;
-        }
-        if(!Formatted_Tanggal_Daftar.getText().equals("")){
-            isi6 = true;
-        }
-        if(!field_Usia.getText().equals("")){
-            isi7 = true;
-        }
-        if(!field_No_HP.getText().equals("")){
-            isi8 = true;
-        }
-        if(!box_Jenis_Kelamin.getItemAt(box_Jenis_Kelamin.getSelectedIndex()).toString().equals("Pilih")){
-            isi9 = true;
-        }
-        if(isi1&&isi2&&isi3&&isi4&&isi5&&isi6&&isi7&&isi8&&isi9){
-
-            String id_pasien = (field_ID_Pasien.getText());
-            String no_ktp = (field_No_Ktp.getText());
-            String nama_pasien = field_Nama_Pasien.getText();
-            String Alamat = field_Alamat.getText();
-            int usia = Integer.parseInt(field_Usia.getText());
-            String No_HP = (field_No_HP.getText());
-            String isi_Box_Jenis_Kelamin = box_Jenis_Kelamin.getSelectedItem().toString();
-            
-//            try{
-//                Pasien Pasien = new Pasien();
-//                Pasien.setId_Pasien(id_pasien);
-//                Pasien.setNo_Ktp(no_ktp);
-//                Pasien.setNama_Pasien(nama_pasien);
-//                Pasien.setAlamat(Alamat);
-//                Pasien.setTanggal_Lahir(DateChooser_Tanggal_Lahir.getDate());
-//                Pasien.setTanggal_Daftar((Date)Formatted_Tanggal_Daftar.getValue());
-//                Pasien.setUsia(usia);
-//                Pasien.setNo_HP(No_HP);
-//                Pasien.setJenis_Kelamin(isi_Box_Jenis_Kelamin);
-//                
-//                PS.insertPasien(Pasien);
-                        
-//                if(PS.insertPasien(Pasien)!=null){
-//                    int opsi = JOptionPane.showConfirmDialog(null, "Terdaftar. Apakah Anda akan menambahkan data lagi?","", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-//                    if(opsi==0){
-//                        refresh();
-//                    }
-//                    else{
-//                        f.setVisible(true);
-//                        this.dispose();
-//                    }  
-//                   }
-//                }
-//                catch(RemoteException exception){
-//                exception.printStackTrace();
-//            } catch(NullPointerException ex){
-//                ex.printStackTrace();
-//            }
-        
-
-        }
-        else{
-            if(!isi1){
-                field_ID_Pasien.setBackground(Color.red);
-            }
-            if(!isi2){
-                field_No_Ktp.setBackground(Color.red);
-            }
-            if(!isi3){
-                field_Nama_Pasien.setBackground(Color.red);
-            }
-
-            if(!isi4){
-                field_Alamat.setBackground(Color.red);
-            }
-            if(!isi5){
-                DateChooser_Tanggal_Lahir.setBackground(Color.red);
-            }
-            if(!isi6){
-                Formatted_Tanggal_Daftar.setBackground(Color.red);
-            }
-            if(!isi7){
-                field_Usia.setBackground(Color.red);
-            }
-
-            if(!isi8){
-                field_No_HP.setBackground(Color.red);
-            }
-             if(!isi9){
-                box_Jenis_Kelamin.setBackground(Color.red);
-            }
-            JOptionPane.showMessageDialog(null, "Ada kesalahan pada kolom isian Anda. Mohon memperbaiki field yang berwarna merah untuk melanjutkan.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_tombolDaftarActionPerformed
 
     private void field_Nama_PasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_Nama_PasienActionPerformed
         // TODO add your handling code here:
@@ -569,6 +437,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JLabel Alamat;
     private javax.swing.JButton Cari;
     private javax.swing.JButton DaftarAntrian;
+    private com.toedter.calendar.JDateChooser DateChooser_Tanggal_Lahir;
     private javax.swing.JFormattedTextField Formatted_Tanggal_Daftar;
     private javax.swing.JLabel Gender;
     private javax.swing.JLabel Id_Pasien;
@@ -605,6 +474,5 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JButton tombolDaftar;
     // End of variables declaration//GEN-END:variables
 }
