@@ -5,7 +5,13 @@ S1 - Sistem Informasi
 Skenario 1 = Data pasien baru terdaftar
 given = sudah membuka halaman pendaftaran pasien baru
 when  = add new pasien
-then  = input data pasien baru
-when  = data complete
-then  = I click daftar
-and   = I should see " Terdaftar"
+and  = input id pasien baru
+and  = input nomor ktp pasien baru
+and  = input nama pasien baru
+and  = input alamat pasien baru
+and  = input tempat dan tanggal lahir pasien baru
+and  = input usia pasien baru
+and  = input nomor HP pasien baru
+and  = input jenis kelamin pasien baru
+and  = I click daftar
+then   = I should see " Terdaftar"
