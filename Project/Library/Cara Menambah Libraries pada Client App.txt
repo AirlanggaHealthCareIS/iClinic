@@ -1,0 +1,26 @@
+Petunjuk Menambahkan Library pada project
+
+Buka Folder Github yang ada di C(kalo ada yg dipindah ya yg disitu berarti)
+1. copy File Jasper Report ke tempat lain selain di github
+2. Extract file jasper Report
+
+Buka Netbeans
+1. Pada Client App cari folder Libraries
+2. Klik kanan folder libraries
+3. Klik Add Jar/Folder
+4. Cari tempat menyimpan jasper Report (Tempat kalian meng-extract Jasper Report)
+5. Klik folder dist
+6. Seleksi semua jar yg ada di situ ( jasperreport, jasperreport-applet,
+   jasperreport-fonts, jasperreport-javaflow)
+7. Klik Open
+8. Ulangi langkah 2, 3, 4
+9. Klik folder lib
+10. Seleksi semua jar yg ada di situ (ngga bisa disebut satu satu karena
+    banyak)
+11. Klik Open
+
+Selamat Anda Berhasil! ^^
+
+best regards,
+Tiara Ratna Sari
+
