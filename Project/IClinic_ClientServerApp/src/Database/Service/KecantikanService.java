@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Database.Service;
 
 import Database.Entity.Kecantikan_detailLayanan;
@@ -17,8 +16,9 @@ import java.util.List;
  * @author ayundhapus
  */
 public interface KecantikanService extends Remote {
+
     List<Kecantikan_tabelMaster> getLayananKecantikan() throws RemoteException;
-    
+
     Kecantikan_detailLayanan insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
 
     void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
@@ -38,4 +38,8 @@ public interface KecantikanService extends Remote {
     Kecantikan_transaksiLayanan getKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException;
 
     List<Kecantikan_transaksiLayanan> getKecantikan_transaksiLayanan() throws RemoteException;
+
+    //-----Pembayaran-----//
+    String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
+
 }
