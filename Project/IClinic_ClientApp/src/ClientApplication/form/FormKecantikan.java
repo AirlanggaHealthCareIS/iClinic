@@ -473,6 +473,10 @@ public class FormKecantikan extends javax.swing.JFrame {
                 Pembayaran pembayaran = kecantikanService.getPembayaranDariPembayaran(idPembayaran);
                 kecantikanService.updatePembayaranDariPembayaran(pembayaran, idTransaksiLayananKecantikan, harga);
             }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = kecantikanService.getAutoNumberDariPembayaran();
+                kecantikanService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idTransaksiLayananKecantikan, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
         }
