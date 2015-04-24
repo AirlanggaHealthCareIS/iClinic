@@ -51,15 +51,14 @@ public class TableModelRekam_Medis extends AbstractTableModel {
             case 0 : return "Id_Rekam";
             case 1 : return "Id_Diagnosa";
             case 2 : return "Id_Pasien";
-            case 3 : return "No_Detail";
-            case 4 : return "Tgl_Rekam";
-            case 5 : return "Tinggi";
-            case 6 : return "Berat";
-            case 7 : return "Tekanan_Darah";
-            case 8 : return "Hasil_Pemerikasaan";
-            case 9 : return "Alergi";
-            case 10 : return "Total_Harga";
-            case 11 : return "Layanan_Tambahan";
+            case 3 : return "Tgl_Rekam";
+            case 4 : return "Tinggi";
+            case 5 : return "Berat";
+            case 6 : return "Tekanan_Darah";
+            case 7 : return "Hasil_Pemerikasaan";
+            case 8 : return "Alergi";
+            case 9 : return "Total_Harga";
+            case 10 : return "Layanan_Tambahan";
             default: return null;
         }
     }
@@ -69,7 +68,7 @@ public class TableModelRekam_Medis extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 12;
+        return 11;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -77,15 +76,14 @@ public class TableModelRekam_Medis extends AbstractTableModel {
             case 0 : return list.get(rowIndex).getId_Rekam();
             case 1 : return list.get(rowIndex).getId_Diagnosa();
             case 2 : return list.get(rowIndex).getId_Pasien();
-            case 3 : return list.get(rowIndex).getNo_Detail();
-            case 4 : return list.get(rowIndex).getTgl_Rekam();
-            case 5 : return list.get(rowIndex).getTinggi();
-            case 6 : return list.get(rowIndex).getBerat();
-            case 7 : return list.get(rowIndex).getTekanan_Darah();
-            case 8 : return list.get(rowIndex).getHasil_Pemerikasaan();
-            case 9 : return list.get(rowIndex).getAlergi();
-            case 10 : return list.get(rowIndex).getTotal_Harga();
-            case 11 : return list.get(rowIndex).getLayanan_Tambahan();
+            case 3 : return list.get(rowIndex).getTgl_Rekam();
+            case 4 : return list.get(rowIndex).getTinggi();
+            case 5 : return list.get(rowIndex).getBerat();
+            case 6 : return list.get(rowIndex).getTekanan_Darah();
+            case 7 : return list.get(rowIndex).getHasil_Pemerikasaan();
+            case 8 : return list.get(rowIndex).getAlergi();
+            case 9 : return list.get(rowIndex).getTotal_Harga();
+            case 10 : return list.get(rowIndex).getLayanan_Tambahan();
             default : return null;
         }
     }

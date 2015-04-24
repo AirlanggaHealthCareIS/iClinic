@@ -37,21 +37,20 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
     PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO rekam_medis (ID_REKAM, ID_DIAGNOSA, ID_PASIEN, NO_DETAIL, TGL_REKAM, TINGGI, "
-                           + "BERAT, TEKANAN_DARAH, HASIL_PEMERIKSAAN, ALERGI, TOTAL_HARGA, LAYANAN_TAMBAHAN) values(?,?,?,?,?,?,?,?,?,?,?,?)"
+                   "INSERT INTO rekam_medis (ID_REKAM, ID_DIAGNOSA, ID_PASIEN, TGL_REKAM, TINGGI, "
+                           + "BERAT, TEKANAN_DARAH, HASIL_PEMERIKSAAN, ALERGI, TOTAL_HARGA, LAYANAN_TAMBAHAN) values(?,?,?,?,?,?,?,?,?,?,?)"
                    );
            statement.setString(1, rekam_medis.getId_Rekam());
            statement.setString(2, rekam_medis.getId_Diagnosa());
            statement.setString(3, rekam_medis.getId_Pasien());
-           statement.setString(4, rekam_medis.getNo_Detail());
-           statement.setDate(5, new Date(rekam_medis.getTgl_Rekam().getTime()));
-           statement.setInt(6, rekam_medis.getTinggi());
-           statement.setInt(7, rekam_medis.getBerat());
-           statement.setInt(8, rekam_medis.getTekanan_Darah());
-           statement.setString(9, rekam_medis.getHasil_Pemerikasaan());
-           statement.setString(10, rekam_medis.getAlergi());
-           statement.setInt(11, rekam_medis.getTotal_Harga());
-           statement.setString(12, rekam_medis.getLayanan_Tambahan());
+           statement.setDate(4, new Date(rekam_medis.getTgl_Rekam().getTime()));
+           statement.setInt(5, rekam_medis.getTinggi());
+           statement.setInt(6, rekam_medis.getBerat());
+           statement.setInt(7, rekam_medis.getTekanan_Darah());
+           statement.setString(8, rekam_medis.getHasil_Pemerikasaan());
+           statement.setString(9, rekam_medis.getAlergi());
+           statement.setInt(10, rekam_medis.getTotal_Harga());
+           statement.setString(11, rekam_medis.getLayanan_Tambahan());
 
            statement.executeUpdate();
 //           ResultSet result = statement.getGeneratedKeys();
@@ -73,6 +72,42 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
            }
        }
     }
+
+public Tindakan_detailTindakan insertDetailTindakan (Tindakan_detailTindakan detail_tindakan) throws RemoteException {
+
+       System.out.println("Client Melakukan Proses Insert pada Tindakan");
+    PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                   "INSERT INTO detail_tindakan (NO_DETAIL, ID_TINDAKAN, ID_REKAM, KETERANGAN) "
+                           + " values(?,?,?,?)"
+                   );
+           statement.setString(1, detail_tindakan.getNo_Detail());
+           statement.setString(2, detail_tindakan.getId_Tindakan());
+           statement.setString(3, detail_tindakan.getId_Rekam());
+           statement.setString(4, detail_tindakan.getKeterangan());
+           
+           statement.executeUpdate();
+//           ResultSet result = statement.getGeneratedKeys();
+//           if(result.next()){
+//               rekam_medis.setId_Rekam_Medis(result.getString(1));
+//           }
+  //      result.close();
+        return detail_tindakan;
+       }catch(SQLException exception){
+        exception.printStackTrace();
+            return null;
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+
+               }
+           }
+       }
+    }
+
 
     public void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
 
@@ -102,7 +137,6 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
                 rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
                 rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
-                rekam_medis.setNo_Detail(result.getString("No_Detail"));
                 rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
                 rekam_medis.setTinggi(result.getInt("Tinggi"));
                 rekam_medis.setBerat(result.getInt("Berat"));
@@ -130,6 +164,11 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
         }
     }
 
+//    public Tindakan_detailTindakan getTindakan(String No_Detail) throws RemoteException {
+//
+//        }
+
+    
     public List<Rekam_Medis> getRekam_Medis() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Rekam Medis");
@@ -147,7 +186,6 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
                 rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
                 rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
-                rekam_medis.setNo_Detail(result.getString("No_Detail"));
                 rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
                 rekam_medis.setTinggi(result.getInt("Tinggi"));
                 rekam_medis.setBerat(result.getInt("Berat"));
@@ -177,6 +215,44 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
         }
     }
 
+    public List<Tindakan_detailTindakan> getDetailTindakan() throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Get All pada Tabel Rekam Medis");
+        Statement statement = null;
+        try{
+          statement = DatabaseUtilities.getConnection().createStatement();
+
+          ResultSet result = statement.executeQuery("SELECT * FROM DETAIL_TINDAKAN");
+
+          List<Tindakan_detailTindakan> list = new ArrayList<Tindakan_detailTindakan>();
+
+          while(result.next()){
+                Tindakan_detailTindakan detail_tindakan = new Tindakan_detailTindakan();
+                
+                detail_tindakan.setNo_Detail(result.getString("No_Detail"));
+                detail_tindakan.setId_Tindakan(result.getString("Id_Tindakan"));
+                detail_tindakan.setId_Rekam(result.getString("Id_Rekam"));
+                detail_tindakan.setKeterangan(result.getString("Keterangan"));
+                list.add(detail_tindakan);
+          }
+
+          result.close();
+
+          return list;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    }
 
 
 
@@ -193,7 +269,6 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
                 rm.setId_Rekam(result.getString("ID_REKAM"));
                 rm.setId_Diagnosa(result.getString("ID_DIAGNOSA"));
                 rm.setId_Pasien(result.getString("ID_PASIEN"));
-                rm.setNo_Detail(result.getString("NO_DETAIL"));
                 rm.setTgl_Rekam(result.getDate("TGL_REKAM"));
                 rm.setTinggi(result.getInt("TINGGI"));
                 rm.setBerat(result.getInt("BERAT"));
@@ -229,7 +304,7 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
 	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
 	    resultSet = statement.executeQuery("SELECT DIAGNOSA from diagnosa");
 	    while (resultSet.next()) {
-		product_code.add(resultSet.getString("diagnosa"));
+		product_code.add(resultSet.getString("DIAGNOSA"));
 	    }
 	}
         catch (SQLException ex) {}
@@ -251,7 +326,7 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
     }
 
     public String getIdDiagnosa(String namaDiagnosa) throws RemoteException {
-         System.out.println("Client Melakukan Proses Get Nama Diagnosa");
+        System.out.println("Client Melakukan Proses Get Nama Diagnosa");
         Statement state = null;
         ResultSet rs = null;
         String idDiagnosa = "";
@@ -270,45 +345,16 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
         return idDiagnosa;
     }
 
-//    public List getAntrian() throws RemoteException {
-//        Statement statement = null;
-//	ResultSet resultSet = null;
-//        List id_pasien = new ArrayList();
-//	try {
-//	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
-//	    resultSet = statement.executeQuery("SELECT ID_PASIEN FROM antrian");
-//	    while (resultSet.next()) {
-//		id_pasien.add(resultSet.getString("ID_PASIEN"));
-//	    }
-//	}
-//        catch (SQLException ex) {}
-//         finally {
-//	    try {
-//		if (resultSet != null) {
-//		    resultSet.close();
-//		}
-//	    }
-//            catch (SQLException ex) {}
-//	    try {
-//		if (statement != null) {
-//		    statement.close();
-//		}
-//	    }
-//            catch (SQLException ex) {}
-//	}
-//        return id_pasien;
-//    }
-//
 
-    public List getNamaDetail() throws RemoteException {
+    public List getNamaTindakan() throws RemoteException {
         Statement statement = null;
 	ResultSet resultSet = null;
         List product_code = new ArrayList();
 	try {
 	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
-	    resultSet = statement.executeQuery("SELECT NO_DETAIL from DETAIL_TINDAKAN");
+	    resultSet = statement.executeQuery("SELECT NAMA_TINDAKAN from tindakan");
 	    while (resultSet.next()) {
-		product_code.add(resultSet.getString("NO_DETAIL"));
+		product_code.add(resultSet.getString("NAMA_TINDAKAN"));
 	    }
 	}
         catch (SQLException ex) {}
@@ -329,26 +375,178 @@ public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteExcep
         return product_code;
     }
 
-    public String getIdDetail(String namaDetail) throws RemoteException {
-         System.out.println("Client Melakukan Proses Get Jenis Tindakan");
+    public String getIdTindakan(String namaTindakan) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get Jenis Tindakan");
         Statement state = null;
         ResultSet rs = null;
-        String noDetail = "";
+        String idTindakan = "";
 	try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT NO_DETAIL FROM DETAIL_TINDAKAN WHERE  ID_TINDAKAN = '"+namaDetail+"'";
+            String sql = "SELECT ID_TINDAKAN FROM TINDAKAN WHERE  NAMA_TINDAKAN = '"+namaTindakan+"'";
             rs = state.executeQuery(sql);
             while (rs.next()){
-                noDetail = rs.getString(1);
+                idTindakan = rs.getString(1);
             }
         }
         catch (Throwable ex) {
             System.out.println(ex);
         }
-        System.out.println(noDetail);
-        return noDetail;}
+        System.out.println(idTindakan);
+        return idTindakan;}
+
+        public String getAutoNumberNoDetail() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pemasukan");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT NO_DETAIL FROM detail_tindakan ORDER BY NO_DETAIL DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="DET0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String  numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if (pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "DET"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    
+}
+
+        public String getAutoNumberIdRekam() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pemasukan");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_REKAM FROM rekam_medis ORDER BY ID_REKAM DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="REK0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String  numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if (pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "REK"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    
+}
+
+        public int getTarif (String nama_tindakan) throws RemoteException{
+            System.out.println("Client Melakukan Proses Get Jenis Tarif");
+        Statement state = null;
+        ResultSet rs = null;
+        int idTindakan = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT TARIF FROM TINDAKAN WHERE  NAMA_TINDAKAN = '"+nama_tindakan+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+               idTindakan = rs.getInt(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(idTindakan);
+        return idTindakan;
+        }
+
+    public Tindakan_detailTindakan getDetailTindakan(String No_Detail) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Tindakan");
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM detail_tindakan WHERE NO_DETAIL = ?");
+
+            ResultSet result = statement.executeQuery();
+
+            Tindakan_detailTindakan detail_tindakan = null;
+
+            if(result.next()){
+                detail_tindakan = new Tindakan_detailTindakan();
+                
+                detail_tindakan.setNo_Detail(result.getString("No_Detail"));
+                detail_tindakan.setId_Tindakan(result.getString("Id_Tindakan"));
+                detail_tindakan.setId_Rekam(result.getString("Id_Rekam"));
+                detail_tindakan.setKeterangan(result.getString("Keterangan"));
+                 
+            }
+
+            return detail_tindakan;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+
+}
 
     
     
-    
-}
+

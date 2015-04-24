@@ -21,6 +21,12 @@ import java.util.List;
 public interface DokterService extends Remote {
     Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException;
 
+    Tindakan_detailTindakan insertDetailTindakan (Tindakan_detailTindakan detail_tindakan)throws RemoteException;
+    
+    Tindakan_detailTindakan getDetailTindakan (String No_Detail)throws RemoteException;
+    
+    List<Tindakan_detailTindakan> getDetailTindakan() throws RemoteException;
+    
     void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException;
 
     void deleteRekam_Medis(String Id_Rekam) throws RemoteException;
@@ -48,9 +54,14 @@ public interface DokterService extends Remote {
     //---------------------//
     
     
-    List getNamaDetail() throws RemoteException;
+    List getNamaTindakan() throws RemoteException;
     
-    String getIdDetail(String namaDetail) throws RemoteException;
+    String getIdTindakan(String namaTindakan) throws RemoteException;
 
+    
     List<Rekam_Medis> GetRekam_MedisbyPasien(String idpasien) throws RemoteException;
+    String getAutoNumberNoDetail () throws RemoteException;
+    String getAutoNumberIdRekam () throws RemoteException;
+    
+    int getTarif (String nama_tindakan) throws RemoteException;
 }

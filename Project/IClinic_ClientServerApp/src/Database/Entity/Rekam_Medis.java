@@ -17,7 +17,6 @@ public class Rekam_Medis implements Serializable {
     private String Id_Rekam;
     private String Id_Diagnosa;
     private String Id_Pasien;
-    private String No_Detail;
     private Date Tgl_Rekam;
     private int Tinggi;
     private int Berat;
@@ -37,10 +36,6 @@ public class Rekam_Medis implements Serializable {
 
     public String getId_Pasien() {
         return Id_Pasien;
-    }
-
-    public String getNo_Detail() {
-        return No_Detail;
     }
 
     public Date getTgl_Rekam() {
@@ -87,10 +82,6 @@ public class Rekam_Medis implements Serializable {
         this.Id_Pasien = Id_Pasien;
     }
 
-    public void setNo_Detail(String No_Detail) {
-        this.No_Detail = No_Detail;
-    }
-
     public void setTgl_Rekam(Date Tgl_Rekam) {
         this.Tgl_Rekam = Tgl_Rekam;
     }
@@ -123,8 +114,8 @@ public class Rekam_Medis implements Serializable {
         this.Layanan_Tambahan = Layanan_Tambahan;
     }
 
-    public void setId_Diagnosa(Penyakit_diagnosa id_diagnosa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public void setId_Diagnosa(Penyakit_diagnosa id_diagnosa) {
+  //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
     
 }
