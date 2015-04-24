@@ -20,9 +20,9 @@ public interface Bag_PendaftaranService extends Remote {
 
     void updatePasien(Pasien pasien) throws RemoteException;
 
-    void deletePasien(int Id_Pasien) throws RemoteException;
+   // void deletePasien(String Id_Pasien) throws RemoteException;
 
-    Pasien getPasien(int Id_Pasien) throws RemoteException;
+    Pasien getPasien(String Id_Pasien) throws RemoteException;
 
     List<Pasien> getPasien() throws RemoteException;
     
@@ -30,9 +30,9 @@ public interface Bag_PendaftaranService extends Remote {
 
     void updateAntrian(Antrian antrian) throws RemoteException;
 
-    void deleteAntrian(int Id_Antrian) throws RemoteException;
+    void deleteAntrian(String Id_Antrian) throws RemoteException;
 
-    Antrian getAntrian(int Id_Antrian) throws RemoteException;
+    Antrian getAntrian(String Id_Antrian) throws RemoteException;
 
     List<Antrian> getAntrian() throws RemoteException;
 }

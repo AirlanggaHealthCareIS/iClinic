@@ -18,6 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -29,6 +31,9 @@ import javax.swing.event.ListSelectionListener;
 public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private FormBag_Pendaftaran f;
     private Bag_PendaftaranService PS;
+    
+    private TableModelPasien tableModelPasien = new TableModelPasien();
+    private Bag_PendaftaranService bag_PendaftaranService;
     /**
      * 
      */
@@ -86,23 +91,23 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No_Hp = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextFieldTelepon = new javax.swing.JTextField();
+        TextField_idPasien = new javax.swing.JTextField();
+        jTextFieldNama = new javax.swing.JTextField();
+        jTextFieldGender = new javax.swing.JTextField();
+        jTextFieldUmur = new javax.swing.JTextField();
         Id_Pasien = new javax.swing.JLabel();
         Nama_Pasien = new javax.swing.JLabel();
         Gender = new javax.swing.JLabel();
         Jenis_Kelamin = new javax.swing.JLabel();
         Usia = new javax.swing.JLabel();
         Cari = new javax.swing.JButton();
-        DaftarAntrian = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        jTextFieldAlamat = new javax.swing.JTextField();
         Alamat = new javax.swing.JLabel();
         PilihLayanan = new javax.swing.JComboBox();
+        Button_search = new javax.swing.JButton();
         PilihLayananLabel = new javax.swing.JLabel();
+        JTextFieldTanggal_lahir = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -220,59 +225,50 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(No_Hp);
         No_Hp.setBounds(740, 390, 80, 20);
 
-        jTextField1.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTelepon.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        jTextFieldTelepon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldTeleponActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(840, 390, 190, 30);
+        jPanel1.add(jTextFieldTelepon);
+        jTextFieldTelepon.setBounds(840, 390, 190, 30);
 
-        jTextField2.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        TextField_idPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                TextField_idPasienActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(120, 310, 190, 30);
+        jPanel1.add(TextField_idPasien);
+        TextField_idPasien.setBounds(120, 310, 190, 30);
 
-        jTextField3.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNama.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        jTextFieldNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldNamaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(120, 350, 190, 30);
+        jPanel1.add(jTextFieldNama);
+        jTextFieldNama.setBounds(120, 350, 190, 30);
 
-        jTextField4.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldGender.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        jTextFieldGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldGenderActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(120, 430, 190, 30);
+        jPanel1.add(jTextFieldGender);
+        jTextFieldGender.setBounds(840, 310, 190, 30);
 
-        jTextField5.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldUmur.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        jTextFieldUmur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTextFieldUmurActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(840, 310, 190, 30);
-
-        jTextField6.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(840, 350, 190, 30);
+        jPanel1.add(jTextFieldUmur);
+        jTextFieldUmur.setBounds(840, 350, 190, 30);
 
         Id_Pasien.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         Id_Pasien.setText("ID Pasien");
@@ -309,24 +305,14 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(Cari);
         Cari.setBounds(970, 490, 120, 29);
 
-        DaftarAntrian.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        DaftarAntrian.setText("Cari");
-        DaftarAntrian.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldAlamat.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        jTextFieldAlamat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DaftarAntrianActionPerformed(evt);
+                jTextFieldAlamatActionPerformed(evt);
             }
         });
-        jPanel1.add(DaftarAntrian);
-        DaftarAntrian.setBounds(320, 310, 97, 29);
-
-        jTextField7.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(120, 390, 190, 30);
+        jPanel1.add(jTextFieldAlamat);
+        jTextFieldAlamat.setBounds(120, 390, 190, 30);
 
         Alamat.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         Alamat.setText("Alamat");
@@ -334,13 +320,39 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         Alamat.setBounds(40, 390, 80, 20);
 
         PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PilihLayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PilihLayananActionPerformed(evt);
+            }
+        });
         jPanel1.add(PilihLayanan);
         PilihLayanan.setBounds(840, 430, 96, 27);
+
+        Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        Button_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_searchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Button_search);
+        Button_search.setBounds(320, 310, 40, 36);
 
         PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         PilihLayananLabel.setText("Pilih Layanan");
         jPanel1.add(PilihLayananLabel);
         PilihLayananLabel.setBounds(740, 430, 100, 20);
+
+        JTextFieldTanggal_lahir.setEditable(false);
+        JTextFieldTanggal_lahir.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        JTextFieldTanggal_lahir.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        JTextFieldTanggal_lahir.setValue(new java.util.Date());
+        JTextFieldTanggal_lahir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextFieldTanggal_lahirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(JTextFieldTanggal_lahir);
+        JTextFieldTanggal_lahir.setBounds(120, 430, 190, 30);
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
@@ -364,41 +376,33 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_field_Jenis_KelaminActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTeleponActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldTeleponActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void TextField_idPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField_idPasienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_TextField_idPasienActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldNamaActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldGenderActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTextFieldUmurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUmurActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jTextFieldUmurActionPerformed
 
     private void CariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CariActionPerformed
 
-    private void DaftarAntrianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaftarAntrianActionPerformed
+    private void jTextFieldAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAlamatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DaftarAntrianActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_jTextFieldAlamatActionPerformed
 
     private void box_Jenis_KelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_Jenis_KelaminActionPerformed
         // TODO add your handling code here:
@@ -440,22 +444,52 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void PilihLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilihLayananActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PilihLayananActionPerformed
+
+    private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
+       if(TextField_idPasien.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
+        }
+       else if( !TextField_idPasien.getText().equals("")){
+            try {
+               Pasien pasien = bag_PendaftaranService.getPasien(TextField_idPasien.getText());
+               jTextFieldNama.setText(pasien.getNama_Pasien());
+               jTextFieldAlamat.setText(pasien.getAlamat());
+               JTextFieldTanggal_lahir.setValue(pasien.getTanggal_lahir());
+               jTextFieldGender.setText(pasien.getJenis_Kelamin());
+               jTextFieldUmur.setText(""+pasien.getUsia());
+               jTextFieldTelepon.setText(""+pasien.getNo_HP());
+            }
+            catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+    }//GEN-LAST:event_Button_searchActionPerformed
+
+    private void JTextFieldTanggal_lahirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldTanggal_lahirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextFieldTanggal_lahirActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Alamat;
+    private javax.swing.JButton Button_search;
     private javax.swing.JButton Cari;
-    private javax.swing.JButton DaftarAntrian;
     private com.toedter.calendar.JDateChooser DateChooser_Tanggal_Lahir;
     private javax.swing.JFormattedTextField Formatted_Tanggal_Daftar;
     private javax.swing.JLabel Gender;
     private javax.swing.JLabel Id_Pasien;
+    private javax.swing.JFormattedTextField JTextFieldTanggal_lahir;
     private javax.swing.JLabel Jenis_Kelamin;
     private javax.swing.JLabel Nama_Pasien;
     private javax.swing.JLabel No_Hp;
     private javax.swing.JTabbedPane PasienBaru;
     private javax.swing.JComboBox PilihLayanan;
     private javax.swing.JLabel PilihLayananLabel;
+    private javax.swing.JTextField TextField_idPasien;
     private javax.swing.JLabel Usia;
     private javax.swing.JComboBox box_Jenis_Kelamin;
     private javax.swing.JTextField field_Alamat;
@@ -478,12 +512,10 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextFieldAlamat;
+    private javax.swing.JTextField jTextFieldGender;
+    private javax.swing.JTextField jTextFieldNama;
+    private javax.swing.JTextField jTextFieldTelepon;
+    private javax.swing.JTextField jTextFieldUmur;
     // End of variables declaration//GEN-END:variables
 }
