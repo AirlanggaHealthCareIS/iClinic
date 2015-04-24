@@ -15,6 +15,7 @@ import ClientApplication.model.TableModelKecantikan_detailLayanan;
 import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
+import Database.Entity.Pembayaran;
 import Database.Service.KecantikanService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -462,12 +463,16 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHapusLayananActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    //-----Pembayaran-----//
+        //-----Pembayaran-----//
         String idPasien = fieldIDPasien.getText();
         String idTransaksiLayananKecantikan = fieldIDTransaksi.getText();
         int harga = Integer.parseInt(fieldHarga.getText());
         try {
             String idPembayaran = kecantikanService.mencariIdPembayaranDariPembayaran(idPasien);
+            if (!idPembayaran.equalsIgnoreCase("")) {
+                Pembayaran pembayaran = kecantikanService.getPembayaranDariPembayaran(idPembayaran);
+                kecantikanService.updatePembayaranDariPembayaran(pembayaran, idTransaksiLayananKecantikan, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
         }

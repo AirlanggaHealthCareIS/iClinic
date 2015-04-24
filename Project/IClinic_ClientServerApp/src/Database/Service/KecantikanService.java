@@ -7,6 +7,7 @@ package Database.Service;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
+import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -41,5 +42,9 @@ public interface KecantikanService extends Remote {
 
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
+
+    Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException;
+
+    void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idRekam, int Harga) throws RemoteException;
 
 }
