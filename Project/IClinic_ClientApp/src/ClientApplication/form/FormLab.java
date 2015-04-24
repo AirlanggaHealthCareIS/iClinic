@@ -12,6 +12,7 @@ package ClientApplication.form;
 
 import ClientApplication.FormLogin;
 import Database.Entity.Lab_detailLab;
+import Database.Entity.Pembayaran;
 import Database.Service.LabService;
 import java.io.File;
 import java.io.FileFilter;
@@ -355,6 +356,10 @@ public class FormLab extends javax.swing.JFrame {
         int harga = Integer.parseInt(totalHarga.getText());
         try {
             String idPembayaran = labService.mencariIdPembayaranDariPembayaran(idPasien2);
+            if(!idPembayaran.equalsIgnoreCase("")){
+                Pembayaran pembayaran = labService.getPembayaranDariPembayaran(idPembayaran);
+                labService.updatePembayaranDariPembayaran(pembayaran, idDetailLab2, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
         }

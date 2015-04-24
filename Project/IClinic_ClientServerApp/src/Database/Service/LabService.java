@@ -6,6 +6,7 @@ package Database.Service;
 
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
+import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -34,5 +35,9 @@ public interface LabService extends Remote {
     
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
+    
+    Pembayaran getPembayaranDariPembayaran (String idPembayaran)throws RemoteException;
+    
+    void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idDetailLab, int Harga) throws RemoteException;
 
 }

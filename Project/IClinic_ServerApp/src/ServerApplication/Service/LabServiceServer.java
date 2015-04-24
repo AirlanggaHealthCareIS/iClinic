@@ -5,6 +5,7 @@
 package ServerApplication.Service;
 
 import Database.Entity.Lab_detailLab;
+import Database.Entity.Pembayaran;
 //import Database.Entity.Lab_tabelMaster;
 import java.sql.Blob;
 import Database.Service.LabService;
@@ -293,5 +294,78 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         System.out.println(idPembayaran);
         return idPembayaran;
     }
+    
+    public Pembayaran getPembayaranDariPembayaran (String idPembayaran)throws RemoteException {
+        System.out.println("Client Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+        System.out.println(date);
+        PreparedStatement statement = null;
+        Pembayaran pembayaranDB = null ;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "SELECT `pembayaran`.* \n" +
+            "FROM `pembayaran` \n" +
+            "WHERE `pembayaran`.ID_PEMBAYARAN = '"+idPembayaran+"'");
+            
+            ResultSet result = statement.executeQuery();
 
+            if(result.next()){
+                pembayaranDB = new Pembayaran();
+                pembayaranDB.setId_Pembayaran(result.getString("Id_Pembayaran"));
+                pembayaranDB.setId_Pasien(result.getString("Id_Pasien"));
+                pembayaranDB.setId_USG(result.getString("Id_USG"));
+                pembayaranDB.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
+                pembayaranDB.setId_Resep(result.getString("Id_Resep"));
+                pembayaranDB.setId_Rekam(result.getString("Id_Rekam"));
+                pembayaranDB.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
+                pembayaranDB.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
+                pembayaranDB.setTotal_Harga(result.getInt("Total_Harga"));
+                pembayaranDB.setStatus(result.getString("Status"));
+            }
+        }catch(SQLException exception){
+          exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+        return pembayaranDB;
+    }
+    
+    public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idDetailLab, int Harga) throws RemoteException {
+        System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+        int totalHarga = pembayaranDB.getTotal_Harga() + Harga;
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                "UPDATE pembayaran SET ID_USG = ?, ID_DETAIL_LAB = ?, "+
+                "ID_RESEP = ?, ID_REKAM = ?, ID_TRANSAKSI_LAYANAN = ?, "+
+                "TOTAL_HARGA = ? " +
+                "WHERE ID_PEMBAYARAN = ?");
+            statement.setString(1, pembayaranDB.getId_USG());
+            statement.setString(2, idDetailLab);
+            statement.setString(3, pembayaranDB.getId_Resep());
+            statement.setString(4, pembayaranDB.getId_Rekam());
+            statement.setString(5, pembayaranDB.getId_Transaksi_Layanan());
+            statement.setInt(6, totalHarga);
+            statement.setString(7, pembayaranDB.getId_Pembayaran());
+
+            statement.executeUpdate();
+
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
 }
