@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Pembayaran;
 import Database.Entity.Penyakit_diagnosa;
 import Database.Entity.Penyakit_tabelMaster;
 import Database.Entity.Rekam_Medis;
@@ -35,7 +36,7 @@ public interface DokterService extends Remote {
 
     List<Rekam_Medis> getRekam_Medis() throws RemoteException;
 
- //-----------------//
+    //-----------------//
 //        List getNamaBarangDetailTB() throws RemoteException;
 //        String getIdBarangDetailTB(String namaBarang) throws RemoteException;
     List getNamaDiagnosa() throws RemoteException;
@@ -60,5 +61,9 @@ public interface DokterService extends Remote {
 
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
+
+    Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException;
+
+    void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idRekam, int Harga) throws RemoteException;
 
 }

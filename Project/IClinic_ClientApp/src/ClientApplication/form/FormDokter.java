@@ -12,6 +12,7 @@ import ClientApplication.model.TableModelTindakan_detailTindakan;
 import Database.Entity.Penyakit_diagnosa;
 import Database.Entity.Rekam_Medis;
 import Database.Entity.Pasien;
+import Database.Entity.Pembayaran;
 import Database.Entity.Tindakan_detailTindakan;
 import Database.Service.DokterService;
 import Database.Service.Bag_PendaftaranService;
@@ -845,6 +846,11 @@ public class FormDokter extends javax.swing.JFrame {
         int harga = Integer.parseInt(totalHarga.getText());
         try {
             String idPembayaran = dokterService.mencariIdPembayaranDariPembayaran(idPasien);
+            if (!idPembayaran.equalsIgnoreCase("")) {
+                Pembayaran pembayaran = dokterService.getPembayaranDariPembayaran(idPembayaran);
+                dokterService.updatePembayaranDariPembayaran(pembayaran, idRekamMedis, harga);
+            }
+
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
