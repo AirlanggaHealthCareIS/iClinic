@@ -66,4 +66,8 @@ public interface DokterService extends Remote {
 
     void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idRekam, int Harga) throws RemoteException;
 
+    String getAutoNumberDariPembayaran() throws RemoteException;
+
+    void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idRekam, int Harga) throws RemoteException;
+
 }

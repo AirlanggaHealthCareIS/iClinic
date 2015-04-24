@@ -849,8 +849,10 @@ public class FormDokter extends javax.swing.JFrame {
             if (!idPembayaran.equalsIgnoreCase("")) {
                 Pembayaran pembayaran = dokterService.getPembayaranDariPembayaran(idPembayaran);
                 dokterService.updatePembayaranDariPembayaran(pembayaran, idRekamMedis, harga);
+            } else if (idPembayaran.equalsIgnoreCase("")) {
+                idPembayaran = dokterService.getAutoNumberDariPembayaran();
+                dokterService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idRekamMedis, harga);
             }
-
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
