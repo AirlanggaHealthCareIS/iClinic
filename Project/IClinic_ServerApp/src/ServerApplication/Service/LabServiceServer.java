@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ServerApplication.Service;
 
 import Database.Entity.Lab_detailLab;
@@ -35,40 +34,40 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         System.out.println("Client Melakukan Proses Insert pada Tabel Detail Lab");
 
         PreparedStatement statement = null;
-       try{
-           statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO detail_lab (ID_DETAIL_LAB,ID_LAB,ID_PASIEN, KETERANGAN,HASIL,TANGGAL,TOTAL_HARGA) values(?,?,?,?,?,?,?)"
-                   );
-           statement.setString(1, detail_lab.getId_Detail_Lab());
-           statement.setString(2, detail_lab.getId_Lab());
-           statement.setString(3, detail_lab.getId_Pasien());
-           //statement.setString(2, detail_lab.getnama_Pasien());
-           statement.setString(4, detail_lab.getKeterangan());
-           statement.setBlob(5, detail_lab.getHasil());
-           statement.setDate(6, (Date) detail_lab.getTanggal());
-           statement.setInt(7, detail_lab.getTotal_Harga());
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO detail_lab (ID_DETAIL_LAB,ID_LAB,ID_PASIEN, KETERANGAN,HASIL,TANGGAL,TOTAL_HARGA) values(?,?,?,?,?,?,?)"
+            );
+            statement.setString(1, detail_lab.getId_Detail_Lab());
+            statement.setString(2, detail_lab.getId_Lab());
+            statement.setString(3, detail_lab.getId_Pasien());
+            //statement.setString(2, detail_lab.getnama_Pasien());
+            statement.setString(4, detail_lab.getKeterangan());
+            statement.setBlob(5, detail_lab.getHasil());
+            statement.setDate(6, (Date) detail_lab.getTanggal());
+            statement.setInt(7, detail_lab.getTotal_Harga());
 
-           statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-           if(result.next()){
-               detail_lab.setId_Lab(result.getString(1));
-           }
-        result.close();
-        return detail_lab;
-       }catch(SQLException exception){
-        exception.printStackTrace();
+            statement.executeUpdate();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                detail_lab.setId_Lab(result.getString(1));
+            }
+            result.close();
+            return detail_lab;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
             return null;
-       }finally{
-           if(statement != null){
-               try{
-                   statement.close();
-               }catch(SQLException exception){
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
 
-               }
-           }
-       }
+                }
+            }
+        }
     }
-    
+
 //    public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
 //
 //        System.out.println("Client Melakukan Proses Insert pada Tabel detail lab");
@@ -103,22 +102,21 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 //           }
 //       }
 //    }
-
 //    
     public Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Lab");
 
         PreparedStatement statement = null;
-        try{
+        try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                 "SELECT * FROM detail_lab WHERE Id_Lab = ?");
+                    "SELECT * FROM detail_lab WHERE Id_Lab = ?");
 
             ResultSet result = statement.executeQuery();
 
             Lab_detailLab Laboratorium = null;
 
-            if(result.next()){
+            if (result.next()) {
                 Laboratorium = new Lab_detailLab();
                 Laboratorium.setId_Lab(result.getString("Id_Detail_Lab"));
                 Laboratorium.setId_Lab(result.getString("Id_Lab"));
@@ -128,25 +126,25 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                 Laboratorium.setHasil(result.getBlob("Hasil"));
                 Laboratorium.setTanggal(result.getDate("Tanggal"));
                 Laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
-                
+
             }
 
             return Laboratorium;
 
-        }catch(SQLException exception){
-          exception.printStackTrace();
-          return null;
-        }finally{
-            if(statement != null){
-                try{
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
                     statement.close();
-                }catch(SQLException exception){
-                   exception.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
         }
     }
-    
+
 //    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
 //
 //        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
@@ -184,20 +182,19 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 //            }
 //        }
 //    }
-
     public List<Lab_detailLab> getLab_detailLab() throws RemoteException {
-        
+
         System.out.println("Client Melakukan Proses Get All pada Tabel Pembayaran");
 
         Statement statement = null;
-        try{
-          statement = DatabaseUtilities.getConnection().createStatement();
+        try {
+            statement = DatabaseUtilities.getConnection().createStatement();
 
-          ResultSet result = statement.executeQuery("SELECT * FROM detail_lab");
+            ResultSet result = statement.executeQuery("SELECT * FROM detail_lab");
 
-          List<Lab_detailLab> list = new ArrayList<Lab_detailLab>();
+            List<Lab_detailLab> list = new ArrayList<Lab_detailLab>();
 
-          while(result.next()){
+            while (result.next()) {
                 Lab_detailLab laboratorium = new Lab_detailLab();
                 laboratorium.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
                 laboratorium.setId_Lab(result.getString("Id_Lab"));
@@ -207,30 +204,27 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                 //laboratorium.setHasil(result.getBlob()"Hasil"));
                 laboratorium.setTanggal(result.getDate("Tanggal"));
                 laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
-                
+
                 list.add(laboratorium);
-          }
+            }
 
-          result.close();
+            result.close();
 
-          return list;
+            return list;
 
-        }catch(SQLException exception){
-          exception.printStackTrace();
-          return null;
-        }finally{
-            if(statement != null){
-                try{
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
                     statement.close();
-                }catch(SQLException exception){
-                   exception.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
         }
-    }}
-
-
-
+    }
 //public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
 //        
 //        System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
@@ -272,3 +266,32 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 //    }
 //
 //}
+
+    //-----Pembayaran-----//
+    public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
+        System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+        Statement state = null;
+        ResultSet rs = null;
+        String idPembayaran = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT `pembayaran`.ID_PEMBAYARAN \n"
+                    + "FROM `pembayaran`,`detail_lab` \n"
+                    + "WHERE `detail_lab`.ID_PASIEN = `pembayaran`.ID_PASIEN \n"
+                    + "AND `pembayaran`.ID_PASIEN = '" + idPasien + "' \n"
+                    + "AND `detail_lab`.TANGGAL = `pembayaran`.TANGGAL_BAYAR \n"
+                    + "AND `pembayaran`.TANGGAL_BAYAR = '" + date + "' \n"
+                    + "AND `pembayaran`.STATUS = 'HUTANG'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                idPembayaran = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(idPembayaran);
+        return idPembayaran;
+    }
+
+}
