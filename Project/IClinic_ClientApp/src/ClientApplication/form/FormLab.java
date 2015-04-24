@@ -14,6 +14,7 @@ import ClientApplication.FormLogin;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Pembayaran;
 import Database.Service.LabService;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileFilter;
 import java.rmi.NotBoundException;
@@ -183,6 +184,12 @@ public class FormLab extends javax.swing.JFrame {
         });
         getContentPane().add(jCheckBox4tesUrine);
         jCheckBox4tesUrine.setBounds(350, 490, 80, 23);
+
+        hasilPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hasilPemeriksaanActionPerformed(evt);
+            }
+        });
         getContentPane().add(hasilPemeriksaan);
         hasilPemeriksaan.setBounds(890, 350, 220, 20);
 
@@ -238,6 +245,11 @@ public class FormLab extends javax.swing.JFrame {
         jLabel18.setBounds(720, 560, 160, 17);
 
         totalHarga.setEditable(false);
+        totalHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalHargaActionPerformed(evt);
+            }
+        });
         getContentPane().add(totalHarga);
         totalHarga.setBounds(890, 560, 270, 20);
 
@@ -309,15 +321,15 @@ public class FormLab extends javax.swing.JFrame {
         boolean f = false;
         boolean g = false;
         boolean h = false;
-//        boolean i = false;
+//      boolean i = false;
 
         if (!idDetailLab.getText().equals("") && idDetailLab.getText().length() <= 10) {
             a = true;
         }
-//        if(!idLab.getText().equals("")&&idLab.getText().length()<=30){
+//        if(!idLab.getText().equals("")&&idLab.getText().length()<=10){
 //            b = true;
 //        }
-        if ((!idPasien.getText().equals(""))) {
+        if ((!idPasien.getText().equals("")&&idPasien.getText().length()<=10)) {
             c = true;
         }
         if (!namaPasien.getText().equals("")) {
@@ -329,11 +341,11 @@ public class FormLab extends javax.swing.JFrame {
         //if(!hasil.getBlob().equals("") if(!hasil.getBlob().equals("")){
         //g = true;
 
-        if (!totalHarga.getText().equals("")) {
+        if (!totalHarga.getText().equals("")&&totalHarga.getText().length()<=11) {
             h = true;
         }
 //       if(!tanggal.getCalendar().equals("")){
-//            i = true;
+//          i = true;
 //       }
 
         if (a && b && c && d && e && f) {
@@ -343,12 +355,41 @@ public class FormLab extends javax.swing.JFrame {
             String np = namaPasien.getText();
             String k = Keterangan.getText();
             String th = totalHarga.getText();
+            //String h = hasilPemeriksaan.getText();
             //int f = Integer.parseInt(harga.getText());
-            //Date h = tanggal.getText();
+            //Date i = tanggal.getText();
 
             JOptionPane.showMessageDialog(null, "Data telah Berhasil Diinputkan dan Tersimpan pada Database");
             clear();
-        }
+        
+         }
+        else{
+            if(!a){
+                idDetailLab.setBackground(Color.red);
+            }
+//            if(!b){
+//                idLab.setBackground(Color.red);
+//            }
+            if(!c){
+                idPasien.setBackground(Color.red);
+            }
+            if(!d){
+                namaPasien.setBackground(Color.red);
+            }
+            if(!e){
+                Keterangan.setBackground(Color.red);
+            }
+            if(!f){
+                totalHarga.setBackground(Color.red);
+            }
+            if(!g){
+                tanggal.setBackground(Color.red);
+            }
+            JOptionPane.showMessageDialog(null, "Ada kesalahan pada kolom isian Anda. Mohon memperbaiki field yang berwarna merah untuk melanjutkan.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        
+
+        }                         
+
         
         //-----Pembayaran-----//
         String idPasien2 = idPasien.getText();
@@ -443,6 +484,14 @@ public class FormLab extends javax.swing.JFrame {
 //   if (jfc.showOpenDialog(this) == jfc.APPROVE_OPTION) {
 
     }//GEN-LAST:event_UploadActionPerformed
+
+    private void totalHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalHargaActionPerformed
+
+    private void hasilPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hasilPemeriksaanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hasilPemeriksaanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
