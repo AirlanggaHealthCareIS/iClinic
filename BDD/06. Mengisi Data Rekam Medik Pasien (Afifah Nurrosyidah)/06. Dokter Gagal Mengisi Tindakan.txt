@@ -1,0 +1,15 @@
+Feature		Mengisi Tindakan
+Scenario	Dokter Berhasil Mengisi Tindakan (Satu Tindakan)
+
+Given	Dokter telah melakukan login
+and	Sistem telah menampilkan frame khusus Dokter
+When	Dokter memilih tab 'Rekam_Medis'
+and	Dokter memilih Nama tindakan
+and	Dokter mengisi Keterangan
+and	Dokter memilih tombol 'Pilih'
+and	Dokter memilih tombol 'Proses'
+Then	Sistem mengecek database
+and	Terdapat kesalahan dalam sistem
+and	Sistem gagal menyimpan data resep baru ke tabel Detail Tindakan dan di database
+and	Sistem tidak menampilkan data yang telah dipilih di tabel Tindakan
+and	Sistem tidak menampilkan pesan bahwa data telah berhasil diproses
