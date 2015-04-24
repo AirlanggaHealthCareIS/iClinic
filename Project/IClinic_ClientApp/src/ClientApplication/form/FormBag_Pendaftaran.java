@@ -81,8 +81,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         box_Jenis_Kelamin = new javax.swing.JComboBox();
         Formatted_Tanggal_Daftar = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        DateChooser_Tanggal_Lahir = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        DateChooser_Tanggal_Lahir = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No_Hp = new javax.swing.JLabel();
@@ -130,9 +130,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(40, 440, 90, 20);
         jPanel3.add(field_ID_Pasien);
-        field_ID_Pasien.setBounds(140, 290, 150, 20);
+        field_ID_Pasien.setBounds(140, 290, 150, 28);
         jPanel3.add(field_No_Ktp);
-        field_No_Ktp.setBounds(140, 320, 150, 20);
+        field_No_Ktp.setBounds(140, 320, 150, 28);
 
         field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,13 +140,13 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Nama_Pasien);
-        field_Nama_Pasien.setBounds(140, 350, 150, 20);
+        field_Nama_Pasien.setBounds(140, 350, 150, 28);
         jPanel3.add(field_Alamat);
-        field_Alamat.setBounds(140, 380, 150, 20);
+        field_Alamat.setBounds(140, 380, 150, 28);
         jPanel3.add(field_Usia);
-        field_Usia.setBounds(140, 470, 150, 20);
+        field_Usia.setBounds(140, 470, 150, 28);
         jPanel3.add(field_No_HP);
-        field_No_HP.setBounds(140, 500, 150, 20);
+        field_No_HP.setBounds(140, 500, 150, 28);
 
         jLabel8.setText("Usia");
         jPanel3.add(jLabel8);
@@ -162,12 +162,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         box_Jenis_Kelamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         box_Jenis_Kelamin.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         box_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +176,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Jenis_Kelamin);
-        box_Jenis_Kelamin.setBounds(140, 530, 150, 20);
+        box_Jenis_Kelamin.setBounds(140, 530, 150, 27);
 
         Formatted_Tanggal_Daftar.setEditable(false);
         Formatted_Tanggal_Daftar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
@@ -187,15 +187,11 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Formatted_Tanggal_Daftar);
-        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 20);
+        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 28);
 
         jLabel11.setText("Tanggal Lahir");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(40, 410, 80, 14);
-
-        DateChooser_Tanggal_Lahir.setDateFormatString("yyyy-MM-dd");
-        jPanel3.add(DateChooser_Tanggal_Lahir);
-        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
+        jLabel11.setBounds(40, 410, 80, 16);
 
         jButton1.setText("Daftar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +201,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1);
         jButton1.setBounds(140, 563, 150, 50);
+        jPanel3.add(DateChooser_Tanggal_Lahir);
+        DateChooser_Tanggal_Lahir.setBounds(150, 410, 123, 28);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -307,7 +305,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Cari);
-        Cari.setBounds(970, 490, 120, 27);
+        Cari.setBounds(970, 490, 120, 29);
 
         DaftarAntrian.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         DaftarAntrian.setText("Cari");
@@ -317,7 +315,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(DaftarAntrian);
-        DaftarAntrian.setBounds(320, 310, 97, 27);
+        DaftarAntrian.setBounds(320, 310, 97, 29);
 
         jTextField7.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
