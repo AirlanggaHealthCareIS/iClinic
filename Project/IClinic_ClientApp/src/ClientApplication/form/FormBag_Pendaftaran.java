@@ -101,6 +101,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         DaftarAntrian = new javax.swing.JButton();
         jTextField7 = new javax.swing.JTextField();
         Alamat = new javax.swing.JLabel();
+        PilihLayanan = new javax.swing.JComboBox();
+        PilihLayananLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -331,6 +333,15 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(Alamat);
         Alamat.setBounds(40, 390, 80, 20);
 
+        PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(PilihLayanan);
+        PilihLayanan.setBounds(840, 430, 96, 27);
+
+        PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        PilihLayananLabel.setText("Pilih Layanan");
+        jPanel1.add(PilihLayananLabel);
+        PilihLayananLabel.setBounds(740, 430, 100, 20);
+
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -443,6 +454,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JLabel Nama_Pasien;
     private javax.swing.JLabel No_Hp;
     private javax.swing.JTabbedPane PasienBaru;
+    private javax.swing.JComboBox PilihLayanan;
+    private javax.swing.JLabel PilihLayananLabel;
     private javax.swing.JLabel Usia;
     private javax.swing.JComboBox box_Jenis_Kelamin;
     private javax.swing.JTextField field_Alamat;
