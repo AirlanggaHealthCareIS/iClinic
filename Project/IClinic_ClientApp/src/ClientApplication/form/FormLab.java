@@ -360,6 +360,10 @@ public class FormLab extends javax.swing.JFrame {
                 Pembayaran pembayaran = labService.getPembayaranDariPembayaran(idPembayaran);
                 labService.updatePembayaranDariPembayaran(pembayaran, idDetailLab2, harga);
             }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = labService.getAutoNumberDariPembayaran();
+                labService.insertPembayaranDariPembayaran(idPembayaran, idPasien2, idDetailLab2, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
         }

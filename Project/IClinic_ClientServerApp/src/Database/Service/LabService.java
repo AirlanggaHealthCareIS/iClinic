@@ -40,4 +40,8 @@ public interface LabService extends Remote {
     
     void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idDetailLab, int Harga) throws RemoteException;
 
+    String getAutoNumberDariPembayaran () throws RemoteException;
+    
+    void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idDetailLab, int Harga) throws RemoteException;
+
 }
