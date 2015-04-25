@@ -20,17 +20,17 @@ public interface KecantikanService extends Remote {
 
     List<Kecantikan_tabelMaster> getLayananKecantikan() throws RemoteException;
 
-    Kecantikan_detailLayanan insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
+    void insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
+    
+    //void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
 
-    void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
-
-    void deleteKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
+    //void deleteKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
 
     Kecantikan_detailLayanan getKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
 
     List<Kecantikan_detailLayanan> getKecantikan_detailLayanan() throws RemoteException;
 
-    Kecantikan_transaksiLayanan insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
+    void insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
 
     void updateKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
 

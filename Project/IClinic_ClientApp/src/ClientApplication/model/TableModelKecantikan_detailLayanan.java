@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModelKecantikan_detailLayanan extends AbstractTableModel {
 
-    private List<Kecantikan_detailLayanan> list = new ArrayList<Kecantikan_detailLayanan>(); //ambil list office dari bridge
+    private List<Kecantikan_detailLayanan> list = new ArrayList<Kecantikan_detailLayanan>();
 
     public TableModelKecantikan_detailLayanan(){
     }
@@ -49,8 +49,8 @@ public class TableModelKecantikan_detailLayanan extends AbstractTableModel {
     public String getColumnName(int column) {
         switch(column){
             case 0 : return "No Detail Layanan";
-            case 1 : return "Id Transaksi Layanan";
-            case 2 : return "Id Kecantikan";
+            case 1 : return "Layanan Kecantikan";
+            case 2 : return "Harga";
             case 3 : return "Keterangan";
             default: return null;
         }

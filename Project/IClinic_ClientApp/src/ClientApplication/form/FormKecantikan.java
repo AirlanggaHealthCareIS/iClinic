@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,9 +36,12 @@ public class FormKecantikan extends javax.swing.JFrame {
 
     KecantikanService kecantikanService;
     public List<Kecantikan_tabelMaster> listLayananKecantikan = new ArrayList<Kecantikan_tabelMaster>();
-
+    public ArrayList<Object> details = new ArrayList<Object>();
+    public DefaultTableModel model = new DefaultTableModel();
+    
     public FormKecantikan(KecantikanService kecantikanService) {
         this.kecantikanService = kecantikanService;
+        model = (DefaultTableModel) tabelLayanan.getModel();
         try {
             listLayananKecantikan = kecantikanService.getLayananKecantikan();
         } catch (RemoteException ex) {
@@ -93,7 +97,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        buttonSearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -358,7 +362,12 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        buttonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -380,7 +389,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -409,7 +418,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -455,11 +464,20 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLayananItemStateChanged
 
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
-
+        String iddetail = "";
+        String jenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getJenis_Layanan();
+        int harga = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif();
+        String keterangan = fieldKeterangan.getText();
+        Object[] detail = new Object[]{iddetail, jenislayanan, harga, keterangan};
+        details.add(detail);
+        model.addRow(detail);
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
     private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed
-        // TODO add your handling code here:
+        if(tabelLayanan.getSelectedRow() > -1){
+            model.removeRow(tabelLayanan.getSelectedRow());
+            details.remove(tabelLayanan.getSelectedRow());
+        }
     }//GEN-LAST:event_buttonHapusLayananActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -482,9 +500,14 @@ public class FormKecantikan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapusLayanan;
+    private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonTambahLayanan;
     private javax.swing.JComboBox comboLayanan;
     private javax.swing.JTextField fieldHarga;
@@ -496,7 +519,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

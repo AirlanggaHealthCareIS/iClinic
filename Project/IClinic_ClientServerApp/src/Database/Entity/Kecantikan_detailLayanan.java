@@ -12,16 +12,16 @@ import java.io.Serializable;
  */
 public class Kecantikan_detailLayanan implements Serializable{
 
-    private int Id_Det_Kesehatan;
-    private int Id_Trans_Layanan;
-    private int Id_Kecantikan;
+    private String Id_Det_Kesehatan;
+    private String Id_Trans_Layanan;
+    private String Id_Kecantikan;
     private String Keterangan;
 
-    public int getId_Det_Kesehatan() {
+    public String getId_Det_Kesehatan() {
         return Id_Det_Kesehatan;
     }
 
-    public int getId_Kecantikan() {
+    public String getId_Kecantikan() {
         return Id_Kecantikan;
     }
 
@@ -29,11 +29,11 @@ public class Kecantikan_detailLayanan implements Serializable{
         return Keterangan;
     }
 
-    public void setId_Det_Kesehatan(int Id_Det_Kesehatan) {
+    public void setId_Det_Kesehatan(String Id_Det_Kesehatan) {
         this.Id_Det_Kesehatan = Id_Det_Kesehatan;
     }
 
-    public void setId_Kecantikan(int Id_Kecantikan) {
+    public void setId_Kecantikan(String Id_Kecantikan) {
         this.Id_Kecantikan = Id_Kecantikan;
     }
 
@@ -41,11 +41,11 @@ public class Kecantikan_detailLayanan implements Serializable{
         this.Keterangan = Keterangan;
     }
 
-    public int getId_Trans_Layanan() {
+    public String getId_Trans_Layanan() {
         return Id_Trans_Layanan;
     }
 
-    public void setId_Trans_Layanan(int Id_Trans_Layanan) {
+    public void setId_Trans_Layanan(String Id_Trans_Layanan) {
         this.Id_Trans_Layanan = Id_Trans_Layanan;
     }
 

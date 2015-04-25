@@ -12,6 +12,7 @@ import Database.Service.KecantikanService;
 import ServerApplication.Utilities.DatabaseUtilities;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,10 +29,31 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public KecantikanServiceServer() throws RemoteException {
     }
 
-    public Kecantikan_detailLayanan insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
+    public void insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO det_layanan_kecantikan (ID_DET_KESEHATAN, ID_TRANSAKSI_LAYANAN, ID_KECANTIKAN, KETERANGAN) values (?,?,?,?)"
+            );
+            statement.setString(1, detail_layanan.getId_Det_Kesehatan());
+            statement.setString(2, detail_layanan.getId_Trans_Layanan());
+            statement.setString(3, detail_layanan.getId_Kecantikan());
+            statement.setString(4, detail_layanan.getKeterangan());
+            statement.executeUpdate();
+            System.out.println("Client Melakukan Proses Insert pada Table Detail Layanan Kecantikan");
+        } catch (SQLException exception) {
+            System.out.println("Client Gagal Melakukan Proses Insert pada Table Detail Layanan Kecantikan");
+            System.out.println(exception.toString());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
 
-        System.out.println("Client Melakukan Proses Insert pada Tabel Detail Layanan Kecantikan");
-        return detail_layanan;
+                }
+            }
+        }
+
     }
 
     public void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
@@ -62,10 +84,30 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
         return list;
     }
 
-    public Kecantikan_transaksiLayanan insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
+    public void insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
+PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO transaksi_layanan_kecantikan (ID_TRANSAKSI_KESEHATAN, ID_PASIEN, TOTAL_HARGA, TANGGAL) values (?,?,?,?)"
+            );
+            statement.setString(1, transaksi_layanan.getId_Transaksi_Layanan());
+            statement.setString(2, transaksi_layanan.getId_Pasien());
+            statement.setInt(3, transaksi_layanan.getTotal_Harga());
+            statement.setDate(4, (Date) transaksi_layanan.getTanggal());
+            statement.executeUpdate();
+            System.out.println("Client Melakukan Proses Insert pada Table Transaksi Layanan Kecantikan");
+        } catch (SQLException exception) {
+            System.out.println("Client Gagal Melakukan Proses Insert pada Table Transaksi Layanan Kecantikan");
+            System.out.println(exception.toString());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
 
-        System.out.println("Client Melakukan Proses Insert pada Tabel Transaksi Layanan Kesehatan");
-        return transaksi_layanan;
+                }
+            }
+        }
     }
 
     public void updateKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
