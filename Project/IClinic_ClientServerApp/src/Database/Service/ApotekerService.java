@@ -7,6 +7,7 @@ package Database.Service;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
 import Database.Entity.Obat_tabelMaster;
+import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -62,9 +63,12 @@ public interface ApotekerService extends Remote {
     int getHargaObat(String namaobat) throws RemoteException;
 
     //-----Pembayaran-----//
-
     String mencariIdPasienDariPembayaran(String idResep) throws RemoteException;
 
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
+
+    Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException;
+
+    void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idResep, int Harga) throws RemoteException;
 
 }

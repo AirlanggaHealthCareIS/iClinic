@@ -11,6 +11,7 @@ import ClientApplication.model.TableModelObat_resep;
 import Database.Entity.Obat_resep;
 import ClientApplication.model.TableModelObat_tabelMaster;
 import Database.Entity.Obat_tabelMaster;
+import Database.Entity.Pembayaran;
 import Database.Service.ApotekerService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -604,6 +605,10 @@ public class FormApoteker extends javax.swing.JFrame {
         try {
             String idPasien = apotekerService.mencariIdPasienDariPembayaran(idResep);
             String idPembayaran = apotekerService.mencariIdPembayaranDariPembayaran(idPasien);
+            if (!idPembayaran.equalsIgnoreCase("")) {
+                Pembayaran pembayaran = apotekerService.getPembayaranDariPembayaran(idPembayaran);
+                apotekerService.updatePembayaranDariPembayaran(pembayaran, idResep, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
