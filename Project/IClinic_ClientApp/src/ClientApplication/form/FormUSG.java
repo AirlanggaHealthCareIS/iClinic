@@ -302,6 +302,10 @@ public class FormUSG extends javax.swing.JFrame {
                 Pembayaran pembayaran = usgService.getPembayaranDariPembayaran(idPembayaran);
                 usgService.updatePembayaranDariPembayaran(pembayaran, idTransaksiUSG, hargaTransaksi);
             }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = usgService.getAutoNumberDariPembayaran();
+                usgService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idTransaksiUSG, hargaTransaksi);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
         }

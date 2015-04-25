@@ -26,10 +26,14 @@ public interface USGService extends Remote {
     List<USG> getUSG() throws RemoteException;
 
     //-----Pembayaran-----//
-
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
 
-    Pembayaran getPembayaranDariPembayaran (String idPembayaran)throws RemoteException;
-    
+    Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException;
+
     void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idTransaksiUSG, int Harga) throws RemoteException;
+
+    String getAutoNumberDariPembayaran() throws RemoteException;
+
+    void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiUSG, int Harga) throws RemoteException;
+
 }

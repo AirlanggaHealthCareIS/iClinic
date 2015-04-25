@@ -200,6 +200,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //    public USG getUSG(int Id_USG) throws RemoteException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
+    
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
         System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
@@ -295,6 +296,81 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                     statement.close();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public String getAutoNumberDariPembayaran() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        Statement state = null;
+        ResultSet rs = null;
+
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_PEMBAYARAN FROM pembayaran ORDER BY ID_PEMBAYARAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "BYR0001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5] + pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "000";
+            } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
+                nol = "0";
+            }
+            nomerBaru = "BYR" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+
+    public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiUSG, int Harga) throws RemoteException {
+        System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
+        PreparedStatement statement = null;
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_PASIEN,ID_USG,"
+                    + "ID_DETAIL_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,"
+                    + "TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?,?,?)");
+            statement.setString(1, idPembayaran);
+            statement.setString(2, idPasien);
+            statement.setString(3, idTransaksiUSG);
+            statement.setString(4, null);
+            statement.setString(5, null);
+            statement.setString(6, null);
+            statement.setString(7, null);
+            statement.setDate(8, date);
+            statement.setInt(9, Harga);
+            statement.setString(10, "HUTANG");
+
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+
                 }
             }
         }
