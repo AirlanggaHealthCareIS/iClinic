@@ -3,11 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
-<<<<<<< HEAD
--- Waktu pembuatan: 24 Apr 2015 pada 12.05
-=======
--- Waktu pembuatan: 24 Apr 2015 pada 04.03
->>>>>>> origin/master
+-- Waktu pembuatan: 25 Apr 2015 pada 15.24
 -- Versi Server: 5.5.27
 -- Versi PHP: 5.4.7
 
@@ -186,20 +182,6 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   PRIMARY KEY (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
-=======
---
--- Dumping data untuk tabel `pasien`
---
-
-INSERT INTO `pasien` (`ID_PASIEN`, `NO_KTP`, `NAMA_PASIEN`, `ALAMAT`, `TGL_LAHIR`, `TGL_DAFTAR`, `USIA`, `NO_HP`, `JENIS_KELAMIN`) VALUES
-('P0001', '1234', 'tiara', 'aaa', '0000-00-00', '0000-00-00', 20, '1234', 'P'),
-('P0002', '12', 'aa', 'aa', '2015-04-16', '2015-04-17', 1, '1111', 'L'),
-('P0003', '12', 'aaaa', 'qqq', '2015-04-01', '2015-04-22', 2, '111', 'P'),
-('P0004', '111', 'www', 'www', '2015-04-03', '2015-04-23', 1, '11', 'P'),
-('P0005', '22', 'aa', 'aa', '2015-04-12', '2015-04-23', 1, '11', 'L');
-
->>>>>>> origin/master
 -- --------------------------------------------------------
 
 --
@@ -374,25 +356,15 @@ ALTER TABLE `detail_lab`
 -- Ketidakleluasaan untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
-<<<<<<< HEAD
   ADD CONSTRAINT `detail_resep_ibfk_1` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`),
   ADD CONSTRAINT `detail_resep_ibfk_2` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
-=======
-  ADD CONSTRAINT `detail_resep_ibfk_2` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
-  ADD CONSTRAINT `detail_resep_ibfk_1` FOREIGN KEY (`ID_OBAT`) REFERENCES `obat` (`ID_OBAT`);
->>>>>>> origin/master
 
 --
 -- Ketidakleluasaan untuk tabel `detail_tindakan`
 --
 ALTER TABLE `detail_tindakan`
-<<<<<<< HEAD
   ADD CONSTRAINT `detail_tindakan_ibfk_1` FOREIGN KEY (`ID_TINDAKAN`) REFERENCES `tindakan` (`ID_TINDAKAN`),
   ADD CONSTRAINT `ID_REKAM` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`);
-=======
-  ADD CONSTRAINT `ID_REKAM` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`),
-  ADD CONSTRAINT `detail_tindakan_ibfk_1` FOREIGN KEY (`ID_TINDAKAN`) REFERENCES `tindakan` (`ID_TINDAKAN`);
->>>>>>> origin/master
 
 --
 -- Ketidakleluasaan untuk tabel `det_layanan_kecantikan`
@@ -411,32 +383,19 @@ ALTER TABLE `diagnosa`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-<<<<<<< HEAD
-=======
-  ADD CONSTRAINT `pembayaran_ibfk_6` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
->>>>>>> origin/master
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
   ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`),
   ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`ID_USG`) REFERENCES `transaksi_usg` (`ID_USG`),
   ADD CONSTRAINT `pembayaran_ibfk_4` FOREIGN KEY (`ID_DETAIL_LAB`) REFERENCES `detail_lab` (`ID_DETAIL_LAB`),
-<<<<<<< HEAD
   ADD CONSTRAINT `pembayaran_ibfk_5` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`),
   ADD CONSTRAINT `pembayaran_ibfk_6` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
-=======
-  ADD CONSTRAINT `pembayaran_ibfk_5` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`);
->>>>>>> origin/master
 
 --
 -- Ketidakleluasaan untuk tabel `rekam_medis`
 --
 ALTER TABLE `rekam_medis`
-<<<<<<< HEAD
   ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
   ADD CONSTRAINT `rekam_medis_ibfk_1` FOREIGN KEY (`ID_DIAGNOSA`) REFERENCES `diagnosa` (`ID_DIAGNOSA`);
-=======
-  ADD CONSTRAINT `rekam_medis_ibfk_1` FOREIGN KEY (`ID_DIAGNOSA`) REFERENCES `diagnosa` (`ID_DIAGNOSA`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
->>>>>>> origin/master
 
 --
 -- Ketidakleluasaan untuk tabel `resep`
