@@ -609,6 +609,10 @@ public class FormApoteker extends javax.swing.JFrame {
                 Pembayaran pembayaran = apotekerService.getPembayaranDariPembayaran(idPembayaran);
                 apotekerService.updatePembayaranDariPembayaran(pembayaran, idResep, harga);
             }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = apotekerService.getAutoNumberDariPembayaran();
+                apotekerService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idResep, harga);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
