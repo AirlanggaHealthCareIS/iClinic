@@ -1356,13 +1356,16 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         else{
             try{
-            int row = tindakanTabel.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
-            serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
-            clearTindakan();
+                int check = serviceAdmin.cekPemakaianTindakan(idTindakanField.getText());
+                if(check == 0){
+                    int row = tindakanTabel.getSelectedRow();
+                    if(row == -1){
+                        return;
+                    }
+                    String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
+                    serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
+                    clearTindakan();
+                }
             }catch(RemoteException exception){
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1506,13 +1509,16 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         else{
             try{
-            int row = penyakitTabel.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            String hapusIDPenyakit = tableMasterPenyakit.get(row).getId_Penyakit();
-            serviceAdmin.deletePenyakit_tabelMaster(hapusIDPenyakit);
-            clearPenyakit();
+                int check = serviceAdmin.cekPemakaianPenyakit(idPenyakitField.getText());
+                if(check == 0){
+                    int row = penyakitTabel.getSelectedRow();
+                    if(row == -1){
+                        return;
+                    }
+                    String hapusIDPenyakit = tableMasterPenyakit.get(row).getId_Penyakit();
+                    serviceAdmin.deletePenyakit_tabelMaster(hapusIDPenyakit);
+                    clearPenyakit();
+                }
             }catch(RemoteException exception){
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1526,13 +1532,16 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         else{
             try{
-            int row = obatTabel.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            String hapusIDObat = tableMasterObat.get(row).getId_Obat();
-            serviceAdmin.deleteObat_tabelMaster(hapusIDObat);
-            clearObat();
+                int check = serviceAdmin.cekPemakaianObat(idObatField.getText());
+                if(check == 0){
+                    int row = obatTabel.getSelectedRow();
+                    if(row == -1){
+                        return;
+                    }
+                    String hapusIDObat = tableMasterObat.get(row).getId_Obat();
+                    serviceAdmin.deleteObat_tabelMaster(hapusIDObat);
+                    clearObat();
+                }
             }catch(RemoteException exception){
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1546,13 +1555,16 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         else{
             try{
-            int row = layananLabTabel.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            String hapusIDLab = tableMasterLab.get(row).getId_Lab();
-            serviceAdmin.deleteLab_tabelMaster(hapusIDLab);
-            clearLab();
+                int check = serviceAdmin.cekPemakaianLab(idLayananLabField.getText());
+                if(check == 0){
+                    int row = layananLabTabel.getSelectedRow();
+                    if(row == -1){
+                        return;
+                    }
+                    String hapusIDLab = tableMasterLab.get(row).getId_Lab();
+                    serviceAdmin.deleteLab_tabelMaster(hapusIDLab);
+                    clearLab();
+                }
             }catch(RemoteException exception){
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1566,13 +1578,16 @@ public class FormAdministrator extends javax.swing.JFrame {
         }
         else{
             try{
-            int row = layananKecantikanTabel.getSelectedRow();
-            if(row == -1){
-                return;
-            }
-            String hapusIDKecantikan = tableMasterKecantikan.get(row).getId_Kecantikan();
-            serviceAdmin.deleteKecantikan_tabelMaster(hapusIDKecantikan);
-            clearKecantikan();
+                int check = serviceAdmin.cekPemakaianKecantikan(idLayananKecantikanField.getText());
+                if(check == 0){
+                    int row = layananKecantikanTabel.getSelectedRow();
+                    if(row == -1){
+                        return;
+                    }
+                    String hapusIDKecantikan = tableMasterKecantikan.get(row).getId_Kecantikan();
+                    serviceAdmin.deleteKecantikan_tabelMaster(hapusIDKecantikan);
+                    clearKecantikan();
+                }
             }catch(RemoteException exception){
                 exception.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Gagal menghapus data karena kesalahan sistem!", "Error", JOptionPane.ERROR_MESSAGE);

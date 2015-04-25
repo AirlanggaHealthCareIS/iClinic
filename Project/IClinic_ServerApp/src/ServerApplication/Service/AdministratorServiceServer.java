@@ -226,11 +226,57 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
     }
 
     public List<Obat_tabelMaster> getObat_tabelMaster() throws RemoteException {
-
         System.out.println("Client Melakukan Proses Get All pada Tabel Obat");
 
-        List<Obat_tabelMaster> list = new ArrayList<Obat_tabelMaster>();
-        return list;
+        Statement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM obat");
+            List<Obat_tabelMaster> list = new ArrayList<Obat_tabelMaster>();
+            
+            while(result.next()){
+                Obat_tabelMaster obat = new Obat_tabelMaster();
+                obat.setId_Obat(result.getString("ID_OBAT"));
+                obat.setNama_Obat(result.getString("NAMA_OBAT"));
+                obat.setJenis_Obat(result.getString("JENIS_OBAT"));
+                obat.setHarga_Obat(result.getInt("HARGA_OBAT"));
+                obat.setSatuan(result.getString("SATUAN"));
+                list.add(obat);
+            }
+            result.close();
+            return list;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public int cekPemakaianObat(String Id_Obat) throws RemoteException{
+        System.out.println("Client Melakukan Proses Cek Pemakaian Obat dengan Mengakses Tabel Obat");
+        
+        Statement statement = null;
+        ResultSet result = null;
+        
+        int jumlahPenggunaan = 0;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT COUNT(NO_DETAIL_RESEP) FROM detail_resep WHERE ID_OBAT = '" + Id_Obat +"'");
+            while(result.next()){
+                jumlahPenggunaan = result.getInt(1);
+            }
+            System.out.println(jumlahPenggunaan);
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return jumlahPenggunaan;
     }
     
     public Penyakit_tabelMaster insertPenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
@@ -343,6 +389,26 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
                 }
             }
         }
+    }
+    
+    public int cekPemakaianPenyakit(String Id_Penyakit) throws RemoteException{
+        System.out.println("Client Melakukan Proses Cek Pemakaian Penyakit dengan Mengakses Tabel Penyakit");
+        
+        Statement statement = null;
+        ResultSet result = null;
+        
+        int jumlahPenggunaan = 0;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT COUNT(ID_DIAGNOSA) FROM diagnosa WHERE ID_PENYAKIT = '" + Id_Penyakit +"'");
+            while(result.next()){
+                jumlahPenggunaan = result.getInt(1);
+            }
+            System.out.println(jumlahPenggunaan);
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return jumlahPenggunaan;
     }
     
     public Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
@@ -463,6 +529,26 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
     
+    public int cekPemakaianTindakan(String Id_Tindakan) throws RemoteException{
+        System.out.println("Client Melakukan Proses Cek Pemakaian Tindakan dengan Mengakses Tabel Tindakan");
+        
+        Statement statement = null;
+        ResultSet result = null;
+        
+        int jumlahPenggunaan = 0;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT COUNT(NO_DETAIL) FROM detail_tindakan WHERE ID_TINDAKAN = '" + Id_Tindakan +"'");
+            while(result.next()){
+                jumlahPenggunaan = result.getInt(1);
+            }
+            System.out.println(jumlahPenggunaan);
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return jumlahPenggunaan;
+    }
+    
     public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Laboratorium");
         
@@ -578,6 +664,26 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
                 }
             }
         }
+    }
+    
+    public int cekPemakaianLab(String Id_Lab) throws RemoteException{
+        System.out.println("Client Melakukan Proses Cek Pemakaian Obat dengan Mengakses Tabel Obat");
+        
+        Statement statement = null;
+        ResultSet result = null;
+        
+        int jumlahPenggunaan = 0;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT COUNT(NO_DETAIL_LAB) FROM detail_lab WHERE ID_LAB = '" + Id_Lab +"'");
+            while(result.next()){
+                jumlahPenggunaan = result.getInt(1);
+            }
+            System.out.println(jumlahPenggunaan);
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return jumlahPenggunaan;
     }
     
     public Kecantikan_tabelMaster insertKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
@@ -702,4 +808,23 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
 
+    public int cekPemakaianKecantikan(String Id_Kecantikan) throws RemoteException{
+        System.out.println("Client Melakukan Proses Cek Pemakaian Kecantikan dengan Mengakses Tabel Kecantikan");
+        
+        Statement statement = null;
+        ResultSet result = null;
+        
+        int jumlahPenggunaan = 0;
+        try{
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT COUNT(ID_DET_KESEHATAN) FROM det_layanan_kecantikan WHERE ID_KECANTIKAN = '" + Id_Kecantikan +"'");
+            while(result.next()){
+                jumlahPenggunaan = result.getInt(1);
+            }
+            System.out.println(jumlahPenggunaan);
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+        return jumlahPenggunaan;
+    }
 }
