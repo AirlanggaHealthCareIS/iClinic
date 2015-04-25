@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author Rindu Puspita
  */
-public class ApotekerServiceServer extends UnicastRemoteObject implements ApotekerService{
+    public class ApotekerServiceServer extends UnicastRemoteObject implements ApotekerService{
 
     public ApotekerServiceServer() throws RemoteException {
     }
@@ -199,22 +199,18 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO detail_resep (NO_DETAIL_RESEP,ID_RESEP,ID_OBAT,TAKARAN,PEMAKAIAN,JUMLAH,KETERANGAN) values(?,?,?,?,?,?,?,?)"
+                   "INSERT INTO detail_resep (NO_DETAIL_RESEP,ID_RESEP,ID_OBAT,TAKARAN,PEMAKAIAN,JUMLAH,KETERANGAN) values(?,?,?,?,?,?,?)"
                    );
            statement.setString(1, detail_resep.getNo_Detail_Resep());
            statement.setString(2, detail_resep.getId_Resep());
            statement.setString(3, detail_resep.getId_Obat());
            statement.setString(4, detail_resep.getTakaran());
            statement.setString(5, detail_resep.getPemakaian());
-           statement.setInt(6, detail_resep.getJumlah());
+           statement.setString(6, detail_resep.getJumlah());
            statement.setString(7, detail_resep.getKeterangan());
            
            statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-           if(result.next()){
-               detail_resep.setNo_Detail_Resep(result.getString(1));
-           }
-        result.close();
+           
         return detail_resep;
         }catch(SQLException exception){
         exception.printStackTrace();
@@ -247,7 +243,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
            statement.setString(3, detail_resep.getId_Obat());
            statement.setString(4, detail_resep.getTakaran());
            statement.setString(5, detail_resep.getPemakaian());
-           statement.setInt(6, detail_resep.getJumlah());
+           statement.setString(6, detail_resep.getJumlah());
            statement.setString(7, detail_resep.getKeterangan());
 
            statement.executeUpdate();
@@ -311,7 +307,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getInt("Jumlah"));
+                detail_resep.setJumlah(result.getString("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
             }
         
@@ -349,7 +345,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getInt("Jumlah"));
+                detail_resep.setJumlah(result.getString("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
                 list.add(detail_resep);
           }
@@ -526,4 +522,172 @@ PreparedStatement statement = null;
             }
         }
     }
-}
+    
+    public List getNamaObat() throws RemoteException {
+        Statement statement = null;
+	ResultSet resultSet = null;
+        List product_code = new ArrayList();
+	try {
+	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+	    resultSet = statement.executeQuery("SELECT NAMA_OBAT from obat");
+	    while (resultSet.next()) {
+		product_code.add(resultSet.getString("NAMA_OBAT"));
+	    }
+	}
+        catch (SQLException ex) {}
+         finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	    try {
+		if (statement != null) {
+		    statement.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	}
+        return product_code;
+    }
+
+    public String getIdObat(String namaObat) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Jenis Obat");
+        Statement state = null;
+        ResultSet rs = null;
+        String noDetail = "";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_OBAT FROM obat WHERE  NAMA_OBAT = '"+namaObat+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                noDetail = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(noDetail);
+        return noDetail;
+    }  
+
+        public List getTakaran() throws RemoteException {
+        Statement statement = null;
+	ResultSet resultSet = null;
+        List product_code = new ArrayList();
+	try {
+	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+	    resultSet = statement.executeQuery("SELECT TAKARAN from detail_resep");
+	    while (resultSet.next()) {
+		product_code.add(resultSet.getString("TAKARAN"));
+	    }
+	}
+        catch (SQLException ex) {}
+         finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	    try {
+		if (statement != null) {
+		    statement.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	}
+        return product_code;
+    }
+
+    public String getIdTakaran(String takaran) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Takaran");
+        Statement state = null;
+        ResultSet rs = null;
+        String noDetail = "";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT TAKARAN FROM detail_resep WHERE  NO_DETAIL_RESEP = '"+takaran+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                noDetail = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(noDetail);
+        return noDetail;
+    }  
+
+
+    public List getPemakaian() throws RemoteException {
+        Statement statement = null;
+	ResultSet resultSet = null;
+        List product_code = new ArrayList();
+	try {
+	    statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+	    resultSet = statement.executeQuery("SELECT PEMAKAIAN from detail_resep");
+	    while (resultSet.next()) {
+		product_code.add(resultSet.getString("PEMAKAIAN"));
+	    }
+	}
+        catch (SQLException ex) {}
+         finally {
+	    try {
+		if (resultSet != null) {
+		    resultSet.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	    try {
+		if (statement != null) {
+		    statement.close();
+		}
+	    }
+            catch (SQLException ex) {}
+	}
+        return product_code;
+    }
+
+    public String getIdPemakaian(String pemakaian) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Pemakaian");
+        Statement state = null;
+        ResultSet rs = null;
+        String noDetail = "";
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT PEMAKAIAN FROM detail_resep WHERE  NO_DETAIL_RESEP = '"+pemakaian+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                noDetail = rs.getString(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(noDetail);
+        return noDetail;
+    }
+    
+     public int getHargaObat(String namaobat) throws RemoteException {
+         System.out.println("Client Melakukan Proses Get Harga");
+        Statement state = null;
+        ResultSet rs = null;
+        int hargaObat = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT HARGA_OBAT FROM obat WHERE  NAMA_OBAT = '"+namaobat+"'";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                hargaObat = rs.getInt(1);
+            }
+        }
+        catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(hargaObat);
+        return hargaObat;
+    }
+    }
