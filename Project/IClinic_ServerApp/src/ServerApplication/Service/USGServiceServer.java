@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ServerApplication.Service;
 
 import Database.Entity.USG;
@@ -23,46 +22,44 @@ import java.util.List;
  * @author Arlin
  */
 public class USGServiceServer extends UnicastRemoteObject implements USGService {
- 
 
     public USGServiceServer() throws RemoteException {
     }
 
     public USG insertUSG(USG usg) throws RemoteException {
-   
 
         System.out.println("Client Melakukan Proses Insert pada Tabel usg");
 
         PreparedStatement statement = null;
-       try{
-           statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO transaksi_usg (ID_USG,ID_PASIEN,HASIL,HARGA,DESKRIPSI) values(?,?,?,?,?)"
-                   );
-           statement.setString(1, usg.getId_USG());
-           statement.setString(2, usg.getId_pasien());
-           statement.setBlob(3, usg.getHasil());
-           statement.setInt(4, usg.getHarga());
-           statement.setString(5, usg.getDeskripsi());
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO transaksi_usg (ID_USG,ID_PASIEN,HASIL,HARGA,DESKRIPSI) values(?,?,?,?,?)"
+            );
+            statement.setString(1, usg.getId_USG());
+            statement.setString(2, usg.getId_pasien());
+            statement.setBlob(3, usg.getHasil());
+            statement.setInt(4, usg.getHarga());
+            statement.setString(5, usg.getDeskripsi());
 
-           statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-           if(result.next()){
-               usg.setId_USG(result.getString(1));
-           }
-        result.close();
-        return usg;
-       }catch(SQLException exception){
-        exception.printStackTrace();
+            statement.executeUpdate();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                usg.setId_USG(result.getString(1));
+            }
+            result.close();
+            return usg;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
             return null;
-       }finally{
-           if(statement != null){
-               try{
-                   statement.close();
-               }catch(SQLException exception){
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
 
-               }
-           }
-       }
+                }
+            }
+        }
     }
 
 //    public void updateUSG(USG usg) throws RemoteException {
@@ -96,7 +93,6 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //           }
 //       }
 //    }
-
 //    public void deleteUSG(String Id_USG) throws RemoteException {
 //
 //        System.out.println("Client Melakukan Proses Delete pada Tabel USG");
@@ -122,21 +118,20 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //           }
 //       }
 //    }
-
     public USG getUSG(String Id_USG) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
 
         PreparedStatement statement = null;
-        try{
+        try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                 "SELECT * FROM transaksi_usg WHERE ID_USG = ?");
+                    "SELECT * FROM transaksi_usg WHERE ID_USG = ?");
 
             ResultSet result = statement.executeQuery();
 
             USG usg = null;
 
-            if(result.next()){
+            if (result.next()) {
                 usg = new USG();
                 usg.setId_USG(result.getString("Id_USG"));
                 usg.setId_pasien(result.getString("Id_Pasien"));
@@ -147,33 +142,33 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 
             return usg;
 
-        }catch(SQLException exception){
-          exception.printStackTrace();
-          return null;
-        }finally{
-            if(statement != null){
-                try{
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
                     statement.close();
-                }catch(SQLException exception){
-                   exception.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
         }
     }
 
     public List<USG> getUSG() throws RemoteException {
-        
+
         System.out.println("Client Melakukan Proses Get All pada Tabel USG");
 
         Statement statement = null;
-        try{
-          statement = DatabaseUtilities.getConnection().createStatement();
+        try {
+            statement = DatabaseUtilities.getConnection().createStatement();
 
-          ResultSet result = statement.executeQuery("SELECT * FROM transaksi_usg");
+            ResultSet result = statement.executeQuery("SELECT * FROM transaksi_usg");
 
-          List<USG> list = new ArrayList<USG>();
+            List<USG> list = new ArrayList<USG>();
 
-          while(result.next()){
+            while (result.next()) {
                 USG usg = new USG();
                 usg.setId_USG(result.getString("ID_USG"));
                 usg.setId_pasien(result.getString("Id_PASIEN"));
@@ -181,21 +176,21 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                 usg.setHarga(result.getInt("HARGA"));
                 usg.setDeskripsi(result.getString("DESKRIPSI"));
                 list.add(usg);
-          }
+            }
 
-          result.close();
+            result.close();
 
-          return list;
+            return list;
 
-        }catch(SQLException exception){
-          exception.printStackTrace();
-          return null;
-        }finally{
-            if(statement != null){
-                try{
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
                     statement.close();
-                }catch(SQLException exception){
-                   exception.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
         }
@@ -204,7 +199,30 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //    public USG getUSG(int Id_USG) throws RemoteException {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
+    //-----Pembayaran-----//
+    public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
+        System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
+        Statement state = null;
+        ResultSet rs = null;
+        String idPembayaran = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT `pembayaran`.ID_PEMBAYARAN \n"
+                    + "FROM `pembayaran`,`transaksi_usg` \n"
+                    + "WHERE `pembayaran`.ID_PASIEN = `transaksi_usg`.ID_PASIEN \n"
+                    + "AND `pembayaran`.ID_PASIEN = '" + idPasien + "' \n"
+                    + "AND `pembayaran`.TANGGAL_BAYAR = '" + date + "' \n"
+                    + "AND `pembayaran`.STATUS = 'HUTANG'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                idPembayaran = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(idPembayaran);
+        return idPembayaran;
+    }
 
-   
-
-}
+    }
