@@ -30,15 +30,15 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormApoteker extends javax.swing.JFrame {
 
-private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
+    private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
     private ApotekerService apotekerService;
-    int total=0;
-    
+    int total = 0;
+
     public FormApoteker(ApotekerService apotekerService) {
         this.apotekerService = apotekerService;
-        try{
+        try {
             tableModelObat_detailResep.setData(this.apotekerService.getObat_detailResep(null));
-        }catch(RemoteException exception){
+        } catch (RemoteException exception) {
             exception.printStackTrace();
         }
         initComponents();
@@ -50,17 +50,16 @@ private TableModelObat_detailResep tableModelObat_detailResep = new TableModelOb
 
             public void valueChanged(ListSelectionEvent e) {
                 int row = Table_Apotek.getSelectedRow();
-                if(row != -1){
+                if (row != -1) {
                     Obat_detailResep obat_detailResep = new Obat_detailResep();
                 }
             }
         });
     }
-    
-    public void clear(){
+
+    public void clear() {
         TextField_IdResep.setText("");
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -563,41 +562,52 @@ private TableModelObat_detailResep tableModelObat_detailResep = new TableModelOb
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         //if(tglTransaksiBeli.getText().equals("")||idCustomer.getText().equalsIgnoreCase("")
-            //                ||idKaryawan.getSelectedItem().equals("")||totalHarga.getText().equals("")||diskon.getText().equals("")){
-            //            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
-            //        }
+        //                ||idKaryawan.getSelectedItem().equals("")||totalHarga.getText().equals("")||diskon.getText().equals("")){
+        //            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
+        //        }
         //        else{
-            //            try{
-                //                TransaksiBeli transaksiBeli = new TransaksiBeli();
-                //                transaksiBeli.setID_TRANSAKSIBELI(idTransaksiBeli.getText());
-                //                transaksiBeli.setID_CUSTOMER(idCustomer.getText());
-                //                transaksiBeli.setID_KARYAWAN(idKaryawan.getSelectedItem().toString());
-                //                transaksiBeli.setTGL_TRANSAKSIBELI((Date)tglTransaksiBeli.getValue());
-                //                transaksiBeli.setTOTAL_HARGA(Integer.parseInt(totalHarga.getText()));
-                //                transaksiBeli.setDISKON(Integer.parseInt(diskon.getText()));
-                //                transaksiBeli.setTOTAL_TAGIHAN(Integer.parseInt(totalTagihan.getText()));
-                //                transaksiBeli.setSTATUS_PEMBAYARAN(status.getText());
-                //
-                //                TransaksiBeliService.updateTransaksiBeli(transaksiBeli);
-                //                tableModelTransaksiBeli.insert(transaksiBeli);
-                //
-                //                TransaksiBeliService.insertPembayaran(transaksiBeli, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()), Integer.parseInt(sisaTagihan.getText()));
-                //
-                //                String idPemasukan = TransaksiBeliService.getAutoNumberPemasukan();
-                //                TransaksiBeliService.insertPemasukan(transaksiBeli, idPemasukan, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()));
-                //                TransaksiBeliService.insertBukuBesar(transaksiBeli, idPemasukan, Integer.parseInt(jumlahBayar.getText()));
-                //
-                //                int jumlah_transaksi = TransaksiBeliService.hitungMember(idCustomer.getText());
-                //                if(jumlah_transaksi == 3){
-                    //                    TransaksiBeliService.insertMember(idCustomer.getText());
-                    //                }
-                //                clear();
-                //            }
-            //            catch(RemoteException exception){
-                //                exception.printStackTrace();
-                //            }
-            //        }
+        //            try{
+        //                TransaksiBeli transaksiBeli = new TransaksiBeli();
+        //                transaksiBeli.setID_TRANSAKSIBELI(idTransaksiBeli.getText());
+        //                transaksiBeli.setID_CUSTOMER(idCustomer.getText());
+        //                transaksiBeli.setID_KARYAWAN(idKaryawan.getSelectedItem().toString());
+        //                transaksiBeli.setTGL_TRANSAKSIBELI((Date)tglTransaksiBeli.getValue());
+        //                transaksiBeli.setTOTAL_HARGA(Integer.parseInt(totalHarga.getText()));
+        //                transaksiBeli.setDISKON(Integer.parseInt(diskon.getText()));
+        //                transaksiBeli.setTOTAL_TAGIHAN(Integer.parseInt(totalTagihan.getText()));
+        //                transaksiBeli.setSTATUS_PEMBAYARAN(status.getText());
+        //
+        //                TransaksiBeliService.updateTransaksiBeli(transaksiBeli);
+        //                tableModelTransaksiBeli.insert(transaksiBeli);
+        //
+        //                TransaksiBeliService.insertPembayaran(transaksiBeli, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()), Integer.parseInt(sisaTagihan.getText()));
+        //
+        //                String idPemasukan = TransaksiBeliService.getAutoNumberPemasukan();
+        //                TransaksiBeliService.insertPemasukan(transaksiBeli, idPemasukan, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()));
+        //                TransaksiBeliService.insertBukuBesar(transaksiBeli, idPemasukan, Integer.parseInt(jumlahBayar.getText()));
+        //
+        //                int jumlah_transaksi = TransaksiBeliService.hitungMember(idCustomer.getText());
+        //                if(jumlah_transaksi == 3){
+        //                    TransaksiBeliService.insertMember(idCustomer.getText());
+        //                }
+        //                clear();
+        //            }
+        //            catch(RemoteException exception){
+        //                exception.printStackTrace();
+        //            }
+        //        }
         // TODO add your handling code here:
+
+        //-----Pembayaran-----//
+        String idResep = jTextField7.getText();
+        int harga = Integer.parseInt(jTextField12.getText());
+        try {
+            String idPasien = apotekerService.mencariIdPasienDariPembayaran(idResep);
+            String idPembayaran = apotekerService.mencariIdPembayaranDariPembayaran(idPasien);
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_submitActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -605,17 +615,16 @@ private TableModelObat_detailResep tableModelObat_detailResep = new TableModelOb
     }//GEN-LAST:event_ExitActionPerformed
 
     private void Button_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SearchActionPerformed
-        if(TextField_IdResep.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
-    }
-    else if( !TextField_IdResep.getText().equals("")){
-        try{
-            tableModelObat_detailResep.setData(apotekerService.getObat_detailResep(TextField_IdResep.getText()));
-            Table_Apotek.setModel(tableModelObat_detailResep);
-        }catch(RemoteException exception){
-            exception.printStackTrace();
+        if (TextField_IdResep.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
+        } else if (!TextField_IdResep.getText().equals("")) {
+            try {
+                tableModelObat_detailResep.setData(apotekerService.getObat_detailResep(TextField_IdResep.getText()));
+                Table_Apotek.setModel(tableModelObat_detailResep);
+            } catch (RemoteException exception) {
+                exception.printStackTrace();
+            }
         }
-    }
     }//GEN-LAST:event_Button_SearchActionPerformed
 
     private void namaObatComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaObatComboBoxActionPerformed
@@ -627,58 +636,54 @@ private TableModelObat_detailResep tableModelObat_detailResep = new TableModelOb
     }//GEN-LAST:event_takaranSatuanWaktuComboBoxActionPerformed
 
     private void tambahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahObatButtonActionPerformed
-    if(idResepField.getText().equals("")||noDetailResepField.getText().equals("")||namaObatComboBox.getSelectedItem().equals("")||takaranSpinner.getValue().equals("")||
-takaranSatuanWaktuComboBox.getSelectedItem().equals("")||pemakaianComboBox.getSelectedItem().equals("")||hargaField.getText().equals("")||jumlahSpinner.getValue().equals("")
-        ||satuanComboBox.getSelectedItem().equals("")||keteranganField.getText().equals("")||totalHargaObatField.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
-    }
-    else{
-        try{
-           Obat_detailResep obat_detailresep = new Obat_detailResep ();
-           obat_detailresep.setId_Resep(idResepField.getText());
-           obat_detailresep.setNo_Detail_Resep(noDetailResepField.getText());
-           String id_obat = apotekerService.getIdObat(namaObatComboBox.getSelectedItem().toString());
-           System.out.println(namaObatComboBox.getSelectedItem().toString());
-           obat_detailresep.setId_Obat(id_obat);
-           System.out.println(id_obat);
-           obat_detailresep.setTakaran((String)(takaranSpinner.getValue()+" kali "+takaranSatuanWaktuComboBox.getSelectedItem()));
-           obat_detailresep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
-           obat_detailresep.setJumlah(jumlahSpinner.getValue().toString()+""+satuanComboBox.getSelectedItem().toString());
-           obat_detailresep.setKeterangan(keteranganField.getText());
-           
-           Obat_detailResep obat_detailresep1 = apotekerService.insertObat_detailResep(obat_detailresep);
-           tableModelObat_detailResep.insert(obat_detailresep1);
+        if (idResepField.getText().equals("") || noDetailResepField.getText().equals("") || namaObatComboBox.getSelectedItem().equals("") || takaranSpinner.getValue().equals("")
+                || takaranSatuanWaktuComboBox.getSelectedItem().equals("") || pemakaianComboBox.getSelectedItem().equals("") || hargaField.getText().equals("") || jumlahSpinner.getValue().equals("")
+                || satuanComboBox.getSelectedItem().equals("") || keteranganField.getText().equals("") || totalHargaObatField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
+        } else {
+            try {
+                Obat_detailResep obat_detailresep = new Obat_detailResep();
+                obat_detailresep.setId_Resep(idResepField.getText());
+                obat_detailresep.setNo_Detail_Resep(noDetailResepField.getText());
+                String id_obat = apotekerService.getIdObat(namaObatComboBox.getSelectedItem().toString());
+                System.out.println(namaObatComboBox.getSelectedItem().toString());
+                obat_detailresep.setId_Obat(id_obat);
+                System.out.println(id_obat);
+                obat_detailresep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
+                obat_detailresep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
+                obat_detailresep.setJumlah(jumlahSpinner.getValue().toString() + "" + satuanComboBox.getSelectedItem().toString());
+                obat_detailresep.setKeterangan(keteranganField.getText());
+
+                Obat_detailResep obat_detailresep1 = apotekerService.insertObat_detailResep(obat_detailresep);
+                tableModelObat_detailResep.insert(obat_detailresep1);
+            } catch (RemoteException exception) {
+                exception.printStackTrace();
+            }
         }
-        catch(RemoteException exception){
-            exception.printStackTrace();
-        }
-   }
     }//GEN-LAST:event_tambahObatButtonActionPerformed
 
     private void namaObatComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_namaObatComboBoxPopupMenuWillBecomeVisible
-     
+
         namaObatComboBox.removeAllItems();
         List namaobat = new ArrayList();
-        try{
+        try {
             namaobat = apotekerService.getNamaObat();
             for (int i = 0; i < namaobat.size(); i++) {
                 namaObatComboBox.addItem(namaobat.get(i));
             }
-         
-            
-        }
-        catch (RemoteException ex){
+
+        } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }//GEN-LAST:event_namaObatComboBoxPopupMenuWillBecomeVisible
 
     private void namaObatComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namaObatComboBoxItemStateChanged
-        try{
+        try {
             int harga = apotekerService.getHargaObat(namaObatComboBox.getSelectedItem().toString());
             hargaField.setText(String.valueOf(harga));
             total = total + harga;
-            totalHargaObatField.setText(""+total);
+            totalHargaObatField.setText("" + total);
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -687,7 +692,7 @@ takaranSatuanWaktuComboBox.getSelectedItem().equals("")||pemakaianComboBox.getSe
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Search;
     private javax.swing.JButton Exit;
