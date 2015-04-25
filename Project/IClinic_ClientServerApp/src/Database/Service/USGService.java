@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Pembayaran;
 import Database.Entity.USG;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -28,4 +29,7 @@ public interface USGService extends Remote {
 
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
 
+    Pembayaran getPembayaranDariPembayaran (String idPembayaran)throws RemoteException;
+    
+    void updatePembayaranDariPembayaran(Pembayaran pembayaran, String idTransaksiUSG, int Harga) throws RemoteException;
 }

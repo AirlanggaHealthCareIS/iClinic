@@ -12,6 +12,7 @@ package ClientApplication.form;
 
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelUSG;
+import Database.Entity.Pembayaran;
 import Database.Entity.USG;
 import Database.Service.USGService;
 import java.awt.Color;
@@ -297,6 +298,10 @@ public class FormUSG extends javax.swing.JFrame {
         int hargaTransaksi = Integer.parseInt(harga.getText());
         try {
             String idPembayaran = usgService.mencariIdPembayaranDariPembayaran(idPasien);
+            if(!idPembayaran.equalsIgnoreCase("")){
+                Pembayaran pembayaran = usgService.getPembayaranDariPembayaran(idPembayaran);
+                usgService.updatePembayaranDariPembayaran(pembayaran, idTransaksiUSG, hargaTransaksi);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
         }
