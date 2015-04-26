@@ -38,10 +38,9 @@ public class FormKecantikan extends javax.swing.JFrame {
     public List<Kecantikan_tabelMaster> listLayananKecantikan = new ArrayList<Kecantikan_tabelMaster>();
     public ArrayList<Object> details = new ArrayList<Object>();
     public DefaultTableModel model = new DefaultTableModel();
-    
     public FormKecantikan(KecantikanService kecantikanService) {
         this.kecantikanService = kecantikanService;
-        model = (DefaultTableModel) tabelLayanan.getModel();
+        //model = (DefaultTableModel) tabelLayanan.getModel();
         try {
             listLayananKecantikan = kecantikanService.getLayananKecantikan();
         } catch (RemoteException ex) {
@@ -95,8 +94,8 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         buttonHapusLayanan = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        buttonPrint = new javax.swing.JButton();
+        buttonProcess = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -351,14 +350,14 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton4.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton4.setText("Print");
+        buttonPrint.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonPrint.setText("Print");
 
-        jButton5.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton5.setText("Process");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonProcess.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonProcess.setText("Process");
+        buttonProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                buttonProcessActionPerformed(evt);
             }
         });
 
@@ -397,9 +396,9 @@ public class FormKecantikan extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32)
-                            .addComponent(jButton4)
+                            .addComponent(buttonPrint)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton5))
+                            .addComponent(buttonProcess))
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -426,8 +425,8 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(buttonPrint)
+                    .addComponent(buttonProcess))
                 .addGap(120, 120, 120))
         );
 
@@ -480,7 +479,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonHapusLayananActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void buttonProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProcessActionPerformed
         //-----Pembayaran-----//
         String idPasien = fieldIDPasien.getText();
         String idTransaksiLayananKecantikan = fieldIDTransaksi.getText();
@@ -498,7 +497,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_buttonProcessActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
         // TODO add your handling code here:
@@ -507,6 +506,8 @@ public class FormKecantikan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHapusLayanan;
+    private javax.swing.JButton buttonPrint;
+    private javax.swing.JButton buttonProcess;
     private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonTambahLayanan;
     private javax.swing.JComboBox comboLayanan;
@@ -517,8 +518,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNoDetailLayanan;
     private javax.swing.JTextField fieldTotalHarga;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
