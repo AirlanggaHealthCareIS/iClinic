@@ -11,6 +11,7 @@
 package ClientApplication.form;
 
 import ClientApplication.FormLogin;
+import ClientApplication.model.TableModelLab_detailLab;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Pembayaran;
 import Database.Service.LabService;
@@ -19,6 +20,10 @@ import java.io.File;
 import java.io.FileFilter;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,10 +42,12 @@ public class FormLab extends javax.swing.JFrame {
 
     private FormLab l;
     private LabService labService;
+  
 
     public FormLab(LabService labService) {
         this.labService = labService;
     }
+        
 
     public void clear() {
         idDetailLab.setText("");
@@ -52,6 +59,11 @@ public class FormLab extends javax.swing.JFrame {
         totalHarga.setText("");
         //tanggal.setDate("");
     }
+    
+    
+        
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -322,6 +334,7 @@ public class FormLab extends javax.swing.JFrame {
         boolean g = false;
         boolean h = false;
 //      boolean i = false;
+        
 
         if (!idDetailLab.getText().equals("") && idDetailLab.getText().length() <= 10) {
             a = true;
@@ -347,8 +360,9 @@ public class FormLab extends javax.swing.JFrame {
 //       if(!tanggal.getCalendar().equals("")){
 //          i = true;
 //       }
+    
 
-        if (a && b && c && d && e && f) {
+           if (a && b && c && d && e && f) {
             String idd = idDetailLab.getText();
             //String idl = idLab.getText();
             String idp = idPasien.getText();
@@ -363,6 +377,9 @@ public class FormLab extends javax.swing.JFrame {
             clear();
         
          }
+        else if (idDetailLab.getText().isEmpty() || idPasien.getText().isEmpty() || namaPasien.getText().isEmpty() || Keterangan.getText().isEmpty() ||totalHarga.getText().isEmpty() || tanggal.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Pengisian Form Harus Lengkap, Silakan isi field yang Kosong");
+        }
         else{
             if(!a){
                 idDetailLab.setBackground(Color.red);
@@ -387,8 +404,9 @@ public class FormLab extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Ada kesalahan pada kolom isian Anda. Mohon memperbaiki field yang berwarna merah untuk melanjutkan.", "ERROR", JOptionPane.ERROR_MESSAGE);
         
-
-        }                         
+       }
+        
+        
 
         
         //-----Pembayaran-----//
@@ -475,6 +493,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void UploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadActionPerformed
         // TODO add your handling code here:
+        
         JFileChooser jfc = new JFileChooser("D:\\");
         jfc.showOpenDialog(null);
         File file = jfc.getSelectedFile();
@@ -487,6 +506,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void totalHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalHargaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_totalHargaActionPerformed
 
     private void hasilPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hasilPemeriksaanActionPerformed
