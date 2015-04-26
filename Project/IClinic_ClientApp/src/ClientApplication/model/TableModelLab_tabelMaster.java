@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.Lab_tabelMaster;
@@ -10,17 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author erin
- */
-
 public class TableModelLab_tabelMaster extends AbstractTableModel {
 
     private List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
 
-    public TableModelLab_tabelMaster(){
-    }
+    public TableModelLab_tabelMaster(){}
 
     public Lab_tabelMaster get(int row){
         return list.get(row);
@@ -49,9 +38,10 @@ public class TableModelLab_tabelMaster extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Lab";
-            case 1 : return "Jenis_Pemeriksaan";
-            case 2 : return "Harga";
+            case 0 : return "ID LAB";
+            case 1 : return "JENIS PEMERIKSAAN";
+            case 2 : return "HARGA";
+            case 3 : return "DESKRIPSI";
             default : return null;
         }
     }
@@ -61,7 +51,7 @@ public class TableModelLab_tabelMaster extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -69,6 +59,7 @@ public class TableModelLab_tabelMaster extends AbstractTableModel {
             case 0 : return list.get(rowIndex).getId_Lab();
             case 1 : return list.get(rowIndex).getJenis_Pemeriksaan();
             case 2 : return list.get(rowIndex).getHarga();
+            case 3 : return list.get(rowIndex).getDeskripsi();
             default : return null;
         }
     }

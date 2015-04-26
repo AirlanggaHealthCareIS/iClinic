@@ -89,6 +89,21 @@ public class FormAdministrator extends javax.swing.JFrame {
             }
         });
         
+        obatTabel.setModel(tableMasterObat);
+        obatTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent lse) {
+                int row = obatTabel.getSelectedRow();
+                if(row != -1){
+                    Obat_tabelMaster obat = tableMasterObat.get(row);
+                    idObatField.setText(obat.getId_Obat());
+                    namaObatField.setText(obat.getNama_Obat());
+                    jenisObatField.setText(obat.getJenis_Obat());
+                    hargaObatField.setText(String.valueOf(obat.getHarga_Obat()));
+                    satuanComboBox.setSelectedItem(String.valueOf(obat.getSatuan()));
+                }
+            }
+        });
+        
         layananLabTabel.setModel(tableMasterLab);
         layananLabTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent lse) {
@@ -562,6 +577,8 @@ public class FormAdministrator extends javax.swing.JFrame {
 
         spesialisasiComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         spesialisasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Spesialisasi --", "UMUM", "GIGI", "KANDUNGAN", "KULIT", "PENYAKIT DALAM", "ANAK" }));
+
+        keteranganField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         simpanTindakanButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanTindakanButton.setText("Simpan");
@@ -1143,13 +1160,13 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearPenyakitButtonActionPerformed
 
     private void simpanPenyakitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanPenyakitButtonActionPerformed
-        if((idPenyakitField.getText().equalsIgnoreCase(""))||(namaPenyakitField.getText().equalsIgnoreCase(""))||(gejalaField.getText().equalsIgnoreCase(""))){
+        if((namaPenyakitField.getText().equalsIgnoreCase(""))||(gejalaField.getText().equalsIgnoreCase(""))){
            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
             try{
             Penyakit_tabelMaster penyakit = new Penyakit_tabelMaster();
-            penyakit.setId_Penyakit(idPenyakitField.getText());
+            penyakit.setId_Penyakit(serviceAdmin.getAutoNumberPenyakit());
             penyakit.setPenyakit(namaPenyakitField.getText());
             penyakit.setGejala(gejalaField.getText());
             
@@ -1164,13 +1181,13 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_simpanPenyakitButtonActionPerformed
 
     private void simpanTindakanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanTindakanButtonActionPerformed
-        if((idTindakanField.getText().equalsIgnoreCase(""))||(namaTindakanField.getText().equalsIgnoreCase(""))||(spesialisasiComboBox.getSelectedIndex()==0)||(tarifField.getText().equalsIgnoreCase(""))||(keteranganField.getText().equalsIgnoreCase(""))){
+        if((namaTindakanField.getText().equalsIgnoreCase(""))||(spesialisasiComboBox.getSelectedIndex()==0)||(tarifField.getText().equalsIgnoreCase(""))||(keteranganField.getText().equalsIgnoreCase(""))){
             JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR);
         }
         else{
             try{
             Tindakan_tabelMaster tindakan = new Tindakan_tabelMaster();
-            tindakan.setId_Tindakan(idTindakanField.getText());
+            tindakan.setId_Tindakan(serviceAdmin.getAutoNumberTindakan());
             tindakan.setNama_Tindakan(namaTindakanField.getText());
             tindakan.setSpesialisasi(spesialisasiComboBox.getSelectedItem().toString());
             tindakan.setTarif(Integer.parseInt(tarifField.getText()));
@@ -1191,13 +1208,13 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearTindakanButtonActionPerformed
 
     private void simpanObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanObatButtonActionPerformed
-        if((idObatField.getText().equalsIgnoreCase(""))||(namaObatField.getText().equalsIgnoreCase(""))||(jenisObatField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))||(satuanComboBox.getSelectedIndex()==0)){
+        if((namaObatField.getText().equalsIgnoreCase(""))||(jenisObatField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))||(satuanComboBox.getSelectedIndex()==0)){
            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             try{
             Obat_tabelMaster obat = new Obat_tabelMaster();
-            obat.setId_Obat(idObatField.getText());
+            obat.setId_Obat(serviceAdmin.getAutoNumberObat());
             obat.setNama_Obat(namaObatField.getText());
             obat.setJenis_Obat(jenisObatField.getText());
             obat.setHarga_Obat(Integer.parseInt(hargaObatField.getText()));
@@ -1218,13 +1235,13 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearObatButtonActionPerformed
 
     private void simpanUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanUserButtonActionPerformed
-        if((idUserField.getText().equalsIgnoreCase(""))||(namaUserField.getText().equalsIgnoreCase(""))||(jabatanComboBox.getSelectedIndex()==0)||(usernameField.getText().equalsIgnoreCase(""))||(passwordUserPasswordField.getPassword().equals(""))){
+        if((namaUserField.getText().equalsIgnoreCase(""))||(jabatanComboBox.getSelectedIndex()==0)||(usernameField.getText().equalsIgnoreCase(""))||(passwordUserPasswordField.getPassword().equals(""))){
            JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             try{
             User user = new User();
-            user.setId_User(idUserField.getText());
+            user.setId_User(serviceAdmin.getAutoNumberUser());
             user.setNama_User(namaUserField.getText());
             user.setJabatan(jabatanComboBox.getSelectedItem().toString());
             user.setUsername(usernameField.getText());
@@ -1245,16 +1262,16 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearUserButtonActionPerformed
 
     private void simpanLabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanLabButtonActionPerformed
-        if((idLayananLabField.getText().equalsIgnoreCase(""))||(jenisPemeriksaanLabField.getText().equalsIgnoreCase(""))||(deskripsiLabField.getText().equalsIgnoreCase(""))||(hargaObatField.getText().equalsIgnoreCase(""))){
+        if((jenisPemeriksaanLabField.getText().equalsIgnoreCase(""))||(deskripsiLabField.getText().equalsIgnoreCase(""))||(hargaLabField.getText().equalsIgnoreCase(""))){
             JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             try{
             Lab_tabelMaster lab = new Lab_tabelMaster();
-            lab.setId_Lab(idLayananLabField.getText());
+            lab.setId_Lab(serviceAdmin.getAutoNumberLab());
             lab.setJenis_Pemeriksaan(jenisPemeriksaanLabField.getText());
-            lab.setDeskripsi(deskripsiLabField.getText());
             lab.setHarga(Integer.parseInt(hargaLabField.getText()));
+            lab.setDeskripsi(deskripsiLabField.getText());
             
             Lab_tabelMaster lab1 = serviceAdmin.insertLab_tabelMaster(lab);
             tableMasterLab.insert(lab1);
@@ -1271,18 +1288,18 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_clearLabButtonActionPerformed
 
     private void simpanKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanKecantikanButtonActionPerformed
-        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifField.getText().equalsIgnoreCase(""))){
+        if((jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifKecantikanField.getText().equalsIgnoreCase(""))){
             JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
             try{
             Kecantikan_tabelMaster kecantikan = new Kecantikan_tabelMaster();
-            kecantikan.setId_Kecantikan(idLayananKecantikanField.getText());
+            kecantikan.setId_Kecantikan(serviceAdmin.getAutoNumberKecantikan());
             kecantikan.setJenis_Layanan(jenisLayananKecantikanField.getText());
-            kecantikan.setDeskripsi(deskripsiKecantikanField.getText());
             kecantikan.setTarif(Integer.parseInt(tarifKecantikanField.getText()));
+            kecantikan.setDeskripsi(deskripsiKecantikanField.getText());
             
-            Kecantikan_tabelMaster kecantikan1 =serviceAdmin.insertKecantikan_tabelMaster(kecantikan);
+            Kecantikan_tabelMaster kecantikan1 = serviceAdmin.insertKecantikan_tabelMaster(kecantikan);
             tableMasterKecantikan.insert(kecantikan1);
             clearKecantikan();
             }catch(RemoteException exception){
@@ -1364,6 +1381,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     }
                     String hapusIDTindakan = tableMasterTindakan.get(row).getId_Tindakan();
                     serviceAdmin.deleteTindakan_tabelMaster(hapusIDTindakan);
+                    tableMasterTindakan.delete(row);
                     clearTindakan();
                 }
             }catch(RemoteException exception){
@@ -1457,7 +1475,7 @@ public class FormAdministrator extends javax.swing.JFrame {
     }//GEN-LAST:event_ubahLabButtonActionPerformed
 
     private void ubahKecantikanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahKecantikanButtonActionPerformed
-        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifField.getText().equalsIgnoreCase(""))){
+        if((idLayananKecantikanField.getText().equalsIgnoreCase(""))||(jenisLayananKecantikanField.getText().equalsIgnoreCase(""))||(deskripsiKecantikanField.getText().equalsIgnoreCase(""))||(tarifKecantikanField.getText().equalsIgnoreCase(""))){
             JOptionPane.showMessageDialog(null, "Silakan lengkapi seluruh field!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -1495,6 +1513,7 @@ public class FormAdministrator extends javax.swing.JFrame {
             }
             String hapusIDUser = tableMasterUser.get(row).getId_User();
             serviceAdmin.deleteUser(hapusIDUser);
+            tableMasterUser.delete(row);
             clearUser();
             }catch(RemoteException exception){
                 exception.printStackTrace();
@@ -1517,6 +1536,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     }
                     String hapusIDPenyakit = tableMasterPenyakit.get(row).getId_Penyakit();
                     serviceAdmin.deletePenyakit_tabelMaster(hapusIDPenyakit);
+                    tableMasterPenyakit.delete(row);
                     clearPenyakit();
                 }
             }catch(RemoteException exception){
@@ -1540,6 +1560,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     }
                     String hapusIDObat = tableMasterObat.get(row).getId_Obat();
                     serviceAdmin.deleteObat_tabelMaster(hapusIDObat);
+                    tableMasterObat.delete(row);
                     clearObat();
                 }
             }catch(RemoteException exception){
@@ -1563,6 +1584,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     }
                     String hapusIDLab = tableMasterLab.get(row).getId_Lab();
                     serviceAdmin.deleteLab_tabelMaster(hapusIDLab);
+                    tableMasterLab.delete(row);
                     clearLab();
                 }
             }catch(RemoteException exception){
@@ -1586,6 +1608,7 @@ public class FormAdministrator extends javax.swing.JFrame {
                     }
                     String hapusIDKecantikan = tableMasterKecantikan.get(row).getId_Kecantikan();
                     serviceAdmin.deleteKecantikan_tabelMaster(hapusIDKecantikan);
+                    tableMasterKecantikan.delete(row);
                     clearKecantikan();
                 }
             }catch(RemoteException exception){

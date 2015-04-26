@@ -28,7 +28,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         String fn = "0";
 	try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT JABATAN FROM user WHERE USERNAME = '"+Username+"' and PASSWORD = '"+Password+"'";
+            String sql = "SELECT JABATAN FROM user WHERE USERNAME = '" + Username + "' and PASSWORD = '" + Password + "'";
             rs = state.executeQuery(sql);
             while (rs.next()){
                 fn = rs.getString(1);
@@ -102,7 +102,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELET FROM user WHERE ID_USER = ?");
+                    "DELETE FROM user WHERE ID_USER = ?");
             
             statement.setString(1, Id_User);
             statement.executeUpdate();
@@ -161,10 +161,77 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
     }
     
+    public String getAutoNumberUser() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel User");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_USER FROM user ORDER BY ID_USER DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="U0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[1]+pisah[2]+pisah[3]+pisah[4];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "U"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
     public Obat_tabelMaster insertObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
-
         System.out.println("Client Melakukan Proses Insert pada Tabel Obat");
-        return obat;
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "INSERT INTO obat(ID_OBAT, NAMA_OBAT, JENIS_OBAT, HARGA_OBAT, SATUAN)" + "VALUES(?,?,?,?,?)");
+            statement.setString(1, obat.getId_Obat());
+            statement.setString(2, obat.getNama_Obat());
+            statement.setString(3, obat.getJenis_Obat());
+            statement.setInt(4, obat.getHarga_Obat());
+            statement.setString(5, obat.getSatuan());
+            
+            statement.executeUpdate();
+            return obat;
+        } catch(SQLException exception){
+            exception.printStackTrace();
+            return null;
+        } finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }
+                catch(SQLException exception){}
+            }
+        }
     }
 
     public void updateObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
@@ -200,7 +267,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELET FROM obat WHERE ID_OBAT = ?");
+                    "DELETE FROM obat WHERE ID_OBAT = ?");
             
             statement.setString(1, Id_Obat);
             statement.executeUpdate();
@@ -279,6 +346,51 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         return jumlahPenggunaan;
     }
     
+    public String getAutoNumberObat() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Obat");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_OBAT FROM obat ORDER BY ID_OBAT DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="OBT0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "OBT"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
     public Penyakit_tabelMaster insertPenyakit_tabelMaster(Penyakit_tabelMaster penyakit) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Penyakit_tabelMaster");
         
@@ -335,7 +447,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELET FROM penyakit WHERE ID_PENYAKIT = ?");
+                    "DELETE FROM penyakit WHERE ID_PENYAKIT = ?");
             
             statement.setString(1, Id_Penyakit);
             statement.executeUpdate();
@@ -411,13 +523,58 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         return jumlahPenggunaan;
     }
     
+    public String getAutoNumberPenyakit() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Penyakit");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_PENYAKIT FROM penyakit ORDER BY ID_PENYAKIT DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="PYKT0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "PYKT"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
     public Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Tindakan");
         
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-            "INSERT INTO tindakan (ID_TINDAKAN, SPESIALISI, NAMA_TINDAKAN, TARIF, KETERANGAN)" + "VALUES (?,?,?,?,?)");
+            "INSERT INTO tindakan (ID_TINDAKAN, SPESIALISASI, NAMA_TINDAKAN, TARIF, KETERANGAN)" + "VALUES (?,?,?,?,?)");
             statement.setString(1, tindakan.getId_Tindakan());
             statement.setString(2, tindakan.getSpesialisasi());
             statement.setString(3, tindakan.getNama_Tindakan());
@@ -471,7 +628,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELET FROM tindakan WHERE ID_TINDAKAN = ?");
+                    "DELETE FROM tindakan WHERE ID_TINDAKAN = ?");
             
             statement.setString(1, Id_Tindakan);
             statement.executeUpdate();
@@ -549,6 +706,51 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         return jumlahPenggunaan;
     }
     
+    public String getAutoNumberTindakan() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Tindakan");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_TINDAKAN FROM tindakan ORDER BY ID_TINDAKAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="TNDK0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "TNDK"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
     public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Laboratorium");
         
@@ -609,7 +811,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELET FROM laboratorium WHERE ID_LAB = ?");
+                    "DELETE FROM laboratorium WHERE ID_LAB = ?");
             
             statement.setString(1, Id_Lab);
             statement.executeUpdate();
@@ -686,13 +888,58 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         return jumlahPenggunaan;
     }
     
+    public String getAutoNumberLab() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Lab");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_LAB FROM laboratorium ORDER BY ID_LAB DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="LAB0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "LAB"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
     public Kecantikan_tabelMaster insertKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Kecantikan");
         
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO layanan_kecantikan (ID_KECANTIKAN, LAYANAN_KECANTIKAN, TARIF, DESKRIPSI)" + 
+                    "INSERT INTO layanan_kecantikan (ID_KECANTIKAN, JENIS_LAYANAN, TARIF, DESKRIPSI)" + 
                             "VALUES (?,?,?,?)");
             statement.setString(1, kecantikan.getId_Kecantikan());
             statement.setString(2, kecantikan.getJenis_Layanan());
@@ -721,7 +968,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE JENIS_LAYANAN = ?, TARIF = ?, DESKRIPSI = ?" + "WHERE ID_KECANTIKAN = ?");
+                    "UPDATE layanan_kecantikan SET JENIS_LAYANAN = ?, TARIF = ?, DESKRIPSI = ?" + "WHERE ID_KECANTIKAN = ?");
             
             statement.setString(1, kecantikan.getJenis_Layanan());
             statement.setInt(2, kecantikan.getTarif());
@@ -826,5 +1073,50 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             exception.printStackTrace();
         }
         return jumlahPenggunaan;
+    }
+    
+    public String getAutoNumberKecantikan() throws RemoteException{
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Kecantikan");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_KECANTIKAN FROM layanan_kecantikan ORDER BY ID_KECANTIKAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="CNTK0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "CNTK"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
     }
 }

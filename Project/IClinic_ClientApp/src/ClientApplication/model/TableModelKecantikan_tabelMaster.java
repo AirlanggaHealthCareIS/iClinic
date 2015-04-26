@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientApplication.model;
 
 import Database.Entity.Kecantikan_tabelMaster;
@@ -10,16 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Tiara Ratna Sari
- */
 public class TableModelKecantikan_tabelMaster extends AbstractTableModel {
 
     private List<Kecantikan_tabelMaster> list = new ArrayList<Kecantikan_tabelMaster>(); //ambil list office dari bridge
 
-    public TableModelKecantikan_tabelMaster(){
-    }
+    public TableModelKecantikan_tabelMaster(){}
 
     public Kecantikan_tabelMaster get(int row){
         return list.get(row);
@@ -48,9 +38,10 @@ public class TableModelKecantikan_tabelMaster extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "Id_Kecantikan";
-            case 1 : return "Jenis_Layanan";
-            case 2 : return "Tarif";
+            case 0 : return "ID KECANTIKAN";
+            case 1 : return "JENIS LAYANAN";
+            case 2 : return "TARIF";
+            case 3 : return "DESKRIPSI";
             default: return null;
         }
     }
@@ -62,7 +53,7 @@ public class TableModelKecantikan_tabelMaster extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -70,6 +61,7 @@ public class TableModelKecantikan_tabelMaster extends AbstractTableModel {
             case 0 : return list.get(rowIndex).getId_Kecantikan();
             case 1 : return list.get(rowIndex).getJenis_Layanan();
             case 2 : return list.get(rowIndex).getTarif();
+            case 3 : return list.get(rowIndex).getDeskripsi();
             default : return null;
         }
     }

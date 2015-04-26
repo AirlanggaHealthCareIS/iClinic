@@ -23,6 +23,8 @@ public interface AdministratorService extends Remote {
 
     List<User> getUser() throws RemoteException;
     
+    String getAutoNumberUser() throws RemoteException;
+    
     //------------------------------------------------------------------------------------//
     
     Obat_tabelMaster insertObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException;
@@ -36,6 +38,8 @@ public interface AdministratorService extends Remote {
     List<Obat_tabelMaster> getObat_tabelMaster() throws RemoteException;
     
     int cekPemakaianObat(String Id_Obat) throws RemoteException;
+    
+    String getAutoNumberObat() throws RemoteException;
     
     //--------------------------------------------------------------------------------------------------------//
     
@@ -51,6 +55,8 @@ public interface AdministratorService extends Remote {
     
     int cekPemakaianPenyakit(String Id_Penyakit) throws RemoteException;
     
+    String getAutoNumberPenyakit() throws RemoteException;
+    
     //------------------------------------------------------------------------------------------------------//
     
     Tindakan_tabelMaster insertTindakan_tabelMaster(Tindakan_tabelMaster tindakan) throws RemoteException;
@@ -64,6 +70,8 @@ public interface AdministratorService extends Remote {
     List<Tindakan_tabelMaster> getTindakan_tabelMaster() throws RemoteException;
     
     int cekPemakaianTindakan(String Id_Tindakan) throws RemoteException;
+    
+    String getAutoNumberTindakan() throws RemoteException;
     
     //-------------------------------------------------------------------------------------------------------//
     
@@ -79,6 +87,8 @@ public interface AdministratorService extends Remote {
     
     int cekPemakaianLab(String Id_Lab) throws RemoteException;
     
+    String getAutoNumberLab() throws RemoteException;
+    
     //--------------------------------------------------------------------------------------------------------//
     
     Kecantikan_tabelMaster insertKecantikan_tabelMaster(Kecantikan_tabelMaster kecantikan) throws RemoteException;
@@ -92,4 +102,6 @@ public interface AdministratorService extends Remote {
     List<Kecantikan_tabelMaster> getKecantikan_tabelMaster() throws RemoteException;
 
     int cekPemakaianKecantikan(String Id_Kecantikan) throws RemoteException;
+    
+    String getAutoNumberKecantikan() throws RemoteException;
 }
