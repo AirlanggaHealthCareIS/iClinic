@@ -343,4 +343,31 @@ PreparedStatement statement = null;
         }
     }
 
+    public Boolean getPasienbyId(String Id_Pasien) throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT * FROM pasien WHERE ID_PASIEN = ?");
+            statement.setString(1, Id_Pasien);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        } catch (SQLException exception) {
+
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
+        }
+    }
+
 }

@@ -48,9 +48,9 @@ public class TableModelKecantikan_detailLayanan extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "No Detail Layanan";
-            case 1 : return "Layanan Kecantikan";
-            case 2 : return "Harga";
+            case 0 : return "Id Detail Layanan";
+            case 1 : return "Id Transaksi Layanan";
+            case 2 : return "Id Kecantikan";
             case 3 : return "Keterangan";
             default: return null;
         }

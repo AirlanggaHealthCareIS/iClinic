@@ -7,6 +7,7 @@ package Database.Service;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
+import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -39,7 +40,9 @@ public interface KecantikanService extends Remote {
     Kecantikan_transaksiLayanan getKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException;
 
     List<Kecantikan_transaksiLayanan> getKecantikan_transaksiLayanan() throws RemoteException;
-
+    
+    Boolean getPasienbyId(String Id_Pasien) throws RemoteException;
+    
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
 

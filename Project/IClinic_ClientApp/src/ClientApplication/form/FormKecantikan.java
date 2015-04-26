@@ -15,11 +15,15 @@ import ClientApplication.model.TableModelKecantikan_detailLayanan;
 import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
+import Database.Entity.Kecantikan_transaksiLayanan;
 import Database.Entity.Pembayaran;
 import Database.Service.KecantikanService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +39,12 @@ import javax.swing.table.DefaultTableModel;
 public class FormKecantikan extends javax.swing.JFrame {
 
     KecantikanService kecantikanService;
+    private TableModelKecantikan_detailLayanan tableKecantikanDetailLayanan = new TableModelKecantikan_detailLayanan();
     public List<Kecantikan_tabelMaster> listLayananKecantikan = new ArrayList<Kecantikan_tabelMaster>();
+    private List<Kecantikan_detailLayanan> listDetail = new ArrayList<Kecantikan_detailLayanan>();
     public ArrayList<Object> details = new ArrayList<Object>();
-    public DefaultTableModel model = new DefaultTableModel();
+    //public DefaultTableModel model = new DefaultTableModel();
+    public Boolean pasienExist = false;
     public FormKecantikan(KecantikanService kecantikanService) {
         this.kecantikanService = kecantikanService;
         //model = (DefaultTableModel) tabelLayanan.getModel();
@@ -97,6 +104,8 @@ public class FormKecantikan extends javax.swing.JFrame {
         buttonPrint = new javax.swing.JButton();
         buttonProcess = new javax.swing.JButton();
         buttonSearch = new javax.swing.JButton();
+        buttonInsert = new javax.swing.JButton();
+        buttonClear = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -215,6 +224,8 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         fieldIDTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
+        fieldTotalHarga.setText("0");
+
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel13.setText("ID Pasien");
 
@@ -229,7 +240,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "No Detail Kecantikan", "Jenis Layanan", "Harga", "Keterangan"
+                "No Detail Kecantikan", "ID Transaksi Layanan", "ID Jenis Layana", "Keterangan"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -368,6 +379,22 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
+        buttonInsert.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonInsert.setText("Insert");
+        buttonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonInsertActionPerformed(evt);
+            }
+        });
+
+        buttonClear.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonClear.setText("Clear");
+        buttonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -389,20 +416,25 @@ public class FormKecantikan extends javax.swing.JFrame {
                                 .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(32, 32, 32)
-                            .addComponent(buttonPrint)
-                            .addGap(18, 18, 18)
-                            .addComponent(buttonProcess))
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonPrint)
+                                    .addComponent(buttonClear))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonProcess)
+                                    .addComponent(buttonInsert))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,13 +453,17 @@ public class FormKecantikan extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonInsert)
+                    .addComponent(buttonClear))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonPrint)
                     .addComponent(buttonProcess))
-                .addGap(120, 120, 120))
+                .addGap(87, 87, 87))
         );
 
         jTabbedPane1.addTab("Transaksi", jPanel2);
@@ -463,19 +499,28 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLayananItemStateChanged
 
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
-        String iddetail = "";
-        String jenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getJenis_Layanan();
-        int harga = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif();
+        String idtrans = fieldIDTransaksi.getText();
+        String iddetail = idtrans + listDetail.size();
+        String idjenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getId_Kecantikan();
         String keterangan = fieldKeterangan.getText();
-        Object[] detail = new Object[]{iddetail, jenislayanan, harga, keterangan};
-        details.add(detail);
-        model.addRow(detail);
+        Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
+        detail.setId_Det_Kesehatan(iddetail);
+        detail.setId_Trans_Layanan(idtrans);
+        detail.setId_Kecantikan(idjenislayanan);
+        detail.setKeterangan(keterangan);
+        //tableKecantikanDetailLayanan.insert(detail);
+        listDetail.add(detail);
+        tableKecantikanDetailLayanan.setData(listDetail);
+        tabelLayanan.setModel(tableKecantikanDetailLayanan);
+        fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
     private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed
         if(tabelLayanan.getSelectedRow() > -1){
-            model.removeRow(tabelLayanan.getSelectedRow());
-            details.remove(tabelLayanan.getSelectedRow());
+            //tableKecantikanDetailLayanan.delete(tabelLayanan.getSelectedRow());
+            listDetail.remove(tabelLayanan.getSelectedRow());
+            tabelLayanan.setModel(tableKecantikanDetailLayanan);
+            fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
         }
     }//GEN-LAST:event_buttonHapusLayananActionPerformed
 
@@ -500,12 +545,84 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonProcessActionPerformed
 
     private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        // TODO add your handling code here:
+        if(!fieldIDPasien.equals("")){
+            String idpasien = fieldIDPasien.getText();
+            try {
+                pasienExist = kecantikanService.getPasienbyId(idpasien);
+                if(pasienExist == false){
+                    fieldIDPasien.setText("");
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_buttonSearchActionPerformed
 
+    private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
+        if(pasienExist = true && !listDetail.isEmpty() && !fieldIDTransaksi.getText().equals("")){
+            Kecantikan_transaksiLayanan transaksi = new Kecantikan_transaksiLayanan();
+            try {
+                transaksi.setId_Transaksi_Layanan(fieldIDTransaksi.getText());
+                transaksi.setId_Pasien(fieldIDPasien.getText());
+                transaksi.setTotal_Harga(checkTotalHarga());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                //String now = dateFormat.format(date);
+                transaksi.setTanggal(date);
+                kecantikanService.insertKecantikan_transaksiLayanan(transaksi);
+                for(int i=0;i<listDetail.size();i++){
+                    Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
+                    detail.setId_Det_Kesehatan(listDetail.get(i).getId_Det_Kesehatan());
+                    detail.setId_Trans_Layanan(listDetail.get(i).getId_Trans_Layanan());
+                    detail.setId_Kecantikan(listDetail.get(i).getId_Kecantikan());
+                    detail.setKeterangan(listDetail.get(i).getKeterangan());
+                    kecantikanService.insertKecantikan_detailLayanan(detail);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(pasienExist = false){
+            System.out.println("Belum mencari atau mengisi idPasien");
+        }
+        else{
+            System.out.println("Ada data yang belom terisi");
+        }
+    }//GEN-LAST:event_buttonInsertActionPerformed
+
+    private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
+        fieldIDTransaksi.setText("");
+        fieldIDPasien.setText("");
+        fieldHarga.setText("");
+        fieldNoDetailLayanan.setText("");
+        fieldKeterangan.setText("");
+        listDetail = new ArrayList<Kecantikan_detailLayanan>();
+    }//GEN-LAST:event_buttonClearActionPerformed
+    
+    private void isPasienExist(){
+        
+    }
+    
+    private int checkTotalHarga(){
+        int total = 0;
+        if(listDetail.size()<-1){
+            for(int i=0;i<listDetail.size();i++){
+                int harga = 0;
+                for (int j=0;j<listLayananKecantikan.size();j++){
+                    if(listDetail.get(i).getId_Kecantikan() == listLayananKecantikan.get(j).getId_Kecantikan()){
+                        harga = listLayananKecantikan.get(j).getTarif();
+                    }
+                }
+                total = total + harga;
+            } 
+        }
+        return total;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonClear;
     private javax.swing.JButton buttonHapusLayanan;
+    private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonPrint;
     private javax.swing.JButton buttonProcess;
     private javax.swing.JButton buttonSearch;
