@@ -4,12 +4,21 @@ Given	apoteker telah melakukan login
 And	sistem menampilkan form/frame apotek
 When 	apoteker menekan tab "Pembelian Obat"
 Then	sistem menampilkan form/frame pembelian obat
-When	apoteker mengisi field ID_Pasien
-And	apoteker mengisi ID_Resep
-And	apoteker memilih nama obat
-And	apoteker mengisikan kuantitas obat
-Then	sistem menampilkan pada tabel detail resep
-And	sistem menampilkan total harga
-When	apoteker menekan tombol simpan data
-Then	sistem menyimpan data dalam database
-And	sistem mengirimkan total harga ke bagian pembayaran
+And	id resep
+And	No. Detail Resep
+When	apoteker memilih nama obat
+Then 	sistem menampilkan harga
+When	apoteker mengisi takaran
+And	apoteker memilih satuan waktu takaran
+And	apoteker memilih cara pemakaian
+And	apoteker mengisi jumlah
+And	apoteker memilih satuan jumlah
+And	apoteker mengisi keterangan
+And	apoteker menekan tombol tambah obat
+Then	sistem menampilkan detail dalam tabel
+And	sistem menyimpan dalam database
+When	apoteker menekan tombol simpan obat
+Then	sistem menampilkan total harga obat
+And	sistem menyimpan dalam database
+When	apoteker menekan tombol proses
+Then	sistem mengirim total harga obat ke bagian pembayaran

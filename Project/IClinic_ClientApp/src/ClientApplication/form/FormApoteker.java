@@ -129,7 +129,6 @@ public class FormApoteker extends javax.swing.JFrame {
         idResepField = new javax.swing.JTextField();
         totalHargaObatField = new javax.swing.JTextField();
         prosesButton = new javax.swing.JButton();
-        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -479,9 +478,6 @@ public class FormApoteker extends javax.swing.JFrame {
         prosesButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         prosesButton.setText("Proses");
 
-        printButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        printButton.setText("Print");
-
         javax.swing.GroupLayout resepPanelLayout = new javax.swing.GroupLayout(resepPanel);
         resepPanel.setLayout(resepPanelLayout);
         resepPanelLayout.setHorizontalGroup(
@@ -504,10 +500,7 @@ public class FormApoteker extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(resepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resepPanelLayout.createSequentialGroup()
-                        .addComponent(printButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(prosesButton)))
+                    .addComponent(prosesButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         resepPanelLayout.setVerticalGroup(
@@ -528,8 +521,7 @@ public class FormApoteker extends javax.swing.JFrame {
                 .addGroup(resepPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalHargaObatField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalHargaObatLabel)
-                    .addComponent(prosesButton)
-                    .addComponent(printButton))
+                    .addComponent(prosesButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -750,7 +742,6 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JLabel noDetailResepLabel;
     private javax.swing.JComboBox pemakaianComboBox;
     private javax.swing.JLabel pemakaianLabel;
-    private javax.swing.JButton printButton;
     private javax.swing.JButton prosesButton;
     private javax.swing.JPanel resepPanel;
     private javax.swing.JComboBox satuanComboBox;

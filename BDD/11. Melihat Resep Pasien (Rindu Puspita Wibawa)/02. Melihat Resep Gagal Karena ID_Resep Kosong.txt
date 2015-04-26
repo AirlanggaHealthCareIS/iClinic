@@ -6,6 +6,6 @@ And	sistem menampilkan form/frame apotek
 When	apoteker menekan tab "Lihat Resep"
 Then	sistem menampilkan form/frame resep
 When 	apoteker tidak mengisi ID_Resep pasien
-And	apoteker menekan enter
+And	apoteker menekan tombol search
 Then	sistem tidak dapat menampilkan resep
 And	sistem mengeluarkan error message bahwa field kosong
