@@ -42,10 +42,21 @@ public class FormLab extends javax.swing.JFrame {
 
     private FormLab l;
     private LabService labService;
+    private TableModelLab_detailLab tableModel_detaillab;
   
 
     public FormLab(LabService labService) {
         this.labService = labService;
+        antrian();
+        try {
+            tableModel_detaillab.setData(this.labService.getLab_detailLab());
+        } catch (RemoteException exception) {
+            exception.printStackTrace();
+        }
+
+        initComponents();
+        setLocationRelativeTo(this);
+        setSize(665, 730);
     }
         
 
@@ -59,7 +70,37 @@ public class FormLab extends javax.swing.JFrame {
         totalHarga.setText("");
         //tanggal.setDate("");
     }
-    
+    public void antrian() {
+        String in = idDetailLab.getText();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            Class.forName("com.jdbc.mysql.Driver");
+            conn = DriverManager.getConnection("jdbcmysql:///klinik2", "root", "laboratorium");
+            pstmt = conn.prepareStatement("select ID_PASIEN,ID_DetailLab,TANGGAL from detail_Lab where ID_DetailLab=?");
+            pstmt.setString(1, in);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                idDetailLab.setText(rs.getString("ID_DetailLab"));
+                idPasien.setText(rs.getString("ID_PASIEN"));
+                tanggal.setText(rs.getString("TANGGAL"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Antrian selanjutnya masih kosong, silahkan tunggu  ");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                conn.close();
+                pstmt.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+
     
         
     

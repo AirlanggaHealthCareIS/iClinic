@@ -5,8 +5,8 @@
 package ServerApplication.Service;
 
 import Database.Entity.Lab_detailLab;
+import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Pembayaran;
-//import Database.Entity.Lab_tabelMaster;
 import java.sql.Blob;
 import Database.Service.LabService;
 import ServerApplication.Utilities.DatabaseUtilities;
@@ -146,43 +146,43 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         }
     }
 
-//    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
-//
-//        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
-//
-//        PreparedStatement statement = null;
-//        try{
-//            statement = DatabaseUtilities.getConnection().prepareStatement(
-//                 "SELECT * FROM detail_lab WHERE Id_Lab = ?");
-//
-//            ResultSet result = statement.executeQuery();
-//
-//            Lab_tabelMaster Laboratorium = null;
-//
-//            if(result.next()){
-//                Laboratorium = new Lab_tabelMaster();
-//                Laboratorium.setId_Lab(result.getString("Id_Lab"));
-//                Laboratorium.setJenis_Pemeriksaan(result.getString("Jenis_Pemeriksaan"));
-//                Laboratorium.setHarga(result.getInt("Harga"));
-//                Laboratorium.setDeskripsi(result.getString("Deskripsi"));
-//               
-//            }
-//
-//            return Laboratorium;
-//
-//        }catch(SQLException exception){
-//          exception.printStackTrace();
-//          return null;
-//        }finally{
-//            if(statement != null){
-//                try{
-//                    statement.close();
-//                }catch(SQLException exception){
-//                   exception.printStackTrace();
-//                }
-//            }
-//        }
-//    }
+    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM detail_lab WHERE Id_Lab = ?");
+
+            ResultSet result = statement.executeQuery();
+
+            Lab_tabelMaster Laboratorium = null;
+
+            if(result.next()){
+                Laboratorium = new Lab_tabelMaster();
+                Laboratorium.setId_Lab(result.getString("Id_Lab"));
+                Laboratorium.setJenis_Pemeriksaan(result.getString("Jenis_Pemeriksaan"));
+                Laboratorium.setHarga(result.getInt("Harga"));
+                Laboratorium.setDeskripsi(result.getString("Deskripsi"));
+               
+            }
+
+            return Laboratorium;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    }
     public List<Lab_detailLab> getLab_detailLab() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Pembayaran");
@@ -226,47 +226,47 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             }
         }
     }
-//public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
-//        
-//        System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
-//
-//        Statement statement = null;
-//        try{
-//          statement = DatabaseUtilities.getConnection().createStatement();
-//
-//          ResultSet result = statement.executeQuery("SELECT * FROM laboratorium");
-//
-//          List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
-//
-//          while(result.next()){
-//                Lab_tabelMaster laboratorium = new Lab_tabelMaster();
-//                laboratorium.setId_Lab(result.getString("Id_Lab"));
-//                laboratorium.setHarga(result.getInt("Harga"));
-//                laboratorium.setDeskripsi(result.getString("Deskripsi"));
-//               
-//               
-//                list.add(laboratorium);
-//          }
-//
-//          result.close();
-//
-//          return list;
-//
-//        }catch(SQLException exception){
-//          exception.printStackTrace();
-//          return null;
-//        }finally{
-//            if(statement != null){
-//                try{
-//                    statement.close();
-//                }catch(SQLException exception){
-//                   exception.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//}
+public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
+        
+        System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
+
+        Statement statement = null;
+        try{
+          statement = DatabaseUtilities.getConnection().createStatement();
+
+          ResultSet result = statement.executeQuery("SELECT * FROM laboratorium");
+
+          List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
+
+          while(result.next()){
+                Lab_tabelMaster laboratorium = new Lab_tabelMaster();
+                laboratorium.setId_Lab(result.getString("Id_Lab"));
+                laboratorium.setHarga(result.getInt("Harga"));
+                laboratorium.setDeskripsi(result.getString("Deskripsi"));
+               
+               
+                list.add(laboratorium);
+          }
+
+          result.close();
+
+          return list;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    
+
+}
 
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
@@ -447,5 +447,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             }
         }
     }
+
+ 
 
 }

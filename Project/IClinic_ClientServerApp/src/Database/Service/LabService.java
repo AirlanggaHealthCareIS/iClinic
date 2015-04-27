@@ -30,8 +30,8 @@ public interface LabService extends Remote {
 //    void updateLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException;
 //
 //    void deleteLab_tabelMaster(String Id_Lab) throws RemoteException;
-//    Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
-//    List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException;
+    Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
+    List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException;
     
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
