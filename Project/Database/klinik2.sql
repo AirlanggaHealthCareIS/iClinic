@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 25 Apr 2015 pada 15.24
+-- Waktu pembuatan: 28 Apr 2015 pada 16.21
 -- Versi Server: 5.5.27
 -- Versi PHP: 5.4.7
 
@@ -43,15 +43,13 @@ CREATE TABLE IF NOT EXISTS `antrian` (
 
 CREATE TABLE IF NOT EXISTS `detail_lab` (
   `ID_DETAIL_LAB` varchar(10) NOT NULL,
+  `ID_TRANSAKSI_LAB` varchar(10) DEFAULT NULL,
   `ID_LAB` varchar(10) DEFAULT NULL,
-  `ID_PASIEN` varchar(10) DEFAULT NULL,
-  `KETERANGAN` varchar(100) DEFAULT NULL,
   `HASIL` longblob,
-  `TANGGAL` date DEFAULT NULL,
-  `TOTAL_HARGA` int(11) DEFAULT NULL,
+  `KETERANGAN` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_DETAIL_LAB`),
   KEY `FK_RELATIONSHIP_16` (`ID_LAB`),
-  KEY `FK_RELATIONSHIP_30` (`ID_PASIEN`)
+  KEY `ID_TRANSAKSI_LAB` (`ID_TRANSAKSI_LAB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -192,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `ID_PEMBAYARAN` varchar(10) NOT NULL,
   `ID_PASIEN` varchar(10) DEFAULT NULL,
   `ID_USG` varchar(10) DEFAULT NULL,
-  `ID_DETAIL_LAB` varchar(10) DEFAULT NULL,
+  `ID_TRANSaKSI_LAB` varchar(10) DEFAULT NULL,
   `ID_RESEP` varchar(10) DEFAULT NULL,
   `ID_REKAM` varchar(10) DEFAULT NULL,
   `ID_TRANSAKSI_LAYANAN` varchar(10) DEFAULT NULL,
@@ -200,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
   `TOTAL_HARGA` int(11) DEFAULT NULL,
   `STATUS` varchar(9) DEFAULT NULL,
   PRIMARY KEY (`ID_PEMBAYARAN`),
-  KEY `FK_RELATIONSHIP_18` (`ID_DETAIL_LAB`),
+  KEY `FK_RELATIONSHIP_18` (`ID_TRANSaKSI_LAB`),
   KEY `FK_RELATIONSHIP_21` (`ID_REKAM`),
   KEY `FK_RELATIONSHIP_25` (`ID_TRANSAKSI_LAYANAN`),
   KEY `FK_RELATIONSHIP_28` (`ID_USG`),
@@ -271,6 +269,21 @@ CREATE TABLE IF NOT EXISTS `tindakan` (
   `TARIF` int(11) DEFAULT NULL,
   `KETERANGAN` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_TINDAKAN`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi_lab`
+--
+
+CREATE TABLE IF NOT EXISTS `transaksi_lab` (
+  `ID_TRANSAKSI_LAB` varchar(10) NOT NULL,
+  `ID_PASIEN` varchar(10) DEFAULT NULL,
+  `TOTAL_HARGA` int(11) DEFAULT NULL,
+  `TANGGAL` date DEFAULT NULL,
+  PRIMARY KEY (`ID_TRANSAKSI_LAB`),
+  KEY `ID_PASIEN` (`ID_PASIEN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -349,8 +362,8 @@ ALTER TABLE `antrian`
 -- Ketidakleluasaan untuk tabel `detail_lab`
 --
 ALTER TABLE `detail_lab`
-  ADD CONSTRAINT `detail_lab_ibfk_1` FOREIGN KEY (`ID_LAB`) REFERENCES `laboratorium` (`ID_LAB`),
-  ADD CONSTRAINT `FK_RELATIONSHIP_30` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
+  ADD CONSTRAINT `detail_lab_ibfk_2` FOREIGN KEY (`ID_TRANSAKSI_LAB`) REFERENCES `transaksi_lab` (`ID_TRANSAKSI_LAB`),
+  ADD CONSTRAINT `detail_lab_ibfk_1` FOREIGN KEY (`ID_LAB`) REFERENCES `laboratorium` (`ID_LAB`);
 
 --
 -- Ketidakleluasaan untuk tabel `detail_resep`
@@ -383,12 +396,12 @@ ALTER TABLE `diagnosa`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_8` FOREIGN KEY (`ID_TRANSaKSI_LAB`) REFERENCES `transaksi_lab` (`ID_TRANSAKSI_LAB`),
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`),
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`),
   ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`ID_USG`) REFERENCES `transaksi_usg` (`ID_USG`),
-  ADD CONSTRAINT `pembayaran_ibfk_4` FOREIGN KEY (`ID_DETAIL_LAB`) REFERENCES `detail_lab` (`ID_DETAIL_LAB`),
   ADD CONSTRAINT `pembayaran_ibfk_5` FOREIGN KEY (`ID_TRANSAKSI_LAYANAN`) REFERENCES `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`),
-  ADD CONSTRAINT `pembayaran_ibfk_6` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`);
+  ADD CONSTRAINT `pembayaran_ibfk_6` FOREIGN KEY (`ID_RESEP`) REFERENCES `resep` (`ID_RESEP`),
+  ADD CONSTRAINT `pembayaran_ibfk_7` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`);
 
 --
 -- Ketidakleluasaan untuk tabel `rekam_medis`
@@ -402,6 +415,12 @@ ALTER TABLE `rekam_medis`
 --
 ALTER TABLE `resep`
   ADD CONSTRAINT `resep_ibfk_1` FOREIGN KEY (`ID_REKAM`) REFERENCES `rekam_medis` (`ID_REKAM`);
+
+--
+-- Ketidakleluasaan untuk tabel `transaksi_lab`
+--
+ALTER TABLE `transaksi_lab`
+  ADD CONSTRAINT `transaksi_lab_ibfk_1` FOREIGN KEY (`ID_PASIEN`) REFERENCES `pasien` (`ID_PASIEN`);
 
 --
 -- Ketidakleluasaan untuk tabel `transaksi_layanan_kecantikan`
