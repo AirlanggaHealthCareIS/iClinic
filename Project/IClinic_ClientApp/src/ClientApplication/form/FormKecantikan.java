@@ -10,27 +10,23 @@
  */
 package ClientApplication.form;
 
-import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelKecantikan_detailLayanan;
-import ClientApplication.model.TableModelKecantikan_tabelMaster;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
 import Database.Entity.Pembayaran;
 import Database.Service.KecantikanService;
-import java.rmi.NotBoundException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,7 +41,9 @@ public class FormKecantikan extends javax.swing.JFrame {
     public ArrayList<Object> details = new ArrayList<Object>();
     //public DefaultTableModel model = new DefaultTableModel();
     public Boolean pasienExist = false;
+    public int number = 1;
     public FormKecantikan(KecantikanService kecantikanService) {
+        initComponents();
         this.kecantikanService = kecantikanService;
         //model = (DefaultTableModel) tabelLayanan.getModel();
         try {
@@ -53,6 +51,16 @@ public class FormKecantikan extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
         }
+        setComboboxLayanan();
+        comboLayanan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                //JComboBox<String> combo = (JComboBox<String>) event.getSource();
+                //String selectedLayanan = (String) combo.getSelectedItem();
+                String harga = Integer.toString(listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif());
+                fieldHarga.setText(harga);
+            }
+        });
     }
 
     /**
@@ -110,7 +118,7 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jTabbedPane1.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -214,8 +222,6 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pasien", jPanel1);
 
-        jPanel2.setOpaque(false);
-
         jLabel9.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel9.setText("ID Transaksi");
 
@@ -224,6 +230,7 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         fieldIDTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
+        fieldTotalHarga.setEditable(false);
         fieldTotalHarga.setText("0");
 
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -234,10 +241,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         tabelLayanan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         tabelLayanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "No Detail Kecantikan", "ID Transaksi Layanan", "ID Jenis Layana", "Keterangan"
@@ -257,20 +261,6 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         comboLayanan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         comboLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Jenis Layanan" }));
-        comboLayanan.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboLayananItemStateChanged(evt);
-            }
-        });
-        comboLayanan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboLayananPopupMenuWillBecomeVisible(evt);
-            }
-        });
 
         buttonTambahLayanan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonTambahLayanan.setText("Tambah Layanan");
@@ -283,14 +273,14 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel11.setText("Keterangan");
 
+        fieldHarga.setEditable(false);
         fieldHarga.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        fieldHarga.setEnabled(false);
 
         jLabel14.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel14.setText("No Detail Layanan");
 
+        fieldNoDetailLayanan.setEditable(false);
         fieldNoDetailLayanan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        fieldNoDetailLayanan.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel10.setText("Jenis Layanan");
@@ -468,10 +458,12 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Transaksi", jPanel2);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1260, 610));
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(10, 150, 1260, 610);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/8.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1280, 800);
 
         pack();
         setLocationRelativeTo(null);
@@ -481,44 +473,31 @@ public class FormKecantikan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void comboLayananPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboLayananPopupMenuWillBecomeVisible
-        comboLayanan.removeAllItems();
-        try {
-            listLayananKecantikan = kecantikanService.getLayananKecantikan();
-            for (int i = 0; i < listLayananKecantikan.size(); i++) {
-                comboLayanan.addItem(listLayananKecantikan.get(i).getJenis_Layanan());
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_comboLayananPopupMenuWillBecomeVisible
-
-    private void comboLayananItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLayananItemStateChanged
-        String harga = Integer.toString(listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif());
-        fieldHarga.setText(harga);
-    }//GEN-LAST:event_comboLayananItemStateChanged
-
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
-        String idtrans = fieldIDTransaksi.getText();
-        String iddetail = idtrans + listDetail.size();
-        String idjenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getId_Kecantikan();
-        String keterangan = fieldKeterangan.getText();
-        Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
-        detail.setId_Det_Kesehatan(iddetail);
-        detail.setId_Trans_Layanan(idtrans);
-        detail.setId_Kecantikan(idjenislayanan);
-        detail.setKeterangan(keterangan);
-        //tableKecantikanDetailLayanan.insert(detail);
-        listDetail.add(detail);
-        tableKecantikanDetailLayanan.setData(listDetail);
-        tabelLayanan.setModel(tableKecantikanDetailLayanan);
-        fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
+        if (!fieldIDTransaksi.getText().equals("")){
+            String idtrans = fieldIDTransaksi.getText();
+            String iddetail = idtrans +"-"+ number;
+            number++;
+            String idjenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getId_Kecantikan();
+            String keterangan = fieldKeterangan.getText();
+            Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
+            detail.setId_Det_Kesehatan(iddetail);
+            detail.setId_Trans_Layanan(idtrans);
+            detail.setId_Kecantikan(idjenislayanan);
+            detail.setKeterangan(keterangan);
+            //tableKecantikanDetailLayanan.insert(detail);
+            listDetail.add(detail);
+            tableKecantikanDetailLayanan.setData(listDetail);
+            tabelLayanan.setModel(tableKecantikanDetailLayanan);
+            fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
+        }
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
     private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed
         if(tabelLayanan.getSelectedRow() > -1){
             //tableKecantikanDetailLayanan.delete(tabelLayanan.getSelectedRow());
             listDetail.remove(tabelLayanan.getSelectedRow());
+            tableKecantikanDetailLayanan.setData(listDetail);
             tabelLayanan.setModel(tableKecantikanDetailLayanan);
             fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
         }
@@ -551,10 +530,17 @@ public class FormKecantikan extends javax.swing.JFrame {
                 pasienExist = kecantikanService.getPasienbyId(idpasien);
                 if(pasienExist == false){
                     fieldIDPasien.setText("");
+                    JOptionPane.showMessageDialog(this, "ID Pasien salah/tidak ada");
                 }
+                else{
+                    JOptionPane.showMessageDialog(this, "ID Pasien ada");
+                    //fieldIDPasien.disable();
+                    fieldIDPasien.setEditable(false);
+                }                   
             } catch (RemoteException ex) {
                 Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }//GEN-LAST:event_buttonSearchActionPerformed
 
@@ -565,10 +551,13 @@ public class FormKecantikan extends javax.swing.JFrame {
                 transaksi.setId_Transaksi_Layanan(fieldIDTransaksi.getText());
                 transaksi.setId_Pasien(fieldIDPasien.getText());
                 transaksi.setTotal_Harga(checkTotalHarga());
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                //String now = dateFormat.format(date);
-                transaksi.setTanggal(date);
+                //java.util.Date utilDate = new java.util.Date();
+                //java.sql.Date sqlDate = new java.sql.Date(utilDate.getDate());
+                String now = dateFormat.format(date);
+                //System.out.println(sqlDate);
+                transaksi.setTanggal(now);
                 kecantikanService.insertKecantikan_transaksiLayanan(transaksi);
                 for(int i=0;i<listDetail.size();i++){
                     Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
@@ -591,21 +580,35 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonInsertActionPerformed
 
     private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
+        number = 1;
+        //fieldIDPasien.enable();
+        fieldIDPasien.setEditable(false);
         fieldIDTransaksi.setText("");
         fieldIDPasien.setText("");
         fieldHarga.setText("");
         fieldNoDetailLayanan.setText("");
         fieldKeterangan.setText("");
         listDetail = new ArrayList<Kecantikan_detailLayanan>();
+        tableKecantikanDetailLayanan.setData(listDetail);
+        tabelLayanan.setModel(tableKecantikanDetailLayanan);
+        fieldTotalHarga.setText("0");
     }//GEN-LAST:event_buttonClearActionPerformed
+
     
-    private void isPasienExist(){
-        
+    private void setComboboxLayanan(){
+        comboLayanan.removeAllItems();
+        try {
+            listLayananKecantikan = kecantikanService.getLayananKecantikan();
+            for (int i = 0; i < listLayananKecantikan.size(); i++) {
+                comboLayanan.addItem(listLayananKecantikan.get(i).getJenis_Layanan());
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
     private int checkTotalHarga(){
         int total = 0;
-        if(listDetail.size()<-1){
+        if(listDetail.size()>0){
             for(int i=0;i<listDetail.size();i++){
                 int harga = 0;
                 for (int j=0;j<listLayananKecantikan.size();j++){

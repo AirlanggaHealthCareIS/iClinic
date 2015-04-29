@@ -5,7 +5,6 @@
 package Database.Entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -15,7 +14,7 @@ public class Kecantikan_transaksiLayanan implements Serializable{
 
     private String Id_Transaksi_Layanan;
     private String Id_Pasien;
-    private Date Tanggal;
+    private String Tanggal;
     private int Total_Harga;
 
     public String getId_Transaksi_Layanan() {
@@ -42,11 +41,11 @@ public class Kecantikan_transaksiLayanan implements Serializable{
         this.Id_Pasien = Id_Pasien;
     }
 
-    public Date getTanggal() {
+    public String getTanggal() {
         return Tanggal;
     }
 
-    public void setTanggal(Date Tanggal) {
+    public void setTanggal(String Tanggal) {
         this.Tanggal = Tanggal;
     }
 

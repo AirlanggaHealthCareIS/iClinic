@@ -88,12 +88,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO transaksi_layanan_kecantikan (ID_TRANSAKSI_KESEHATAN, ID_PASIEN, TOTAL_HARGA, TANGGAL) values (?,?,?,?)"
+                    "INSERT INTO transaksi_layanan_kecantikan (ID_TRANSAKSI_LAYANAN, ID_PASIEN, TOTAL_HARGA, TANGGAL) values (?,?,?,?)"
             );
             statement.setString(1, transaksi_layanan.getId_Transaksi_Layanan());
             statement.setString(2, transaksi_layanan.getId_Pasien());
             statement.setInt(3, transaksi_layanan.getTotal_Harga());
-            statement.setDate(4, (Date) transaksi_layanan.getTanggal());
+            statement.setString(4,  transaksi_layanan.getTanggal());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Transaksi Layanan Kecantikan");
         } catch (SQLException exception) {
