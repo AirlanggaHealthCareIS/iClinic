@@ -128,6 +128,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
 
         
+<<<<<<< Updated upstream
     public Pasien getPasien(int Id_Pasien) throws RemoteException {
          System.out.println("Client Melakukan Proses Get Status dengan Mengakses Tabel Pasien");
         Statement state = null;
@@ -139,16 +140,46 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
             rs = state.executeQuery(sql);
             while (rs.next()){
                 newStatus = rs.getString(1);
+=======
+    public Pasien getPasien(String Id_Pasien) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
+
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT * FROM pasien WHERE ID_PASIEN = '"+Id_Pasien+"'");
+
+            ResultSet result = statement.executeQuery();
+
+            Pasien pasien = null;
+
+            if (result.next()) {
+                pasien = new Pasien();
+                pasien.setId_Pasien(result.getString("ID_PASIEN"));
+                pasien.setNama_Pasien(result.getString("NAMA_PASIEN"));
+                pasien.setAlamat(result.getString("ALAMAT"));
+                pasien.setTanggal_Lahir(result.getDate("TGL_LAHIR"));
+                pasien.setUsia(result.getInt("USIA"));
+                pasien.setNo_HP(result.getString("NO_HP"));
+                pasien.setJenis_Kelamin(result.getString("JENIS_KELAMIN"));
+            }
+
+            return pasien;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+>>>>>>> Stashed changes
             }
         }
-        catch (Throwable ex) {
-            System.out.println("masuk catch");
-        }
-       System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
-        Pasien pasien = null;
-        return pasien;
     }
-
 
 
         

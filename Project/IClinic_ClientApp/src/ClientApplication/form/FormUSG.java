@@ -43,17 +43,17 @@ public class FormUSG extends javax.swing.JFrame {
     public FormUSG(USGService usgService) {
         this.usgService = usgService;
 
-        antrian();
-        try {
-            tableModelusg.setData(this.usgService.getUSG());
-        } catch (RemoteException exception) {
-            exception.printStackTrace();
-        }
-
-        initComponents();
-        setLocationRelativeTo(this);
-        setSize(665, 730);
-    }
+//        antrian();
+//        try {
+//            tableModelusg.setData(this.usgService.getUSG());
+//        } catch (RemoteException exception) {
+//            exception.printStackTrace();
+//        }
+//
+//        initComponents();
+//        setLocationRelativeTo(this);
+//        setSize(665, 730);
+//    }
 //
 //        jTable1.setModel(tableModelusg);
 //        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -69,8 +69,9 @@ public class FormUSG extends javax.swing.JFrame {
 //                    harga.setText(String.valueOf(usg.getHarga()));
 //                }
 //            }
-//        });
-
+    //    });
+    }
+    
     public void clear() {
         idpasien.setText("");
         idusg.setText("");
@@ -79,35 +80,35 @@ public class FormUSG extends javax.swing.JFrame {
         harga.setText("");
     }
 
-    public void antrian() {
-        String in = idusg.getText();
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            Class.forName("com.jdbc.mysql.Driver");
-            conn = DriverManager.getConnection("jdbcmysql:///klinik2", "root", "usg");
-            pstmt = conn.prepareStatement("select ID_PASIEN,ID_USG,TANGGAL_USG from transaksi_usg where ID_USG=?");
-            pstmt.setString(1, in);
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                idusg.setText(rs.getString("ID_USG"));
-                idpasien.setText(rs.getString("ID_PASIEN"));
-                tanggal.setText(rs.getString("TANGGAL_USG"));
-            } else {
-                JOptionPane.showMessageDialog(null, "Antrian selanjutnya masih kosong, silahkan tunggu  ");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            try {
-                conn.close();
-                pstmt.close();
-                rs.close();
-            } catch (Exception e) {
-            }
-        }
-    }
+//    public void antrian() {
+//        String in = idusg.getText();
+//        Connection conn = null;
+//        PreparedStatement pstmt = null;
+//        ResultSet rs = null;
+//        try {
+//            Class.forName("com.jdbc.mysql.Driver");
+//            conn = DriverManager.getConnection("jdbcmysql:///klinik2", "root", "usg");
+//            pstmt = conn.prepareStatement("select ID_PASIEN,ID_USG,TANGGAL_USG from transaksi_usg where ID_USG=?");
+//            pstmt.setString(1, in);
+//            rs = pstmt.executeQuery();
+//            if (rs.next()) {
+//                idusg.setText(rs.getString("ID_USG"));
+//                idpasien.setText(rs.getString("ID_PASIEN"));
+//                tanggal.setText(rs.getString("TANGGAL_USG"));
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Antrian selanjutnya masih kosong, silahkan tunggu  ");
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        } finally {
+//            try {
+//                conn.close();
+//                pstmt.close();
+//                rs.close();
+//            } catch (Exception e) {
+//            }
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

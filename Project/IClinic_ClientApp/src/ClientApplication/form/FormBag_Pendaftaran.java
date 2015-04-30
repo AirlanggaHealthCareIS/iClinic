@@ -28,13 +28,20 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private FormBag_Pendaftaran f;
+<<<<<<< Updated upstream
     private Bag_PendaftaranService PS;
     private TableModelPasien TableModelPasien = new TableModelPasien();
+=======
+    
+    private TableModelPasien tableModelPasien = new TableModelPasien();
+    private Bag_PendaftaranService bag_PendaftaranService;
+>>>>>>> Stashed changes
     /**
      * 
      */
     //java.sql.Date sqlDate;
     public FormBag_Pendaftaran(Bag_PendaftaranService bag_PendaftaranService) throws RemoteException, NotBoundException{
+<<<<<<< Updated upstream
         PS = bag_PendaftaranService;
         this.PS= bag_PendaftaranService;
         try{
@@ -76,6 +83,10 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         field_Alamat.setText("");
         field_Usia.setText("");
         field_No_HP.setText("");
+=======
+        initComponents();
+        this.bag_PendaftaranService = bag_PendaftaranService;
+>>>>>>> Stashed changes
     }
     void refresh(){
         field_ID_Pasien.setText("");
@@ -147,6 +158,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1270, 800));
         getContentPane().setLayout(null);
 
         PasienBaru.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -490,8 +502,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             pasien.setJenis_Kelamin(box_Jenis_Kelamin.getSelectedItem().toString());
         
             System.out.println("cek 1");
+<<<<<<< Updated upstream
             PS.insertPasien(pasien);
             TableModelPasien.insert(pasien);
+=======
+            bag_PendaftaranService.insertPasien(pasien);
+>>>>>>> Stashed changes
             JOptionPane.showMessageDialog(null, "Terdaftar");
         }catch(RemoteException exception){
             exception.printStackTrace();
@@ -500,6 +516,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
+<<<<<<< Updated upstream
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         if((field_ID_Pasien.getText().equalsIgnoreCase(""))||(field_No_Ktp.getText().equalsIgnoreCase(""))||(field_Nama_Pasien.getText().equalsIgnoreCase(""))||(field_Alamat.getText().equalsIgnoreCase(""))||(field_Usia.getText().equalsIgnoreCase(""))||(field_No_HP.getText().equalsIgnoreCase(""))){
         JOptionPane.showMessageDialog(null, "Terdaftar");
@@ -509,6 +526,31 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             int row = tabel_pasien.getSelectedRow();
             if(row == -1){
                 return;
+=======
+    private void PilihLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilihLayananActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PilihLayananActionPerformed
+
+    private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
+       if(TextField_idPasien.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
+        }
+       else if( !TextField_idPasien.getText().equals("")){
+           Pasien pasien = new Pasien();
+            try {
+               System.out.println("masuk 1");System.out.println(TextField_idPasien.getText());
+               pasien = bag_PendaftaranService.getPasien(TextField_idPasien.getText());
+               jTextFieldNama.setText(pasien.getNama_Pasien());
+               jTextFieldAlamat.setText(pasien.getAlamat());
+               JTextFieldTanggal_lahir.setValue(pasien.getTanggal_lahir());
+               jTextFieldGender.setText(pasien.getJenis_Kelamin());
+               jTextFieldUmur.setText(""+pasien.getUsia());
+               jTextFieldTelepon.setText(""+pasien.getNo_HP());
+            }
+            catch (RemoteException ex) {
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+            }
+>>>>>>> Stashed changes
             }
         
         String a = field_ID_Pasien.getText();
