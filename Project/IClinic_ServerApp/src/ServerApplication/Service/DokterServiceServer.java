@@ -567,16 +567,16 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
             if (result.next()) {
                 pembayaranDB = new Pembayaran();
-                pembayaranDB.setId_Pembayaran(result.getString("Id_Pembayaran"));
-                pembayaranDB.setId_Pasien(result.getString("Id_Pasien"));
-                pembayaranDB.setId_USG(result.getString("Id_USG"));
-                pembayaranDB.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
-                pembayaranDB.setId_Resep(result.getString("Id_Resep"));
-                pembayaranDB.setId_Rekam(result.getString("Id_Rekam"));
-                pembayaranDB.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
-                pembayaranDB.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
-                pembayaranDB.setTotal_Harga(result.getInt("Total_Harga"));
-                pembayaranDB.setStatus(result.getString("Status"));
+                pembayaranDB.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
+                pembayaranDB.setID_PASIEN(result.getString("ID_PASIEN"));
+                pembayaranDB.setID_USG(result.getString("ID_USG"));
+                pembayaranDB.setID_TRANSAKSI_LAB(result.getString("ID_TRANSAKSI_LAB"));
+                pembayaranDB.setID_RESEP(result.getString("ID_RESEP"));
+                pembayaranDB.setID_REKAM(result.getString("Id_REKAM"));
+                pembayaranDB.setID_TRANSAKSI_LAYANAN(result.getString("ID_TRANSAKSI_LAYANAN"));
+                pembayaranDB.setTANGGAL_BAYAR(result.getDate("TANGGAL_BAYAR"));
+                pembayaranDB.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaranDB.setSTATUS(result.getString("STATUS"));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -594,21 +594,21 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
     public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idRekam, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
-        int totalHarga = pembayaranDB.getTotal_Harga() + Harga;
+        int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE pembayaran SET ID_USG = ?, ID_DETAIL_LAB = ?, "
+                    "UPDATE pembayaran SET ID_USG = ?, ID_TRANSAKSI_LAB = ?, "
                     + "ID_RESEP = ?, ID_REKAM = ?, ID_TRANSAKSI_LAYANAN = ?, "
                     + "TOTAL_HARGA = ? "
                     + "WHERE ID_PEMBAYARAN = ?");
-            statement.setString(1, pembayaranDB.getId_USG());
-            statement.setString(2, pembayaranDB.getId_Detail_Lab());
-            statement.setString(3, pembayaranDB.getId_Resep());
+            statement.setString(1, pembayaranDB.getID_USG());
+            statement.setString(2, pembayaranDB.getID_TRANSAKSI_LAB());
+            statement.setString(3, pembayaranDB.getID_RESEP());
             statement.setString(4, idRekam);
-            statement.setString(5, pembayaranDB.getId_Transaksi_Layanan());
+            statement.setString(5, pembayaranDB.getID_TRANSAKSI_LAYANAN());
             statement.setInt(6, totalHarga);
-            statement.setString(7, pembayaranDB.getId_Pembayaran());
+            statement.setString(7, pembayaranDB.getID_PEMBAYARAN());
 
             statement.executeUpdate();
 
