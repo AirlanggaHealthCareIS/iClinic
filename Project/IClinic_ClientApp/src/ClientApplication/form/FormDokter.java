@@ -41,6 +41,7 @@ public class FormDokter extends javax.swing.JFrame {
     private TableModelTindakan_detailTindakan tableModelTindakan = new TableModelTindakan_detailTindakan();
 
     private Pasien pasien;
+    int total = 0;
 
     public FormDokter(DokterService dokterService) {
 
@@ -530,24 +531,24 @@ public class FormDokter extends javax.swing.JFrame {
         tglRekam.setValue(new java.util.Date());
 
         comboDiagnosa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboDiagnosaPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboDiagnosaPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Layanan Laboratorium", "Layanan USG", "Layanan Kecantikan", " " }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTambahanPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboTambahanPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -569,12 +570,12 @@ public class FormDokter extends javax.swing.JFrame {
 
         comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTindakanPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboTindakanPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -935,6 +936,10 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanPopupMenuWillBecomeVisible
 
     private void TambahTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahTindakanActionPerformed
+        if (idRekam.getText().equals("")||fieldNoDetail.getText().equals("") || comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
+                ||comboTambahan.getSelectedItem().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
+        } else {
         try {
 
             Tindakan_detailTindakan detail_tindakan = new Tindakan_detailTindakan();
@@ -950,7 +955,7 @@ public class FormDokter extends javax.swing.JFrame {
         } catch (RemoteException exception) {
             exception.printStackTrace();
         }
-
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_TambahTindakanActionPerformed
 
@@ -958,6 +963,8 @@ public class FormDokter extends javax.swing.JFrame {
         try {
             int harga = dokterService.getTarif(comboTindakan.getSelectedItem().toString());
             fieldHarga.setText("" + harga);
+            total = total + harga;
+            totalHarga.setText("" + total);
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }

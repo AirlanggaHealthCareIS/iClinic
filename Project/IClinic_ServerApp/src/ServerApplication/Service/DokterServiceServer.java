@@ -124,7 +124,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT * FROM rekam_medis WHERE ID_REKAM = ?");
+                    "SELECT * FROM rekam_medis WHERE ID_REKAM = '"+Id_Rekam+"'");
 
             ResultSet result = statement.executeQuery();
 
@@ -491,7 +491,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT * FROM detail_tindakan WHERE NO_DETAIL = ?");
+                    "SELECT * FROM detail_tindakan WHERE NO_DETAIL = '"+No_Detail+"'");
 
             ResultSet result = statement.executeQuery();
 
