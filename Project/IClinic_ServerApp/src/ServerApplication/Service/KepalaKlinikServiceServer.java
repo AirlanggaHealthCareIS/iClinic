@@ -40,22 +40,23 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
 
             ResultSet result = statement.executeQuery();
 
-            Pembayaran pembayaran = null;
+            Pembayaran pembayaranDB = null;
 
             if(result.next()){
-                pembayaran = new Pembayaran();
-                pembayaran.setId_Pembayaran(result.getString("Id_Pembayaran"));
-                pembayaran.setId_USG(result.getString("Id_USG"));
-                pembayaran.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
-                pembayaran.setId_Resep(result.getString("Id_Resep"));
-                pembayaran.setId_Rekam(result.getString("Id_Rekam"));
-                pembayaran.setId_Transaksi_Layanan(result.getString("Id_Transaksi_Layanan"));
-                pembayaran.setTanggal_Bayar(result.getDate("Tanggal_Bayar"));
-                pembayaran.setTotal_Harga(result.getInt("Total_Harga"));
-                pembayaran.setStatus(result.getString("Status"));
+                pembayaranDB = new Pembayaran();
+                pembayaranDB.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
+                pembayaranDB.setID_PASIEN(result.getString("ID_PASIEN"));
+                pembayaranDB.setID_USG(result.getString("ID_USG"));
+                pembayaranDB.setID_TRANSAKSI_LAB(result.getString("ID_TRANSAKSI_LAB"));
+                pembayaranDB.setID_RESEP(result.getString("ID_RESEP"));
+                pembayaranDB.setID_REKAM(result.getString("Id_REKAM"));
+                pembayaranDB.setID_TRANSAKSI_LAYANAN(result.getString("ID_TRANSAKSI_LAYANAN"));
+                pembayaranDB.setTANGGAL_BAYAR(result.getDate("TANGGAL_BAYAR"));
+                pembayaranDB.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaranDB.setSTATUS(result.getString("STATUS"));
             }
             
-        return pembayaran;
+        return pembayaranDB;
     }catch(SQLException exception){
           exception.printStackTrace();
           return null;
