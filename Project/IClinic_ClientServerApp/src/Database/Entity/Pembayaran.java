@@ -13,149 +13,149 @@ import java.util.Date;
  * @author Tiara Ratna Sari
  */
 public class Pembayaran implements Serializable  {
-    private String Id_Pembayaran;
-    private String Id_Pasien;
-    private String Nama_Pasien;
-    private String Id_USG;
-    private int Total_USG;
-    private String Id_Detail_Lab;
-    private int Total_Lab;
-    private String Id_Resep;
-    private int Total_Resep;
-    private String Id_Rekam;
-    private int Total_Rekam;
-    private String Id_Transaksi_Layanan;
-    private int Total_Kecantikan;
-    private Date Tanggal_Bayar;
-    private int Total_Harga;
-    private String Status;
+    private String ID_PEMBAYARAN;
+    private String ID_PASIEN;
+    private String NAMA_PASIEN;
+    private String ID_USG;
+    private int TOTAL_USG;
+    private String ID_TRANSAKSI_LAB;
+    private int TOTAL_LAB;
+    private String ID_RESEP;
+    private int TOTAL_RESEP;
+    private String ID_REKAM;
+    private int TOTAL_REKAM;
+    private String ID_TRANSAKSI_LAYANAN;
+    private int TOTAL_KECANTIKAN;
+    private Date TANGGAL_BAYAR;
+    private int TOTAL_HARGA;
+    private String STATUS;
 
-    public void setId_Pembayaran(String Id_Pembayaran) {
-        this.Id_Pembayaran = Id_Pembayaran;
+    public void setID_PEMBAYARAN(String ID_PEMBAYARAN) {
+        this.ID_PEMBAYARAN = ID_PEMBAYARAN;
     }
 
-    public void setId_Pasien(String Id_Pasien) {
-        this.Id_Pasien = Id_Pasien;
+    public void setID_PASIEN(String ID_PASIEN) {
+        this.ID_PASIEN = ID_PASIEN;
     }
 
-    public void setNama_Pasien(String Nama_Pasien) {
-        this.Nama_Pasien = Nama_Pasien;
+    public void setNAMA_PASIEN(String NAMA_PASIEN) {
+        this.NAMA_PASIEN = NAMA_PASIEN;
     }
 
-    public void setId_USG(String Id_USG) {
-        this.Id_USG = Id_USG;
+    public void setID_USG(String ID_USG) {
+        this.ID_USG = ID_USG;
     }
 
-    public void setTotal_USG(int Total_USG) {
-        this.Total_USG = Total_USG;
+    public void setTOTAL_USG(int TOTAL_USG) {
+        this.TOTAL_USG = TOTAL_USG;
     }
 
-    public void setId_Detail_Lab(String Id_Detail_Lab) {
-        this.Id_Detail_Lab = Id_Detail_Lab;
+    public void setID_TRANSAKSI_LAB(String ID_TRANSAKSI_LAB) {
+        this.ID_TRANSAKSI_LAB = ID_TRANSAKSI_LAB;
     }
 
-    public void setTotal_Lab(int Total_Lab) {
-        this.Total_Lab = Total_Lab;
+    public void setTOTAL_LAB(int TOTAL_LAB) {
+        this.TOTAL_LAB = TOTAL_LAB;
     }
 
-    public void setId_Resep(String Id_Resep) {
-        this.Id_Resep = Id_Resep;
+    public void setID_RESEP(String ID_RESEP) {
+        this.ID_RESEP = ID_RESEP;
     }
 
-    public void setTotal_Resep(int Total_Resep) {
-        this.Total_Resep = Total_Resep;
+    public void setTOTAL_RESEP(int TOTAL_RESEP) {
+        this.TOTAL_RESEP = TOTAL_RESEP;
     }
 
-    public void setId_Rekam(String Id_Rekam) {
-        this.Id_Rekam = Id_Rekam;
+    public void setID_REKAM(String ID_REKAM) {
+        this.ID_REKAM = ID_REKAM;
     }
 
-    public void setTotal_Rekam(int Total_Rekam) {
-        this.Total_Rekam = Total_Rekam;
+    public void setTOTAL_REKAM(int TOTAL_REKAM) {
+        this.TOTAL_REKAM = TOTAL_REKAM;
     }
 
-    public void setId_Transaksi_Layanan(String Id_Transaksi_Layanan) {
-        this.Id_Transaksi_Layanan = Id_Transaksi_Layanan;
+    public void setID_TRANSAKSI_LAYANAN(String ID_TRANSAKSI_LAYANAN) {
+        this.ID_TRANSAKSI_LAYANAN = ID_TRANSAKSI_LAYANAN;
     }
 
-    public void setTotal_Kecantikan(int Total_Kecantikan) {
-        this.Total_Kecantikan = Total_Kecantikan;
+    public void setTOTAL_KECANTIKAN(int TOTAL_KECANTIKAN) {
+        this.TOTAL_KECANTIKAN = TOTAL_KECANTIKAN;
     }
 
-    public void setTanggal_Bayar(Date Tanggal_Bayar) {
-        this.Tanggal_Bayar = Tanggal_Bayar;
+    public void setTANGGAL_BAYAR(Date TANGGAL_BAYAR) {
+        this.TANGGAL_BAYAR = TANGGAL_BAYAR;
     }
 
-    public void setTotal_Harga(int Total_Harga) {
-        this.Total_Harga = Total_Harga;
+    public void setTOTAL_HARGA(int TOTAL_HARGA) {
+        this.TOTAL_HARGA = TOTAL_HARGA;
     }
 
-    public void setStatus(String Status) {
-        this.Status = Status;
+    public void setSTATUS(String STATUS) {
+        this.STATUS = STATUS;
     }
 
-    public String getId_Pembayaran() {
-        return Id_Pembayaran;
+    public String getID_PEMBAYARAN() {
+        return ID_PEMBAYARAN;
     }
 
-    public String getId_Pasien() {
-        return Id_Pasien;
+    public String getID_PASIEN() {
+        return ID_PASIEN;
     }
 
-    public String getNama_Pasien() {
-        return Nama_Pasien;
+    public String getNAMA_PASIEN() {
+        return NAMA_PASIEN;
     }
 
-    public String getId_USG() {
-        return Id_USG;
+    public String getID_USG() {
+        return ID_USG;
     }
 
-    public int getTotal_USG() {
-        return Total_USG;
+    public int getTOTAL_USG() {
+        return TOTAL_USG;
     }
 
-    public String getId_Detail_Lab() {
-        return Id_Detail_Lab;
+    public String getID_TRANSAKSI_LAB() {
+        return ID_TRANSAKSI_LAB;
     }
 
-    public int getTotal_Lab() {
-        return Total_Lab;
+    public int getTOTAL_LAB() {
+        return TOTAL_LAB;
     }
 
-    public String getId_Resep() {
-        return Id_Resep;
+    public String getID_RESEP() {
+        return ID_RESEP;
     }
 
-    public int getTotal_Resep() {
-        return Total_Resep;
+    public int getTOTAL_RESEP() {
+        return TOTAL_RESEP;
     }
 
-    public String getId_Rekam() {
-        return Id_Rekam;
+    public String getID_REKAM() {
+        return ID_REKAM;
     }
 
-    public int getTotal_Rekam() {
-        return Total_Rekam;
+    public int getTOTAL_REKAM() {
+        return TOTAL_REKAM;
     }
 
-    public String getId_Transaksi_Layanan() {
-        return Id_Transaksi_Layanan;
+    public String getID_TRANSAKSI_LAYANAN() {
+        return ID_TRANSAKSI_LAYANAN;
     }
 
-    public int getTotal_Kecantikan() {
-        return Total_Kecantikan;
+    public int getTOTAL_KECANTIKAN() {
+        return TOTAL_KECANTIKAN;
     }
 
-    public Date getTanggal_Bayar() {
-        return Tanggal_Bayar;
+    public Date getTANGGAL_BAYAR() {
+        return TANGGAL_BAYAR;
     }
 
-    public int getTotal_Harga() {
-        return Total_Harga;
+    public int getTOTAL_HARGA() {
+        return TOTAL_HARGA;
     }
 
-    public String getStatus() {
-        return Status;
+    public String getSTATUS() {
+        return STATUS;
     }
 
 }

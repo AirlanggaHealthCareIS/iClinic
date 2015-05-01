@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="129c7e2b-2d65-4620-8d1c-a4852d37951a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ID_PEMBAYARAN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pembayaran.`ID_PEMBAYARAN` AS ID_PEMBAYARAN,
+     pembayaran.`ID_PASIEN` AS ID_PASIEN,
+     pembayaran.`ID_USG` AS ID_USG,
+     pembayaran.`ID_TRANSAKSI_LAB` AS ID_TRANSAKSI_LAB,
+     pembayaran.`ID_RESEP` AS ID_RESEP,
+     pembayaran.`ID_REKAM` AS ID_REKAM,
+     pembayaran.`ID_TRANSAKSI_LAYANAN` AS ID_TRANSAKSI_LAYANAN,
+     pembayaran.`TANGGAL_BAYAR` AS TANGGAL_BAYAR,
+     pembayaran.`TOTAL_HARGA` AS TOTAL_HARGA,
+     pembayaran.`STATUS` AS STATUS,
+     pasien.`NAMA_PASIEN` AS NAMA_PASIEN,
+     transaksi_usg.`HARGA` AS TOTAL_USG,
+     transaksi_lab.`TOTAL_HARGA` AS TOTAL_LAB,
+     resep.`TOTAL_HARGA` AS TOTAL_RESEP,
+     rekam_medis.`TOTAL_HARGA` AS TOTAL_REKAM,
+     transaksi_layanan_kecantikan.`TOTAL_HARGA` AS TOTAL_KECANTIKAN
+FROM
+     `pasien` pasien INNER JOIN `pembayaran` pembayaran ON pasien.`ID_PASIEN` = pembayaran.`ID_PASIEN`
+     INNER JOIN `transaksi_usg` transaksi_usg ON pasien.`ID_PASIEN` = transaksi_usg.`ID_PASIEN`
+     AND transaksi_usg.`ID_USG` = pembayaran.`ID_USG`
+     INNER JOIN `transaksi_lab` transaksi_lab ON pembayaran.`ID_TRANSAKSI_LAB` = transaksi_lab.`ID_TRANSAKSI_LAB`
+     INNER JOIN `resep` resep ON pembayaran.`ID_RESEP` = resep.`ID_RESEP`
+     INNER JOIN `rekam_medis` rekam_medis ON pembayaran.`ID_REKAM` = rekam_medis.`ID_REKAM`
+     INNER JOIN `transaksi_layanan_kecantikan` transaksi_layanan_kecantikan ON pembayaran.`ID_TRANSAKSI_LAYANAN` = transaksi_layanan_kecantikan.`ID_TRANSAKSI_LAYANAN`
+     AND pasien.`ID_PASIEN` = transaksi_layanan_kecantikan.`ID_PASIEN`
+     AND pasien.`ID_PASIEN` = rekam_medis.`ID_PASIEN`
+     AND pasien.`ID_PASIEN` = transaksi_lab.`ID_PASIEN`
+     AND rekam_medis.`ID_REKAM` = resep.`ID_REKAM`
+WHERE
+     pembayaran.`ID_PEMBAYARAN` = $P{ID_PEMBAYARAN}]]>
+	</queryString>
+	<field name="ID_PEMBAYARAN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_PASIEN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_USG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_TRANSAKSI_LAB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_RESEP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_REKAM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_TRANSAKSI_LAYANAN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TANGGAL_BAYAR" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_HARGA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAMA_PASIEN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_USG" class="java.lang.Integer"/>
+	<field name="TOTAL_LAB" class="java.lang.Integer"/>
+	<field name="TOTAL_RESEP" class="java.lang.Integer"/>
+	<field name="TOTAL_REKAM" class="java.lang.Integer"/>
+	<field name="TOTAL_KECANTIKAN" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<image>
+				<reportElement x="516" y="-10" width="286" height="102" uuid="f191bf83-5e6e-4aa9-92b3-d006516047c7"/>
+				<imageExpression><![CDATA["iClinic.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="516" height="77" backcolor="#FFFFFF" uuid="f1667b19-34f5-4dcb-8d8e-bd7252f08b13"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="516" height="77" forecolor="#000000" backcolor="#333333" uuid="d72320c4-5e2e-4116-baeb-e3ae873ae1ed"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Caviar Dreams" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nota Pembayaran]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="77" width="802" height="25" forecolor="#000000" backcolor="#CCCCCC" uuid="008fc867-2b70-49f9-95d2-1740e5b286fb"/>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="230" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="939629c0-034b-4f6f-a8c2-fadd1036df0e"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="130" y="0" width="147" height="18" uuid="1d14d023-2b36-416e-8fbc-2d918e7a138a"/>
+					<textElement>
+						<font fontName="Caviar Dreams" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID_PASIEN}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="623" y="0" width="174" height="18" uuid="e6607224-9d8e-41cc-8924-34053fdb308c"/>
+					<textElement>
+						<font fontName="Caviar Dreams" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TANGGAL_BAYAR}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="490" y="0" width="133" height="18" forecolor="#000000" uuid="032c2419-1056-420c-b84c-fd51d264ee02"/>
+					<textElement>
+						<font fontName="Caviar Dreams" isBold="false"/>
+					</textElement>
+					<text><![CDATA[TANGGAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="2" y="0" width="128" height="18" forecolor="#000000" uuid="c13f71c5-1a66-4b37-ba9d-593e805401e1"/>
+					<textElement>
+						<font fontName="Caviar Dreams" isBold="false"/>
+					</textElement>
+					<text><![CDATA[ID PASIEN]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="98" y="92" width="170" height="18" forecolor="#000000" uuid="ba60b6f0-da70-4b45-95f8-e9df15790529"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAYANAN USG]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="268" y="92" width="92" height="18" uuid="1f85be67-22cc-442a-9844-3d25ef50ab79"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_USG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="110" width="170" height="18" forecolor="#000000" uuid="a9ad6e8d-16d1-4eeb-a278-a9ad5fd08f2a"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAYANAN LAB]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="268" y="110" width="92" height="18" uuid="10a444d5-3c25-47dc-80e5-f6bf0034003b"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_TRANSAKSI_LAB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="56" width="170" height="18" forecolor="#000000" uuid="32c8c696-90f9-43cc-921b-a132d26f7174"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BIAYA DOKTER]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="268" y="56" width="92" height="18" uuid="456e1f5b-bfad-4853-9069-2dd0c5d04c80"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_RESEP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="74" width="170" height="18" forecolor="#000000" uuid="2dee5c00-4c67-4ba4-9ed0-100f8e7a26b9"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BIAYA OBAT]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="268" y="74" width="92" height="18" uuid="f5ab2fe2-5133-4f6f-95cb-86c2cdf23ee4"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_REKAM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="128" width="170" height="18" forecolor="#000000" uuid="8799fc40-3739-480f-9957-a8614a207976"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAYANAN KECANTIKAN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="268" y="128" width="92" height="18" uuid="a2295dbd-345f-4fe9-98c8-953de691f775"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_TRANSAKSI_LAYANAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="166" width="49" height="18" forecolor="#000000" uuid="81387c0a-2eab-40b0-bc32-b661b1f99246"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL_HARGA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="166" width="94" height="18" uuid="f7bdbe8b-17e8-4a81-8452-6032880fef8d"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_HARGA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="2" y="202" width="128" height="18" forecolor="#000000" uuid="cd4e9e1e-38be-4276-b95c-dbeca100fcaa"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="130" y="202" width="147" height="18" uuid="e097e669-64d1-4009-b337-1711d1a9ad0d"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="92" width="94" height="18" uuid="a4038510-2a6d-4c9b-925b-ee3744209d54"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_USG}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="110" width="94" height="18" uuid="cf8f29d9-2a8b-4833-9592-a9c64c386de7"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_LAB}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="56" width="94" height="18" uuid="7155621d-022f-4e0b-b74d-42581bf2fe20"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_RESEP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="74" width="94" height="18" uuid="d672a348-7d4a-4802-ac22-aa11213dd23b"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_REKAM}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="360" y="128" width="94" height="18" uuid="4e2515cc-e39b-40dc-9343-0b4dac5ecdfc"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_KECANTIKAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="490" y="18" width="133" height="18" forecolor="#000000" uuid="f87fea19-cd32-42da-ab3c-2ec928042c3b"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID PEMBAYARAN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="623" y="18" width="174" height="18" uuid="ebeba966-724e-4234-ab46-3e675ff007b4"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_PEMBAYARAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="2" y="18" width="128" height="18" forecolor="#000000" uuid="1bf9f18e-0881-4d1e-a798-bf6de58798fe"/>
+				<textElement>
+					<font fontName="Caviar Dreams" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NAMA PASIEN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="130" y="18" width="147" height="18" uuid="8498c298-68fd-40bd-889f-d8fecafce9f2"/>
+				<textElement>
+					<font fontName="Caviar Dreams" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAMA_PASIEN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="596de363-20e4-40e1-9c0d-217a552ca862"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#CCCCCC" uuid="94c60407-3069-427f-b278-ed75368428fb"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="7c6c5cf6-5c76-4489-8847-50e81438f606"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="a5131427-a684-4caa-9bea-5ae0b8bf8c34"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

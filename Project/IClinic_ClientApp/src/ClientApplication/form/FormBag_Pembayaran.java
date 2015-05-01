@@ -10,15 +10,43 @@ import ClientApplication.Splash;
 import ClientApplication.model.TableModelPembayaran;
 import Database.Entity.Pembayaran;
 import Database.Service.Bag_PembayaranService;
+import com.mysql.jdbc.DatabaseMetaDataUsingInfoSchema;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -48,15 +76,15 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 int row = Table_Bahan.getSelectedRow();
                 if(row != -1){
                     Pembayaran pembayaran = tableModelPembayaran.get(row);
-                    TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
-                    TextField_tglPembayaran.setValue(pembayaran.getTanggal_Bayar());
-                    TextField_Usg.setText(String.valueOf(pembayaran.getId_USG()));
-                    TextField_Lab.setText(String.valueOf(pembayaran.getId_Detail_Lab()));
-                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Resep()));
-                    TextField_Resep.setText(String.valueOf(pembayaran.getId_Rekam()));
-                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getId_Transaksi_Layanan()));
-                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
-                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
+                    TextField_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
+                    TextField_tglPembayaran.setValue(pembayaran.getTANGGAL_BAYAR());
+                    TextField_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
+                    TextField_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
+                    TextField_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
+                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
+                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
+                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
+                    TextField_status.setText(String.valueOf(pembayaran.getSTATUS()));
                 }
             }
         });
@@ -143,6 +171,11 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
 
         button_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Printer.png"))); // NOI18N
         button_Print.setEnabled(false);
+        button_Print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_PrintActionPerformed(evt);
+            }
+        });
         getContentPane().add(button_Print);
         button_Print.setBounds(450, 620, 65, 65);
 
@@ -323,15 +356,15 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 Date tanggal = (Date)TextField_tglPembayaran.getValue();
                 Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText(), tanggal);
                 if(pembayaran != null){
-                    TextField_namaPasien.setText(pembayaran.getNama_Pasien());
-                    TextField_idPembayaran.setText(pembayaran.getId_Pembayaran());
-                    TextField_Usg.setText(String.valueOf(pembayaran.getTotal_USG()));
-                    TextField_Lab.setText(String.valueOf(pembayaran.getTotal_Lab()));
-                    TextField_Resep.setText(String.valueOf(pembayaran.getTotal_Resep()));
-                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTotal_Rekam()));
-                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTotal_Kecantikan()));
-                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTotal_Harga()));
-                    TextField_status.setText(String.valueOf(pembayaran.getStatus()));
+                    TextField_namaPasien.setText(pembayaran.getNAMA_PASIEN());
+                    TextField_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
+                    TextField_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
+                    TextField_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
+                    TextField_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
+                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
+                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
+                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
+                    TextField_status.setText(String.valueOf(pembayaran.getSTATUS()));
                     button_Tunai.setEnabled(true);
                     button_Debit.setEnabled(true);
                 }
@@ -339,7 +372,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
                 }
             } catch (RemoteException ex) {
-                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
     }//GEN-LAST:event_Button_searchActionPerformed
@@ -364,7 +397,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Tunai Tidak Berhasil");
                 }
             } catch (RemoteException ex) {
-                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
     }//GEN-LAST:event_button_TunaiActionPerformed
@@ -389,11 +422,27 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Debit Tidak Berhasil");
                 }
             } catch (RemoteException ex) {
-                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
 
     }//GEN-LAST:event_button_DebitActionPerformed
+
+    private void button_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_PrintActionPerformed
+        JasperPrint jasperPrint = null;
+        try {
+            JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
+            HashMap hash = new HashMap();
+//            hash.put("ID_PEMBAYARAN",TextField_idPembayaran.getText());
+//            System.out.println(TextField_idPembayaran.getText());
+            jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran.jasper", hash,
+                    new JRTableModelDataSource(tableModelPembayaran));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_button_PrintActionPerformed
 
     /**
      * @param args the command line arguments
