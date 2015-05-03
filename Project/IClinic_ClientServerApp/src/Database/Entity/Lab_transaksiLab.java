@@ -49,6 +49,10 @@ public class Lab_transaksiLab implements Serializable{
     public void setTanggal(Date Tanggal) {
         this.Tanggal = Tanggal;
     }
+
+    public void setTanggal(String now) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
 
 

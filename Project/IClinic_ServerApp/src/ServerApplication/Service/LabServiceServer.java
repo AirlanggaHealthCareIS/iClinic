@@ -6,6 +6,7 @@ package ServerApplication.Service;
 
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
+import Database.Entity.Lab_transaksiLab;
 import Database.Entity.Pembayaran;
 import java.sql.Blob;
 import Database.Service.LabService;
@@ -27,37 +28,29 @@ import java.util.List;
  */
 public class LabServiceServer extends UnicastRemoteObject implements LabService {
 
-    public LabServiceServer() throws RemoteException {
+   public LabServiceServer() throws RemoteException {
     }
 
-    public Lab_detailLab insertLab_detailLab(Lab_detailLab detail_lab) throws RemoteException {
+    
+    public void insertLab_detailLab (Lab_detailLab detail_lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Insert pada Tabel Detail Lab");
 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO detail_lab (ID_DETAIL_LAB,ID_LAB,ID_PASIEN, KETERANGAN,HASIL,TANGGAL,TOTAL_HARGA) values(?,?,?,?,?,?,?)"
+                    "INSERT INTO detail_lab (ID_DETAIL_LAB,ID_TRANSAKSI_LAB,ID_LAB,HASIL,KETERANGAN) values(?,?,?,?,?)"
             );
             statement.setString(1, detail_lab.getId_Detail_Lab());
-            statement.setString(2, detail_lab.getId_Lab());
-            statement.setString(3, detail_lab.getId_Pasien());
-            //statement.setString(2, detail_lab.getnama_Pasien());
-            statement.setString(4, detail_lab.getKeterangan());
-            statement.setBlob(5, detail_lab.getHasil());
-            statement.setDate(6, (Date) detail_lab.getTanggal());
-            statement.setInt(7, detail_lab.getTotal_Harga());
-
+            statement.setString(2, detail_lab.getId_Transaksi_Lab());
+            statement.setString(3, detail_lab.getId_Lab());
+            statement.setBlob(4, detail_lab.getHasil());
+            statement.setString(5, detail_lab.getKeterangan());
             statement.executeUpdate();
-            ResultSet result = statement.getGeneratedKeys();
-            if (result.next()) {
-                detail_lab.setId_Lab(result.getString(1));
-            }
-            result.close();
-            return detail_lab;
+            System.out.println("Client Melakukan Proses Insert pada Table Detail Laboratorium");
         } catch (SQLException exception) {
-            exception.printStackTrace();
-            return null;
+            System.out.println("Client Gagal Melakukan Proses Insert pada Table Detail Laboratorium");
+            System.out.println(exception.toString());
         } finally {
             if (statement != null) {
                 try {
@@ -67,43 +60,10 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                 }
             }
         }
-    }
 
-//    public Lab_tabelMaster insertLab_tabelMaster(Lab_tabelMaster lab) throws RemoteException {
-//
-//        System.out.println("Client Melakukan Proses Insert pada Tabel detail lab");
-//
-//        PreparedStatement statement = null;
-//       try{
-//           statement = DatabaseUtilities.getConnection().prepareStatement(
-//                   "INSERT INTO laboratorium (ID_LAB,JENIS_PEMERIKSAAN,HARGA, DESKRIPSI) values(?,?,?,?)"
-//                   );
-//           statement.setString(1, lab.getId_Lab());
-//           statement.setString(2, lab.getJenis_Pemeriksaan());
-//           statement.setInt(3, lab.getHarga());
-//           statement.setString(4, lab.getDeskripsi());
-//          
-//           statement.executeUpdate();
-//           ResultSet result = statement.getGeneratedKeys();
-//           if(result.next()){
-//               lab.setId_Lab(result.getString(1));
-//           }
-//        result.close();
-//        return lab;
-//       }catch(SQLException exception){
-//        exception.printStackTrace();
-//            return null;
-//       }finally{
-//           if(statement != null){
-//               try{
-//                   statement.close();
-//               }catch(SQLException exception){
-//
-//               }
-//           }
-//       }
-//    }
-//    
+    }
+    
+   
     public Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Lab");
@@ -120,14 +80,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             if (result.next()) {
                 Laboratorium = new Lab_detailLab();
                 Laboratorium.setId_Lab(result.getString("Id_Detail_Lab"));
+                Laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
                 Laboratorium.setId_Lab(result.getString("Id_Lab"));
-                Laboratorium.setId_Pasien(result.getString("Id_Pasien"));
-//                Laboratorium.setnama_Pasien(result.getString("nama_Pasien"));
-                Laboratorium.setKeterangan(result.getString("Keterangan"));
                 Laboratorium.setHasil(result.getBlob("Hasil"));
-                Laboratorium.setTanggal(result.getDate("Tanggal"));
-                Laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
-
+                Laboratorium.setKeterangan(result.getString("Keterangan"));
+               
             }
 
             return Laboratorium;
@@ -145,47 +102,10 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             }
         }
     }
+    
+     public List<Lab_detailLab> getLab_detailLab() throws RemoteException {
 
-    public Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
-
-        PreparedStatement statement = null;
-        try{
-            statement = DatabaseUtilities.getConnection().prepareStatement(
-                 "SELECT * FROM detail_lab WHERE Id_Lab = ?");
-
-            ResultSet result = statement.executeQuery();
-
-            Lab_tabelMaster Laboratorium = null;
-
-            if(result.next()){
-                Laboratorium = new Lab_tabelMaster();
-                Laboratorium.setId_Lab(result.getString("Id_Lab"));
-                Laboratorium.setJenis_Pemeriksaan(result.getString("Jenis_Pemeriksaan"));
-                Laboratorium.setHarga(result.getInt("Harga"));
-                Laboratorium.setDeskripsi(result.getString("Deskripsi"));
-               
-            }
-
-            return Laboratorium;
-
-        }catch(SQLException exception){
-          exception.printStackTrace();
-          return null;
-        }finally{
-            if(statement != null){
-                try{
-                    statement.close();
-                }catch(SQLException exception){
-                   exception.printStackTrace();
-                }
-            }
-        }
-    }
-    public List<Lab_detailLab> getLab_detailLab() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel Pembayaran");
+        System.out.println("Client Melakukan Proses Get All pada Tabel Detail Lab");
 
         Statement statement = null;
         try {
@@ -198,14 +118,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             while (result.next()) {
                 Lab_detailLab laboratorium = new Lab_detailLab();
                 laboratorium.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
+                laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
                 laboratorium.setId_Lab(result.getString("Id_Lab"));
-                laboratorium.setId_Pasien(result.getString("Id_Pasien"));
-//                laboratorium.setId_Pasien(result.getString("nama_Pasien"));
+                laboratorium.setHasil(result.getBlob("Hasil"));
                 laboratorium.setKeterangan(result.getString("Keterangan"));
-                //laboratorium.setHasil(result.getBlob()"Hasil"));
-                laboratorium.setTanggal(result.getDate("Tanggal"));
-                laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
-
+                
                 list.add(laboratorium);
             }
 
@@ -226,23 +143,91 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             }
         }
     }
-public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
+     
+    public void insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
+    PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO transaksi_lab (ID_TRANSAKSI_LAB, ID_PASIEN, TOTAL_HARGA, TANGGAL) values (?,?,?,?)"
+            );
+            statement.setString(1, transaksi_lab.getId_Transaksi_Lab());
+            statement.setString(2, transaksi_lab.getId_Pasien());
+            statement.setInt(3, transaksi_lab.getTotal_Harga());
+            //statement.setDate(4,  transaksi_lab.getTanggal());
+            statement.executeUpdate();
+            System.out.println("Client Melakukan Proses Insert pada Table Transaksi Laboratorium");
+        } catch (SQLException exception) {
+            System.out.println("Client Gagal Melakukan Proses Insert pada Table Transaksi Laboratorium");
+            System.out.println(exception.toString());
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+
+                }
+            }
+        }
+    }
+
+    
+     public Lab_transaksiLab getLab_transaksiLab (String Transaksi_Lab) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Transaksi Laboratorium");
+
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM detail_lab WHERE Id_Lab = ?");
+
+            ResultSet result = statement.executeQuery();
+
+            Lab_transaksiLab Laboratorium = null;
+
+            if(result.next()){
+                Laboratorium = new Lab_transaksiLab();
+                Laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
+                Laboratorium.setId_Pasien(result.getString("Id_Pasien"));
+                Laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
+                Laboratorium.setTanggal(result.getDate("Tanggal"));
+               
+            }
+
+            return Laboratorium;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+     
+    }
+   
+      public List<Lab_transaksiLab> getLab_transaksiLab() throws RemoteException {
         
-        System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
+        System.out.println("Client Melakukan Proses Get All pada Tabel Transaksi Laboratorium");
 
         Statement statement = null;
         try{
           statement = DatabaseUtilities.getConnection().createStatement();
 
-          ResultSet result = statement.executeQuery("SELECT * FROM laboratorium");
+          ResultSet result = statement.executeQuery("SELECT * FROM transaksi_lab");
 
-          List<Lab_tabelMaster> list = new ArrayList<Lab_tabelMaster>();
+          List<Lab_transaksiLab> list = new ArrayList<Lab_transaksiLab>();
 
           while(result.next()){
-                Lab_tabelMaster laboratorium = new Lab_tabelMaster();
-                laboratorium.setId_Lab(result.getString("Id_Lab"));
-                laboratorium.setHarga(result.getInt("Harga"));
-                laboratorium.setDeskripsi(result.getString("Deskripsi"));
+                Lab_transaksiLab laboratorium = new Lab_transaksiLab();
+                laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
+                laboratorium.setId_Transaksi_Lab(result.getString("Id_Pasien"));
+                laboratorium.setTotal_Harga(result.getInt("Total_Harga"));
+                laboratorium.setTanggal(result.getDate("Tanggal"));
                
                
                 list.add(laboratorium);
@@ -264,9 +249,47 @@ public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
                 }
             }
         }
+
+}
+
+   
+    public List<Lab_tabelMaster> getLaboratorium() throws RemoteException {
+        
+        System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
+
+        PreparedStatement statement = null;
+        try{
+          statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM laboratorium");
+                      
+          ResultSet result = statement.executeQuery();
+          List<Lab_tabelMaster> jenis = new ArrayList<Lab_tabelMaster>();
+
+          while(result.next()){
+                Lab_tabelMaster laboratorium = new Lab_tabelMaster();
+                laboratorium.setId_Lab(result.getString("Id_Lab"));
+                laboratorium.setHarga(result.getInt("Harga"));
+                laboratorium.setDeskripsi(result.getString("Deskripsi"));
+                jenis.add(laboratorium);
+          }
+          return jenis;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+       } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+
+                }
+            }
+        }
     
 
 }
+
 
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
@@ -449,6 +472,17 @@ public List<Lab_tabelMaster> getLab_tabelMaster() throws RemoteException {
         }
     }
 
- 
+    public void updateLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
+    public void deleteLab_transaksiLab(int Id_Transaksi_Lab) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Lab_transaksiLab getLab_transaksiLab(int Id_Transaksi_Lab) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
 }

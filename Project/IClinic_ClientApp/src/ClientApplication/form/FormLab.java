@@ -62,7 +62,7 @@ public class FormLab extends javax.swing.JFrame {
         this.labService = labService;
         
         try {
-            listLaboratorium = labService.getLab_tabelMaster();
+            listLaboratorium = labService.getLaboratorium();
         } catch (RemoteException ex) {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -435,7 +435,7 @@ public class FormLab extends javax.swing.JFrame {
                 String now = dateFormat.format(date);
                 
                 transaksi.setTanggal(now);
-                LabService.insertLab_transaksiLab(transaksi);
+                labService.insertLab_transaksiLab(transaksi);
                 
                 for(int i=0;i<listDetailLab.size();i++){
                     Lab_detailLab detail = new Lab_detailLab();
@@ -444,7 +444,7 @@ public class FormLab extends javax.swing.JFrame {
                     detail.setId_Lab(listDetailLab.get(i).getId_Lab());
                     detail.setHasil(listDetailLab.get(i).getHasil());
                     detail.setKeterangan(listDetailLab.get(i).getKeterangan());
-                    LabService.insertLab_transaksiLab(detail);
+                    labService.insertLab_transaksiLab(transaksi);
                 }
             } catch (RemoteException ex) {
                 Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
@@ -517,7 +517,7 @@ public class FormLab extends javax.swing.JFrame {
      private void setComboboxJenisPemeriksaan() {
        comboJenisPem.removeAllItems();
         try {
-            listLaboratorium = LabService.getLaboratorium();
+            listLaboratorium = labService.getLaboratorium();
             for (int i = 0; i < listLaboratorium.size(); i++) {
                 comboJenisPem.addItem(listLaboratorium.get(i).getJenis_Pemeriksaan());
             }

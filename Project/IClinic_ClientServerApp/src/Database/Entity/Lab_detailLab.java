@@ -55,4 +55,8 @@ public class Lab_detailLab implements Serializable{
     public void setKeterangan(String Keterangan) {
         this.Keterangan = Keterangan;
     }
+
+    public void setId_Transaksi_Lab(String idtransaksi) {
+        this.Id_Transaksi_Lab = Id_Transaksi_Lab;
+    }
 }
