@@ -1,0 +1,12 @@
+Fitur	        Melihat pasien selanjutnya
+Skenario	Petugas gagal melihat pasien selanjutnya karena database antrian 
+                untuk layanan Laboratorium masih kosong
+ 		
+
+Given 		Petugas masuk ke halaman khusus layanan Laboratorium
+Then		Sistem mengirimkan Id pasien ke layanan Laboratorium
+And 		Sistem menampilkan field id pasien, id transaksi, dan tanggal yang masih kosong 
+And		Sistem menampilkan message dialog box bahwa "antrian selanjutnya masih kosong ,silahkan 			tunggu pasien selanjutnya"
+
+When		Petugas mengklik button "OK"
+Then		Sistem mengulang proses menampilkan pasien selanjutnya 

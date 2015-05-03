@@ -1,9 +1,0 @@
-Harris Bimo Aditya
-081211633016
-S1 - Sistem Informasi
-
-Skenario 2 = tidak menampilkan laporan yang dipilih
-given = sudah membuka halaman kepala klinik
-when  = memilih laporan 
-then  = Laporan tidak ada di sistem
-and   = Laporan ditampilkan

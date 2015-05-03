@@ -1,0 +1,7 @@
+Feature		Generate Laporan
+Scenario	Kepala Klinik Tidak Berhasil Men-Generate Laporan
+
+Given	Bagian Kepala Klinik masuk ke halaman kepala klinik
+and 	Kepala Klinik memilih laporan
+when	Kepala klinik menekan button generate laporan
+Then	Sistem tidak dapat menampilkan laporan berupa format .pdf karena laporan 	belum ada/belum update  	

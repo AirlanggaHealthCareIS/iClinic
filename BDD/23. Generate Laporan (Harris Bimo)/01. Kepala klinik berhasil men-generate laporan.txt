@@ -1,0 +1,7 @@
+Feature 	Generate Laporan
+Scenario 	Kepala Klinik Berhasil Men-Generate Laporan
+
+Given 	Bagian Kepala Klinik masuk ke halaman kepala klinik
+and 	Kepala Klinik memilih laporan 
+When 	Kepala klinik menekan button generate laporan
+Then	Sistem mengeluarkan laporan berupa format .pdf

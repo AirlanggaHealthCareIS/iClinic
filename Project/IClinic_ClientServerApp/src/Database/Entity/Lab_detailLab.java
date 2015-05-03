@@ -7,7 +7,6 @@ package Database.Entity;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.util.Date;
 
 /**
  *
@@ -15,37 +14,30 @@ import java.util.Date;
  */
 public class Lab_detailLab implements Serializable{
     private String Id_Detail_Lab;
+    private String Id_Transaksi_Lab;
     private String Id_Lab;
-    private String Id_Pasien;
-    private String Keterangan;
     private Blob Hasil;
-    private Date Tanggal;
-    private int Total_Harga;
+    private String Keterangan;
+    
 
     public String getId_Detail_Lab() {
         return Id_Detail_Lab;
+    }
+    
+     public String getId_Transaksi_Lab() {
+        return Id_Transaksi_Lab;
     }
 
     public String getId_Lab() {
         return Id_Lab;
     }
-  public String getId_Pasien() {
-        return Id_Pasien;
-    }
-    public String getKeterangan() {
-        return Keterangan;
-    }
-
+    
     public Blob getHasil() {
         return Hasil;
     }
-
-    public Date getTanggal() {
-        return Tanggal;
-    }
-
-    public int getTotal_Harga() {
-        return Total_Harga;
+ 
+    public String getKeterangan() {
+        return Keterangan;
     }
 
     public void setId_Detail_Lab(String Id_Detail_Lab) {
@@ -55,26 +47,12 @@ public class Lab_detailLab implements Serializable{
     public void setId_Lab(String Id_Lab) {
         this.Id_Lab = Id_Lab;
     }
+    
+     public void setHasil(Blob Hasil) {
+        this.Hasil = Hasil;
+    }
 
     public void setKeterangan(String Keterangan) {
         this.Keterangan = Keterangan;
     }
-    public void setHasil(Blob Hasil) {
-        this.Hasil = Hasil;
-    }
-
-    public void setId_Pasien(String Id_Pasien) {
-        this.Id_Pasien = Id_Pasien;
-    }
-
-    public void setTanggal(Date Tanggal) {
-        this.Tanggal = Tanggal;
-    }
-
-    public void setTotal_Harga(int Total_Harga) {
-        this.Total_Harga = Total_Harga;
-    }
-
-   
-
 }
