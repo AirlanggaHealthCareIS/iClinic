@@ -15,10 +15,28 @@ import java.util.Date;
  */
 public class USG implements Serializable {
     private String Id_USG;
-    private Blob Hasil;
+    //private Blob Hasil;
     private int Harga;
+    private String Tanggal;
     private String Id_pasien;
     private String Deskripsi;
+    private byte[] Hasil;
+
+    public byte[] getHasil() {
+        return Hasil;
+    }
+
+    public void setHasil(byte[] Hasil) {
+        this.Hasil = Hasil;
+    }
+
+    public String getTanggal() {
+        return Tanggal;
+    }
+
+    public void setTanggal(String Tanggal) {
+        this.Tanggal = Tanggal;
+    }
 
     public String getId_pasien() {
         return Id_pasien;
@@ -40,9 +58,9 @@ public class USG implements Serializable {
         return Id_USG;
     }
 
-    public Blob getHasil() {
-        return Hasil;
-    }
+//    public Blob getHasil() {
+//        return Hasil;
+//    }
 
     public int getHarga() {
         return Harga;
@@ -52,9 +70,9 @@ public class USG implements Serializable {
         this.Id_USG = Id_USG;
     }
 
-    public void setHasil(Blob Hasil) {
-        this.Hasil = Hasil;
-    }
+//    public void setHasil(Blob Hasil) {
+//        this.Hasil = Hasil;
+//    }
 
     public void setHarga(int Harga) {
         this.Harga = Harga;

@@ -4,19 +4,22 @@
  */
 package ServerApplication.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Pembayaran;
 import Database.Entity.USG;
 import Database.Service.USGService;
 import ServerApplication.Utilities.DatabaseUtilities;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-//import java.sql.Date;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,13 +37,14 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO transaksi_usg (ID_USG,ID_PASIEN,HASIL,HARGA,DESKRIPSI) values(?,?,?,?,?)"
+                    "INSERT INTO transaksi_usg (ID_USG,ID_PASIEN,TANGGAL,HASIL,DESKRIPSI,HARGA) values(?,?,?,?,?,?)"
             );
             statement.setString(1, usg.getId_USG());
             statement.setString(2, usg.getId_pasien());
-            statement.setBlob(3, usg.getHasil());
-            statement.setInt(4, usg.getHarga());
+            statement.setString(3, usg.getTanggal());
+            statement.setBytes(4, usg.getHasil());
             statement.setString(5, usg.getDeskripsi());
+            statement.setInt(6, usg.getHarga());
 
             statement.executeUpdate();
             ResultSet result = statement.getGeneratedKeys();
@@ -63,6 +67,73 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         }
     }
 
+    public Antrian Id_pasien(Antrian antrian)throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT* FROM antrian WHERE jenis_antrian=USG");
+            ResultSet result = statement.executeQuery();
+            if(result.first()==false){
+                antrian.setId_Pasien("kosong");
+                return antrian;
+            }
+            else{
+               result.first();
+               antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
+               antrian.setId_Pasien(result.getString("ID_PASIEN"));
+               antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
+               antrian.setKeterangan(result.getString("KETERANGAN"));
+               return antrian;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+            antrian.setId_Pasien("salah");
+            return antrian;  
+        }
+}
+    public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE antrian SET STATUS=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
+            statement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public String Id_usg()throws RemoteException {
+        PreparedStatement statement = null;
+        int id;
+        String IdUsg;
+        String usg;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT ID_USG FROM transaksi_usg ");
+            ResultSet result = statement.executeQuery();
+            if(result.first()==false){
+                return "USG0001";
+            }
+            else{
+               result.last();
+               IdUsg = result.getString("ID_USG");
+               id =Integer.parseInt(IdUsg.substring(3));
+               id++;
+               usg=Integer.toString(id);
+               if(usg.length()<4){
+                   for(int i=0;i<usg.length();i++){
+                       usg="0"+usg;
+                   }
+               }
+               IdUsg=IdUsg.substring(0, 3);
+               IdUsg=IdUsg+usg;
+               return IdUsg;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "salah";   
+}
 //    public void updateUSG(USG usg) throws RemoteException {
 //
 //        System.out.println("Client Melakukan Proses Update pada Tabel USG");
@@ -121,7 +192,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //    }
     public USG getUSG(String Id_USG) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel USG");
 
         PreparedStatement statement = null;
         try {
@@ -134,11 +205,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 
             if (result.next()) {
                 usg = new USG();
-                usg.setId_USG(result.getString("Id_USG"));
-                usg.setId_pasien(result.getString("Id_Pasien"));
-                usg.setHasil(result.getBlob("Hasil"));
-                usg.setHarga(result.getInt("Harga"));
-                usg.setDeskripsi(result.getString("Deskripsi"));
+                usg.setId_USG(result.getString("ID_USG"));
+                usg.setId_pasien(result.getString("ID_PASIEN"));
+                usg.setTanggal(result.getString("TANGGAL"));
+                usg.setHasil(result.getBytes("HASIL"));
+                usg.setDeskripsi(result.getString("DESKRIPSI"));
+                usg.setHarga(result.getInt("HARGA"));
             }
 
             return usg;
@@ -172,10 +244,11 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             while (result.next()) {
                 USG usg = new USG();
                 usg.setId_USG(result.getString("ID_USG"));
-                usg.setId_pasien(result.getString("Id_PASIEN"));
-                usg.setHasil(result.getBlob("HASIL"));
-                usg.setHarga(result.getInt("HARGA"));
+                usg.setId_pasien(result.getString("ID_PASIEN"));
+                usg.setTanggal(result.getString("TANGGAL"));
+                usg.setHasil(result.getBytes("HASIL"));
                 usg.setDeskripsi(result.getString("DESKRIPSI"));
+                usg.setHarga(result.getInt("HARGA"));
                 list.add(usg);
             }
 
