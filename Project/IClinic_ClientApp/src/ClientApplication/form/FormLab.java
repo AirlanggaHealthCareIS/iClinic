@@ -13,9 +13,13 @@ package ClientApplication.form;
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelLab_detailLab;
 import Database.Entity.Lab_detailLab;
+import Database.Entity.Lab_tabelMaster;
+import Database.Entity.Lab_transaksiLab;
 import Database.Entity.Pembayaran;
 import Database.Service.LabService;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileFilter;
 import java.rmi.NotBoundException;
@@ -24,6 +28,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,16 +47,39 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FormLab extends javax.swing.JFrame {
 
-    public FormLab(LabService service7) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    
-
    
-
+ LabService labService;
+    private TableModelLab_detailLab tableLabDetailLab = new TableModelLab_detailLab();
+    public List<Lab_tabelMaster> listLaboratorium = new ArrayList<Lab_tabelMaster>();
+    private List<Lab_detailLab> listDetailLab = new ArrayList<Lab_detailLab>();
+    public ArrayList<Object> details = new ArrayList<Object>();
     
+    public Boolean pasienExist = false;
+    public int number = 1;
+    
+    public FormLab(LabService labService) {
+        initComponents();
+        this.labService = labService;
+        
+        try {
+            listLaboratorium = labService.getLab_tabelMaster();
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setComboboxJenisPemeriksaan();
+        comboJenisPem.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                
+                String harga = Integer.toString(listLaboratorium.get(comboJenisPem.getSelectedIndex()).getHarga());
+                hargaJenis.setText(harga);
+            }
+        });
+    }
     @SuppressWarnings("unchecked")
+    
+   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -75,7 +105,7 @@ public class FormLab extends javax.swing.JFrame {
         tanggal = new javax.swing.JTextField();
         comboJenisPem = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Keterangan = new javax.swing.JTextArea();
         insertLayanan = new javax.swing.JButton();
         deleteLayanan = new javax.swing.JButton();
         Upload = new javax.swing.JButton();
@@ -83,7 +113,7 @@ public class FormLab extends javax.swing.JFrame {
         insertAll = new javax.swing.JButton();
         proses = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableDetLab = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -204,15 +234,20 @@ public class FormLab extends javax.swing.JFrame {
         getContentPane().add(comboJenisPem);
         comboJenisPem.setBounds(250, 390, 200, 24);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Keterangan.setColumns(20);
+        Keterangan.setRows(5);
+        jScrollPane1.setViewportView(Keterangan);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(250, 450, 200, 120);
 
         insertLayanan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         insertLayanan.setText("INSERT LAYANAN");
+        insertLayanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertLayananActionPerformed(evt);
+            }
+        });
         getContentPane().add(insertLayanan);
         insertLayanan.setBounds(180, 630, 150, 20);
 
@@ -228,25 +263,45 @@ public class FormLab extends javax.swing.JFrame {
 
         Upload.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         Upload.setText("BROWSER");
+        Upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadActionPerformed(evt);
+            }
+        });
         getContentPane().add(Upload);
         Upload.setBounds(460, 580, 100, 20);
 
         clear.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         clear.setText("CLEAR");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
         getContentPane().add(clear);
         clear.setBounds(250, 680, 80, 20);
 
         insertAll.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         insertAll.setText("INSERT");
+        insertAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertAllActionPerformed(evt);
+            }
+        });
         getContentPane().add(insertAll);
         insertAll.setBounds(380, 680, 80, 20);
 
         proses.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         proses.setText("PROSES");
+        proses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prosesActionPerformed(evt);
+            }
+        });
         getContentPane().add(proses);
         proses.setBounds(480, 740, 90, 20);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableDetLab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -265,7 +320,7 @@ public class FormLab extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tableDetLab);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(630, 330, 590, 402);
@@ -309,11 +364,122 @@ public class FormLab extends javax.swing.JFrame {
 
     private void deleteLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteLayananActionPerformed
         // TODO add your handling code here:
+         if(tableDetLab.getSelectedRow() > -1){
+            listDetailLab.remove(tableDetLab.getSelectedRow());
+            tableLabDetailLab.setData(listDetailLab);
+            tableDetLab.setModel(tableLabDetailLab);
+            totalHarga.setText(Integer.toString(checkTotal()));
+        }
     }//GEN-LAST:event_deleteLayananActionPerformed
+
+    private void UploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadActionPerformed
+        // TODO add your handling code here:JFileChooser chooser = new JFileChooser(System.getProperty("user.home"));
+         
+    }//GEN-LAST:event_UploadActionPerformed
+
+    private void insertLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertLayananActionPerformed
+        // TODO add your handling code here:
+          if (!idTransaksi.getText().equals("")){
+            String idtransaksi = idTransaksi.getText();
+            String iddetail = idtransaksi +"-"+ number;
+            number++;
+            String idjenispemeriksaan = listLaboratorium.get( comboJenisPem.getSelectedIndex()).getId_Lab();
+            String keterangan = Keterangan.getText();
+            Lab_detailLab detail = new Lab_detailLab();
+            detail.setId_Detail_Lab(iddetail);
+            detail.setId_Transaksi_Lab(idtransaksi);
+            detail.setId_Lab(idjenispemeriksaan);
+            detail.setKeterangan(keterangan);
+           
+            listDetailLab.add(detail);
+            tableLabDetailLab.setData(listDetailLab);
+            tableDetLab.setModel(tableLabDetailLab);
+             totalHarga.setText(Integer.toString(checkTotal()));
+        }
+    }//GEN-LAST:event_insertLayananActionPerformed
+
+    private void prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prosesActionPerformed
+        // TODO add your handling code here:
+         //-----Pembayaran-----//
+        String idPasien2 = idPasien.getText();
+        String idDetailLab2 = idDetLab.getText();
+        int harga = Integer.parseInt(totalHarga.getText());
+        try {
+            String idPembayaran = labService.mencariIdPembayaranDariPembayaran(idPasien2);
+            if(!idPembayaran.equalsIgnoreCase("")){
+                Pembayaran pembayaran = labService.getPembayaranDariPembayaran(idPembayaran);
+                labService.updatePembayaranDariPembayaran(pembayaran, idDetailLab2, harga);
+            }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = labService.getAutoNumberDariPembayaran();
+                labService.insertPembayaranDariPembayaran(idPembayaran, idPasien2, idDetailLab2, harga);
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+
+    }//GEN-LAST:event_prosesActionPerformed
+
+    private void insertAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertAllActionPerformed
+        // TODO add your handling code here:
+         if(pasienExist = true && !listDetailLab.isEmpty() && !idTransaksi.getText().equals("")){
+            Lab_transaksiLab transaksi = new Lab_transaksiLab();
+            try {
+                transaksi.setId_Transaksi_Lab(idTransaksi.getText());
+                transaksi.setId_Pasien(idPasien.getText());
+                transaksi.setTotal_Harga(checkTotal());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
+                
+                String now = dateFormat.format(date);
+                
+                transaksi.setTanggal(now);
+                LabService.insertLab_transaksiLab(transaksi);
+                
+                for(int i=0;i<listDetailLab.size();i++){
+                    Lab_detailLab detail = new Lab_detailLab();
+                    detail.setId_Detail_Lab(listDetailLab.get(i).getId_Detail_Lab());
+                    detail.setId_Transaksi_Lab(listDetailLab.get(i).getId_Transaksi_Lab());
+                    detail.setId_Lab(listDetailLab.get(i).getId_Lab());
+                    detail.setHasil(listDetailLab.get(i).getHasil());
+                    detail.setKeterangan(listDetailLab.get(i).getKeterangan());
+                    LabService.insertLab_transaksiLab(detail);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(pasienExist = false){
+            System.out.println("Silakan Mengisi ID Pasien terlebih dahulu");
+        }
+        else{
+            System.out.println("Beberapa Field Masih Kosong..");
+        }
+                                         
+
+    }//GEN-LAST:event_insertAllActionPerformed
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+          number = 1;
+       
+        idPasien.setEditable(false);
+        idTransaksi.setText("");
+        idDetLab.setText("");
+        hargaJenis.setText("");   
+        Keterangan.setText("");
+        hasilPemeriksaan.setText("");
+        listDetailLab = new ArrayList<Lab_detailLab>();
+        tableLabDetailLab.setData(listDetailLab);
+        tableDetLab.setModel(tableLabDetailLab);
+        totalHarga.setText("");
+    }//GEN-LAST:event_clearActionPerformed
 
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Keterangan;
     private javax.swing.JButton Upload;
     private javax.swing.JButton clear;
     private javax.swing.JComboBox comboJenisPem;
@@ -341,12 +507,41 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JButton proses;
+    private javax.swing.JTable tableDetLab;
     private javax.swing.JTextField tanggal;
     private javax.swing.JTextField totalHarga;
     // End of variables declaration//GEN-END:variables
 
+     private void setComboboxJenisPemeriksaan() {
+       comboJenisPem.removeAllItems();
+        try {
+            listLaboratorium = LabService.getLaboratorium();
+            for (int i = 0; i < listLaboratorium.size(); i++) {
+                comboJenisPem.addItem(listLaboratorium.get(i).getJenis_Pemeriksaan());
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+
+    private int checkTotal() {
+        int total = 0;
+        if(listDetailLab.size()>0){
+            for(int i=0;i<listDetailLab.size();i++){
+                int harga = 0;
+                for (int j=0;j<listLaboratorium.size();j++){
+                    if(listDetailLab.get(i).getId_Lab() == listLaboratorium.get(j).getId_Lab()){
+                        harga = listLaboratorium.get(j).getHarga();
+                    }
+                }
+                total = total + harga;
+            } 
+        }
+        return total;
+    }
+
+    
 }
