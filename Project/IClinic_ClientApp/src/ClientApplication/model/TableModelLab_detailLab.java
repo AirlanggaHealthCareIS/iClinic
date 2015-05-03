@@ -49,11 +49,11 @@ public class TableModelLab_detailLab extends AbstractTableModel {
     public String getColumnName(int column) {
         switch(column){
             case 0 : return "Id_Detail_Lab";
-            case 1 : return "Id_Lab";
-            case 2 : return "Keterangan";
+            case 1 : return "Id_Transaksi_Lab";
+            case 2 : return "Id_Lab";
             case 3 : return "Hasil";
-            case 4 : return "Tanggal";
-            case 5 : return "Total_Harga";
+            case 4 : return "Keterangan";
+          
             default : return null;
         }
     }
@@ -63,17 +63,17 @@ public class TableModelLab_detailLab extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 6;
+        return 5;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0 : return list.get(rowIndex).getId_Detail_Lab();
-            case 1 : return list.get(rowIndex).getId_Lab();
-            case 2 : return list.get(rowIndex).getKeterangan();
+            case 1 : return list.get(rowIndex).getId_Transaksi_Lab();
+            case 2 : return list.get(rowIndex).getId_Lab();
             case 3 : return list.get(rowIndex).getHasil();
-            case 4 : return list.get(rowIndex).getTanggal();
-            case 5 : return list.get(rowIndex).getTotal_Harga();
+            case 4 : return list.get(rowIndex).getKeterangan();
+           
             default : return null;
         }
     }

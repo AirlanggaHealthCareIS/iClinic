@@ -11,17 +11,19 @@ public class Lab_tabelMaster implements Serializable{
     public String getId_Lab() {
         return Id_Lab;
     }
-
+    
     public String getJenis_Pemeriksaan() {
         return Jenis_Pemeriksaan;
     }
-
+    
     public int getHarga() {
         return Harga;
     }
+    
     public String getDeskripsi() {
         return Deskripsi;
     }
+    
     public void setId_Lab(String Id_Lab) {
         this.Id_Lab = Id_Lab;
     }
@@ -33,7 +35,7 @@ public class Lab_tabelMaster implements Serializable{
     public void setHarga(int Harga) {
         this.Harga = Harga;
     }
- public void setDeskripsi(String Deskripsi) {
+     public void setDeskripsi(String Deskripsi) {
         this.Deskripsi = Deskripsi;
     }
 
