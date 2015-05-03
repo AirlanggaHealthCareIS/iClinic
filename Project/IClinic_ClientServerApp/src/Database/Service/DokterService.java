@@ -4,6 +4,8 @@
  */
 package Database.Service;
 
+import Database.Entity.Obat_detailResep;
+import Database.Entity.Obat_resep;
 import Database.Entity.Pembayaran;
 import Database.Entity.Penyakit_diagnosa;
 import Database.Entity.Penyakit_tabelMaster;
@@ -16,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Afifah, piudt, Ayundha
  */
 public interface DokterService extends Remote {
 
@@ -70,4 +72,28 @@ public interface DokterService extends Remote {
 
     void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idRekam, int Harga) throws RemoteException;
 
+    //----- Resep -----//
+    String getAutoNumberResep() throws RemoteException;
+    
+    String getAutoNumberDetailResep() throws RemoteException;
+    
+    Obat_detailResep insertDetailResep(Obat_detailResep detailResep) throws RemoteException;
+    
+    void updateDetailResep(Obat_detailResep detailResep) throws RemoteException;
+    
+    void deleteDetailResep(String No_Detail_Resep) throws RemoteException;
+    
+    List<Obat_detailResep> getAllDetailResepByIDResep(String ID_RESEP) throws RemoteException;
+    
+    void insertResep(Obat_resep resep) throws RemoteException;
+    
+    List getNamaObat() throws RemoteException;
+
+    int getHargaObat(String namaObat) throws RemoteException;
+    
+    String getIDObat(String namaObat) throws RemoteException;
+    
+    void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException;
+    
+    String getLastIDRekamMedis() throws RemoteException;
 }

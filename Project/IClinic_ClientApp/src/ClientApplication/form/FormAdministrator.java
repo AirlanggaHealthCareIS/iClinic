@@ -770,7 +770,7 @@ public class FormAdministrator extends javax.swing.JFrame {
         hargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         satuanComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Satuan --", "PIL", "KAPSUL", "TABLET", "AMPUL" }));
+        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Satuan --", "PIL", "KAPSUL", "TABLET", "AMPUL", "BOTOL", "BUNGKUS" }));
 
         javax.swing.GroupLayout obatPanelLayout = new javax.swing.GroupLayout(obatPanel);
         obatPanel.setLayout(obatPanelLayout);

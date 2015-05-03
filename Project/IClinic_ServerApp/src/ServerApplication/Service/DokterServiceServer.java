@@ -4,6 +4,8 @@
  */
 package ServerApplication.Service;
 
+import Database.Entity.Obat_detailResep;
+import Database.Entity.Obat_resep;
 import Database.Entity.Pembayaran;
 import Database.Entity.Penyakit_diagnosa;
 import Database.Entity.Penyakit_tabelMaster;
@@ -24,7 +26,7 @@ import java.util.List;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Afifah, piudt, Ayundha
  */
 public class DokterServiceServer extends UnicastRemoteObject implements DokterService {
 
@@ -698,6 +700,359 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
                 }
             }
         }
+    }
+
+        //--------------------------RESEP----------------------------//
+    
+    public String getAutoNumberResep() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Resep");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_RESEP FROM resep ORDER BY ID_RESEP DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="RSP0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "RSP"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+
+    public String getAutoNumberDetailResep() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Detail Resep");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT NO_DETAIL_RESEP FROM detail_resep ORDER BY NO_DETAIL_RESEP DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="DR0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "DR"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+
+    public Obat_detailResep insertDetailResep(Obat_detailResep detailResep) throws RemoteException {
+        System.out.println("Client Melakukan Proses Insert pada Tabel Detail Resep");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO detail_resep (NO_DETAIL_RESEP, ID_RESEP, ID_OBAT, TAKARAN, PEMAKAIAN, JUMLAH,KETERANGAN)"
+                            + "VALUES (?,?,?,?,?,?,?)");
+            statement.setString(1, detailResep.getNo_Detail_Resep());
+            statement.setString(2, detailResep.getId_Resep());
+            statement.setString(3, detailResep.getId_Obat());
+            statement.setString(4, detailResep.getTakaran());
+            statement.setString(5, detailResep.getPemakaian());
+            statement.setString(6, detailResep.getJumlah());
+            statement.setString(7, detailResep.getKeterangan());
+
+            statement.executeUpdate();
+
+            return detailResep;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void updateDetailResep(Obat_detailResep detailResep) throws RemoteException {
+        System.out.println("Client Melakukan Proses Update pada Tabel Detail Resep");
+
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE detail_resep SET ID_RESEP = ?, ID_OBAT = ?, TAKARAN = ?,"
+                    + "PEMAKAIAN = ?, JUMLAH = ?, KETERANGAN = ?"
+                            + "WHERE NO_DETAIL_RESEP = ?"
+            );
+            statement.setString(1, detailResep.getId_Resep());
+            statement.setString(2, detailResep.getId_Obat());
+            statement.setString(3, detailResep.getTakaran());
+            statement.setString(4, detailResep.getPemakaian());
+            statement.setString(5, detailResep.getJumlah());
+            statement.setString(6, detailResep.getKeterangan());
+            statement.setString(7, detailResep.getNo_Detail_Resep());
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void deleteDetailResep(String No_Detail_Resep) throws RemoteException {
+        System.out.println("Client Melakukan Proses Delete pada Tabel Detail Resep");
+
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "DELETE FROM detail_resep WHERE NO_DETAIL_RESEP = ?");
+
+            statement.setString(1, No_Detail_Resep);
+
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public List<Obat_detailResep> getAllDetailResepByIDResep(String ID_RESEP) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
+
+        Statement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM detail_resep WHERE ID_RESEP = '" + ID_RESEP + "'");
+            List<Obat_detailResep> list = new ArrayList<Obat_detailResep>();
+
+            while (result.next()) {
+                Obat_detailResep detail_resep = new Obat_detailResep();
+                detail_resep.setNo_Detail_Resep(result.getString("No_Detail_Resep"));
+                detail_resep.setId_Resep(result.getString("Id_Resep"));
+                detail_resep.setId_Obat(result.getString("Id_Obat"));
+                detail_resep.setTakaran(result.getString("Takaran"));
+                detail_resep.setPemakaian(result.getString("Pemakaian"));
+                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setKeterangan(result.getString("Keterangan"));
+                list.add(detail_resep);
+            }
+            result.close();
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void insertResep(Obat_resep resep) throws RemoteException {
+        System.out.println("Client Melakukan Proses Insert pada Tabel Resep");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO resep (ID_RESEP, ID_REKAM, TOTAL_HARGA)"
+                            + "VALUES (?,?,?)");
+            statement.setString(1, resep.getId_Resep());
+            statement.setString(2, resep.getId_Resep());
+            statement.setInt(3, resep.getTotal_Harga());
+
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public List getNamaObat() throws RemoteException {
+        Statement statement = null;
+        ResultSet resultSet = null;
+        List namaObatList = new ArrayList();
+        try {
+            statement = (Statement) DatabaseUtilities.getConnection().createStatement();
+            resultSet = statement.executeQuery("SELECT NAMA_OBAT from obat");
+            while (resultSet.next()) {
+                namaObatList.add(resultSet.getString("NAMA_OBAT"));
+            }
+        } catch (SQLException ex) {
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException ex) {
+            }
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        return namaObatList;
+    }
+
+    public int getHargaObat(String namaObat) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get Harga");
+        Statement state = null;
+        ResultSet rs = null;
+        int hargaObat = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT HARGA_OBAT FROM obat WHERE  NAMA_OBAT = '" + namaObat + "'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                hargaObat = rs.getInt(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(hargaObat);
+        return hargaObat;
+    }
+
+    public String getIDObat(String namaObat) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get Jenis Obat");
+        Statement state = null;
+        ResultSet rs = null;
+        String idObat = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_OBAT FROM obat WHERE  NAMA_OBAT = '" + namaObat + "'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                idObat = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        return idObat;
+    }
+
+    public void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException {
+        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE user SET TOTAL_HARGA = " + TOTAL_HARGA 
+                    + " WHERE ID_RESEP =  " + ID_RESEP + "'");
+        
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public String getLastIDRekamMedis() throws RemoteException {
+        System.out.println("Client Melakukan Proses Pengambilan ID_REKAM_MEDIS Terakhir dengan Mengakses Tabel Rekam Medis");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String idRekamTerakhir = null;
+
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_REKAM FROM rekam_medis ORDER BY ID_REKAM DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                idRekamTerakhir = rs.getString(1);
+            }
+            System.out.println(idRekamTerakhir);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return idRekamTerakhir;
     }
 
 }

@@ -277,16 +277,18 @@
                                               <Component id="pemakaianComboBox" min="-2" pref="201" max="-2" attributes="0"/>
                                               <Component id="hargaField" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="keteranganField" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="tambahObatButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hapusObatDetailResepButton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="simpanObatButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tambahObatDetailResepButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="simpanDetailResepButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -338,8 +340,9 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="simpanObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tambahObatButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="simpanDetailResepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tambahObatDetailResepButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hapusObatDetailResepButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -423,7 +426,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namaObatComboBoxActionPerformed"/>
+                    <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="namaObatComboBoxPopupMenuWillBecomeVisible"/>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="namaObatComboBoxItemStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="takaranSpinner">
@@ -453,9 +457,6 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="takaranSatuanWaktuComboBoxActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="pemakaianComboBox">
                   <Properties>
@@ -463,8 +464,11 @@
                       <Font name="Caviar Dreams" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
+                      <StringArray count="4">
                         <StringItem index="0" value="-- Pilih Cara Pemakaian --"/>
+                        <StringItem index="1" value="Diminum"/>
+                        <StringItem index="2" value="Dioleskan"/>
+                        <StringItem index="3" value="Disuntikkan"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -490,8 +494,14 @@
                       <Font name="Caviar Dreams" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
+                      <StringArray count="7">
                         <StringItem index="0" value="-- Pilih Satuan --"/>
+                        <StringItem index="1" value="PIL"/>
+                        <StringItem index="2" value="KAPSUL"/>
+                        <StringItem index="3" value="TABLET"/>
+                        <StringItem index="4" value="AMPUL"/>
+                        <StringItem index="5" value="BOTOL"/>
+                        <StringItem index="6" value="BUNGKUS"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -503,15 +513,18 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="simpanObatButton">
+                <Component class="javax.swing.JButton" name="simpanDetailResepButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Caviar Dreams" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Simpan Obat"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanDetailResepButtonActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="tambahObatButton">
+                <Component class="javax.swing.JButton" name="tambahObatDetailResepButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Caviar Dreams" size="14" style="0"/>
@@ -519,7 +532,18 @@
                     <Property name="text" type="java.lang.String" value="Tambah Obat"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tambahObatButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tambahObatDetailResepButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="hapusObatDetailResepButton">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Caviar Dreams" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Hapus Obat"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hapusObatDetailResepButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -531,7 +555,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable2">
+                <Component class="javax.swing.JTable" name="tabelDetailResep">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Caviar Dreams" size="12" style="0"/>
@@ -568,6 +592,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="idResepField">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="0"/>
                 </Property>
@@ -588,6 +613,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proses"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prosesButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="printButton">
               <Properties>

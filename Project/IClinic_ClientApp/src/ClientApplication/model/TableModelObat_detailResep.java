@@ -48,13 +48,13 @@ public class TableModelObat_detailResep extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "No_Detail_Resep";
-            case 1 : return "Id_Resep";
-            case 2 : return "Id_Obat";
-            case 3 : return "Takaran";
-            case 4 : return "Pemakaian";
-            case 5 : return "Jumlah";
-            case 6 : return "Keterangan";
+            case 0 : return "NO_DETAIL_RESEP";
+            case 1 : return "ID_RESEP";
+            case 2 : return "ID_OBAT";
+            case 3 : return "TAKARAN";
+            case 4 : return "PEMAKAIAN";
+            case 5 : return "JUMLAH";
+            case 6 : return "KETERANGAN";
             default: return null;
         }
     }

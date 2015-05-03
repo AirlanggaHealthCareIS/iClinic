@@ -545,11 +545,11 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
         System.out.println(number);
         if(number.equals("")){
-            nomerBaru ="PYKT0001";
+            nomerBaru ="P0001";
         }
         else{
             String [] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
             numberBaru = Integer.parseInt(numbersebelumnya)+1;
             String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol= "";
@@ -562,7 +562,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             else if(pisah1.length == 3){
                 nol = "0";
             }
-            nomerBaru = "PYKT"+nol+numberBaru;
+            nomerBaru = "P"+nol+numberBaru;
         }
         System.out.println(nomerBaru);
         return nomerBaru;
@@ -728,11 +728,11 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
         System.out.println(number);
         if(number.equals("")){
-            nomerBaru ="TNDK0001";
+            nomerBaru ="T0001";
         }
         else{
             String [] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
             numberBaru = Integer.parseInt(numbersebelumnya)+1;
             String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol= "";
@@ -745,7 +745,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             else if(pisah1.length == 3){
                 nol = "0";
             }
-            nomerBaru = "TNDK"+nol+numberBaru;
+            nomerBaru = "T"+nol+numberBaru;
         }
         System.out.println(nomerBaru);
         return nomerBaru;
@@ -1097,11 +1097,11 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
         }
         System.out.println(number);
         if(number.equals("")){
-            nomerBaru ="CNTK0001";
+            nomerBaru ="KEC0001";
         }
         else{
             String [] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[4]+pisah[5]+pisah[6]+pisah[7];
+            String numbersebelumnya = pisah[3]+pisah[4]+pisah[5]+pisah[6];
             numberBaru = Integer.parseInt(numbersebelumnya)+1;
             String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol= "";
@@ -1114,7 +1114,7 @@ public class AdministratorServiceServer extends UnicastRemoteObject implements A
             else if(pisah1.length == 3){
                 nol = "0";
             }
-            nomerBaru = "CNTK"+nol+numberBaru;
+            nomerBaru = "KEC"+nol+numberBaru;
         }
         System.out.println(nomerBaru);
         return nomerBaru;
