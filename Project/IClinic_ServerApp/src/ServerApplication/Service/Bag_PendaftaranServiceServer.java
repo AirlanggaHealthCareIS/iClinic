@@ -340,9 +340,11 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
           while(result.next()){
                 Pasien pasien = new Pasien();
                 pasien.setId_Pasien(result.getString("ID_PASIEN"));
+                pasien.setNo_Ktp(result.getString("NO_KTP"));
                 pasien.setNama_Pasien(result.getString("NAMA_PASIEN"));
                 pasien.setAlamat(result.getString("ALAMAT"));
                 pasien.setTanggal_Lahir(result.getDate("TGL_LAHIR"));
+                pasien.setTanggal_Daftar(result.getDate("TGL_DAFTAR"));
                 pasien.setUsia(result.getInt("USIA"));
                 pasien.setNo_HP(result.getString("NO_HP"));
                 pasien.setJenis_Kelamin(result.getString("JENIS_KELAMIN"));
