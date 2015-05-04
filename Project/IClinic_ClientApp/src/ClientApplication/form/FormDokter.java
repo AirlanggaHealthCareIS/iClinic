@@ -576,6 +576,8 @@ public class FormDokter extends javax.swing.JFrame {
         tglRekam.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         tglRekam.setValue(new java.util.Date());
 
+        comboDiagnosa.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
+        comboDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Diagnosa" }));
         comboDiagnosa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -587,7 +589,7 @@ public class FormDokter extends javax.swing.JFrame {
         });
 
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
-        comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Layanan Laboratorium", "Layanan USG", "Layanan Kecantikan", " " }));
+        comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Laboratorium", "USG", "Kecantikan", "" }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -614,7 +616,8 @@ public class FormDokter extends javax.swing.JFrame {
             }
         });
 
-        comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTindakan.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
+        comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Tindakan" }));
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -1079,6 +1082,7 @@ public class FormDokter extends javax.swing.JFrame {
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
+        }
     }//GEN-LAST:event_simpanDetailResepButtonActionPerformed
 
     private void namaObatComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namaObatComboBoxItemStateChanged

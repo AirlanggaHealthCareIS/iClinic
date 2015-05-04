@@ -38,17 +38,13 @@ public interface DokterService extends Remote {
 
     List<Rekam_Medis> getRekam_Medis() throws RemoteException;
 
-    //-----------------//
-//        List getNamaBarangDetailTB() throws RemoteException;
-//        String getIdBarangDetailTB(String namaBarang) throws RemoteException;
     List getNamaDiagnosa() throws RemoteException;
 
     String getIdDiagnosa(String namaDiagnosa) throws RemoteException;
 
+    String getRekamMedisbyID () throws RemoteException;
 //    List getAntrian() throws RemoteException;
-//    
-//---------------------------//    
-    //---------------------//
+
     List getNamaTindakan() throws RemoteException;
 
     String getIdTindakan(String namaTindakan) throws RemoteException;

@@ -957,8 +957,13 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="comboDiagnosa">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Caviar Dreams" size="11" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Pilih Diagnosa"/>
+                  </StringArray>
                 </Property>
               </Properties>
               <Events>
@@ -972,10 +977,10 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="Layanan Laboratorium"/>
-                    <StringItem index="1" value="Layanan USG"/>
-                    <StringItem index="2" value="Layanan Kecantikan"/>
-                    <StringItem index="3" value=" "/>
+                    <StringItem index="0" value="Laboratorium"/>
+                    <StringItem index="1" value="USG"/>
+                    <StringItem index="2" value="Kecantikan"/>
+                    <StringItem index="3" value=""/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1087,12 +1092,12 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="comboTindakan">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Caviar Dreams" size="11" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="Pilih Tindakan"/>
                       </StringArray>
                     </Property>
                   </Properties>

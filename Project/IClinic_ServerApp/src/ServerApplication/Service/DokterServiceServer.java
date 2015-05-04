@@ -525,6 +525,27 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
 
     }
+    public String getRekamMedisbyID() throws RemoteException {
+        System.out.println("Client Melakukan Proses Pengambilan ID_PASIEN Pertama dalam Antrian dengan Mengakses Tabel Antrian");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String idPasienPertama = null;
+
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_PASIEN FROM ANTRIAN WHERE JENIS_ANTRIAN = DOKTER DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                idPasienPertama = rs.getString(1);
+            }
+            System.out.println(idPasienPertama);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return idPasienPertama;
+    }
 
 //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
