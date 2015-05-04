@@ -32,6 +32,7 @@ import javax.swing.event.ListSelectionListener;
 public class FormApoteker extends javax.swing.JFrame {
 
     private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
+    private TableModelObat_detailResep tableModelObat_detailResepPO = new TableModelObat_detailResep();
     private ApotekerService apotekerService;
     int total = 0;
 
@@ -47,6 +48,17 @@ public class FormApoteker extends javax.swing.JFrame {
         setSize(665, 730);
 
         Table_Apotek.setModel(tableModelObat_detailResep);
+        Table_Apotek.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent e) {
+                int row = Table_Apotek.getSelectedRow();
+                if (row != -1) {
+                    Obat_detailResep obat_detailResep = new Obat_detailResep();
+                }
+            }
+        });
+        
+        Table_Apotek.setModel(tableModelObat_detailResepPO);
         Table_Apotek.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
@@ -660,6 +672,12 @@ public class FormApoteker extends javax.swing.JFrame {
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
+            try {
+                tableModelObat_detailResep.setData(apotekerService.getObat_detailResep(TextField_IdResep.getText()));
+                Table_Apotek.setModel(tableModelObat_detailResepPO);
+            } catch (RemoteException exception) {
+                exception.printStackTrace();
+            }
         }
     }//GEN-LAST:event_tambahObatButtonActionPerformed
 
@@ -694,6 +712,7 @@ public class FormApoteker extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Search;
     private javax.swing.JButton Exit;
