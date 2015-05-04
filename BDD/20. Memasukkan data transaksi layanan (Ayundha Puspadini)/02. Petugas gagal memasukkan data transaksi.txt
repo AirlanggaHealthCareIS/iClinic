@@ -1,5 +1,6 @@
 Fitur	        Petugas dapat memasukkan data transaksi kesehatan (kecantikan)
 Skenario	Petugas bagian kecantikan gagal memasukkan data transaksi layanan kesehatan kecantikan ke dalam sistem
+		karena data yang diisi belum lengkap
  		
 
 Given 		Petugas sudah melakukan login
