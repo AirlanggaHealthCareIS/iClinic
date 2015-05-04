@@ -102,45 +102,31 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
       
 
-    public void deletePasien(int Id_Pasien) throws RemoteException {
-         System.out.println("Client Melakukan Proses Delete pada Tabel Pasien");
+//    public void deletePasien(int Id_Pasien) throws RemoteException {
+//         System.out.println("Client Melakukan Proses Delete pada Tabel Pasien");
+//
+//        PreparedStatement statement = null;
+//       try{
+//           statement = DatabaseUtilities.getConnection().prepareStatement(
+//                    "DELETE FROM pasien WHERE ID_Pasien = ?");
+//
+//           statement.setLong(1, Id_Pasien);
+//
+//           statement.executeUpdate();
+//
+//       }catch(SQLException exception){
+//        exception.printStackTrace();
+//       }finally{
+//           if(statement != null){
+//               try{
+//                   statement.close();
+//               }catch(SQLException exception){
+//                exception.printStackTrace();
+//               }
+//           }
+//       }
+//    }
 
-        PreparedStatement statement = null;
-       try{
-           statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELETE FROM pasien WHERE ID_Pasien = ?");
-
-           statement.setLong(1, Id_Pasien);
-
-           statement.executeUpdate();
-
-       }catch(SQLException exception){
-        exception.printStackTrace();
-       }finally{
-           if(statement != null){
-               try{
-                   statement.close();
-               }catch(SQLException exception){
-                exception.printStackTrace();
-               }
-           }
-       }
-    }
-
-        
-<<<<<<< Updated upstream
-    public Pasien getPasien(int Id_Pasien) throws RemoteException {
-         System.out.println("Client Melakukan Proses Get Status dengan Mengakses Tabel Pasien");
-        Statement state = null;
-        ResultSet rs = null;
-        String newStatus = "0";
-	try {
-            state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT STATUS FROM pembayaran WHERE ID_PASIEN = '"+Id_Pasien+"'";
-            rs = state.executeQuery(sql);
-            while (rs.next()){
-                newStatus = rs.getString(1);
-=======
     public Pasien getPasien(String Id_Pasien) throws RemoteException {
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
 
@@ -176,7 +162,6 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
->>>>>>> Stashed changes
             }
         }
     }
@@ -184,44 +169,45 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
         
 
-    public List<Pasien> getPasien() throws RemoteException {
+    public Pasien getPasien(int Pasien) throws RemoteException {
         
         
-        System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
-        Statement statement = null;
-        try{
-            statement = DatabaseUtilities.getConnection().createStatement();
+       System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
 
-            ResultSet result = statement.executeQuery("SELECT * FROM pasien");
-             List<Pasien> list = new ArrayList<Pasien>();
-             while(result.next()){
-                Pasien pasien = new Pasien();
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT * FROM obat WHERE ID_PASIEN = '"+Pasien+"'");
+
+            ResultSet result = statement.executeQuery();
+
+            Pasien pasien = null;
+
+            if (result.next()) {
+                pasien = new Pasien();
                 pasien.setId_Pasien(result.getString("ID_PASIEN"));
-                pasien.setNo_Ktp(result.getString("NO_KTP"));
                 pasien.setNama_Pasien(result.getString("NAMA_PASIEN"));
+                pasien.setNo_Ktp(result.getString("NO_KTP"));
                 pasien.setAlamat(result.getString("ALAMAT"));
-                pasien.setTanggal_Lahir(result.getDate("TGL_LAHIR"));
-                pasien.setTanggal_Daftar(result.getDate("TGL_DAFTAR"));
                 pasien.setUsia(result.getInt("USIA"));
-                pasien.setNo_HP(result.getString("NO_HP"));
                 pasien.setJenis_Kelamin(result.getString("JENIS_KELAMIN"));
+                pasien.setNo_HP(result.getString("NO_HP"));
+                pasien.setTanggal_Daftar(result.getDate("TGL_DAFTAR"));
+                pasien.setTanggal_Lahir(result.getDate("TGL_LAHIR"));
                 
-                list.add(pasien);
             }
-            result.close();
-            return list;
-        }
-        catch(Throwable exception){
-            System.out.println(exception);
+
+            return pasien;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
             return null;
-        }
-        finally{
-            if(statement != null){
-                try{
+        } finally {
+            if (statement != null) {
+                try {
                     statement.close();
-                }
-                catch(SQLException exception){
-                   exception.printStackTrace();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
                 }
             }
         }
@@ -234,8 +220,8 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement = DatabaseUtilities.getConnection().prepareStatement(
                    "INSERT INTO pasien (Id_Pasien,Nama_Pasien,Alamat,TTL,Usia,No_Hp,Jenis_Kelamin) values(?,?,?,?,?,?,?,?)"
                    );
-           statement.setInt(1, antrian.getId_Antrian());
-           statement.setInt(2, antrian.getId_Pasien());
+           statement.setString(1, antrian.getId_Antrian());
+           statement.setString(2, antrian.getId_Pasien());
            statement.setString(3, antrian.getJenis_Antrian());
            statement.setString( 4, antrian.getKeterangan());
            
@@ -243,7 +229,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
            if(result.next()){
-               antrian.setId_Pasien(result.getInt(1));
+               antrian.setId_Pasien(result.getString(1));
            }
         result.close();
         return antrian;
@@ -273,8 +259,8 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
                  "Id_Pasien = ?, Jenis_Antrian = ?, Keterangan = ? " +
                  "WHERE Id_Antrian = ?"
                    );
-           statement.setInt(1, antrian.getId_Antrian());
-           statement.setInt(2, antrian.getId_Pasien());
+           statement.setString(1, antrian.getId_Antrian());
+           statement.setString(2, antrian.getId_Pasien());
            statement.setString(3, antrian.getJenis_Antrian());
            statement.setString(4, antrian.getKeterangan());
            
@@ -297,7 +283,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
        
         
 
-    public void deleteAntrian(int Id_Antrian) throws RemoteException {
+    public void deleteAntrian(String Id_Antrian) throws RemoteException {
         System.out.println("Client Melakukan Proses Delete pada Tabel Pendaftaran");
 
         PreparedStatement statement = null;
@@ -305,7 +291,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement = DatabaseUtilities.getConnection().prepareStatement(
                     "DELETE FROM pembayaran WHERE ID_ANTRIAN = ?");
 
-           statement.setInt(1, Id_Antrian);
+           statement.setString(1, Id_Antrian);
 
            statement.executeUpdate();
 
@@ -324,7 +310,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
         
 
-    public Antrian getAntrian(int Id_Antrian) throws RemoteException {
+    public Antrian getAntrian(String Id_Antrian) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Antrian");
         Antrian antrian = null;
@@ -340,4 +326,46 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
     }
 
-}
+    public List<Pasien> getPasien() throws RemoteException {
+        System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
+
+        Statement statement = null;
+        try{
+          statement = DatabaseUtilities.getConnection().createStatement();
+
+          ResultSet result = statement.executeQuery("SELECT * FROM pasien");
+
+          List<Pasien> list = new ArrayList<Pasien>();
+
+          while(result.next()){
+                Pasien pasien = new Pasien();
+                pasien.setId_Pasien(result.getString("ID_PASIEN"));
+                pasien.setNama_Pasien(result.getString("NAMA_PASIEN"));
+                pasien.setAlamat(result.getString("ALAMAT"));
+                pasien.setTanggal_Lahir(result.getDate("TGL_LAHIR"));
+                pasien.setUsia(result.getInt("USIA"));
+                pasien.setNo_HP(result.getString("NO_HP"));
+                pasien.setJenis_Kelamin(result.getString("JENIS_KELAMIN"));
+                list.add(pasien);
+          }
+
+          result.close();
+
+          return list;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    }
+    }
+
+
