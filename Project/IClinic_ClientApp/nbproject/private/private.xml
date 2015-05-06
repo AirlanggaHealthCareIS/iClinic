@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/TOSHIBA/Documents/PSI/iClinic/Project/IClinic_ClientApp/src/ClientApplication/form/FormDokter.java</file>
             <file>file:/C:/Users/TOSHIBA/Documents/PSI/iClinic/Project/IClinic_ClientApp/src/ClientApplication/form/FormBag_Pendaftaran.java</file>
             <file>file:/C:/Users/TOSHIBA/Documents/PSI/iClinic/Project/IClinic_ClientApp/src/ClientApplication/model/TableModelPasien.java</file>
+=======
+            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ClientApp/src/ClientApplication/FormLogin.java</file>
+            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ClientApp/src/ClientApplication/databasehelper.java</file>
+            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ClientApp/src/ClientApplication/form/FormBag_Pendaftaran.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
