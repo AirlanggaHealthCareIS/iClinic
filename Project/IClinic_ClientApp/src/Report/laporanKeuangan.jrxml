@@ -38,7 +38,7 @@ MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())]]>
 		<band height="102" splitType="Stretch">
 			<image>
 				<reportElement x="446" y="0" width="356" height="102" uuid="caccc75b-1e34-42c9-bfd9-1a1a1fc79da3"/>
-				<imageExpression><![CDATA["iClinic.png"]]></imageExpression>
+				<imageExpression><![CDATA["iClinic_1.png"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="446" height="66" backcolor="#FFFFFF" uuid="35076929-eb3f-4720-a7bd-f49814436ba2"/>
