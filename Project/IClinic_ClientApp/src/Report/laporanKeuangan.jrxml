@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="340f2648-fcf7-4b49-9b2a-780ccd57a206">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT 
+SUM(`rekam_medis`.TOTAL_HARGA) AS DOKTER, SUM(`resep`.TOTAL_HARGA) AS RESEP, SUM(`transaksi_lab`.TOTAL_HARGA) AS LAB, SUM(`transaksi_layanan_kecantikan`.TOTAL_HARGA) AS KECANTIKAN, SUM(`transaksi_usg`.HARGA) AS USG
+FROM
+     `transaksi_usg` transaksi_usg INNER JOIN `pembayaran` pembayaran ON transaksi_usg.`ID_USG` = pembayaran.`ID_USG`
+     INNER JOIN `transaksi_lab` transaksi_lab ON pembayaran.`ID_TRANSaKSI_LAB` = transaksi_lab.`ID_TRANSAKSI_LAB`
+     INNER JOIN `resep` resep ON pembayaran.`ID_RESEP` = resep.`ID_RESEP`
+     INNER JOIN `rekam_medis` rekam_medis ON pembayaran.`ID_REKAM` = rekam_medis.`ID_REKAM`
+     INNER JOIN `transaksi_layanan_kecantikan` transaksi_layanan_kecantikan ON pembayaran.`ID_TRANSAKSI_LAYANAN` = transaksi_layanan_kecantikan.`ID_TRANSAKSI_LAYANAN`
+     AND rekam_medis.`ID_REKAM` = resep.`ID_REKAM`
+WHERE
+MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())]]>
+	</queryString>
+	<field name="DOKTER" class="java.math.BigDecimal"/>
+	<field name="RESEP" class="java.math.BigDecimal"/>
+	<field name="LAB" class="java.math.BigDecimal"/>
+	<field name="KECANTIKAN" class="java.math.BigDecimal"/>
+	<field name="USG" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<image>
+				<reportElement x="446" y="0" width="356" height="102" uuid="caccc75b-1e34-42c9-bfd9-1a1a1fc79da3"/>
+				<imageExpression><![CDATA["iClinic.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="446" height="66" backcolor="#FFFFFF" uuid="35076929-eb3f-4720-a7bd-f49814436ba2"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="430" height="66" forecolor="#000000" backcolor="#000000" uuid="5c84bed6-811d-4ace-b473-4c08c63f2d54"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Laporan Keuangan]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="70" width="430" height="32" forecolor="#000000" backcolor="#CCCCCC" uuid="42122338-2d29-4600-b34b-752ef575edf5"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="2" y="12" width="197" height="20" forecolor="#FFFFFF" uuid="df2eb9d1-7a9f-4673-901c-cbfb70523983"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="196" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="8f0b51ea-0a04-4208-85aa-c7e5718dabbb"/>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="117" y="91" width="233" height="18" forecolor="#000000" uuid="2459d7b0-71ea-47b8-9731-a5fa1439ceae"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAB]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="393" y="91" width="223" height="18" uuid="56704635-8eff-45a5-b7c8-44f732f6b7e3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="117" y="55" width="233" height="18" forecolor="#000000" uuid="4331f40a-23b0-442e-b98d-5e91151c3af8"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[RESEP]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="393" y="55" width="223" height="18" uuid="2475df96-f196-4fa0-b797-c1e8eef2f8a2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RESEP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="117" y="18" width="233" height="18" forecolor="#000000" uuid="3602e728-1ad7-4cd4-b523-dfa3cf792769"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[DOKTER]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="393" y="18" width="223" height="18" uuid="58e8abcf-ac49-4b91-b74a-c705ae652aea"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOKTER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="117" y="163" width="233" height="18" forecolor="#000000" uuid="d74a5ac1-1407-48c1-8d83-9a5982ea48d5"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[KECANTIKAN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="393" y="163" width="223" height="18" uuid="4393b15d-1083-4021-b06f-7cb8902ef3ff"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KECANTIKAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="117" y="127" width="233" height="18" forecolor="#000000" uuid="5dbf8600-3e00-412b-8d8d-afa152dbdd99"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[USG]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="393" y="127" width="223" height="18" uuid="44325849-4136-4c54-a46b-ccd0dfbb3827"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="26e7192c-d183-4da6-b8e9-5a332634ad0c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#CCCCCC" uuid="cefb131b-0af8-4942-ad38-16d6a10d9ec7"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="0ac092ee-27a7-48b1-aac4-e6195a8de67f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="5fe9ffb9-7360-4b7d-a1cd-b3429ec4fbfe"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="aec5f484-389f-45d1-a32f-36f73c024f01"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
