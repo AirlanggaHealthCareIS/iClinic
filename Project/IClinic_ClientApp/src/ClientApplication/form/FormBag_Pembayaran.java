@@ -384,7 +384,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         else if(!TextField_idPembayaran.getText().equals("")){
             String Status = "LUNAS TUNAI";
             try {
-                bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
+                String statusBaru = bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
                 String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
                 if(newStatus.equals("LUNAS TUNAI")){
                     JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Tunai Berhasil");

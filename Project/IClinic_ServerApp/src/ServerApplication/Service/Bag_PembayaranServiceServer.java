@@ -285,7 +285,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         }
     }
     
-    public void updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
+    public String updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
 
@@ -311,6 +311,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
                }
            }
        }
+       return Status;
     }
     
     public String getStatus(String Id_Pembayaran) throws RemoteException{

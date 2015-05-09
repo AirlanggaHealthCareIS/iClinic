@@ -28,7 +28,7 @@ public interface Bag_PembayaranService extends Remote {
     
     Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN,Date TANGGAL) throws RemoteException;
     
-    void updateStatusPembayaran(String ID_PEMBAYARAN, String Status) throws RemoteException;
+    String updateStatusPembayaran(String ID_PEMBAYARAN, String Status) throws RemoteException;
     
     String getStatus(String ID_PEMBAYARAN) throws RemoteException;
 }
