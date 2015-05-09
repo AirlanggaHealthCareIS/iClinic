@@ -112,8 +112,6 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         button_Debit = new javax.swing.JButton();
         button_Print = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        button_Delete = new javax.swing.JButton();
-        button_Update = new javax.swing.JButton();
         button_Exit = new javax.swing.JButton();
         Label_Resep = new javax.swing.JLabel();
         TextField_Resep = new javax.swing.JTextField();
@@ -184,17 +182,9 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(590, 180, 220, 24);
 
-        button_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Delete.png"))); // NOI18N
-        getContentPane().add(button_Delete);
-        button_Delete.setBounds(1150, 340, 65, 65);
-
-        button_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Update.png"))); // NOI18N
-        getContentPane().add(button_Update);
-        button_Update.setBounds(1150, 230, 65, 65);
-
         button_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Exit.png"))); // NOI18N
         getContentPane().add(button_Exit);
-        button_Exit.setBounds(1150, 570, 65, 65);
+        button_Exit.setBounds(1180, 620, 65, 65);
 
         Label_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Resep.setText("RESEP");
@@ -304,7 +294,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Table_Bahan);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(590, 230, 550, 430);
+        jScrollPane1.setBounds(590, 230, 660, 380);
 
         TextField_tglPembayaran.setEditable(false);
         TextField_tglPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
@@ -475,11 +465,9 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField TextField_tglPembayaran;
     private javax.swing.JTextField TextField_totalPembayaran;
     private javax.swing.JButton button_Debit;
-    private javax.swing.JButton button_Delete;
     private javax.swing.JButton button_Exit;
     private javax.swing.JButton button_Print;
     private javax.swing.JButton button_Tunai;
-    private javax.swing.JButton button_Update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
