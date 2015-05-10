@@ -71,7 +71,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT* FROM antrian WHERE jenis_antrian=USG");
+                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN=USG AND STATUS=0 ");
             ResultSet result = statement.executeQuery();
             if(result.first()==false){
                 antrian.setId_Pasien("kosong");

@@ -136,7 +136,7 @@ public class FormUSG extends javax.swing.JFrame {
         }
     }
     
-    private void isitanggal(){
+    public void isitanggal(){
         Date date=new Date();
         tgl=tgl+Integer.toString(date.getDate())+"/";
         if(date.getMonth()<9){
