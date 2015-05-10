@@ -86,8 +86,8 @@ public class Lab_detailLabTest {
     public void testGetHasil() {
         System.out.println("getHasil");
         Lab_detailLab instance = new Lab_detailLab();
-        Blob expResult = null;
-        Blob result = instance.getHasil();
+        byte[] expResult = null;
+        byte[] result = instance.getHasil();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -139,7 +139,7 @@ public class Lab_detailLabTest {
     @Test
     public void testSetHasil() {
         System.out.println("setHasil");
-        Blob Hasil = null;
+        byte[] Hasil = null;
         Lab_detailLab instance = new Lab_detailLab();
         instance.setHasil(Hasil);
         // TODO review the generated test code and remove the default call to fail.

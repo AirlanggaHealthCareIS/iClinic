@@ -26,6 +26,7 @@ import java.util.List;
  *
  * @author erin
  */
+
 public class LabServiceServer extends UnicastRemoteObject implements LabService {
 
    public LabServiceServer() throws RemoteException {
@@ -44,7 +45,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             statement.setString(1, detail_lab.getId_Detail_Lab());
             statement.setString(2, detail_lab.getId_Transaksi_Lab());
             statement.setString(3, detail_lab.getId_Lab());
-            statement.setBlob(4, detail_lab.getHasil());
+            statement.setBytes(4, detail_lab.getHasil());
             statement.setString(5, detail_lab.getKeterangan());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Detail Laboratorium");
@@ -82,7 +83,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                 Laboratorium.setId_Lab(result.getString("Id_Detail_Lab"));
                 Laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
                 Laboratorium.setId_Lab(result.getString("Id_Lab"));
-                Laboratorium.setHasil(result.getBlob("Hasil"));
+                Laboratorium.setHasil(result.getBytes("Hasil"));
                 Laboratorium.setKeterangan(result.getString("Keterangan"));
                
             }
@@ -120,7 +121,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                 laboratorium.setId_Detail_Lab(result.getString("Id_Detail_Lab"));
                 laboratorium.setId_Transaksi_Lab(result.getString("Id_Transaksi_Lab"));
                 laboratorium.setId_Lab(result.getString("Id_Lab"));
-                laboratorium.setHasil(result.getBlob("Hasil"));
+                laboratorium.setHasil(result.getBytes("Hasil"));
                 laboratorium.setKeterangan(result.getString("Keterangan"));
                 
                 list.add(laboratorium);

@@ -16,9 +16,13 @@ public class Lab_detailLab implements Serializable{
     private String Id_Detail_Lab;
     private String Id_Transaksi_Lab;
     private String Id_Lab;
-    private Blob Hasil;
+    private byte[] Hasil;
     private String Keterangan;
     
+    
+     public byte[] getHasil() {
+        return Hasil;
+    }
 
     public String getId_Detail_Lab() {
         return Id_Detail_Lab;
@@ -30,10 +34,6 @@ public class Lab_detailLab implements Serializable{
 
     public String getId_Lab() {
         return Id_Lab;
-    }
-    
-    public Blob getHasil() {
-        return Hasil;
     }
  
     public String getKeterangan() {
@@ -48,7 +48,7 @@ public class Lab_detailLab implements Serializable{
         this.Id_Lab = Id_Lab;
     }
     
-     public void setHasil(Blob Hasil) {
+     public void setHasil(byte[] Hasil) {
         this.Hasil = Hasil;
     }
 

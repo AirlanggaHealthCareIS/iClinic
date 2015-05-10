@@ -47,7 +47,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FormLab extends javax.swing.JFrame {
 
-   
+    private static final long serialVersionUID = 1L;
+    
  LabService labService;
     private TableModelLab_detailLab tableLabDetailLab = new TableModelLab_detailLab();
     public List<Lab_tabelMaster> listLaboratorium = new ArrayList<Lab_tabelMaster>();
@@ -566,6 +567,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
         // TODO add your handling code here:
+        browseDOC();
     }//GEN-LAST:event_uploadFileActionPerformed
 
     private void insertPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPemeriksaanActionPerformed
@@ -719,6 +721,37 @@ public class FormLab extends javax.swing.JFrame {
             } 
         }
         return total;
+    }
+
+    private void browseDOC() {
+        JFileChooser jfc = new JFileChooser();
+        javax.swing.filechooser.FileFilter fileFilter = new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if(f.getName().toLowerCase().endsWith(".doc") || f.isDirectory() ){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            @Override
+            public String getDescription() {
+                return "*.doc";
+            }
+        };
+
+        jfc.addChoosableFileFilter(fileFilter);
+        jfc.setMultiSelectionEnabled(false);
+        jfc.showOpenDialog(this);
+        //mengambil path file
+        String path = jfc.getSelectedFile().getAbsolutePath();
+        hasilPemeriksaan.setText(path);
+    }
+    
+     private String validatePath(String invalidPath){
+        String validPath;
+        validPath = invalidPath.replace('\\', '/');
+        return validPath;
     }
 
     
