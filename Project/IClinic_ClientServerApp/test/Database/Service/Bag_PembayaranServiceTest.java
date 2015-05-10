@@ -180,12 +180,14 @@ public class Bag_PembayaranServiceTest {
             return null;
         }
 
-        public void updateStatusPembayaran(String ID_PEMBAYARAN, String Status) throws RemoteException {
+        public String updateStatusPembayaran(String ID_PEMBAYARAN, String Status) throws RemoteException {
+            return "";
         }
 
         public String getStatus(String ID_PEMBAYARAN) throws RemoteException {
             return "";
         }
+
     }
     
 }

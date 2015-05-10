@@ -136,8 +136,8 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                 "SELECT * FROM pembayaran WHERE ID_PEMBAYARAN = ?");
-
+                 "SELECT * FROM pembayaran WHERE ID_PEMBAYARAN = '"+Id_Pembayaran+"'");
+//            statement.setString(1, Id_Pembayaran);
             ResultSet result = statement.executeQuery();
 
             Pembayaran pembayaran = null;
@@ -145,6 +145,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             if(result.next()){
                 pembayaran = new Pembayaran();
                 pembayaran.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
+                pembayaran.setID_PASIEN(result.getString("ID_PASIEN"));
                 pembayaran.setID_USG(result.getString("ID_USG"));
                 pembayaran.setID_TRANSAKSI_LAB(result.getString("ID_TRANSAKSI_LAB"));
                 pembayaran.setID_RESEP(result.getString("ID_RESEP"));
@@ -239,14 +240,14 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                "SELECT pasien.NAMA_PASIEN, pembayaran.ID_PEMBAYARAN, transaksi_usg.HARGA AS USG, detail_lab.TOTAL_HARGA AS LAB, resep.TOTAL_HARGA AS RESEP, rekam_medis.TOTAL_HARGA AS REKAM, transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS \n" +
-                "FROM pasien,transaksi_usg,detail_lab,resep,rekam_medis,transaksi_layanan_kecantikan,pembayaran\n" +
+                "SELECT pasien.NAMA_PASIEN, pembayaran.ID_PEMBAYARAN, transaksi_usg.HARGA AS USG, transaksi_lab.TOTAL_HARGA AS LAB, resep.TOTAL_HARGA AS RESEP, rekam_medis.TOTAL_HARGA AS REKAM, transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS \n" +
+                "FROM pasien,transaksi_usg,transaksi_lab,resep,rekam_medis,transaksi_layanan_kecantikan,pembayaran\n" +
                 "WHERE pembayaran.ID_PASIEN = '"+Id_Pasien+"' \n" +
                 "AND pembayaran.TANGGAL_BAYAR = '"+new Date(tanggal.getTime())+"'\n" +
                 "AND pembayaran.STATUS = 'HUTANG'\n" +
                 "AND pasien.ID_PASIEN = pembayaran.ID_PASIEN\n" +
                 "AND pembayaran.ID_USG = transaksi_usg.ID_USG\n" +
-                "AND pembayaran.ID_DETAIL_LAB = detail_lab.ID_DETAIL_LAB\n" +
+                "AND pembayaran.ID_TRANSAKSI_LAB = transaksi_lab.ID_TRANSAKSI_LAB\n" +
                 "AND pembayaran.ID_RESEP = resep.ID_RESEP\n" +
                 "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM\n" +
                 "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
@@ -284,7 +285,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         }
     }
     
-    public void updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
+    public String updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
 
@@ -310,6 +311,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
                }
            }
        }
+       return Status;
     }
     
     public String getStatus(String Id_Pembayaran) throws RemoteException{
