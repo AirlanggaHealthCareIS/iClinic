@@ -83,7 +83,7 @@ public class Bag_PendaftaranServiceServerTest {
     }
 
     /**
-     * Test of getPasien method, of class Bag_PendaftaranServiceServer.
+//     * Test of getPasien method, of class Bag_PendaftaranServiceServer.
      */
     @Test
     public void testGetPasien_int() throws Exception {
