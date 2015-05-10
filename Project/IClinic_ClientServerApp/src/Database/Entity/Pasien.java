@@ -22,12 +22,19 @@ public class Pasien implements Serializable  {
     private String No_HP;
     private String Jenis_Kelamin;
     private String No_Ktp;
+    public String Pilihan_Layanan;
     
     public void setNo_Ktp(String No_Ktp){
         this.No_Ktp = No_Ktp;
     }
     public String getNo_Ktp(){
         return No_Ktp;
+    }
+    public void setPilihan_Layanan(String Pilihan_Layanan){
+        this.Pilihan_Layanan = Pilihan_Layanan;
+    }
+    public String getPilihan_Layanan(){
+        return Pilihan_Layanan;
     }
 
     public String getId_Pasien() {
@@ -91,5 +98,8 @@ public class Pasien implements Serializable  {
     public void setJenis_Kelamin(String Jenis_Kelamin) {
         this.Jenis_Kelamin = Jenis_Kelamin;
     }
+
+    
+    
     
 }

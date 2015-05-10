@@ -46,6 +46,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setInt(7, pasien.getUsia());
            statement.setString(8,pasien.getNo_HP());
            statement.setString(9, pasien.getJenis_Kelamin());
+           statement.setString(10, pasien.getPilihan_Layanan());
            
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
@@ -83,7 +84,8 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setInt(5, pasien.getUsia());
            statement.setString(6,pasien.getNo_HP());
            statement.setString(7, pasien.getJenis_Kelamin());
-           statement.setString(8, pasien.getId_Pasien());
+           statement.setString(8, pasien.getPilihan_Layanan());
+           statement.setString(9, pasien.getId_Pasien());
 
            statement.executeUpdate();
 
@@ -367,6 +369,44 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
                 }
             }
         }
+    }
+    public String getAutoNumber() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pasien");
+        Statement state = null;
+        ResultSet rs = null;
+
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_PASIEN FROM pasien ORDER BY ID_PASIEN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "P0001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[1] + pisah[2] + pisah[3]+ pisah[4];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "00";
+            } else if (pisah1.length == 2) {
+                nol = "0";
+            }
+            nomerBaru = "P" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
     }
     }
 

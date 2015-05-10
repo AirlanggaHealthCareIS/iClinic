@@ -167,6 +167,20 @@ public class Bag_PendaftaranServiceTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of getAutoNumber method, of class Bag_PendaftaranService.
+     */
+    @Test
+    public void testGetAutoNumber() throws Exception {
+        System.out.println("getAutoNumber");
+        Bag_PendaftaranService instance = new Bag_PendaftaranServiceImpl();
+        String expResult = "";
+        String result = instance.getAutoNumber();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
     public class Bag_PendaftaranServiceImpl implements Bag_PendaftaranService {
 
         public void insertPasien(Pasien pasien) throws RemoteException {
@@ -199,6 +213,10 @@ public class Bag_PendaftaranServiceTest {
 
         public List<Antrian> getAntrian() throws RemoteException {
             return null;
+        }
+
+        public String getAutoNumber() throws RemoteException {
+            return "";
         }
     }
     

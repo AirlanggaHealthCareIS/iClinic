@@ -65,6 +65,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
                     field_Usia.setText(String.valueOf(pasien.getUsia()));
                     field_No_HP.setText(String.valueOf(pasien.getNo_HP()));
                     box_Jenis_Kelamin.setSelectedItem(pasien.getJenis_Kelamin());
+                    box_Pilihan_Layanan.setSelectedItem(pasien.getPilihan_Layanan());
+                    
             }
         }   
         });
@@ -87,6 +89,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         field_Usia.setText("");
         field_No_HP.setText("");
         box_Jenis_Kelamin.setBackground(Color.gray);
+        box_Pilihan_Layanan.setBackground(Color.gray);
        
     }
     
@@ -126,6 +129,8 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_pasien = new javax.swing.JTable();
         Update = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        box_Pilihan_Layanan = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No_Hp = new javax.swing.JLabel();
@@ -246,7 +251,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1);
-        jButton1.setBounds(140, 563, 150, 50);
+        jButton1.setBounds(140, 590, 150, 50);
         jPanel3.add(DateChooser_Tanggal_Lahir);
         DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
 
@@ -273,7 +278,15 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Update);
-        Update.setBounds(700, 580, 120, 40);
+        Update.setBounds(700, 600, 120, 50);
+
+        jLabel12.setText("Pilihan Layanan");
+        jPanel3.add(jLabel12);
+        jLabel12.setBounds(40, 560, 80, 14);
+
+        box_Pilihan_Layanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokter Umum", "Dokter Gigi", "Dokter Kulit", "Dokter Kandungan", "USG", "Lab", "Kecantikan" }));
+        jPanel3.add(box_Pilihan_Layanan);
+        box_Pilihan_Layanan.setBounds(140, 560, 150, 20);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -488,7 +501,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             //PS.insertPasien(pasien);
         try{
             Pasien pasien = new Pasien();
-            pasien.setId_Pasien(field_ID_Pasien.getText());
+            pasien.setId_Pasien(bag_PendaftaranService.getAutoNumber());
             pasien.setNo_Ktp(field_No_Ktp.getText());
             pasien.setNama_Pasien(field_Nama_Pasien.getText());
             pasien.setAlamat(field_Alamat.getText());
@@ -497,7 +510,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             pasien.setUsia(Integer.parseInt(field_Usia.getText()));
             pasien.setNo_HP(field_No_HP.getText());
             pasien.setJenis_Kelamin(box_Jenis_Kelamin.getSelectedItem().toString());
+            pasien.setPilihan_Layanan(box_Pilihan_Layanan.getSelectedItem().toString());
         
+            
             System.out.println("cek 1");
             bag_PendaftaranService.insertPasien(pasien);
             JOptionPane.showMessageDialog(null, "Terdaftar");
@@ -603,6 +618,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JButton Update;
     private javax.swing.JLabel Usia;
     private javax.swing.JComboBox box_Jenis_Kelamin;
+    private javax.swing.JComboBox box_Pilihan_Layanan;
     private javax.swing.JTextField field_Alamat;
     private javax.swing.JTextField field_ID_Pasien;
     private javax.swing.JTextField field_Nama_Pasien;
@@ -613,6 +629,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
