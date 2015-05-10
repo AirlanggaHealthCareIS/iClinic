@@ -94,8 +94,8 @@ public class FormLab extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         idPasien = new javax.swing.JTextField();
         namaPasien = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        pasinSelanjutnya = new javax.swing.JButton();
+        dataTransaksi = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -113,18 +113,18 @@ public class FormLab extends javax.swing.JFrame {
         hasilPemeriksaan = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        keterangan = new javax.swing.JTextArea();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        Keterangan = new javax.swing.JTextArea();
+        uploadFile = new javax.swing.JButton();
+        insertPemeriksaan = new javax.swing.JButton();
+        deletePemeriksaan = new javax.swing.JButton();
+        Proses = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
+        Clear = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         totalHarga = new javax.swing.JTextField();
         tanggal = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableDetLab = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,11 +164,21 @@ public class FormLab extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel2.setText("Nama Pasien    :");
 
-        jButton1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton1.setText("Pasien Selanjutnya");
+        pasinSelanjutnya.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        pasinSelanjutnya.setText("Pasien Selanjutnya");
+        pasinSelanjutnya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasinSelanjutnyaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton3.setText("Data Transaksi");
+        dataTransaksi.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        dataTransaksi.setText("Data Transaksi");
+        dataTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataTransaksiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,12 +198,12 @@ public class FormLab extends javax.swing.JFrame {
                                 .addComponent(idPasien))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
+                                    .addComponent(pasinSelanjutnya)
                                     .addComponent(jLabel2))
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(namaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3))))))
+                                    .addComponent(dataTransaksi))))))
                 .addGap(608, 608, 608))
         );
         jPanel1Layout.setVerticalGroup(
@@ -211,8 +221,8 @@ public class FormLab extends javax.swing.JFrame {
                     .addComponent(namaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(pasinSelanjutnya)
+                    .addComponent(dataTransaksi))
                 .addGap(337, 337, 337))
         );
 
@@ -259,18 +269,33 @@ public class FormLab extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel11.setText("Hasil Pemeriksaan  :");
 
-        keterangan.setColumns(20);
-        keterangan.setRows(5);
-        jScrollPane1.setViewportView(keterangan);
+        Keterangan.setColumns(20);
+        Keterangan.setRows(5);
+        jScrollPane1.setViewportView(Keterangan);
 
-        jButton4.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton4.setText("Browser");
+        uploadFile.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        uploadFile.setText("Browser");
+        uploadFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadFileActionPerformed(evt);
+            }
+        });
 
-        jButton5.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton5.setText("Insert Pemeriksaan");
+        insertPemeriksaan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        insertPemeriksaan.setText("Insert Pemeriksaan");
+        insertPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertPemeriksaanActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton6.setText("Delete Pemeriksaan");
+        deletePemeriksaan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        deletePemeriksaan.setText("Delete Pemeriksaan");
+        deletePemeriksaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePemeriksaanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -302,13 +327,13 @@ public class FormLab extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(hargaJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(uploadFile)
                         .addContainerGap(83, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addComponent(insertPemeriksaan)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(deletePemeriksaan)
                         .addGap(116, 116, 116))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -330,37 +355,47 @@ public class FormLab extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(hasilPemeriksaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(uploadFile))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(insertPemeriksaan)
+                    .addComponent(deletePemeriksaan))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton7.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton7.setText("Proses");
-
-        jButton8.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton8.setText("Simpan");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        Proses.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        Proses.setText("Proses");
+        Proses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                ProsesActionPerformed(evt);
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton9.setText("Clear");
+        Save.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        Save.setText("Save");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
+
+        Clear.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        Clear.setText("Clear");
+        Clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel12.setText("Total Harga          :");
 
-        jTable1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableDetLab.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        tableDetLab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -379,10 +414,10 @@ public class FormLab extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 0));
-        jTable1.setMinimumSize(new java.awt.Dimension(75, 0));
-        jTable1.setPreferredSize(new java.awt.Dimension(375, 0));
-        jScrollPane2.setViewportView(jTable1);
+        tableDetLab.setMaximumSize(new java.awt.Dimension(2147483647, 0));
+        tableDetLab.setMinimumSize(new java.awt.Dimension(75, 0));
+        tableDetLab.setPreferredSize(new java.awt.Dimension(375, 0));
+        jScrollPane2.setViewportView(tableDetLab);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -411,11 +446,11 @@ public class FormLab extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton7))
+                                        .addComponent(Proses))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton9)
+                                        .addComponent(Clear)
                                         .addGap(68, 68, 68)
-                                        .addComponent(jButton8)))))))
+                                        .addComponent(Save)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -449,13 +484,13 @@ public class FormLab extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton8))
+                    .addComponent(Clear)
+                    .addComponent(Save))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(Proses))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -491,29 +526,142 @@ public class FormLab extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hasilPemeriksaanActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        if(pasienExist = true && !listDetailLab.isEmpty() && !idTransaksi.getText().equals("")){
+            Lab_transaksiLab transaksi = new Lab_transaksiLab();
+            try {
+                transaksi.setId_Transaksi_Lab(idTransaksi.getText());
+                transaksi.setId_Pasien(idPasien.getText());
+                transaksi.setTotal_Harga(checkTotal());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
+                
+                String now = dateFormat.format(date);
+                
+                transaksi.setTanggal(now);
+                labService.insertLab_transaksiLab(transaksi);
+                
+                for(int i=0;i<listDetailLab.size();i++){
+                    Lab_detailLab detail = new Lab_detailLab();
+                    detail.setId_Detail_Lab(listDetailLab.get(i).getId_Detail_Lab());
+                    detail.setId_Transaksi_Lab(listDetailLab.get(i).getId_Transaksi_Lab());
+                    detail.setId_Lab(listDetailLab.get(i).getId_Lab());
+                    detail.setHasil(listDetailLab.get(i).getHasil());
+                    detail.setKeterangan(listDetailLab.get(i).getKeterangan());
+                    labService.insertLab_transaksiLab(transaksi);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(pasienExist = false){
+            System.out.println("Silakan Mengisi ID Pasien terlebih dahulu");
+        }
+        else{
+            System.out.println("Beberapa Field Masih Kosong..");
+        }       
+
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uploadFileActionPerformed
+
+    private void insertPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPemeriksaanActionPerformed
+        // TODO add your handling code here:
+          if (!idTransaksi.getText().equals("")){
+            String idtransaksi = idTransaksi.getText();
+            String iddetail = idtransaksi +"-"+ number;
+            number++;
+            String idjenispemeriksaan = listLaboratorium.get( comboJenisPem.getSelectedIndex()).getId_Lab();
+            String keterangan = Keterangan.getText();
+            Lab_detailLab detail = new Lab_detailLab();
+            detail.setId_Detail_Lab(iddetail);
+            detail.setId_Transaksi_Lab(idtransaksi);
+            detail.setId_Lab(idjenispemeriksaan);
+            detail.setKeterangan(keterangan);
+           
+            listDetailLab.add(detail);
+            tableLabDetailLab.setData(listDetailLab);
+            tableDetLab.setModel(tableLabDetailLab);
+            totalHarga.setText(Integer.toString(checkTotal()));
+        }
+    }//GEN-LAST:event_insertPemeriksaanActionPerformed
+
+    private void deletePemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePemeriksaanActionPerformed
+        // TODO add your handling code here:
+         if(tableDetLab.getSelectedRow() > -1){
+            listDetailLab.remove(tableDetLab.getSelectedRow());
+            tableLabDetailLab.setData(listDetailLab);
+            tableDetLab.setModel(tableLabDetailLab);
+            totalHarga.setText(Integer.toString(checkTotal()));
+        }
+    }//GEN-LAST:event_deletePemeriksaanActionPerformed
+
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+        // TODO add your handling code here:
+        number = 1;
+       
+        idPasien.setEditable(false);
+        idTransaksi.setText("");
+        idDetLab.setText("");
+        hargaJenis.setText("");   
+        Keterangan.setText("");
+        hasilPemeriksaan.setText("");
+        listDetailLab = new ArrayList<Lab_detailLab>();
+        tableLabDetailLab.setData(listDetailLab);
+        tableDetLab.setModel(tableLabDetailLab);
+        totalHarga.setText("");
+    }//GEN-LAST:event_ClearActionPerformed
+
+    private void ProsesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProsesActionPerformed
+        // TODO add your handling code here:
+        //-----Pembayaran-----//
+        String idPasien2 = idPasien.getText();
+        String idDetailLab2 = idDetLab.getText();
+        int harga = Integer.parseInt(totalHarga.getText());
+        try {
+            String idPembayaran = labService.mencariIdPembayaranDariPembayaran(idPasien2);
+            if(!idPembayaran.equalsIgnoreCase("")){
+                Pembayaran pembayaran = labService.getPembayaranDariPembayaran(idPembayaran);
+                labService.updatePembayaranDariPembayaran(pembayaran, idDetailLab2, harga);
+            }
+            else if(idPembayaran.equalsIgnoreCase("")){
+                idPembayaran = labService.getAutoNumberDariPembayaran();
+                labService.insertPembayaranDariPembayaran(idPembayaran, idPasien2, idDetailLab2, harga);
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ProsesActionPerformed
+
+    private void pasinSelanjutnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasinSelanjutnyaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasinSelanjutnyaActionPerformed
+
+    private void dataTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTransaksiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataTransaksiActionPerformed
 
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Clear;
+    private javax.swing.JTextArea Keterangan;
+    private javax.swing.JButton Proses;
+    private javax.swing.JButton Save;
     private javax.swing.JComboBox comboJenisPem;
+    private javax.swing.JButton dataTransaksi;
+    private javax.swing.JButton deletePemeriksaan;
     private javax.swing.JTextField hargaJenis;
     private javax.swing.JTextField hasilPemeriksaan;
     private javax.swing.JTextField idDetLab;
     private javax.swing.JTextField idPasein;
     private javax.swing.JTextField idPasien;
     private javax.swing.JTextField idTransaksi;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton insertPemeriksaan;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -535,12 +683,13 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextArea keterangan;
     private javax.swing.JTextField namaPasien;
+    private javax.swing.JButton pasinSelanjutnya;
+    private javax.swing.JTable tableDetLab;
     private javax.swing.JTextField tanggal;
     private javax.swing.JTextField totalHarga;
+    private javax.swing.JButton uploadFile;
     // End of variables declaration//GEN-END:variables
 
      private void setComboboxJenisPemeriksaan() {
