@@ -145,7 +145,7 @@ public class ApotekerServiceServerTest {
     @Test
     public void testDeleteObat_detailResep() throws Exception {
         System.out.println("deleteObat_detailResep");
-        int Id_Obat = 0;
+        String Id_Obat = "";
         ApotekerServiceServer instance = new ApotekerServiceServer();
         instance.deleteObat_detailResep(Id_Obat);
         // TODO review the generated test code and remove the default call to fail.
@@ -158,7 +158,7 @@ public class ApotekerServiceServerTest {
     @Test
     public void testGetObat_detailResep_int() throws Exception {
         System.out.println("getObat_detailResep");
-        int Id_Obat = 0;
+        String Id_Obat = "";
         ApotekerServiceServer instance = new ApotekerServiceServer();
         Obat_detailResep expResult = null;
         Obat_detailResep result = instance.getObat_detailResep(Id_Obat);
@@ -176,7 +176,7 @@ public class ApotekerServiceServerTest {
         String ID_RESEP = "";
         ApotekerServiceServer instance = new ApotekerServiceServer();
         List expResult = null;
-        List result = instance.getObat_detailResep(ID_RESEP);
+        List result = instance.getObat_detailresep(ID_RESEP);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

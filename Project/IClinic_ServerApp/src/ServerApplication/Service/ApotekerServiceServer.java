@@ -261,7 +261,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
     }
 
-    public void deleteObat_detailResep(int Id_Obat) throws RemoteException {
+    public void deleteObat_detailResep(String Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Detail Resep");
 
@@ -270,7 +270,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "DELETE FROM detail_resep WHERE NO_DETAIL_RESEP = ?");
 
-            statement.setLong(1, Id_Obat);
+            statement.setString(1, Id_Obat);
 
             statement.executeUpdate();
 
@@ -287,7 +287,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
     }
 
-    public Obat_detailResep getObat_detailResep(int Id_Obat) throws RemoteException {
+    public Obat_detailResep getObat_detailResep(String Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
 
@@ -326,7 +326,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
     }
 
-    public List<Obat_detailResep> getObat_detailResep(String ID_RESEP) throws RemoteException {
+    public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
 
@@ -682,7 +682,108 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         System.out.println(hargaObat);
         return hargaObat;
     }
+    
+    public String getAutoNumberDariObat_detailResep() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        Statement state = null;
+        ResultSet rs = null;
 
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT NO_DETAIL_RESEP FROM detail_resep ORDER BY NO_DETAIL_RESEP DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "DR001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "00";
+            } else if (pisah1.length == 2) {
+                nol = "0";
+            }
+            nomerBaru = "R" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+
+    public String getAutoNumberDariResep() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        Statement state = null;
+        ResultSet rs = null;
+
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_RESEP FROM resep ORDER BY ID_RESEP DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "RSP001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "00";
+            } else if (pisah1.length == 2) {
+                nol = "0";
+            }
+            nomerBaru = "R" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+    }
+    
+    public void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException {
+        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+        
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE user SET TOTAL_HARGA = " + TOTAL_HARGA 
+                    + " WHERE ID_RESEP =  " + ID_RESEP + "'");
+        
+            statement.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    
     //-----Pembayaran-----//
     public String mencariIdPasienDariPembayaran(String idResep) throws RemoteException {
         System.out.println("Client Melakukan Proses Pencarian ID PASIEN dengan Mengakses Tabel Rekam Medis");

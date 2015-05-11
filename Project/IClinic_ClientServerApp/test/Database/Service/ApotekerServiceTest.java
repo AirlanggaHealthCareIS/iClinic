@@ -146,7 +146,7 @@ public class ApotekerServiceTest {
     @Test
     public void testDeleteObat_detailResep() throws Exception {
         System.out.println("deleteObat_detailResep");
-        int No_Detail_Resep = 0;
+        String No_Detail_Resep = "";
         ApotekerService instance = new ApotekerServiceImpl();
         instance.deleteObat_detailResep(No_Detail_Resep);
         // TODO review the generated test code and remove the default call to fail.
@@ -159,7 +159,7 @@ public class ApotekerServiceTest {
     @Test
     public void testGetObat_detailResep_int() throws Exception {
         System.out.println("getObat_detailResep");
-        int No_Detail_Resep = 0;
+        String No_Detail_Resep = "";
         ApotekerService instance = new ApotekerServiceImpl();
         Obat_detailResep expResult = null;
         Obat_detailResep result = instance.getObat_detailResep(No_Detail_Resep);
@@ -177,7 +177,7 @@ public class ApotekerServiceTest {
         String ID_RESEP = "";
         ApotekerService instance = new ApotekerServiceImpl();
         List expResult = null;
-        List result = instance.getObat_detailResep(ID_RESEP);
+        List result = instance.getObat_detailresep(ID_RESEP);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -479,7 +479,7 @@ public class ApotekerServiceTest {
             return null;
         }
 
-        public List<Obat_detailResep> getObat_detailResep(String ID_RESEP) throws RemoteException {
+        public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
             return null;
         }
 
@@ -549,6 +549,26 @@ public class ApotekerServiceTest {
         }
 
         public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idResep, int Harga) throws RemoteException {
+        }
+
+        public void deleteObat_detailResep(String No_Detail_Resep) throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public Obat_detailResep getObat_detailResep(String Id_Obat) throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public String getAutoNumberDariObat_detailResep() throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public String getAutoNumberDariResep() throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 }

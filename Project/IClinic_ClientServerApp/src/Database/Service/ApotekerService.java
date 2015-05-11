@@ -32,11 +32,11 @@ public interface ApotekerService extends Remote {
 
     void updateObat_detailResep(Obat_detailResep detail_resep) throws RemoteException;
 
-    void deleteObat_detailResep(int No_Detail_Resep) throws RemoteException;
+    void deleteObat_detailResep(String No_Detail_Resep) throws RemoteException;
 
-    Obat_detailResep getObat_detailResep(int No_Detail_Resep) throws RemoteException;
+    Obat_detailResep getObat_detailResep(String Id_Obat) throws RemoteException;
 
-    List<Obat_detailResep> getObat_detailResep(String ID_RESEP) throws RemoteException;
+    List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
 
     Obat_resep insertObat_resep(Obat_resep obat) throws RemoteException;
 
@@ -61,6 +61,12 @@ public interface ApotekerService extends Remote {
     String getIdPemakaian(String pemakaian) throws RemoteException;
 
     int getHargaObat(String namaobat) throws RemoteException;
+    
+    String getAutoNumberDariObat_detailResep() throws RemoteException;
+    
+    String getAutoNumberDariResep() throws RemoteException;
+    
+    void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException;
 
     //-----Pembayaran-----//
     String mencariIdPasienDariPembayaran(String idResep) throws RemoteException;
