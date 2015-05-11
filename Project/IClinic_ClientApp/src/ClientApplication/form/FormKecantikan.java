@@ -134,6 +134,11 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         buttonTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         buttonTransaksi.setText("Transaksi");
+        buttonTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTransaksiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -547,6 +552,10 @@ public class FormKecantikan extends javax.swing.JFrame {
         tabelLayanan.setModel(tableKecantikanDetailLayanan);
         fieldTotalHarga.setText("0");
     }//GEN-LAST:event_buttonClearActionPerformed
+
+    private void buttonTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTransaksiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonTransaksiActionPerformed
 
     
     private void setComboboxLayanan(){

@@ -259,7 +259,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "SELECT * FROM rekam_medis WHERE ID_PASIEN = ?");
-            statement.setInt(1, Integer.parseInt(idpasien));
+            statement.setString(1, idpasien);
             ResultSet result = statement.executeQuery();
             List<Rekam_Medis> rms = new ArrayList<Rekam_Medis>();
             while (result.next()) {

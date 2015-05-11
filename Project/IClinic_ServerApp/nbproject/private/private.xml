@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< Updated upstream
-        <group/>
-=======
         <group>
-            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ServerApp/src/ServerApplication/Utilities/DatabaseUtilities.java</file>
-            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ServerApp/src/ServerApplication/Service/USGServiceServer.java</file>
-            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ServerApp/src/ServerApplication/Service/Bag_PendaftaranServiceServer.java</file>
-            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ServerApp/test/PendaftarandanRegistrasiPasienLama/DataPasienLamaTerdaftar.java</file>
-            <file>file:/Users/adammuhammad/iClinic/Project/IClinic_ServerApp/test/ServerApplication/Service/Bag_PendaftaranServiceServerTest.java</file>
+            <file>file:/D:/iClinic/Project/IClinic_ServerApp/test/MelihatDataTagihanTransaksiPasien_21/BerhasilMelihatDataTagihanTransaksiPasien.java</file>
+            <file>file:/D:/iClinic/Project/IClinic_ServerApp/src/ServerApplication/Service/DokterServiceServer.java</file>
+            <file>file:/D:/iClinic/Project/IClinic_ServerApp/src/ServerApplication/Service/KecantikanServiceServer.java</file>
         </group>
->>>>>>> Stashed changes
     </open-files>
 </project-private>
