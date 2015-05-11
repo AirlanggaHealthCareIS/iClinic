@@ -533,6 +533,21 @@ public class DokterServiceTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of getSelectedTambahan method, of class DokterService.
+     */
+    @Test
+    public void testGetSelectedTambahan() throws Exception {
+        System.out.println("getSelectedTambahan");
+        String Layanan_tambahan = "";
+        DokterService instance = new DokterServiceImpl();
+        String expResult = "";
+        String result = instance.getSelectedTambahan(Layanan_tambahan);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
     public class DokterServiceImpl implements DokterService {
 
         public Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
@@ -574,6 +589,10 @@ public class DokterServiceTest {
         }
 
         public String getRekamMedisbyID() throws RemoteException {
+            return "";
+        }
+
+        public String getSelectedTambahan(String Layanan_tambahan) throws RemoteException {
             return "";
         }
 
@@ -663,5 +682,6 @@ public class DokterServiceTest {
             return "";
         }
     }
+
     
 }
