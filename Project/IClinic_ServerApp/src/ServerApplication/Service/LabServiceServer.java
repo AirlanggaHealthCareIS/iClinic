@@ -4,6 +4,7 @@
  */
 package ServerApplication.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Lab_transaksiLab;
@@ -21,6 +22,8 @@ import java.sql.Statement;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -485,5 +488,42 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
+     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN=USG AND STATUS=0 ");
+            ResultSet result = statement.executeQuery();
+            if(result.first()==false){
+                antrian.setId_Pasien("kosong");
+                return antrian;
+            }
+            else{
+               result.first();
+               antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
+               antrian.setId_Pasien(result.getString("ID_PASIEN"));
+               antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
+               antrian.setKeterangan(result.getString("KETERANGAN"));
+               return antrian;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+            antrian.setId_Pasien("salah");
+            return antrian;  
+        }
+}
+    public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE antrian SET STATUS=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
+            statement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(LabServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String Id_Lab() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
