@@ -180,5 +180,19 @@ public class Bag_PendaftaranServiceServerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of getAutoNumber method, of class Bag_PendaftaranServiceServer.
+     */
+    @Test
+    public void testGetAutoNumber() throws Exception {
+        System.out.println("getAutoNumber");
+        Bag_PendaftaranServiceServer instance = new Bag_PendaftaranServiceServer();
+        String expResult = "";
+        String result = instance.getAutoNumber();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
