@@ -164,6 +164,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
             }
         }
     }
+    
 
 //    public Tindakan_detailTindakan getTindakan(String No_Detail) throws RemoteException {
 //
@@ -319,6 +320,28 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         return product_code;
     }
 
+    public String getSelectedTambahan(String Layanan_tambahan) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get Nama Diagnosa");
+        Statement state = null;
+        ResultSet rs = null;
+        String layananTambahan = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+         //   String sql = "SELECT ID_DIAGNOSA FROM DIAGNOSA WHERE  DIAGNOSA = '" + namaDiagnosa + "'";
+           // rs = state.executeQuery(sql);
+            while (rs.next()) {
+                layananTambahan = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(layananTambahan);
+        
+        
+        return Layanan_tambahan;
+        
+    }
+    
     public String getIdDiagnosa(String namaDiagnosa) throws RemoteException {
         System.out.println("Client Melakukan Proses Get Nama Diagnosa");
         Statement state = null;

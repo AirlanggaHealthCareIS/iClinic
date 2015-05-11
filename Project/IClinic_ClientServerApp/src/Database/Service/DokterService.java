@@ -43,6 +43,8 @@ public interface DokterService extends Remote {
     String getIdDiagnosa(String namaDiagnosa) throws RemoteException;
 
     String getRekamMedisbyID () throws RemoteException;
+    
+    String getSelectedTambahan (String Layanan_tambahan)throws RemoteException;
 //    List getAntrian() throws RemoteException;
 
     List getNamaTindakan() throws RemoteException;

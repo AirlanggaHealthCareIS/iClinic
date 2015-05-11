@@ -862,7 +862,31 @@ public class FormDokter extends javax.swing.JFrame {
                 || tglRekam.getText().equals("") || tinggiBadan.getText().equals("") || BeratBadan.getText().equals("") || TekananDarah.getText().equals("")
                 || hasilPemeriksaan.getText().equals("") || alergi.getText().equals("") || totalHarga.getText().equals("") || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
-        } else {
+        }else {
+              if(comboTambahan.getSelectedItem()== "LABORATORIUM"){
+                  try {
+                      dokterService.getSelectedTambahan(comboTambahan.getSelectedItem().toString());
+                  } catch (RemoteException ex) {
+                      Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+              }
+              
+              else if(comboTambahan.getSelectedItem()== "USG"){
+                  try {
+                      dokterService.getSelectedTambahan(comboTambahan.getSelectedItem().toString());
+                  } catch (RemoteException ex) {
+                      Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+              }
+              
+              else     if(comboTambahan.getSelectedItem()== "KECANTIKAN"){
+                  try {
+             dokterService.getSelectedTambahan(comboTambahan.getSelectedItem().toString());
+               } catch (RemoteException ex) {
+                                    Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                }
+
             try {
                 Rekam_Medis rekam_medis = new Rekam_Medis();
                 rekam_medis.setId_Rekam(idRekam.getText());
