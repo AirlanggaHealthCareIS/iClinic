@@ -65,11 +65,11 @@ public class FormUSG extends javax.swing.JFrame {
         isitanggal();
         harga.setText("100000");
 //        antrian();
-        try {
-            tableModelusg.setData(this.usgService.getUSG());
-        } catch (RemoteException exception) {
-            exception.printStackTrace();
-        }
+//        try {
+//            tableModelusg.setData(this.usgService.getUSG());
+//        } catch (RemoteException exception) {
+//            exception.printStackTrace();
+//        }
 //
 //        initComponents();
 //        setLocationRelativeTo(this);

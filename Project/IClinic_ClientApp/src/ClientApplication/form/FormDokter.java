@@ -996,7 +996,7 @@ public class FormDokter extends javax.swing.JFrame {
     
     private void tambahObatDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahObatDetailResepButtonActionPerformed
         if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
-                || (pemakaianComboBox.getSelectedIndex() == 0) || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
+                || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
                 || (satuanComboBox.getSelectedIndex() == 0) || (keteranganField.getText().equals(""))) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
@@ -1076,7 +1076,7 @@ public class FormDokter extends javax.swing.JFrame {
 
     private void simpanDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanDetailResepButtonActionPerformed
         if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
-                || (pemakaianComboBox.getSelectedIndex() == 0) || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
+                || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
                 || (satuanComboBox.getSelectedIndex() == 0) || (keteranganField.getText().equals(""))) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
