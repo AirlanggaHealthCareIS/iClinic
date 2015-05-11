@@ -50,4 +50,8 @@ public class Antrian implements Serializable {
         this.Keterangan = Keterangan;
     }
 
+    public void getId_Pasien(String p001) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }
