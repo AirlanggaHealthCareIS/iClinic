@@ -659,6 +659,10 @@ public class FormApoteker extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
         } else if (!TextField_IdResep.getText().equals("")) {
             try {
+                String menemukan = apotekerService.mencocokan_IdResep(TextField_IdResep.getText());
+            if(menemukan.equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(null, "Anda Menginputkan ID RESEP SALAH");
+            }
                 tableModelObat_detailResep.setData(apotekerService.getObat_detailresep(TextField_IdResep.getText()));
                 Table_Apotek.setModel(tableModelObat_detailResep);
             } catch (RemoteException exception) {

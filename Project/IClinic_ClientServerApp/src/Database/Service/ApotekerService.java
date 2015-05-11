@@ -67,6 +67,8 @@ public interface ApotekerService extends Remote {
     String getAutoNumberDariResep() throws RemoteException;
     
     void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException;
+    
+    String mencocokan_IdResep(String Id_Resep) throws RemoteException;
 
     //-----Pembayaran-----//
     String mencariIdPasienDariPembayaran(String idResep) throws RemoteException;
