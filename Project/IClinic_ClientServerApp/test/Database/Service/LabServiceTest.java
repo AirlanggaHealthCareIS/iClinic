@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Lab_transaksiLab;
@@ -291,6 +292,18 @@ public class LabServiceTest {
         }
 
         public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idDetailLab, int Harga) throws RemoteException {
+        }
+
+        public Antrian Id_pasien(Antrian antrian) throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public String Id_Lab() throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public void ubahstatus(String ID_ANTRIAN) throws RemoteException {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
 }

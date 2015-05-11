@@ -12,6 +12,7 @@ package ClientApplication.form;
 
 import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelLab_detailLab;
+import Database.Entity.Antrian;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Lab_transaksiLab;
@@ -48,6 +49,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FormLab extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
+    private Antrian antrian= new Antrian();
+    private String idLabisi = "";
+    private String tggl = "";
+    
     
  LabService labService;
     private TableModelLab_detailLab tableLabDetailLab = new TableModelLab_detailLab();
@@ -59,8 +64,12 @@ public class FormLab extends javax.swing.JFrame {
     public int number = 1;
     
     public FormLab(LabService labService) {
-        initComponents();
         this.labService = labService;
+        initComponents();
+        isiid();
+        cekdaftar();
+        isitanggal();
+        
         
         try {
             listLaboratorium = labService.getLaboratorium();
@@ -77,6 +86,59 @@ public class FormLab extends javax.swing.JFrame {
                 hargaJenis.setText(harga);
             }
         });
+    }
+     private void cekdaftar(){
+        try {
+            antrian=labService.Id_pasien(antrian);
+            if(antrian.getId_Pasien()=="kosong"){
+                JOptionPane.showMessageDialog(null, "Belum ada antrian");
+                cekdaftar();
+            }
+            else if(antrian.getId_Pasien()=="salah"){
+                JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
+                cekdaftar();
+            }
+            else{
+                idPasien.setText(antrian.getId_Pasien());
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void isiid(){
+        try {
+            idLabisi=labService.Id_Lab();
+            if(idLabisi=="salah"){
+                JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
+                isiid();
+            }
+            else{
+                idLab.setText(idLabisi);
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void isitanggal(){
+        Date date=new Date();
+        tggl=tggl+Integer.toString(date.getDate())+"/";
+        if(date.getMonth()<9){
+            tggl=tggl+"0"+Integer.toString((date.getMonth()+1))+"/";
+        }
+        else{
+             tggl=tggl+Integer.toString((date.getMonth()+1))+"/";
+        }
+        tggl=tggl+Integer.toString((date.getYear()+1900));
+        tanggal.setText(tggl);
+    }
+    
+    public void kembaliawal() {
+        isiid();
+        cekdaftar();
+        isitanggal();
+      
     }
     @SuppressWarnings("unchecked")
     

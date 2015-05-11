@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Lab_transaksiLab;
@@ -51,4 +52,9 @@ public interface LabService extends Remote {
     
     void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idDetailLab, int Harga) throws RemoteException;
    
+     Antrian Id_pasien(Antrian antrian)throws RemoteException;
+    
+    String Id_Lab()throws RemoteException;
+    
+    void ubahstatus(String ID_ANTRIAN)throws RemoteException;
 }
