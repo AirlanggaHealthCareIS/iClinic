@@ -4,6 +4,7 @@
  */
 package ServerApplication.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
@@ -365,6 +366,89 @@ PreparedStatement statement = null;
                 try {
                     statement.close();
                 } catch (SQLException exception) {
+                }
+            }
+        }
+    }
+
+    public Antrian getNextPasienKecantikan() throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT * FROM `antrian` WHERE JENIS_ANTRIAN = 'kecantikan' AND KETERANGAN = 'belum'");
+            ResultSet result = statement.executeQuery();
+            Antrian antrian = null;
+            if (result.next()) {
+                antrian = new Antrian();
+                antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
+                antrian.setId_Pasien(result.getString("ID_PASIEN"));
+                antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
+                antrian.setKeterangan(result.getString("KETERANGAN"));
+                return antrian;
+            }
+            else{
+                return null;    
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.toString());
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
+        }
+    }
+
+    public String getPasienName(String Id_Pasien) throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT NAMA_PASIEN FROM `pasien` WHERE ID_PASIEN = ?");
+            statement.setString(0, Id_Pasien);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                String nama = result.getString(0);
+                return nama;
+            }
+            else{
+                return null;    
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.toString());
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
+        }
+    }
+
+    public Boolean updateAntrian(Antrian antrian) throws RemoteException {
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE `antrian` SET `ID_PASIEN`= ?,`JENIS_ANTRIAN`= ?,`KETERANGAN`= ? WHERE `ID_ANTRIAN` = ?");    
+            statement.setString(1, antrian.getId_Pasien());
+            statement.setString(2, antrian.getJenis_Antrian());
+            statement.setString(3, antrian.getKeterangan());
+            statement.setString(4, antrian.getId_Antrian());
+            statement.executeUpdate();
+            return true;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return false;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
                 }
             }
         }

@@ -15,6 +15,7 @@ import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
 import Database.Entity.Pembayaran;
+import Database.Entity.Antrian;
 import Database.Service.KecantikanService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,8 +43,10 @@ public class FormKecantikan extends javax.swing.JFrame {
     //public DefaultTableModel model = new DefaultTableModel();
     public Boolean pasienExist = false;
     public int number = 1;
+    public Antrian antrian = null;
     public FormKecantikan(KecantikanService kecantikanService) {
         initComponents();
+        jTabbedPane1.setEnabledAt(1, false);
         this.kecantikanService = kecantikanService;
         //model = (DefaultTableModel) tabelLayanan.getModel();
         try {
@@ -76,8 +79,8 @@ public class FormKecantikan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        fieldIdPasienA = new javax.swing.JTextField();
+        fieldNamaPasienA = new javax.swing.JTextField();
         buttonNext = new javax.swing.JButton();
         buttonTransaksi = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -105,6 +108,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         buttonSearch = new javax.swing.JButton();
         buttonInsert = new javax.swing.JButton();
         buttonClear = new javax.swing.JButton();
+        buttonPasien = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,12 +123,12 @@ public class FormKecantikan extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 575));
 
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        jLabel2.setText("ID Pasien : ");
+        jLabel2.setText("ID Pasien");
 
         jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        jLabel3.setText("Nama Pasien :");
+        jLabel3.setText("Nama Pasien");
 
-        buttonNext.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
+        buttonNext.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonNext.setText("Pasien Berikutnya");
         buttonNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,8 +136,9 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
-        buttonTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
-        buttonTransaksi.setText("Transaksi");
+        buttonTransaksi.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonTransaksi.setText("Go to Transaksi");
+        buttonTransaksi.setEnabled(false);
         buttonTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTransaksiActionPerformed(evt);
@@ -146,20 +151,18 @@ public class FormKecantikan extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(buttonNext)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                            .addComponent(buttonTransaksi))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(168, 168, 168)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                .addComponent(jTextField2)))))
-                .addContainerGap(936, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fieldIdPasienA, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(fieldNamaPasienA, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonNext)
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonTransaksi)))))
+                .addContainerGap(898, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,11 +170,11 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldIdPasienA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNamaPasienA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonNext)
@@ -344,6 +347,14 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
+        buttonPasien.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        buttonPasien.setText("Go to Pasien");
+        buttonPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPasienActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -382,7 +393,9 @@ public class FormKecantikan extends javax.swing.JFrame {
                                     .addComponent(buttonProcess)
                                     .addComponent(buttonInsert))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonPasien)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -411,7 +424,8 @@ public class FormKecantikan extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(fieldTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonPrint)
-                    .addComponent(buttonProcess))
+                    .addComponent(buttonProcess)
+                    .addComponent(buttonPasien))
                 .addGap(87, 87, 87))
         );
 
@@ -429,7 +443,34 @@ public class FormKecantikan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
-        // TODO add your handling code here:
+        try {          
+            if(antrian!=null){
+                antrian.setKeterangan("sudah");
+                boolean update = kecantikanService.updateAntrian(antrian);
+                if(update=false){
+                    JOptionPane.showMessageDialog(this,"Tidak dapat mengupdate status antrian !", "Update gagal", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            antrian = new Antrian();
+            antrian = kecantikanService.getNextPasienKecantikan();
+            if(antrian != null){
+                fieldIdPasienA.setText(antrian.getId_Pasien());
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Tidak ada antrian layanan kecantikan !", "Antrian kosong", JOptionPane.ERROR_MESSAGE);
+            }
+            String nama = kecantikanService.getPasienName(antrian.getId_Pasien());
+            if (nama != null){
+                fieldNamaPasienA.setText(nama);
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Tidak dapat mencari nama pasien !", "Nama tidak ada", JOptionPane.ERROR_MESSAGE);
+            }
+            buttonTransaksi.setEnabled(true); 
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
@@ -554,8 +595,18 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonClearActionPerformed
 
     private void buttonTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTransaksiActionPerformed
-        // TODO add your handling code here:
+        buttonTransaksi.setEnabled(false);
+        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, true);
+        fieldIDPasien.setText(antrian.getId_Pasien());
     }//GEN-LAST:event_buttonTransaksiActionPerformed
+
+    private void buttonPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPasienActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(0, true);
+    }//GEN-LAST:event_buttonPasienActionPerformed
 
     
     private void setComboboxLayanan(){
@@ -590,6 +641,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JButton buttonHapusLayanan;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonNext;
+    private javax.swing.JButton buttonPasien;
     private javax.swing.JButton buttonPrint;
     private javax.swing.JButton buttonProcess;
     private javax.swing.JButton buttonSearch;
@@ -599,7 +651,9 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JTextField fieldHarga;
     private javax.swing.JTextField fieldIDPasien;
     private javax.swing.JTextField fieldIDTransaksi;
+    private javax.swing.JTextField fieldIdPasienA;
     private javax.swing.JTextField fieldKeterangan;
+    private javax.swing.JTextField fieldNamaPasienA;
     private javax.swing.JTextField fieldNoDetailLayanan;
     private javax.swing.JTextField fieldTotalHarga;
     private javax.swing.JLabel jLabel1;
@@ -617,8 +671,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tabelLayanan;
     // End of variables declaration//GEN-END:variables
 
