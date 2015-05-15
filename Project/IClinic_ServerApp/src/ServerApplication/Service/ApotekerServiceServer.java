@@ -372,19 +372,14 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO resep (ID_RESEP,ID_REKAM,TOTAL_HARGA) values(?,?,?,?,?,?,?,?)"
+                    "INSERT INTO resep (ID_RESEP,ID_REKAM,TOTAL_HARGA) values(?,?,?)"
             );
             statement.setString(1, resep.getId_Resep());
             statement.setString(2, resep.getId_Rekam());
             statement.setInt(3, resep.getTotal_Harga());
 
             statement.executeUpdate();
-            ResultSet result = statement.getGeneratedKeys();
-            if (result.next()) {
-                resep.setId_Resep(result.getString(1));
-            }
-            result.close();
-            return resep;
+            
         } catch (SQLException exception) {
             exception.printStackTrace();
             return null;
@@ -397,6 +392,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 }
             }
         }
+        return resep;
     }
 
     public void updateObat_resep(Obat_resep resep) throws RemoteException {
@@ -724,19 +720,21 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
         System.out.println(number);
         if (number.equals("")) {
-            nomerBaru = "DR001";
+            nomerBaru = "DR0001";
         } else {
             String[] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5];
+            String numbersebelumnya = pisah[2]+pisah[3] + pisah[4] + pisah[5];
             numberBaru = Integer.parseInt(numbersebelumnya) + 1;
             String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol = "";
             if (pisah1.length == 1) {
-                nol = "00";
+                nol = "000";
             } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
                 nol = "0";
             }
-            nomerBaru = "R" + nol + numberBaru;
+            nomerBaru = "DR" + nol + numberBaru;
         }
         System.out.println(nomerBaru);
         return nomerBaru;
@@ -763,16 +761,21 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
         System.out.println(number);
         if (number.equals("")) {
-            nomerBaru = "RSP001";
+            nomerBaru = "R0001";
         } else {
             String[] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5];
+            for (int i = 0; i < pisah.length; i++) {
+                System.out.println(pisah[i]);
+            }
+            String numbersebelumnya = pisah[1] + pisah[2] + pisah[3] + pisah[4];
             numberBaru = Integer.parseInt(numbersebelumnya) + 1;
             String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol = "";
             if (pisah1.length == 1) {
-                nol = "00";
+                nol = "000";
             } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
                 nol = "0";
             }
             nomerBaru = "R" + nol + numberBaru;
