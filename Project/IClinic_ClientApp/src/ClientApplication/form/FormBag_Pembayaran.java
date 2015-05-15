@@ -179,7 +179,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel2.setText("Daftar Pembayaran");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(590, 180, 220, 24);
+        jLabel2.setBounds(590, 180, 220, 22);
 
         button_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Exit.png"))); // NOI18N
         getContentPane().add(button_Exit);
@@ -188,7 +188,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Resep.setText("RESEP");
         getContentPane().add(Label_Resep);
-        Label_Resep.setBounds(40, 380, 230, 24);
+        Label_Resep.setBounds(40, 380, 230, 22);
 
         TextField_Resep.setEditable(false);
         TextField_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -198,7 +198,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Lab.setText("LAB");
         getContentPane().add(Label_Lab);
-        Label_Lab.setBounds(40, 420, 230, 24);
+        Label_Lab.setBounds(40, 420, 230, 22);
 
         TextField_Lab.setEditable(false);
         TextField_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -208,7 +208,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Usg.setText("USG");
         getContentPane().add(Label_Usg);
-        Label_Usg.setBounds(40, 460, 230, 24);
+        Label_Usg.setBounds(40, 460, 230, 22);
 
         TextField_Usg.setEditable(false);
         TextField_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -218,7 +218,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_Kecantikan.setText("KECANTIKAN");
         getContentPane().add(Label_Kecantikan);
-        Label_Kecantikan.setBounds(40, 500, 230, 24);
+        Label_Kecantikan.setBounds(40, 500, 230, 22);
 
         TextField_Kecantikan.setEditable(false);
         TextField_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -228,7 +228,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_totalPembayaran.setText("TOTAL PEMBAYARAN");
         getContentPane().add(Label_totalPembayaran);
-        Label_totalPembayaran.setBounds(40, 540, 230, 24);
+        Label_totalPembayaran.setBounds(40, 540, 230, 22);
 
         TextField_totalPembayaran.setEditable(false);
         TextField_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -242,12 +242,12 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Button_search);
-        Button_search.setBounds(460, 170, 40, 33);
+        Button_search.setBounds(460, 170, 40, 36);
 
         Label_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPasien.setText("ID PASIEN");
         getContentPane().add(Label_idPasien);
-        Label_idPasien.setBounds(40, 170, 150, 24);
+        Label_idPasien.setBounds(40, 170, 150, 22);
 
         TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         getContentPane().add(TextField_idPasien);
@@ -256,7 +256,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_namaPasien.setText("NAMA PASIEN");
         getContentPane().add(Label_namaPasien);
-        Label_namaPasien.setBounds(40, 210, 150, 24);
+        Label_namaPasien.setBounds(40, 210, 150, 22);
 
         TextField_namaPasien.setEditable(false);
         TextField_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -266,7 +266,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_idPembayaran.setText("ID PEMBAYARAN");
         getContentPane().add(Label_idPembayaran);
-        Label_idPembayaran.setBounds(40, 260, 230, 24);
+        Label_idPembayaran.setBounds(40, 260, 230, 22);
 
         TextField_idPembayaran.setEditable(false);
         TextField_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -276,7 +276,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_tglPembayaran.setText("TGL PEMBAYARAN");
         getContentPane().add(Label_tglPembayaran);
-        Label_tglPembayaran.setBounds(40, 300, 230, 24);
+        Label_tglPembayaran.setBounds(40, 300, 230, 22);
 
         Table_Bahan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Table_Bahan.setModel(new javax.swing.table.DefaultTableModel(
@@ -305,7 +305,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_RekamMedis.setText("REKAM MEDIS");
         getContentPane().add(Label_RekamMedis);
-        Label_RekamMedis.setBounds(40, 340, 230, 24);
+        Label_RekamMedis.setBounds(40, 340, 230, 22);
 
         TextField_RekamMedis.setEditable(false);
         TextField_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -315,7 +315,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Label_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         Label_status.setText("STATUS");
         getContentPane().add(Label_status);
-        Label_status.setBounds(40, 580, 230, 24);
+        Label_status.setBounds(40, 580, 230, 22);
 
         TextField_status.setEditable(false);
         TextField_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N

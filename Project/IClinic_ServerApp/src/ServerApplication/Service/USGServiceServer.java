@@ -68,7 +68,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -91,7 +91,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             antrian.setId_Pasien("salah");
             return antrian;  
         }
-=======
+//=======
 //        PreparedStatement statement = null;
 //        try {
 //            statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -114,8 +114,8 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //            antrian.setId_Pasien("salah");
 //            return antrian;  
 //        }
-        return null;
->>>>>>> Stashed changes
+//        return null;
+//>>>>>>> Stashed changes
 }
     public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
         PreparedStatement statement = null;
