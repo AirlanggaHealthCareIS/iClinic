@@ -4,6 +4,7 @@
  */
 package ServerApplication.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
 import Database.Entity.Pembayaran;
@@ -110,6 +111,41 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
     }
 
+    public Antrian insertAntrian(Antrian antrian) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Insert pada Tindakan");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "INSERT INTO antrian (ID_ANTRIAN, ID_PASIEN, JENIS_ANTRIAN, KETERANGAN) "
+                    + " values(?,?,?,'BELUM')"
+            );
+            statement.setString(1, antrian.getId_Antrian());
+            statement.setString(2, antrian.getId_Pasien());
+            statement.setString(3,antrian.getJenis_Antrian());
+//            statement.setString(4, antrian.getKeterangan());
+
+            statement.executeUpdate();
+//           ResultSet result = statement.getGeneratedKeys();
+//           if(result.next()){
+//               rekam_medis.setId_Rekam_Medis(result.getString(1));
+//           }
+            //      result.close();
+            return antrian;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+
+                }
+            }
+        }
+    }
+    
     public void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Rekam Medis");
@@ -215,14 +251,14 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
     }
 
-    public List<Tindakan_detailTindakan> getDetailTindakan() throws RemoteException {
+    public List<Tindakan_detailTindakan> getDetailTindakanById(String ID_Rekam) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Rekam Medis");
+        System.out.println("Client Melakukan Proses Get All sesuai ID Rekam pada Tabel Detail Tindakan");
         Statement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().createStatement();
 
-            ResultSet result = statement.executeQuery("SELECT * FROM DETAIL_TINDAKAN");
+            ResultSet result = statement.executeQuery("SELECT * FROM DETAIL_TINDAKAN WHERE ID_REKAM = '" + ID_Rekam + "'");
 
             List<Tindakan_detailTindakan> list = new ArrayList<Tindakan_detailTindakan>();
 
@@ -320,27 +356,6 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         return product_code;
     }
 
-    public String getSelectedTambahan(String Layanan_tambahan) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Nama Diagnosa");
-        Statement state = null;
-        ResultSet rs = null;
-        String layananTambahan = "";
-        try {
-            state = (Statement) DatabaseUtilities.getConnection().createStatement();
-         //   String sql = "SELECT ID_DIAGNOSA FROM DIAGNOSA WHERE  DIAGNOSA = '" + namaDiagnosa + "'";
-           // rs = state.executeQuery(sql);
-            while (rs.next()) {
-                layananTambahan = rs.getString(1);
-            }
-        } catch (Throwable ex) {
-            System.out.println(ex);
-        }
-        System.out.println(layananTambahan);
-        
-        
-        return Layanan_tambahan;
-        
-    }
     
     public String getIdDiagnosa(String namaDiagnosa) throws RemoteException {
         System.out.println("Client Melakukan Proses Get Nama Diagnosa");
@@ -491,7 +506,49 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         return nomerBaru;
 
     }
+public String getAutoNumberAntrian() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Antrian");
+        Statement state = null;
+        ResultSet rs = null;
 
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_ANTRIAN FROM antrian ORDER BY ID_REKAM DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "ANT0001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5] + pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "000";
+            } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
+                nol = "0";
+            }
+            nomerBaru = "ANT" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+
+    }
+    
+    
     public int getTarif(String nama_tindakan) throws RemoteException {
         System.out.println("Client Melakukan Proses Get Jenis Tarif");
         Statement state = null;

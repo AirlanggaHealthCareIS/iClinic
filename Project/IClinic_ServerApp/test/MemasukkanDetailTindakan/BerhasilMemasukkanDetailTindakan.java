@@ -91,8 +91,8 @@ public class BerhasilMemasukkanDetailTindakan implements Remote{
         System.out.println("getDetailTindakan");
         DokterServiceServer instance = new DokterServiceServer();
         List<Tindakan_detailTindakan> expResult = null;
-        List<Tindakan_detailTindakan> result = instance.getDetailTindakan();
-        assertEquals(expResult, result);
+    //    List<Tindakan_detailTindakan> result = instance.getDetailTindakanById(String ID_Rekam);
+      //  assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
