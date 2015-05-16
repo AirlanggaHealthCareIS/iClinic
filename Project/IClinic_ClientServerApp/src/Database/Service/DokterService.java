@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
 import Database.Entity.Pembayaran;
@@ -28,7 +29,7 @@ public interface DokterService extends Remote {
 
     Tindakan_detailTindakan getDetailTindakan(String No_Detail) throws RemoteException;
 
-    List<Tindakan_detailTindakan> getDetailTindakan() throws RemoteException;
+    List<Tindakan_detailTindakan> getDetailTindakanById(String ID_Rekam) throws RemoteException;
 
     void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException;
 
@@ -43,8 +44,8 @@ public interface DokterService extends Remote {
     String getIdDiagnosa(String namaDiagnosa) throws RemoteException;
 
     String getRekamMedisbyID () throws RemoteException;
-    
-    String getSelectedTambahan (String Layanan_tambahan)throws RemoteException;
+
+    Antrian insertAntrian (Antrian antrian) throws RemoteException;
 //    List getAntrian() throws RemoteException;
 
     List getNamaTindakan() throws RemoteException;
@@ -57,6 +58,8 @@ public interface DokterService extends Remote {
 
     String getAutoNumberIdRekam() throws RemoteException;
 
+    String getAutoNumberAntrian () throws RemoteException;
+    
     int getTarif(String nama_tindakan) throws RemoteException;
 
     //-----Pembayaran-----//
