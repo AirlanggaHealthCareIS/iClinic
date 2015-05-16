@@ -49,29 +49,29 @@ public class FormUSG extends javax.swing.JFrame {
 
     private FormUSG f;
     private USGService usgService;
-    private TableModelUSG tableModelusg;
+    private TableModelUSG tableModelusg =  new TableModelUSG();
     private Image image;
-    public Boolean pasienExist = false;
-    public int number = 1;
+//    public Boolean pasienExist = false;
+//    public int number = 1;
     private USG usg;
     private Antrian antrian= new Antrian();
     private String idusgisi = "";
     private String tgl = "";
     public FormUSG(USGService usgService) {
         this.usgService = usgService;
-        initComponents();
-        isiid();
-        cekdaftar();
-        isitanggal();
-        harga.setText("100000");
-//        antrian();
-//        try {
-//            tableModelusg.setData(this.usgService.getUSG());
-//        } catch (RemoteException exception) {
-//            exception.printStackTrace();
-//        }
-//
 //        initComponents();
+//        isiid();
+//        cekdaftar();
+//        isitanggal();
+//        antrian();
+        try {
+            tableModelusg.setData(this.usgService.getUSG());
+        } catch (RemoteException exception) {
+            exception.printStackTrace();
+        }
+
+        initComponents();
+        harga.setText("100000");
 //        setLocationRelativeTo(this);
 //        setSize(665, 730);
 //    }
@@ -96,7 +96,7 @@ public class FormUSG extends javax.swing.JFrame {
     public void clear() {
         idpasien.setText("");
         idusg.setText("");
-        tanggal.setText("");
+//        tanggal.setText("");
         hasil.setText("");
         deskrip.setText("");
         harga.setText("");
@@ -105,11 +105,11 @@ public class FormUSG extends javax.swing.JFrame {
     private void cekdaftar(){
         try {
             antrian=usgService.Id_pasien(antrian);
-            if(antrian.getId_Pasien()=="kosong"){
+             if("kosong".equals(antrian.getId_Pasien())){
                 JOptionPane.showMessageDialog(null, "Belum ada antrian");
                 cekdaftar();
             }
-            else if(antrian.getId_Pasien()=="salah"){
+            else if("salah".equals(antrian.getId_Pasien())){
                 JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
                 cekdaftar();
             }
@@ -117,7 +117,7 @@ public class FormUSG extends javax.swing.JFrame {
                 idpasien.setText(antrian.getId_Pasien());
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
     }
     
@@ -136,23 +136,23 @@ public class FormUSG extends javax.swing.JFrame {
         }
     }
     
-    public void isitanggal(){
-        Date date=new Date();
-        tgl=tgl+Integer.toString(date.getDate())+"/";
-        if(date.getMonth()<9){
-            tgl=tgl+"0"+Integer.toString((date.getMonth()+1))+"/";
-        }
-        else{
-             tgl=tgl+Integer.toString((date.getMonth()+1))+"/";
-        }
-        tgl=tgl+Integer.toString((date.getYear()+1900));
-        tanggal.setText(tgl);
-    }
+//    public void isitanggal(){
+//        Date date=new Date();
+//        tgl=tgl+Integer.toString(date.getDate())+"/";
+//        if(date.getMonth()<9){
+//            tgl=tgl+"0"+Integer.toString((date.getMonth()+1))+"/";
+//        }
+//        else{
+//             tgl=tgl+Integer.toString((date.getMonth()+1))+"/";
+//        }
+//        tgl=tgl+Integer.toString((date.getYear()+1900));
+//        tanggal.setText(tgl);
+//    }
     
     public void kembaliawal() {
         isiid();
         cekdaftar();
-        isitanggal();
+//        isitanggal();
         harga.setText("100000");
     }
 //    public void antrian() {
@@ -303,6 +303,11 @@ public class FormUSG extends javax.swing.JFrame {
         tanggal.setBounds(700, 170, 160, 20);
 
         Mulai.setText("Mulai");
+        Mulai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MulaiActionPerformed(evt);
+            }
+        });
         jPanel1.add(Mulai);
         Mulai.setBounds(260, 240, 80, 23);
 
@@ -347,16 +352,12 @@ public class FormUSG extends javax.swing.JFrame {
                  objectOutputStream.flush();
                  objectOutputStream.close();
              } catch (IOException ex) {
-                 Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
                }
             usg.setHasil(outputStream.toByteArray());
            }
         try {
             usgService.insertUSG(usg);
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
             
         String idPasien = idpasien.getText();
         String idTransaksiUSG = idusg.getText();
@@ -372,17 +373,21 @@ public class FormUSG extends javax.swing.JFrame {
                 usgService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idTransaksiUSG, hargaTransaksi);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
         try {
             usgService.ubahstatus(antrian.getId_Antrian());
              JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
              JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
         clear();
         kembaliawal();
+         } catch (RemoteException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
+               }
+        }
     }//GEN-LAST:event_simpanActionPerformed
 
     private void pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihActionPerformed
@@ -401,6 +406,11 @@ public class FormUSG extends javax.swing.JFrame {
             hasil.setText(file.getAbsolutePath());
         }
     }//GEN-LAST:event_pilihActionPerformed
+
+    private void MulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiActionPerformed
+        isiid();
+        cekdaftar();// TODO add your handling code here:
+    }//GEN-LAST:event_MulaiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Mulai;
