@@ -17,13 +17,13 @@ import org.junit.Test;
 
 /**
  *
- * @author S550
+ * @author Arline
  */
 public class BerhasilMelihatPasienSelanjutnya implements Remote{
-    Server server;
+//    Server server;
     
     public BerhasilMelihatPasienSelanjutnya() throws RemoteException{
-        this.server = new Server();
+//        this.server = new Server();
     }
      /**
      * Test of Id_usg method, of class USGServiceServer.
@@ -32,7 +32,7 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     public void testId_usg() throws Exception {
         System.out.println("Id_usg");
         USGServiceServer instance = new USGServiceServer();
-        String expResult = "USG0007";
+        String expResult = "USG0005";
         String result = instance.Id_usg();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -46,15 +46,12 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     public void testId_pasien() throws Exception {
         System.out.println("Id_pasien");
         Antrian antrian = new Antrian();
-        antrian.setId_Antrian("A0005");
-        antrian.setId_Pasien("P0005");
+        antrian.setId_Antrian("A0001");
+        antrian.setId_Pasien("P0001");
         antrian.setJenis_Antrian("USG");
-        antrian.setKeterangan("d");
+        antrian.setKeterangan("1");
         USGServiceServer instance = new USGServiceServer();
-        Antrian expResult =antrian;
-        Antrian result = new Antrian();
-        result = instance.Id_pasien(result);
-        assertEquals(expResult, result);
+        assertEquals(antrian, instance.Id_pasien(antrian));
         // TODO review the generated test code and remove the default call to fail.
     }
 
@@ -64,7 +61,7 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     @Test
     public void testUbahstatus() throws Exception {
         System.out.println("ubahstatus");
-        String ID_ANTRIAN = "A0005";
+        String ID_ANTRIAN = "A0001";
         USGServiceServer instance = new USGServiceServer();
         instance.ubahstatus(ID_ANTRIAN);
         // TODO review the generated test code and remove the default call to fail.

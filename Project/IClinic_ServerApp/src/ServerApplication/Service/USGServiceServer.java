@@ -46,7 +46,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             statement.setString(5, usg.getDeskripsi());
             statement.setInt(6, usg.getHarga());
 
-//            statement.executeUpdate();
+            statement.executeUpdate();
 //            ResultSet result = statement.getGeneratedKeys();
 //            if (result.next()) {
 //                usg.setId_USG(result.getString(1));
@@ -121,8 +121,8 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE antrian SET KETERANGAN = 1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
-            statement.executeQuery();
+                    "UPDATE antrian SET KETERANGAN=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
+            statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
         }

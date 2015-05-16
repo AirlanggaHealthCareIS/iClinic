@@ -132,7 +132,7 @@ public class FormUSG extends javax.swing.JFrame {
                 idusg.setText(idusgisi);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
     }
     
@@ -332,7 +332,7 @@ public class FormUSG extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
-    if (idpasien.getText().equals("") || idusg.getText().equals("")|| tanggal.getText().equals("")|| hasil.getText().equals("") || deskrip.getText().equals("") || harga.getText().equals("")) {
+    if (idpasien.getText().equals("") || idusg.getText().equals("")|| hasil.getText().equals("") || deskrip.getText().equals("") || harga.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
    }
     else{
