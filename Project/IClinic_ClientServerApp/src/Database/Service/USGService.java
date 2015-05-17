@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface USGService extends Remote {
 
-    USG insertUSG(USG usg) throws RemoteException;
+    void insertUSG(USG usg) throws RemoteException;
 
 //    void updateUSG(USG usg) throws RemoteException;
 //

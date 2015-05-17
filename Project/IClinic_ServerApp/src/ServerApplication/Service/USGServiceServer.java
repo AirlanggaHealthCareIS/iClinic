@@ -30,7 +30,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     public USGServiceServer() throws RemoteException {
     }
 
-    public USG insertUSG(USG usg) throws RemoteException {
+    public void insertUSG(USG usg) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Insert pada Tabel usg");
 
@@ -47,15 +47,15 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             statement.setInt(6, usg.getHarga());
 
             statement.executeUpdate();
-            ResultSet result = statement.getGeneratedKeys();
-            if (result.next()) {
-                usg.setId_USG(result.getString(1));
-            }
-            result.close();
-            return usg;
+//            ResultSet result = statement.getGeneratedKeys();
+//            if (result.next()) {
+//                usg.setId_USG(result.getString(1));
+//            }
+//            result.close();
+//            return usg;
         } catch (SQLException exception) {
             exception.printStackTrace();
-            return null;
+//            return null;
         } finally {
             if (statement != null) {
                 try {
@@ -68,11 +68,11 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN=USG AND STATUS=0 ");
+                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN = 'USG' AND KETERANGAN = 0 ");
             ResultSet result = statement.executeQuery();
             if(result.first()==false){
                 antrian.setId_Pasien("kosong");
@@ -91,7 +91,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             antrian.setId_Pasien("salah");
             return antrian;  
         }
-=======
+//=======
 //        PreparedStatement statement = null;
 //        try {
 //            statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -114,15 +114,15 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //            antrian.setId_Pasien("salah");
 //            return antrian;  
 //        }
-        return null;
->>>>>>> Stashed changes
+//        return null;
+//>>>>>>> Stashed changes
 }
     public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE antrian SET STATUS=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
-            statement.executeQuery();
+                    "UPDATE antrian SET KETERANGAN=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
+            statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,7 +147,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                id++;
                usg=Integer.toString(id);
                if(usg.length()<4){
-                   for(int i=0;i<usg.length();i++){
+                   for(int i=usg.length();i<4;i++){
                        usg="0"+usg;
                    }
                }
@@ -296,9 +296,6 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         }
     }
 
-//    public USG getUSG(int Id_USG) throws RemoteException {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {

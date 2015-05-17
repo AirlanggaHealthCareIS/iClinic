@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Tiara Ratna Sari
+ * @author Arlin
  */
 public class TableModelUSG extends AbstractTableModel {
 
@@ -60,7 +60,7 @@ public class TableModelUSG extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {

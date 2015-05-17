@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2015 at 12:39 PM
+-- Generation Time: May 16, 2015 at 06:47 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -491,6 +491,7 @@ INSERT INTO `transaksi_layanan_kecantikan` (`ID_TRANSAKSI_LAYANAN`, `ID_PASIEN`,
 CREATE TABLE IF NOT EXISTS `transaksi_usg` (
   `ID_USG` varchar(10) NOT NULL,
   `ID_PASIEN` varchar(10) DEFAULT NULL,
+  `TANGGAL` varchar(30) NOT NULL,
   `HASIL` longblob,
   `HARGA` int(11) DEFAULT NULL,
   `DESKRIPSI` varchar(50) DEFAULT NULL,

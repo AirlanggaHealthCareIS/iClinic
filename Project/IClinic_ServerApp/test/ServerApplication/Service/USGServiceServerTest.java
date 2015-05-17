@@ -45,17 +45,17 @@ public class USGServiceServerTest {
     /**
      * Test of insertUSG method, of class USGServiceServer.
      */
-    @Test
-    public void testInsertUSG() throws Exception {
-        System.out.println("insertUSG");
-        USG usg = null;
-        USGServiceServer instance = new USGServiceServer();
-        USG expResult = null;
-        USG result = instance.insertUSG(usg);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testInsertUSG() throws Exception {
+//        System.out.println("insertUSG");
+//        USG usg = null;
+//        USGServiceServer instance = new USGServiceServer();
+//        USG expResult = null;
+////        USG result = instance.insertUSG(usg);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
     /**
      * Test of Id_pasien method, of class USGServiceServer.

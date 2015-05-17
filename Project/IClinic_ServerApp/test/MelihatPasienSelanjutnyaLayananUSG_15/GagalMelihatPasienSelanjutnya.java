@@ -17,13 +17,13 @@ import org.junit.Test;
 
 /**
  *
- * @author S550
+ * @author Arline
  */
 public class GagalMelihatPasienSelanjutnya implements Remote{
-    Server server;
+//    Server server;
     
     public GagalMelihatPasienSelanjutnya() throws RemoteException{
-        this.server = new Server();
+//        this.server = new Server();
     }
    /**
      * Test of Id_usg method, of class USGServiceServer.
@@ -32,7 +32,7 @@ public class GagalMelihatPasienSelanjutnya implements Remote{
     public void testId_usg() throws Exception {
         System.out.println("Id_usg");
         USGServiceServer instance = new USGServiceServer();
-        String expResult = "USG0007";
+        String expResult = "USG0005";
         String result = instance.Id_usg();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

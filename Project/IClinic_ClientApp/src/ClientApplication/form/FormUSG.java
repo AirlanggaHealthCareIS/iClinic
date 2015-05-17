@@ -49,29 +49,29 @@ public class FormUSG extends javax.swing.JFrame {
 
     private FormUSG f;
     private USGService usgService;
-    private TableModelUSG tableModelusg;
+    private TableModelUSG tableModelusg =  new TableModelUSG();
     private Image image;
-    public Boolean pasienExist = false;
-    public int number = 1;
+//    public Boolean pasienExist = false;
+//    public int number = 1;
     private USG usg;
     private Antrian antrian= new Antrian();
     private String idusgisi = "";
     private String tgl = "";
     public FormUSG(USGService usgService) {
         this.usgService = usgService;
-        initComponents();
-        isiid();
-        cekdaftar();
-        isitanggal();
-        harga.setText("100000");
-//        antrian();
-//        try {
-//            tableModelusg.setData(this.usgService.getUSG());
-//        } catch (RemoteException exception) {
-//            exception.printStackTrace();
-//        }
-//
 //        initComponents();
+//        isiid();
+//        cekdaftar();
+//        isitanggal();
+//        antrian();
+        try {
+            tableModelusg.setData(this.usgService.getUSG());
+        } catch (RemoteException exception) {
+            exception.printStackTrace();
+        }
+
+        initComponents();
+        harga.setText("100000");
 //        setLocationRelativeTo(this);
 //        setSize(665, 730);
 //    }
@@ -96,7 +96,7 @@ public class FormUSG extends javax.swing.JFrame {
     public void clear() {
         idpasien.setText("");
         idusg.setText("");
-        tanggal.setText("");
+//        tanggal.setText("");
         hasil.setText("");
         deskrip.setText("");
         harga.setText("");
@@ -105,11 +105,11 @@ public class FormUSG extends javax.swing.JFrame {
     private void cekdaftar(){
         try {
             antrian=usgService.Id_pasien(antrian);
-            if(antrian.getId_Pasien()=="kosong"){
+             if("kosong".equals(antrian.getId_Pasien())){
                 JOptionPane.showMessageDialog(null, "Belum ada antrian");
                 cekdaftar();
             }
-            else if(antrian.getId_Pasien()=="salah"){
+            else if("salah".equals(antrian.getId_Pasien())){
                 JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
                 cekdaftar();
             }
@@ -117,7 +117,7 @@ public class FormUSG extends javax.swing.JFrame {
                 idpasien.setText(antrian.getId_Pasien());
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
     }
     
@@ -132,27 +132,27 @@ public class FormUSG extends javax.swing.JFrame {
                 idusg.setText(idusgisi);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
     }
     
-    public void isitanggal(){
-        Date date=new Date();
-        tgl=tgl+Integer.toString(date.getDate())+"/";
-        if(date.getMonth()<9){
-            tgl=tgl+"0"+Integer.toString((date.getMonth()+1))+"/";
-        }
-        else{
-             tgl=tgl+Integer.toString((date.getMonth()+1))+"/";
-        }
-        tgl=tgl+Integer.toString((date.getYear()+1900));
-        tanggal.setText(tgl);
-    }
+//    public void isitanggal(){
+//        Date date=new Date();
+//        tgl=tgl+Integer.toString(date.getDate())+"/";
+//        if(date.getMonth()<9){
+//            tgl=tgl+"0"+Integer.toString((date.getMonth()+1))+"/";
+//        }
+//        else{
+//             tgl=tgl+Integer.toString((date.getMonth()+1))+"/";
+//        }
+//        tgl=tgl+Integer.toString((date.getYear()+1900));
+//        tanggal.setText(tgl);
+//    }
     
     public void kembaliawal() {
         isiid();
         cekdaftar();
-        isitanggal();
+//        isitanggal();
         harga.setText("100000");
     }
 //    public void antrian() {
@@ -196,12 +196,9 @@ public class FormUSG extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         idpasien = new javax.swing.JTextField();
-        namapasien = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tanggal = new javax.swing.JTextField();
         idusg = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         hasil = new javax.swing.JTextField();
@@ -213,7 +210,9 @@ public class FormUSG extends javax.swing.JFrame {
         harga = new javax.swing.JTextField();
         simpan = new javax.swing.JButton();
         panelGambar1 = new ClientApplication.form.PanelGambar();
-        jLabel6 = new javax.swing.JLabel();
+        tanggal = new javax.swing.JFormattedTextField();
+        Mulai = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,33 +220,29 @@ public class FormUSG extends javax.swing.JFrame {
 
         jLabel2.setText("ID Pasien              :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 200, 100, 14);
+        jLabel2.setBounds(150, 200, 110, 14);
 
-        jLabel3.setText("Nama Pasien         :");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(150, 230, 100, 14);
+        idpasien.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idpasien);
-        idpasien.setBounds(250, 200, 80, 20);
-        jPanel1.add(namapasien);
-        namapasien.setBounds(250, 230, 180, 20);
+        idpasien.setBounds(260, 200, 80, 20);
 
         jLabel4.setText("Tanggal Pemerikasaan :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(530, 170, 130, 14);
+        jLabel4.setBounds(570, 170, 130, 14);
 
-        jLabel5.setText("ID USG          :");
+        jLabel5.setText("ID USG                  :");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(530, 200, 70, 14);
-        jPanel1.add(tanggal);
-        tanggal.setBounds(660, 170, 80, 20);
+        jLabel5.setBounds(150, 170, 110, 14);
+
+        idusg.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idusg);
-        idusg.setBounds(660, 200, 80, 20);
+        idusg.setBounds(260, 170, 80, 20);
 
         jLabel7.setText("Hasil pemeriksaan :");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(150, 270, 100, 14);
+        jLabel7.setBounds(150, 300, 110, 14);
         jPanel1.add(hasil);
-        hasil.setBounds(250, 270, 260, 20);
+        hasil.setBounds(260, 300, 170, 20);
 
         pilih.setText("Pilih");
         pilih.addActionListener(new java.awt.event.ActionListener() {
@@ -256,24 +251,26 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(pilih);
-        pilih.setBounds(530, 270, 51, 23);
+        pilih.setBounds(440, 300, 80, 23);
 
         jLabel8.setText("Keterangan          :");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(150, 300, 100, 14);
+        jLabel8.setBounds(590, 300, 100, 14);
 
         deskrip.setColumns(20);
         deskrip.setRows(5);
         jScrollPane1.setViewportView(deskrip);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(250, 300, 260, 150);
+        jScrollPane1.setBounds(700, 300, 260, 150);
 
-        jLabel11.setText("Total transasksi :");
+        jLabel11.setText("Total transasksi    :");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(150, 470, 90, 14);
+        jLabel11.setBounds(590, 480, 110, 14);
+
+        harga.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(harga);
-        harga.setBounds(250, 470, 140, 20);
+        harga.setBounds(700, 480, 140, 20);
 
         simpan.setText("Simpan");
         simpan.addActionListener(new java.awt.event.ActionListener() {
@@ -282,26 +279,41 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(simpan);
-        simpan.setBounds(520, 510, 67, 23);
+        simpan.setBounds(880, 560, 80, 23);
 
         javax.swing.GroupLayout panelGambar1Layout = new javax.swing.GroupLayout(panelGambar1);
         panelGambar1.setLayout(panelGambar1Layout);
         panelGambar1Layout.setHorizontalGroup(
             panelGambar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
         panelGambar1Layout.setVerticalGroup(
             panelGambar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 250, Short.MAX_VALUE)
         );
 
         jPanel1.add(panelGambar1);
-        panelGambar1.setBounds(690, 260, 190, 200);
+        panelGambar1.setBounds(260, 330, 260, 250);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(0, 0, 1270, 730);
+        tanggal.setEditable(false);
+        tanggal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        tanggal.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tanggal.setValue(new java.util.Date());
+        jPanel1.add(tanggal);
+        tanggal.setBounds(700, 170, 160, 20);
+
+        Mulai.setText("Mulai");
+        Mulai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MulaiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Mulai);
+        Mulai.setBounds(260, 240, 80, 23);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1270, 740);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -320,7 +332,7 @@ public class FormUSG extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
-    if (idpasien.getText().equals("") || idusg.getText().equals("")|| tanggal.getText().equals("")|| hasil.getText().equals("") || deskrip.getText().equals("") || harga.getText().equals("")) {
+    if (idpasien.getText().equals("") || idusg.getText().equals("")|| hasil.getText().equals("") || deskrip.getText().equals("") || harga.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
    }
     else{
@@ -340,16 +352,12 @@ public class FormUSG extends javax.swing.JFrame {
                  objectOutputStream.flush();
                  objectOutputStream.close();
              } catch (IOException ex) {
-                 Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
                }
             usg.setHasil(outputStream.toByteArray());
            }
         try {
             usgService.insertUSG(usg);
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
             
         String idPasien = idpasien.getText();
         String idTransaksiUSG = idusg.getText();
@@ -365,17 +373,21 @@ public class FormUSG extends javax.swing.JFrame {
                 usgService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idTransaksiUSG, hargaTransaksi);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
         }
         try {
             usgService.ubahstatus(antrian.getId_Antrian());
              JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
              JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
         clear();
         kembaliawal();
+         } catch (RemoteException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
+               }
+        }
     }//GEN-LAST:event_simpanActionPerformed
 
     private void pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihActionPerformed
@@ -395,27 +407,31 @@ public class FormUSG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pilihActionPerformed
 
+    private void MulaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MulaiActionPerformed
+        isiid();
+        cekdaftar();// TODO add your handling code here:
+    }//GEN-LAST:event_MulaiActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Mulai;
     private javax.swing.JTextArea deskrip;
     private javax.swing.JTextField harga;
     private javax.swing.JTextField hasil;
     private javax.swing.JTextField idpasien;
     private javax.swing.JTextField idusg;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField namapasien;
     private ClientApplication.form.PanelGambar panelGambar1;
     private javax.swing.JButton pilih;
     private javax.swing.JButton simpan;
-    private javax.swing.JTextField tanggal;
+    private javax.swing.JFormattedTextField tanggal;
     // End of variables declaration//GEN-END:variables
 
 }
