@@ -315,6 +315,11 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         buttonPrint.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonPrint.setText("Print");
+        buttonPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPrintActionPerformed(evt);
+            }
+        });
 
         buttonProcess.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonProcess.setText("Process");
@@ -567,6 +572,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                     detail.setKeterangan(listDetail.get(i).getKeterangan());
                     kecantikanService.insertKecantikan_detailLayanan(detail);
                 }
+                JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -606,7 +612,12 @@ public class FormKecantikan extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(0);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(0, true);
+        this.buttonClearActionPerformed(evt);
     }//GEN-LAST:event_buttonPasienActionPerformed
+
+    private void buttonPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrintActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonPrintActionPerformed
 
     
     private void setComboboxLayanan(){

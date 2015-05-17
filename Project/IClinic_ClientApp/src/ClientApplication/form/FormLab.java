@@ -66,7 +66,7 @@ public class FormLab extends javax.swing.JFrame {
     public FormLab(LabService labService) {
         this.labService = labService;
         initComponents();
-        isiid();
+        //isiid();
         cekdaftar();
         isitanggal();
         

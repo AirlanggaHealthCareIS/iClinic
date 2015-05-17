@@ -407,10 +407,10 @@ PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "SELECT NAMA_PASIEN FROM `pasien` WHERE ID_PASIEN = ?");
-            statement.setString(0, Id_Pasien);
+            statement.setString(1, Id_Pasien);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
-                String nama = result.getString(0);
+                String nama = result.getString(1);
                 return nama;
             }
             else{
