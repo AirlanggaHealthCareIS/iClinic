@@ -4,6 +4,7 @@
  */
 package Database.Service;
 
+import Database.Entity.Antrian;
 import Database.Entity.Kecantikan_detailLayanan;
 import Database.Entity.Kecantikan_tabelMaster;
 import Database.Entity.Kecantikan_transaksiLayanan;
@@ -42,6 +43,12 @@ public interface KecantikanService extends Remote {
     List<Kecantikan_transaksiLayanan> getKecantikan_transaksiLayanan() throws RemoteException;
     
     Boolean getPasienbyId(String Id_Pasien) throws RemoteException;
+    
+    Antrian getNextPasienKecantikan() throws RemoteException;
+    
+    String getPasienName(String Id_Pasien) throws RemoteException;
+    
+    Boolean updateAntrian(Antrian antrian) throws RemoteException;
     
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
