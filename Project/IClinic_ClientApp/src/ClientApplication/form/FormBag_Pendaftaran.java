@@ -181,9 +181,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(40, 440, 90, 20);
         jPanel3.add(field_ID_Pasien);
-        field_ID_Pasien.setBounds(140, 290, 150, 20);
+        field_ID_Pasien.setBounds(140, 290, 150, 28);
         jPanel3.add(field_No_Ktp);
-        field_No_Ktp.setBounds(140, 320, 150, 20);
+        field_No_Ktp.setBounds(140, 320, 150, 28);
 
         field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,13 +191,13 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Nama_Pasien);
-        field_Nama_Pasien.setBounds(140, 350, 150, 20);
+        field_Nama_Pasien.setBounds(140, 350, 150, 28);
         jPanel3.add(field_Alamat);
-        field_Alamat.setBounds(140, 380, 150, 20);
+        field_Alamat.setBounds(140, 380, 150, 28);
         jPanel3.add(field_Usia);
-        field_Usia.setBounds(140, 470, 150, 20);
+        field_Usia.setBounds(140, 470, 150, 28);
         jPanel3.add(field_No_HP);
-        field_No_HP.setBounds(140, 500, 150, 20);
+        field_No_HP.setBounds(140, 500, 150, 28);
 
         jLabel8.setText("Usia");
         jPanel3.add(jLabel8);
@@ -213,12 +213,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         box_Jenis_Kelamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         box_Jenis_Kelamin.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         box_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +227,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Jenis_Kelamin);
-        box_Jenis_Kelamin.setBounds(140, 530, 150, 20);
+        box_Jenis_Kelamin.setBounds(140, 530, 150, 27);
 
         Formatted_Tanggal_Daftar.setEditable(false);
         Formatted_Tanggal_Daftar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
@@ -238,11 +238,11 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Formatted_Tanggal_Daftar);
-        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 20);
+        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 28);
 
         jLabel11.setText("Tanggal Lahir");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(40, 410, 80, 14);
+        jLabel11.setBounds(40, 410, 80, 16);
 
         jButton1.setText("Daftar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +253,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jButton1);
         jButton1.setBounds(140, 590, 150, 50);
         jPanel3.add(DateChooser_Tanggal_Lahir);
-        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
+        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 28);
 
         tabel_pasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,11 +282,16 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jLabel12.setText("Pilihan Layanan");
         jPanel3.add(jLabel12);
-        jLabel12.setBounds(40, 560, 80, 14);
+        jLabel12.setBounds(40, 560, 80, 16);
 
         box_Pilihan_Layanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokter Umum", "Dokter Gigi", "Dokter Kulit", "Dokter Kandungan", "USG", "Lab", "Kecantikan" }));
+        box_Pilihan_Layanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_Pilihan_LayananActionPerformed(evt);
+            }
+        });
         jPanel3.add(box_Pilihan_Layanan);
-        box_Pilihan_Layanan.setBounds(140, 560, 150, 20);
+        box_Pilihan_Layanan.setBounds(140, 560, 150, 27);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -380,7 +385,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Cari);
-        Cari.setBounds(970, 490, 120, 27);
+        Cari.setBounds(970, 490, 120, 29);
 
         jTextFieldAlamat.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldAlamat.addActionListener(new java.awt.event.ActionListener() {
@@ -396,14 +401,14 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(Alamat);
         Alamat.setBounds(40, 390, 80, 20);
 
-        PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokter Umum", "Dokter Gigi", "Dokter Kulit", "Dokter Kandungan", "USG", "Lab", "Kecantikan" }));
         PilihLayanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PilihLayananActionPerformed(evt);
             }
         });
         jPanel1.add(PilihLayanan);
-        PilihLayanan.setBounds(840, 430, 56, 20);
+        PilihLayanan.setBounds(840, 430, 140, 27);
 
         Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
         Button_search.addActionListener(new java.awt.event.ActionListener() {
@@ -412,7 +417,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Button_search);
-        Button_search.setBounds(320, 310, 40, 33);
+        Button_search.setBounds(320, 310, 40, 36);
 
         PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         PilihLayananLabel.setText("Pilih Layanan");
@@ -527,6 +532,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PilihLayananActionPerformed
 
+  
     private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
        if(TextField_idPasien.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
@@ -596,6 +602,10 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         }
    }
     }//GEN-LAST:event_UpdateMouseClicked
+
+    private void box_Pilihan_LayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_Pilihan_LayananActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_Pilihan_LayananActionPerformed
 
     
 
