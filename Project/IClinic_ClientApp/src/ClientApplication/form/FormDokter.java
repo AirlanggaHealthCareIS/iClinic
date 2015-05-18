@@ -59,10 +59,16 @@ public class FormDokter extends javax.swing.JFrame {
     private TableModelObat_resep tabelModelResep = new TableModelObat_resep();
     private Pasien pasien;
     int total = 0;
+    String idResep = "";
 
-    public FormDokter(DokterService dokterService) {
-
+    public FormDokter(DokterService dokterService) throws RemoteException {
         this.dokterService = dokterService;
+        try {
+            tabelModelDetailResep.setData(dokterService.getAllDetailResepByIDResep(null));
+            idResep = dokterService.getAutoNumberResep();
+        } catch(RemoteException exception){
+            exception.printStackTrace();
+        }
         
         initComponents();
         setLocationRelativeTo(this);
@@ -337,6 +343,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         tambahObatDetailResepButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         tambahObatDetailResepButton.setText("Tambah Obat");
+        tambahObatDetailResepButton.setEnabled(false);
         tambahObatDetailResepButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahObatDetailResepButtonActionPerformed(evt);
@@ -345,6 +352,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         hapusObatDetailResepButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         hapusObatDetailResepButton.setText("Hapus Obat");
+        hapusObatDetailResepButton.setEnabled(false);
         hapusObatDetailResepButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hapusObatDetailResepButtonActionPerformed(evt);
@@ -537,7 +545,7 @@ public class FormDokter extends javax.swing.JFrame {
                     .addComponent(totalHargaObatLabel)
                     .addComponent(prosesButton)
                     .addComponent(printButton))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dokterTabPane.addTab("Resep", resepPanel);
@@ -1033,12 +1041,10 @@ public class FormDokter extends javax.swing.JFrame {
         } else {
             try {
                 Obat_detailResep detailResep = new Obat_detailResep();
-                detailResep.setId_Resep(idResepField.getText());
+                detailResep.setId_Resep(idResep);
                 detailResep.setNo_Detail_Resep(dokterService.getAutoNumberDetailResep());
                 String id_obat = dokterService.getIDObat(namaObatComboBox.getSelectedItem().toString());
-                System.out.println(namaObatComboBox.getSelectedItem().toString());
                 detailResep.setId_Obat(id_obat);
-                System.out.println(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
                 detailResep.setJumlah(jumlahSpinner.getValue().toString());
@@ -1119,19 +1125,27 @@ public class FormDokter extends javax.swing.JFrame {
         } else {
             try {
                 Obat_resep resep = new Obat_resep();
-                resep.setId_Resep(dokterService.getAutoNumberResep());
-                idResepField.setText(resep.getId_Resep());
-                resep.setId_Rekam(dokterService.getLastIDRekamMedis());
+                resep.setId_Resep(idResep);
+                System.out.println(idResep);
+                
+                String lastIDRM = dokterService.getLastIDRekamMedis();
+                System.out.println(lastIDRM);
+                resep.setId_Rekam(lastIDRM);
                 resep.setTotal_Harga(0);
                 dokterService.insertResep(resep);
-
+                simpanDetailResepButton.setEnabled(false);
+                tambahObatDetailResepButton.setEnabled(true);
+                hapusObatDetailResepButton.setEnabled(true);
+            } catch(RemoteException exception){
+                exception.printStackTrace();
+            }
+            
+            try {
                 Obat_detailResep detailResep = new Obat_detailResep();
-                detailResep.setId_Resep(idResepField.getText());
+                detailResep.setId_Resep(idResep);
                 detailResep.setNo_Detail_Resep(dokterService.getAutoNumberDetailResep());
                 String id_obat = dokterService.getIDObat(namaObatComboBox.getSelectedItem().toString());
-                System.out.println(namaObatComboBox.getSelectedItem().toString());
                 detailResep.setId_Obat(id_obat);
-                System.out.println(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
                 detailResep.setJumlah(jumlahSpinner.getValue().toString());

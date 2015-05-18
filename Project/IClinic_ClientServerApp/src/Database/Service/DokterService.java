@@ -86,7 +86,7 @@ public interface DokterService extends Remote {
     
     List<Obat_detailResep> getAllDetailResepByIDResep(String ID_RESEP) throws RemoteException;
     
-    void insertResep(Obat_resep resep) throws RemoteException;
+    Obat_resep insertResep(Obat_resep resep) throws RemoteException;
     
     List getNamaObat() throws RemoteException;
 

@@ -900,8 +900,9 @@ public String getAutoNumberAntrian() throws RemoteException {
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO detail_resep (NO_DETAIL_RESEP, ID_RESEP, ID_OBAT, TAKARAN, PEMAKAIAN, JUMLAH,KETERANGAN)"
-                            + "VALUES (?,?,?,?,?,?,?)");
+                    "INSERT INTO detail_resep (NO_DETAIL_RESEP, ID_RESEP, ID_OBAT,TAKARAN, PEMAKAIAN, JUMLAH, KETERANGAN)"
+                            + "VALUES(?,?,?,?,?,?,?)"
+            );
             statement.setString(1, detailResep.getNo_Detail_Resep());
             statement.setString(2, detailResep.getId_Resep());
             statement.setString(3, detailResep.getId_Obat());
@@ -921,7 +922,7 @@ public String getAutoNumberAntrian() throws RemoteException {
                 try {
                     statement.close();
                 } catch (SQLException exception) {
-                    exception.printStackTrace();
+
                 }
             }
         }
@@ -1021,31 +1022,34 @@ public String getAutoNumberAntrian() throws RemoteException {
         }
     }
 
-    public void insertResep(Obat_resep resep) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Resep");
+    public Obat_resep insertResep(Obat_resep resep) throws RemoteException {
+        System.out.println("Client Melakukan Proses Insert pada Tabel Obat");
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO resep (ID_RESEP, ID_REKAM, TOTAL_HARGA)"
-                            + "VALUES (?,?,?)");
+                    "INSERT INTO resep (ID_RESEP, ID_REKAM, TOTAL_HARGA) VALUES(?,?,?)"
+            );
             statement.setString(1, resep.getId_Resep());
-            statement.setString(2, resep.getId_Resep());
+            statement.setString(2, resep.getId_Rekam());
             statement.setInt(3, resep.getTotal_Harga());
 
             statement.executeUpdate();
+            
         } catch (SQLException exception) {
             exception.printStackTrace();
+            return null;
         } finally {
             if (statement != null) {
                 try {
                     statement.close();
                 } catch (SQLException exception) {
-                    exception.printStackTrace();
+
                 }
             }
         }
+        return resep;
     }
-
+    
     public List getNamaObat() throws RemoteException {
         Statement statement = null;
         ResultSet resultSet = null;

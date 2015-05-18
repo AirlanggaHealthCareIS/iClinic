@@ -41,7 +41,7 @@ public class FormLogin extends javax.swing.JFrame {
     final DokterService service4 = (DokterService) registry.lookup("service4");
     final KecantikanService service5 = (KecantikanService) registry.lookup("service5");
     final Kepala_KlinikService service6 = (Kepala_KlinikService) registry.lookup("service6");
-    final LabService service7 = (LabService) registry.lookup("service7");
+//    final LabService service7 = (LabService) registry.lookup("service7");
     final USGService service8 = (USGService) registry.lookup("service8");
     
     FormAdministrator formAdministrator = new FormAdministrator(service);
@@ -51,7 +51,7 @@ public class FormLogin extends javax.swing.JFrame {
     FormDokter formDokter = new FormDokter(service4);
     FormKecantikan formKecantikan = new FormKecantikan(service5);
     FormKepala_Klinik formKepala_Klinik = new FormKepala_Klinik(service6);
-    FormLab formLab = new FormLab(service7);
+//    FormLab formLab = new FormLab(service7);
     FormUSG formUSG = new FormUSG(service8);
  
     private AdministratorService administratorService;
@@ -149,11 +149,11 @@ public class FormLogin extends javax.swing.JFrame {
                     formApoteker.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("LAB")){
-                    JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Laboratorium!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    formLab.setVisible(true);
-                    this.dispose();    
-                }
+//                else if(administratorService.loginUser(user, pass).equals("LAB")){
+//                    JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Laboratorium!", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                    formLab.setVisible(true);
+//                    this.dispose();    
+//                }
                 else if(administratorService.loginUser(user, pass).equals("USG")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian USG!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formUSG.setVisible(true);
