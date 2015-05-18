@@ -5,6 +5,7 @@
 
 package ServerApplication.Service;
 
+import Database.Entity.Obat_detailResep;
 import Database.Entity.Pembayaran;
 import Database.Service.Bag_PembayaranService;
 import ServerApplication.Utilities.DatabaseUtilities;
@@ -181,39 +182,29 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             statement = DatabaseUtilities.getConnection().createStatement();
 
             ResultSet result = statement.executeQuery(
-                "SELECT pasien.NAMA_PASIEN, pembayaran.*, transaksi_usg.HARGA AS TOTAL_USG, "+
-                "transaksi_lab.TOTAL_HARGA AS TOTAL_LAB, resep.TOTAL_HARGA AS TOTAL_RESEP, "+
-                "rekam_medis.TOTAL_HARGA AS TOTAL_REKAM, transaksi_layanan_kecantikan.TOTAL_HARGA AS TOTAL_KECANTIKAN \n" +
+                "SELECT pasien.NAMA_PASIEN, pembayaran.ID_PEMBAYARAN, transaksi_usg.HARGA AS USG, transaksi_lab.TOTAL_HARGA AS LAB, resep.TOTAL_HARGA AS RESEP, rekam_medis.TOTAL_HARGA AS REKAM, transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS \n" +
                 "FROM pasien,transaksi_usg,transaksi_lab,resep,rekam_medis,transaksi_layanan_kecantikan,pembayaran\n" +
-                "WHERE pasien.ID_PASIEN = pembayaran.ID_PASIEN\n" +
+                "WHERE pembayaran.STATUS = 'HUTANG'\n" +
+                "AND pasien.ID_PASIEN = pembayaran.ID_PASIEN\n" +
                 "AND pembayaran.ID_USG = transaksi_usg.ID_USG\n" +
                 "AND pembayaran.ID_TRANSAKSI_LAB = transaksi_lab.ID_TRANSAKSI_LAB\n" +
                 "AND pembayaran.ID_RESEP = resep.ID_RESEP\n" +
                 "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM\n" +
                 "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
 
-
           List<Pembayaran> list = new ArrayList<Pembayaran>();
 
           while(result.next()){
                 Pembayaran pembayaran = new Pembayaran();
                 pembayaran.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
-                pembayaran.setID_PASIEN(result.getString("ID_PASIEN"));
                 pembayaran.setNAMA_PASIEN(result.getString("NAMA_PASIEN"));
-                pembayaran.setID_USG(result.getString("ID_USG"));
-                pembayaran.setTOTAL_USG(result.getInt("TOTAL_USG"));
-                pembayaran.setID_TRANSAKSI_LAB(result.getString("ID_TRANSAKSI_LAB"));
-                pembayaran.setTOTAL_LAB(result.getInt("TOTAL_LAB"));
-                pembayaran.setID_RESEP(result.getString("ID_RESEP"));
-                pembayaran.setTOTAL_RESEP(result.getInt("TOTAL_RESEP"));
-                pembayaran.setID_REKAM(result.getString("ID_REKAM"));
-                pembayaran.setTOTAL_REKAM(result.getInt("TOTAL_REKAM"));
-                pembayaran.setID_TRANSAKSI_LAYANAN(result.getString("ID_TRANSAKSI_LAYANAN"));
-                pembayaran.setTOTAL_KECANTIKAN(result.getInt("TOTAL_KECANTIKAN"));
-                pembayaran.setTANGGAL_BAYAR(result.getDate("TANGGAL_BAYAR"));
+                pembayaran.setTOTAL_USG(result.getInt("USG"));
+                pembayaran.setTOTAL_LAB(result.getInt("LAB"));
+                pembayaran.setTOTAL_RESEP(result.getInt("RESEP"));
+                pembayaran.setTOTAL_REKAM(result.getInt("REKAM"));
+                pembayaran.setTOTAL_KECANTIKAN(result.getInt("KECANTIKAN"));
                 pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
                 pembayaran.setSTATUS(result.getString("STATUS"));
-                list.add(pembayaran);
           }
 
           result.close();
@@ -233,6 +224,43 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
+    
+    public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
+        Statement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().createStatement();
+            ResultSet result = statement.executeQuery("SELECT * FROM detail_resep WHERE ID_RESEP = '" + ID_RESEP + "'");
+            List<Obat_detailResep> list = new ArrayList<Obat_detailResep>();
+
+            while (result.next()) {
+                Obat_detailResep detail_resep = new Obat_detailResep();
+                detail_resep.setNo_Detail_Resep(result.getString("No_Detail_Resep"));
+                detail_resep.setId_Resep(result.getString("Id_Resep"));
+                detail_resep.setId_Obat(result.getString("Id_Obat"));
+                detail_resep.setTakaran(result.getString("Takaran"));
+                detail_resep.setPemakaian(result.getString("Pemakaian"));
+                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setKeterangan(result.getString("Keterangan"));
+                list.add(detail_resep);
+            }
+
+            result.close();
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    
     public Pembayaran MeihatTotalTagihanPembayaran(String Id_Pasien, java.util.Date tanggal) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
@@ -284,7 +312,40 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
-    
+    public Pembayaran MeihatTotalTagihanPembelianObat(String Id_Resep) throws RemoteException {
+    System.out.println("Client Melakukan Proses Get By Id pada Tabel Resep");
+
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                 "SELECT * FROM pembayaran WHERE ID_RESEP = '"+Id_Resep+"'");
+            ResultSet result = statement.executeQuery();
+
+            Pembayaran pembayaran = null;
+
+            if(result.next()){
+                pembayaran = new Pembayaran();
+                pembayaran.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
+                pembayaran.setTANGGAL_BAYAR(result.getDate("TANGGAL_BAYAR"));
+                pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaran.setSTATUS(result.getString("STATUS"));
+            }
+
+            return pembayaran;
+
+        }catch(SQLException exception){
+          exception.printStackTrace();
+          return null;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                   exception.printStackTrace();
+                }
+            }
+        }
+    }
     public String updateStatusPembayaran(String Id_Pembayaran, String Status) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
@@ -333,5 +394,6 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         System.out.println(newStatus);
         return newStatus;
     }
+
 
 }
