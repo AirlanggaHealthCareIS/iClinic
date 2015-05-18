@@ -66,10 +66,6 @@ public class FormLab extends javax.swing.JFrame {
     public FormLab(LabService labService) {
         this.labService = labService;
         initComponents();
-        //isiid();
-        cekdaftar();
-        isitanggal();
-        
         
         try {
             listLaboratorium = labService.getLaboratorium();
@@ -85,60 +81,7 @@ public class FormLab extends javax.swing.JFrame {
                 String harga = Integer.toString(listLaboratorium.get(comboJenisPem.getSelectedIndex()).getHarga());
                 hargaJenis.setText(harga);
             }
-        });
-    }
-     private void cekdaftar(){
-        try {
-            antrian=labService.Id_pasien(antrian);
-            if(antrian.getId_Pasien()=="kosong"){
-                JOptionPane.showMessageDialog(null, "Belum ada antrian");
-                cekdaftar();
-            }
-            else if(antrian.getId_Pasien()=="salah"){
-                JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
-                cekdaftar();
-            }
-            else{
-                idPasien.setText(antrian.getId_Pasien());
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void isiid(){
-        try {
-            idLabisi=labService.Id_Lab();
-            if(idLabisi=="salah"){
-                JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
-                isiid();
-            }
-            else{
-                idLab.setText(idLabisi);
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void isitanggal(){
-        Date date=new Date();
-        tggl=tggl+Integer.toString(date.getDate())+"/";
-        if(date.getMonth()<9){
-            tggl=tggl+"0"+Integer.toString((date.getMonth()+1))+"/";
-        }
-        else{
-             tggl=tggl+Integer.toString((date.getMonth()+1))+"/";
-        }
-        tggl=tggl+Integer.toString((date.getYear()+1900));
-        tanggal.setText(tggl);
-    }
-    
-    public void kembaliawal() {
-        isiid();
-        cekdaftar();
-        isitanggal();
-      
+        });   
     }
     @SuppressWarnings("unchecked")
     
@@ -714,6 +657,34 @@ public class FormLab extends javax.swing.JFrame {
 
     private void pasinSelanjutnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasinSelanjutnyaActionPerformed
         // TODO add your handling code here:
+         try {          
+            if(antrian!=null){
+                antrian.setKeterangan("sudah dilayani");
+                boolean update = labService.updateAntrian(antrian);
+                if(update=false){
+                    JOptionPane.showMessageDialog(this,"Status antrian tidak dapat diupdate !", "UPDATE GAGAL", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            antrian = new Antrian();
+            antrian = labService.getPasienSelanjutnya();
+            if(antrian != null){
+                idPasien.setText(antrian.getId_Pasien());
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Tidak ada antrian di layanan Laboratorium !", "ANTRIAN KOSONG", JOptionPane.ERROR_MESSAGE);
+            }
+            String nama = labService.getNamaPasien(antrian.getId_Pasien());
+            if (nama != null){
+                namaPasien.setText(nama);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" JOptionPane.ERROR_MESSAGE);
+            }
+            dataTransaksi.setEnabled(true); 
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_pasinSelanjutnyaActionPerformed
 
     private void dataTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTransaksiActionPerformed

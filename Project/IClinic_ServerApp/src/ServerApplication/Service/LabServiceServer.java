@@ -488,42 +488,116 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
+     public Antrian getPasienSelanjutnya() throws RemoteException {
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN=USG AND STATUS=0 ");
+                    "SELECT * FROM `antrian` WHERE JENIS_ANTRIAN = 'laboratorium' AND KETERANGAN = 'belum dilayani'");
             ResultSet result = statement.executeQuery();
-            if(result.first()==false){
-                antrian.setId_Pasien("kosong");
+            Antrian antrian = null;
+            if (result.next()) {
+                antrian = new Antrian();
+                antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
+                antrian.setId_Pasien(result.getString("ID_PASIEN"));
+                antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
+                antrian.setKeterangan(result.getString("KETERANGAN"));
                 return antrian;
             }
             else{
-               result.first();
-               antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
-               antrian.setId_Pasien(result.getString("ID_PASIEN"));
-               antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
-               antrian.setKeterangan(result.getString("KETERANGAN"));
-               return antrian;
+                return null;    
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
-            antrian.setId_Pasien("salah");
-            return antrian;  
+        } catch (SQLException exception) {
+            System.out.println(exception.toString());
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
         }
-}
-    public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
+    }
+      public Boolean getPasienId(String Id_Pasien) throws RemoteException {
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE antrian SET STATUS=1 WHERE ID_ANTRIAN = '"+ID_ANTRIAN+"'");
-            statement.executeQuery();
-        } catch (SQLException ex) {
-            Logger.getLogger(LabServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+                    "SELECT * FROM pasien WHERE ID_PASIEN = ?");
+            statement.setString(1, Id_Pasien);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        } catch (SQLException exception) {
+
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
+        }
+      }
+
+    public String getNamaPasien(String Id_Pasien) throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT NAMA_PASIEN FROM `pasien` WHERE ID_PASIEN = ?");
+            statement.setString(1, Id_Pasien);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                String nama = result.getString(1);
+                return nama;
+            }
+            else{
+                return null;    
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.toString());
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                }
+            }
         }
     }
 
-    public String Id_Lab() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Boolean updateAntrian(Antrian antrian) throws RemoteException {
+        PreparedStatement statement = null;
+        try{
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+            "UPDATE `antrian` SET `ID_PASIEN`= ?,`JENIS_ANTRIAN`= ?,`KETERANGAN`= ? WHERE `ID_ANTRIAN` = ?");    
+            statement.setString(1, antrian.getId_Pasien());
+            statement.setString(2, antrian.getJenis_Antrian());
+            statement.setString(3, antrian.getKeterangan());
+            statement.setString(4, antrian.getId_Antrian());
+            statement.executeUpdate();
+            return true;
+        }catch(SQLException exception){
+            exception.printStackTrace();
+            return false;
+        }finally{
+            if(statement != null){
+                try{
+                    statement.close();
+                }catch(SQLException exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
-}
+
+
+
+    }
+
