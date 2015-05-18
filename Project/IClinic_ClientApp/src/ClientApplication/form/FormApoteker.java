@@ -797,6 +797,9 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
      Obat_resep resep = new Obat_resep();
         try {
             apotekerService.updateResep(resep, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
+         //-----Pembayaran-----//
+            String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
+            apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
