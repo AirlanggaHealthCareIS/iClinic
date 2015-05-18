@@ -68,75 +68,78 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setSize(1278, 730);
 
-        Table_Bahan.setModel(tableModelPembayaran);
-        Table_Bahan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        Table_Pembayaran.setModel(tableModelPembayaran);
+        Table_Pembayaran.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             public void valueChanged(ListSelectionEvent e) {
-                int row = Table_Bahan.getSelectedRow();
+                int row = Table_Pembayaran.getSelectedRow();
                 if(row != -1){
                     Pembayaran pembayaran = tableModelPembayaran.get(row);
-                    TextField_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
-                    TextField_tglPembayaran.setValue(pembayaran.getTANGGAL_BAYAR());
-                    TextField_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
-                    TextField_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
-                    TextField_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
-                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
-                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
-                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
-                    TextField_status.setText(String.valueOf(pembayaran.getSTATUS()));
+                    FieldLk_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
+                    FieldLk_tglPembayaran.setValue(pembayaran.getTANGGAL_BAYAR());
+                    FieldLk_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
+                    FieldLk_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
+                    FieldLk_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
+                    FieldLk_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
+                    FieldLk_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
+                    FieldLk_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
+                    FieldLk_status.setText(String.valueOf(pembayaran.getSTATUS()));
                 }
             }
         });
     }
     
     public void clear(){
-        TextField_idPasien.setText("");
-        TextField_namaPasien.setText("");
-        TextField_idPembayaran.setText("");
-        TextField_tglPembayaran.setText("");
-        TextField_Kecantikan.setText("");
-        TextField_Lab.setText("");
-        TextField_RekamMedis.setText("");
-        TextField_Resep.setText("");
-        TextField_Usg.setText("");
-        TextField_totalPembayaran.setText("");
-        TextField_status.setText("");
+        FieldLk_idPasien.setText("");
+        FieldLk_namaPasien.setText("");
+        FieldLk_idPembayaran.setText("");
+        FieldLk_tglPembayaran.setText("");
+        FieldLk_Kecantikan.setText("");
+        FieldLk_Lab.setText("");
+        FieldLk_RekamMedis.setText("");
+        FieldLk_Resep.setText("");
+        FieldLk_Usg.setText("");
+        FieldLk_totalPembayaran.setText("");
+        FieldLk_status.setText("");
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        button_Tunai = new javax.swing.JButton();
-        button_Debit = new javax.swing.JButton();
-        button_Print = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        Lk_idPasien = new javax.swing.JLabel();
+        Lk_namaPasien = new javax.swing.JLabel();
+        FieldLk_namaPasien = new javax.swing.JTextField();
+        ButtonLk_search = new javax.swing.JButton();
+        FieldLk_idPasien = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        button_Exit = new javax.swing.JButton();
-        Label_Resep = new javax.swing.JLabel();
-        TextField_Resep = new javax.swing.JTextField();
-        Label_Lab = new javax.swing.JLabel();
-        TextField_Lab = new javax.swing.JTextField();
-        Label_Usg = new javax.swing.JLabel();
-        TextField_Usg = new javax.swing.JTextField();
-        Label_Kecantikan = new javax.swing.JLabel();
-        TextField_Kecantikan = new javax.swing.JTextField();
-        Label_totalPembayaran = new javax.swing.JLabel();
-        TextField_totalPembayaran = new javax.swing.JTextField();
-        Button_search = new javax.swing.JButton();
-        Label_idPasien = new javax.swing.JLabel();
-        TextField_idPasien = new javax.swing.JTextField();
-        Label_namaPasien = new javax.swing.JLabel();
-        TextField_namaPasien = new javax.swing.JTextField();
-        Label_idPembayaran = new javax.swing.JLabel();
-        TextField_idPembayaran = new javax.swing.JTextField();
-        Label_tglPembayaran = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table_Bahan = new javax.swing.JTable();
-        TextField_tglPembayaran = new javax.swing.JFormattedTextField();
-        Label_RekamMedis = new javax.swing.JLabel();
-        TextField_RekamMedis = new javax.swing.JTextField();
-        Label_status = new javax.swing.JLabel();
-        TextField_status = new javax.swing.JTextField();
+        Table_Pembayaran = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        Lk_Kecantikan = new javax.swing.JLabel();
+        Lk_idPembayaran = new javax.swing.JLabel();
+        FieldLk_Lab = new javax.swing.JTextField();
+        Lk_Resep = new javax.swing.JLabel();
+        FieldLk_RekamMedis = new javax.swing.JTextField();
+        FieldLk_tglPembayaran = new javax.swing.JFormattedTextField();
+        Lk_status = new javax.swing.JLabel();
+        Lk_totalPembayaran = new javax.swing.JLabel();
+        Lk_tglPembayaran = new javax.swing.JLabel();
+        FieldLk_totalPembayaran = new javax.swing.JTextField();
+        FieldLk_idPembayaran = new javax.swing.JTextField();
+        Lk_Usg = new javax.swing.JLabel();
+        FieldLk_Kecantikan = new javax.swing.JTextField();
+        FieldLk_status = new javax.swing.JTextField();
+        FieldLk_Resep = new javax.swing.JTextField();
+        Lk_Lab = new javax.swing.JLabel();
+        Lk_RekamMedis = new javax.swing.JLabel();
+        FieldLk_Usg = new javax.swing.JTextField();
+        buttonLk_Tunai = new javax.swing.JButton();
+        buttonLk_Debit = new javax.swing.JButton();
+        buttonLk_Print = new javax.swing.JButton();
+        buttonLk_Exit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,140 +149,50 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        button_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
-        button_Tunai.setEnabled(false);
-        button_Tunai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_TunaiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(button_Tunai);
-        button_Tunai.setBounds(40, 620, 65, 65);
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
 
-        button_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
-        button_Debit.setEnabled(false);
-        button_Debit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_DebitActionPerformed(evt);
-            }
-        });
-        getContentPane().add(button_Debit);
-        button_Debit.setBounds(150, 620, 65, 65);
+        Lk_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_idPasien.setText("ID PASIEN");
+        jPanel3.add(Lk_idPasien);
+        Lk_idPasien.setBounds(30, 0, 110, 30);
 
-        button_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Printer.png"))); // NOI18N
-        button_Print.setEnabled(false);
-        button_Print.addActionListener(new java.awt.event.ActionListener() {
+        Lk_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_namaPasien.setText("NAMA PASIEN");
+        jPanel3.add(Lk_namaPasien);
+        Lk_namaPasien.setBounds(30, 40, 110, 18);
+
+        FieldLk_namaPasien.setEditable(false);
+        FieldLk_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_namaPasien.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_namaPasien.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel3.add(FieldLk_namaPasien);
+        FieldLk_namaPasien.setBounds(140, 40, 175, 20);
+
+        ButtonLk_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        ButtonLk_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_PrintActionPerformed(evt);
+                ButtonLk_searchActionPerformed(evt);
             }
         });
-        getContentPane().add(button_Print);
-        button_Print.setBounds(450, 620, 65, 65);
+        jPanel3.add(ButtonLk_search);
+        ButtonLk_search.setBounds(330, 0, 40, 30);
+        jPanel3.add(FieldLk_idPasien);
+        FieldLk_idPasien.setBounds(140, 0, 170, 30);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(30, 170, 480, 70);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel2.setText("Daftar Pembayaran");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(590, 180, 220, 22);
+        jPanel5.add(jLabel2);
+        jLabel2.setBounds(30, 10, 220, 20);
 
-        button_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Exit.png"))); // NOI18N
-        getContentPane().add(button_Exit);
-        button_Exit.setBounds(1180, 620, 65, 65);
-
-        Label_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_Resep.setText("RESEP");
-        getContentPane().add(Label_Resep);
-        Label_Resep.setBounds(40, 380, 230, 22);
-
-        TextField_Resep.setEditable(false);
-        TextField_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_Resep);
-        TextField_Resep.setBounds(280, 380, 250, 30);
-
-        Label_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_Lab.setText("LAB");
-        getContentPane().add(Label_Lab);
-        Label_Lab.setBounds(40, 420, 230, 22);
-
-        TextField_Lab.setEditable(false);
-        TextField_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_Lab);
-        TextField_Lab.setBounds(280, 420, 250, 30);
-
-        Label_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_Usg.setText("USG");
-        getContentPane().add(Label_Usg);
-        Label_Usg.setBounds(40, 460, 230, 22);
-
-        TextField_Usg.setEditable(false);
-        TextField_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_Usg);
-        TextField_Usg.setBounds(280, 460, 250, 30);
-
-        Label_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_Kecantikan.setText("KECANTIKAN");
-        getContentPane().add(Label_Kecantikan);
-        Label_Kecantikan.setBounds(40, 500, 230, 22);
-
-        TextField_Kecantikan.setEditable(false);
-        TextField_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_Kecantikan);
-        TextField_Kecantikan.setBounds(280, 500, 250, 30);
-
-        Label_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_totalPembayaran.setText("TOTAL PEMBAYARAN");
-        getContentPane().add(Label_totalPembayaran);
-        Label_totalPembayaran.setBounds(40, 540, 230, 22);
-
-        TextField_totalPembayaran.setEditable(false);
-        TextField_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_totalPembayaran);
-        TextField_totalPembayaran.setBounds(280, 540, 250, 30);
-
-        Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
-        Button_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_searchActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Button_search);
-        Button_search.setBounds(460, 170, 40, 36);
-
-        Label_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_idPasien.setText("ID PASIEN");
-        getContentPane().add(Label_idPasien);
-        Label_idPasien.setBounds(40, 170, 150, 22);
-
-        TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_idPasien);
-        TextField_idPasien.setBounds(200, 170, 250, 30);
-
-        Label_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_namaPasien.setText("NAMA PASIEN");
-        getContentPane().add(Label_namaPasien);
-        Label_namaPasien.setBounds(40, 210, 150, 22);
-
-        TextField_namaPasien.setEditable(false);
-        TextField_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_namaPasien);
-        TextField_namaPasien.setBounds(200, 210, 250, 30);
-
-        Label_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_idPembayaran.setText("ID PEMBAYARAN");
-        getContentPane().add(Label_idPembayaran);
-        Label_idPembayaran.setBounds(40, 260, 230, 22);
-
-        TextField_idPembayaran.setEditable(false);
-        TextField_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_idPembayaran);
-        TextField_idPembayaran.setBounds(280, 260, 250, 30);
-
-        Label_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_tglPembayaran.setText("TGL PEMBAYARAN");
-        getContentPane().add(Label_tglPembayaran);
-        Label_tglPembayaran.setBounds(40, 300, 230, 22);
-
-        Table_Bahan.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Table_Bahan.setModel(new javax.swing.table.DefaultTableModel(
+        Table_Pembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        Table_Pembayaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -290,37 +203,163 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(Table_Bahan);
+        jScrollPane1.setViewportView(Table_Pembayaran);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(590, 230, 660, 380);
+        jPanel5.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 30, 660, 370);
 
-        TextField_tglPembayaran.setEditable(false);
-        TextField_tglPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        TextField_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        TextField_tglPembayaran.setValue(new java.util.Date());
-        getContentPane().add(TextField_tglPembayaran);
-        TextField_tglPembayaran.setBounds(280, 300, 250, 30);
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(540, 170, 720, 420);
 
-        Label_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_RekamMedis.setText("REKAM MEDIS");
-        getContentPane().add(Label_RekamMedis);
-        Label_RekamMedis.setBounds(40, 340, 230, 22);
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(null);
 
-        TextField_RekamMedis.setEditable(false);
-        TextField_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_RekamMedis);
-        TextField_RekamMedis.setBounds(280, 340, 250, 30);
+        Lk_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_Kecantikan.setText("KECANTIKAN");
+        jPanel4.add(Lk_Kecantikan);
+        Lk_Kecantikan.setBounds(60, 210, 150, 18);
 
-        Label_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        Label_status.setText("STATUS");
-        getContentPane().add(Label_status);
-        Label_status.setBounds(40, 580, 230, 22);
+        Lk_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_idPembayaran.setText("ID PEMBAYARAN");
+        jPanel4.add(Lk_idPembayaran);
+        Lk_idPembayaran.setBounds(30, 20, 175, 18);
 
-        TextField_status.setEditable(false);
-        TextField_status.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        getContentPane().add(TextField_status);
-        TextField_status.setBounds(280, 580, 250, 30);
+        FieldLk_Lab.setEditable(false);
+        FieldLk_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_Lab.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_Lab.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_Lab);
+        FieldLk_Lab.setBounds(210, 150, 175, 20);
+
+        Lk_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_Resep.setText("RESEP");
+        jPanel4.add(Lk_Resep);
+        Lk_Resep.setBounds(60, 120, 150, 18);
+
+        FieldLk_RekamMedis.setEditable(false);
+        FieldLk_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_RekamMedis.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_RekamMedis.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_RekamMedis);
+        FieldLk_RekamMedis.setBounds(210, 90, 175, 20);
+
+        FieldLk_tglPembayaran.setEditable(false);
+        FieldLk_tglPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        FieldLk_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        FieldLk_tglPembayaran.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_tglPembayaran.setMinimumSize(new java.awt.Dimension(20, 175));
+        FieldLk_tglPembayaran.setValue(new java.util.Date());
+        jPanel4.add(FieldLk_tglPembayaran);
+        FieldLk_tglPembayaran.setBounds(250, 50, 175, 20);
+
+        Lk_status.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_status.setText("STATUS");
+        jPanel4.add(Lk_status);
+        Lk_status.setBounds(30, 280, 175, 18);
+
+        Lk_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_totalPembayaran.setText("TOTAL PEMBAYARAN");
+        jPanel4.add(Lk_totalPembayaran);
+        Lk_totalPembayaran.setBounds(30, 250, 175, 18);
+
+        Lk_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_tglPembayaran.setText("TGL PEMBAYARAN");
+        jPanel4.add(Lk_tglPembayaran);
+        Lk_tglPembayaran.setBounds(30, 50, 175, 18);
+
+        FieldLk_totalPembayaran.setEditable(false);
+        FieldLk_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_totalPembayaran.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_totalPembayaran.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_totalPembayaran);
+        FieldLk_totalPembayaran.setBounds(250, 250, 175, 20);
+
+        FieldLk_idPembayaran.setEditable(false);
+        FieldLk_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_idPembayaran.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_idPembayaran.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_idPembayaran);
+        FieldLk_idPembayaran.setBounds(250, 20, 175, 20);
+
+        Lk_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_Usg.setText("USG");
+        jPanel4.add(Lk_Usg);
+        Lk_Usg.setBounds(60, 180, 150, 18);
+
+        FieldLk_Kecantikan.setEditable(false);
+        FieldLk_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_Kecantikan.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_Kecantikan.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_Kecantikan);
+        FieldLk_Kecantikan.setBounds(210, 210, 175, 20);
+
+        FieldLk_status.setEditable(false);
+        FieldLk_status.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_status.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_status.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_status);
+        FieldLk_status.setBounds(250, 280, 175, 20);
+
+        FieldLk_Resep.setEditable(false);
+        FieldLk_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_Resep.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_Resep.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_Resep);
+        FieldLk_Resep.setBounds(210, 120, 175, 20);
+
+        Lk_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_Lab.setText("LAB");
+        jPanel4.add(Lk_Lab);
+        Lk_Lab.setBounds(60, 150, 150, 18);
+
+        Lk_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        Lk_RekamMedis.setText("REKAM MEDIS");
+        jPanel4.add(Lk_RekamMedis);
+        Lk_RekamMedis.setBounds(60, 90, 150, 18);
+
+        FieldLk_Usg.setEditable(false);
+        FieldLk_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        FieldLk_Usg.setMaximumSize(new java.awt.Dimension(20, 175));
+        FieldLk_Usg.setMinimumSize(new java.awt.Dimension(20, 175));
+        jPanel4.add(FieldLk_Usg);
+        FieldLk_Usg.setBounds(210, 180, 175, 20);
+
+        buttonLk_Tunai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Tunai.png"))); // NOI18N
+        buttonLk_Tunai.setEnabled(false);
+        buttonLk_Tunai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLk_TunaiActionPerformed(evt);
+            }
+        });
+        jPanel4.add(buttonLk_Tunai);
+        buttonLk_Tunai.setBounds(30, 310, 65, 65);
+
+        buttonLk_Debit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Debit.png"))); // NOI18N
+        buttonLk_Debit.setEnabled(false);
+        buttonLk_Debit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLk_DebitActionPerformed(evt);
+            }
+        });
+        jPanel4.add(buttonLk_Debit);
+        buttonLk_Debit.setBounds(120, 310, 65, 65);
+
+        buttonLk_Print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Printer.png"))); // NOI18N
+        buttonLk_Print.setEnabled(false);
+        buttonLk_Print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLk_PrintActionPerformed(evt);
+            }
+        });
+        jPanel4.add(buttonLk_Print);
+        buttonLk_Print.setBounds(390, 310, 65, 65);
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(30, 260, 480, 390);
+
+        buttonLk_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Exit.png"))); // NOI18N
+        getContentPane().add(buttonLk_Exit);
+        buttonLk_Exit.setBounds(1190, 440, 65, 65);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Background/10.jpg"))); // NOI18N
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -336,26 +375,26 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Button_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_searchActionPerformed
-        if(TextField_idPasien.getText().equals("")){
+    private void ButtonLk_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLk_searchActionPerformed
+        if(FieldLk_idPasien.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID PASIEN");
         }
-        else if( !TextField_idPasien.getText().equals("")){
+        else if( !FieldLk_idPasien.getText().equals("")){
             try {
-                Date tanggal = (Date)TextField_tglPembayaran.getValue();
-                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(TextField_idPasien.getText(), tanggal);
+                Date tanggal = (Date)FieldLk_tglPembayaran.getValue();
+                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(FieldLk_idPasien.getText(), tanggal);
                 if(pembayaran != null){
-                    TextField_namaPasien.setText(pembayaran.getNAMA_PASIEN());
-                    TextField_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
-                    TextField_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
-                    TextField_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
-                    TextField_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
-                    TextField_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
-                    TextField_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
-                    TextField_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
-                    TextField_status.setText(String.valueOf(pembayaran.getSTATUS()));
-                    button_Tunai.setEnabled(true);
-                    button_Debit.setEnabled(true);
+                    FieldLk_namaPasien.setText(pembayaran.getNAMA_PASIEN());
+                    FieldLk_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
+                    FieldLk_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
+                    FieldLk_Lab.setText(String.valueOf(pembayaran.getTOTAL_LAB()));
+                    FieldLk_Resep.setText(String.valueOf(pembayaran.getTOTAL_RESEP()));
+                    FieldLk_RekamMedis.setText(String.valueOf(pembayaran.getTOTAL_REKAM()));
+                    FieldLk_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
+                    FieldLk_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
+                    FieldLk_status.setText(String.valueOf(pembayaran.getSTATUS()));
+                    buttonLk_Tunai.setEnabled(true);
+                    buttonLk_Debit.setEnabled(true);
                 }
                 else if(pembayaran == null){
                     JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
@@ -364,23 +403,23 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
-    }//GEN-LAST:event_Button_searchActionPerformed
+    }//GEN-LAST:event_ButtonLk_searchActionPerformed
 
-    private void button_TunaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_TunaiActionPerformed
-        if(TextField_idPembayaran.getText().equals("")){
+    private void buttonLk_TunaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLk_TunaiActionPerformed
+        if(FieldLk_idPembayaran.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Anda Harus mencari ID PASIEN terlebih dahulu");
         }
-        else if(!TextField_idPembayaran.getText().equals("")){
+        else if(!FieldLk_idPembayaran.getText().equals("")){
             String Status = "LUNAS TUNAI";
             try {
-                String statusBaru = bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
-                String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
+                String statusBaru = bag_PembayaranService.updateStatusPembayaran(FieldLk_idPembayaran.getText(), Status);
+                String newStatus = bag_PembayaranService.getStatus(FieldLk_idPembayaran.getText());
                 if(newStatus.equals("LUNAS TUNAI")){
                     JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Tunai Berhasil");
-                    TextField_status.setText(newStatus);
-                    button_Print.setEnabled(true);
-                    button_Tunai.setEnabled(false);
-                    button_Debit.setEnabled(false);
+                    FieldLk_status.setText(newStatus);
+                    buttonLk_Print.setEnabled(true);
+                    buttonLk_Tunai.setEnabled(false);
+                    buttonLk_Debit.setEnabled(false);
                 }
                 else if(newStatus.equals("HUTANG")){
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Tunai Tidak Berhasil");
@@ -389,23 +428,23 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
-    }//GEN-LAST:event_button_TunaiActionPerformed
+    }//GEN-LAST:event_buttonLk_TunaiActionPerformed
 
-    private void button_DebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DebitActionPerformed
-        if(TextField_idPembayaran.getText().equals("")){
+    private void buttonLk_DebitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLk_DebitActionPerformed
+        if(FieldLk_idPembayaran.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Anda Harus mencari ID PASIEN terlebih dahulu");
         }
-        else if(!TextField_idPembayaran.getText().equals("")){
+        else if(!FieldLk_idPembayaran.getText().equals("")){
             String Status = "LUNAS DEBIT";
             try {
-                bag_PembayaranService.updateStatusPembayaran(TextField_idPembayaran.getText(), Status);
-                String newStatus = bag_PembayaranService.getStatus(TextField_idPembayaran.getText());
+                bag_PembayaranService.updateStatusPembayaran(FieldLk_idPembayaran.getText(), Status);
+                String newStatus = bag_PembayaranService.getStatus(FieldLk_idPembayaran.getText());
                 if(newStatus.equals("LUNAS DEBIT")){
                     JOptionPane.showMessageDialog(null, "Transaksi Pembayaran dengan Debit Berhasil");
-                    TextField_status.setText(newStatus);
-                    button_Print.setEnabled(true);
-                    button_Tunai.setEnabled(false);
-                    button_Debit.setEnabled(false);
+                    FieldLk_status.setText(newStatus);
+                    buttonLk_Print.setEnabled(true);
+                    buttonLk_Tunai.setEnabled(false);
+                    buttonLk_Debit.setEnabled(false);
                 }
                 else if(newStatus.equals("HUTANG")){
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Debit Tidak Berhasil");
@@ -414,24 +453,23 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 Logger.getLogger(FormBag_Pembayaran.class.getName()).log(Level.ALL, null, ex);
             }
         }
+    }//GEN-LAST:event_buttonLk_DebitActionPerformed
 
-    }//GEN-LAST:event_button_DebitActionPerformed
-
-    private void button_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_PrintActionPerformed
+    private void buttonLk_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLk_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
             JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
             HashMap hash = new HashMap();
-//            hash.put("ID_PEMBAYARAN",TextField_idPembayaran.getText());
-//            System.out.println(TextField_idPembayaran.getText());
+            //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
+            //            System.out.println(FieldLk_idPembayaran.getText());
             jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran.jasper", hash,
-                    new JRTableModelDataSource(tableModelPembayaran));
+                new JRTableModelDataSource(tableModelPembayaran));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_button_PrintActionPerformed
+    }//GEN-LAST:event_buttonLk_PrintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,36 +477,39 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_search;
-    private javax.swing.JLabel Label_Kecantikan;
-    private javax.swing.JLabel Label_Lab;
-    private javax.swing.JLabel Label_RekamMedis;
-    private javax.swing.JLabel Label_Resep;
-    private javax.swing.JLabel Label_Usg;
-    private javax.swing.JLabel Label_idPasien;
-    private javax.swing.JLabel Label_idPembayaran;
-    private javax.swing.JLabel Label_namaPasien;
-    private javax.swing.JLabel Label_status;
-    private javax.swing.JLabel Label_tglPembayaran;
-    private javax.swing.JLabel Label_totalPembayaran;
-    private javax.swing.JTable Table_Bahan;
-    private javax.swing.JTextField TextField_Kecantikan;
-    private javax.swing.JTextField TextField_Lab;
-    private javax.swing.JTextField TextField_RekamMedis;
-    private javax.swing.JTextField TextField_Resep;
-    private javax.swing.JTextField TextField_Usg;
-    private javax.swing.JTextField TextField_idPasien;
-    private javax.swing.JTextField TextField_idPembayaran;
-    private javax.swing.JTextField TextField_namaPasien;
-    private javax.swing.JTextField TextField_status;
-    private javax.swing.JFormattedTextField TextField_tglPembayaran;
-    private javax.swing.JTextField TextField_totalPembayaran;
-    private javax.swing.JButton button_Debit;
-    private javax.swing.JButton button_Exit;
-    private javax.swing.JButton button_Print;
-    private javax.swing.JButton button_Tunai;
+    private javax.swing.JButton ButtonLk_search;
+    private javax.swing.JTextField FieldLk_Kecantikan;
+    private javax.swing.JTextField FieldLk_Lab;
+    private javax.swing.JTextField FieldLk_RekamMedis;
+    private javax.swing.JTextField FieldLk_Resep;
+    private javax.swing.JTextField FieldLk_Usg;
+    private javax.swing.JTextField FieldLk_idPasien;
+    private javax.swing.JTextField FieldLk_idPembayaran;
+    private javax.swing.JTextField FieldLk_namaPasien;
+    private javax.swing.JTextField FieldLk_status;
+    private javax.swing.JFormattedTextField FieldLk_tglPembayaran;
+    private javax.swing.JTextField FieldLk_totalPembayaran;
+    private javax.swing.JLabel Lk_Kecantikan;
+    private javax.swing.JLabel Lk_Lab;
+    private javax.swing.JLabel Lk_RekamMedis;
+    private javax.swing.JLabel Lk_Resep;
+    private javax.swing.JLabel Lk_Usg;
+    private javax.swing.JLabel Lk_idPasien;
+    private javax.swing.JLabel Lk_idPembayaran;
+    private javax.swing.JLabel Lk_namaPasien;
+    private javax.swing.JLabel Lk_status;
+    private javax.swing.JLabel Lk_tglPembayaran;
+    private javax.swing.JLabel Lk_totalPembayaran;
+    public javax.swing.JTable Table_Pembayaran;
+    private javax.swing.JButton buttonLk_Debit;
+    private javax.swing.JButton buttonLk_Exit;
+    private javax.swing.JButton buttonLk_Print;
+    private javax.swing.JButton buttonLk_Tunai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
