@@ -89,9 +89,9 @@
                               <Component id="fieldIdPasien" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="329" max="-2" attributes="0"/>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -223,7 +223,7 @@
                           <Component id="prosesButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="printButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -277,7 +277,7 @@
                                               <Component id="pemakaianComboBox" min="-2" pref="201" max="-2" attributes="0"/>
                                               <Component id="hargaField" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="keteranganField" max="32767" attributes="0"/>
                                   </Group>
@@ -624,6 +624,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Print"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -697,7 +700,7 @@
                               <Component id="clean" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="simpan" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -793,7 +796,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -806,7 +809,7 @@
                               <Component id="alergi" alignment="3" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

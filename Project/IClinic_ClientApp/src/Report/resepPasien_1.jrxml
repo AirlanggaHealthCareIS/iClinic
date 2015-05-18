@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ee8f4153-4774-4dd7-a398-67db9eec7491">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="id_resep" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     obat.`NAMA_OBAT` AS obat_NAMA_OBAT,
+     obat.`HARGA_OBAT` AS obat_HARGA_OBAT,
+     resep.`ID_RESEP` AS resep_ID_RESEP,
+     resep.`TOTAL_HARGA` AS resep_TOTAL_HARGA,
+     detail_resep.`TAKARAN` AS detail_resep_TAKARAN,
+     detail_resep.`PEMAKAIAN` AS detail_resep_PEMAKAIAN,
+     detail_resep.`JUMLAH` AS detail_resep_JUMLAH,
+     detail_resep.`KETERANGAN` AS detail_resep_KETERANGAN
+FROM
+     `obat` obat INNER JOIN `detail_resep` detail_resep ON obat.`ID_OBAT` = detail_resep.`ID_OBAT`
+     INNER JOIN `resep` resep ON detail_resep.`ID_RESEP` = resep.`ID_RESEP`
+WHERE resep.`ID_RESEP` = $P{id_resep}]]>
+	</queryString>
+	<field name="obat_NAMA_OBAT" class="java.lang.String"/>
+	<field name="obat_HARGA_OBAT" class="java.lang.Integer"/>
+	<field name="resep_ID_RESEP" class="java.lang.String"/>
+	<field name="resep_TOTAL_HARGA" class="java.lang.Integer"/>
+	<field name="detail_resep_TAKARAN" class="java.lang.String"/>
+	<field name="detail_resep_PEMAKAIAN" class="java.lang.String"/>
+	<field name="detail_resep_JUMLAH" class="java.lang.Integer"/>
+	<field name="detail_resep_KETERANGAN" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<image>
+				<reportElement x="448" y="0" width="354" height="102" uuid="2a6bc7e3-83eb-451f-afe6-7833714ae489"/>
+				<imageExpression><![CDATA["iClinic_1.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="396" height="66" backcolor="#FFFFFF" uuid="5ec0ac1d-1c92-483b-bfe9-1ada991e2754"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" forecolor="#000000" uuid="74e135f6-526b-4a09-9ab1-c8046a514592"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Resep Pasien]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="102" width="797" height="32" forecolor="#000000" backcolor="#CCCCCC" uuid="60f02504-a82c-4c72-abf1-c73ec143de66"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="553" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="f61c55e2-ab4b-44d8-a598-82f759c96580"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="18" y="14" width="99" height="18" forecolor="#000000" uuid="0ab49ae5-c730-49e9-9d21-53b5b7cb4b34"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[ID RESEP]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="137" y="12" width="99" height="18" uuid="84c9825f-d79e-446d-b33c-8115ff2259fb"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{resep_ID_RESEP}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="297" y="14" width="99" height="18" forecolor="#000000" uuid="7f48e73d-e6cc-48b3-9e01-9353ca8934de"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Total Harga]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="418" y="14" width="99" height="18" uuid="f17a97fb-1a13-4881-a311-4f088939b9cf"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{resep_TOTAL_HARGA}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="157" height="18" forecolor="#000000" uuid="90e77361-bad3-404c-a236-f7250d953ab0"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="157" y="0" width="124" height="18" forecolor="#000000" uuid="de536f1a-3852-4080-bd70-1e1d2ddb7e99"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="396" y="0" width="121" height="18" forecolor="#000000" uuid="e9a46aac-133b-46db-a242-0706788260ad"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Takaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="281" y="0" width="115" height="18" forecolor="#000000" uuid="8e79a770-25a2-4185-96d2-1182a368234a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jumlah Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="517" y="0" width="121" height="18" forecolor="#000000" uuid="38af15ae-3f73-4f5b-80c7-8fd98fd28dc9"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pemakaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="638" y="0" width="159" height="18" forecolor="#000000" uuid="3a5055bf-d13f-4106-9288-ac3b65d88f7a"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Keterangan ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="321decb5-e793-4ce7-814c-f6d74191a2a6"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="157" height="18" uuid="a7510dc4-fe9a-4d64-b567-fe7373878c0e"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{obat_NAMA_OBAT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="157" y="0" width="124" height="18" uuid="02e5e06d-c6ee-4f4f-ab27-abb1de8406ca"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{obat_HARGA_OBAT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="396" y="0" width="121" height="18" uuid="6214be97-5e2b-4c5d-8190-6b9f414a38bc"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{detail_resep_TAKARAN}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="517" y="0" width="121" height="18" uuid="0033781e-c056-4eba-93ed-ec743c463261"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{detail_resep_PEMAKAIAN}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="281" y="0" width="115" height="18" uuid="87c538f6-7be8-4e6a-8346-449ef26300b6"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{detail_resep_JUMLAH}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="638" y="0" width="159" height="18" uuid="4e96cee0-3744-4212-a58c-20f17fde0b81"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{detail_resep_KETERANGAN}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="108" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2c53f6b8-2d2d-480f-bea0-d0403157b3b4"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#CCCCCC" uuid="4ab9c3b1-f8fc-4625-aa1f-8909a898f602"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="6736f310-b337-4dd9-bf5b-688c9828d329"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="b0e043f5-7170-4139-8d84-f32f0d281324"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
