@@ -583,6 +583,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         String d = field_Alamat.getText();
         int e = (Integer.parseInt(field_Usia.getText()));
         String f = field_No_HP.getText();
+        String g=box_Jenis_Kelamin.getSelectedItem().toString();
         
         
         Pasien pasien = tableModelPasien.get(row);
@@ -592,6 +593,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         pasien.setAlamat(d);
         pasien.setUsia(e);
         pasien.setNo_HP(f);
+        pasien.setJenis_Kelamin(g);
 
         bag_PendaftaranService.updatePasien(pasien);
         tableModelPasien.update(row, pasien);

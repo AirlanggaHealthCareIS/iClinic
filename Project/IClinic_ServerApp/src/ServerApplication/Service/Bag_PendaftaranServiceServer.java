@@ -46,7 +46,6 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setInt(7, pasien.getUsia());
            statement.setString(8,pasien.getNo_HP());
            statement.setString(9, pasien.getJenis_Kelamin());
-           statement.setString(10, pasien.getPilihan_Layanan());
            
            statement.executeUpdate();
            ResultSet result = statement.getGeneratedKeys();
@@ -84,8 +83,7 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setInt(5, pasien.getUsia());
            statement.setString(6,pasien.getNo_HP());
            statement.setString(7, pasien.getJenis_Kelamin());
-           statement.setString(8, pasien.getPilihan_Layanan());
-           statement.setString(9, pasien.getId_Pasien());
+           statement.setString(8, pasien.getId_Pasien());
 
            statement.executeUpdate();
 
