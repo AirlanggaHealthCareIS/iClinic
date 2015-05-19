@@ -1,0 +1,7 @@
+Feature 	Cetak Rekam Medis
+Scenario 	Kepala Klinik Tidak Berhasil Cetak Rekam Medis
+
+Given 	Bagian Kepala Klinik masuk ke halaman kepala klinik
+and 	Kepala Klinik memilih cetak rekam medis
+when 	kepala klinik menekan button cetak rekam medis
+Then	Sistem tidak dapat menampilkan data rekam medis karena laporan belum 	ada/belum update

@@ -1,0 +1,7 @@
+Feature 	Cetak Rekam Medis
+Scenario 	Kepala Klinik Berhasil Cetak Rekam Medis
+
+Given 	Bagian Kepala Klinik masuk ke halaman kepala klinik
+and 	Kepala Klinik memilih cetak rekam medis
+when 	kepala klinik menekan button cetak rekam medis
+Then	Sistem mencetak rekam medis
