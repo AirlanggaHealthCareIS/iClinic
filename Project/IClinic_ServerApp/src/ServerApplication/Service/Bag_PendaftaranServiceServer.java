@@ -48,11 +48,11 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
            statement.setString(9, pasien.getJenis_Kelamin());
            
            statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-           if(result.next()){
-               pasien.setId_Pasien(result.getString(1));
-           }
-        result.close();
+//           ResultSet result = statement.getGeneratedKeys();
+//           if(result.next()){
+//               pasien.setId_Pasien(result.getString(1));
+//           }
+//        result.close();
        }catch(SQLException exception){
         exception.printStackTrace();
        }finally{
@@ -432,8 +432,10 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
             String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol = "";
             if (pisah1.length == 1) {
-                nol = "00";
+                nol = "000";
             } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if(pisah1.length==3){
                 nol = "0";
             }
             nomerBaru = "P" + nol + numberBaru;

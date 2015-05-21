@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private FormBag_Pendaftaran f;
+    String idPasien = "";
     
     private TableModelPasien tableModelPasien = new TableModelPasien();
     private Bag_PendaftaranService bag_PendaftaranService;
@@ -42,6 +43,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         
         this.bag_PendaftaranService = bag_PendaftaranService;
         try{
+            idPasien = bag_PendaftaranService.getAutoNumber();
             tableModelPasien.setData(this.bag_PendaftaranService.getPasien());
         }
         catch(RemoteException exception){
@@ -181,9 +183,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(40, 440, 90, 20);
         jPanel3.add(field_ID_Pasien);
-        field_ID_Pasien.setBounds(140, 290, 150, 28);
+        field_ID_Pasien.setBounds(140, 290, 150, 20);
         jPanel3.add(field_No_Ktp);
-        field_No_Ktp.setBounds(140, 320, 150, 28);
+        field_No_Ktp.setBounds(140, 320, 150, 20);
 
         field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,13 +193,13 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Nama_Pasien);
-        field_Nama_Pasien.setBounds(140, 350, 150, 28);
+        field_Nama_Pasien.setBounds(140, 350, 150, 20);
         jPanel3.add(field_Alamat);
-        field_Alamat.setBounds(140, 380, 150, 28);
+        field_Alamat.setBounds(140, 380, 150, 20);
         jPanel3.add(field_Usia);
-        field_Usia.setBounds(140, 470, 150, 28);
+        field_Usia.setBounds(140, 470, 150, 20);
         jPanel3.add(field_No_HP);
-        field_No_HP.setBounds(140, 500, 150, 28);
+        field_No_HP.setBounds(140, 500, 150, 20);
 
         jLabel8.setText("Usia");
         jPanel3.add(jLabel8);
@@ -213,12 +215,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         box_Jenis_Kelamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         box_Jenis_Kelamin.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
             }
         });
         box_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +229,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Jenis_Kelamin);
-        box_Jenis_Kelamin.setBounds(140, 530, 150, 27);
+        box_Jenis_Kelamin.setBounds(140, 530, 150, 20);
 
         Formatted_Tanggal_Daftar.setEditable(false);
         Formatted_Tanggal_Daftar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
@@ -238,11 +240,11 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Formatted_Tanggal_Daftar);
-        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 28);
+        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 20);
 
         jLabel11.setText("Tanggal Lahir");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(40, 410, 80, 16);
+        jLabel11.setBounds(40, 410, 80, 14);
 
         jButton1.setText("Daftar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +255,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jButton1);
         jButton1.setBounds(140, 590, 150, 50);
         jPanel3.add(DateChooser_Tanggal_Lahir);
-        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 28);
+        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
 
         tabel_pasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,16 +284,16 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jLabel12.setText("Pilihan Layanan");
         jPanel3.add(jLabel12);
-        jLabel12.setBounds(40, 560, 80, 16);
+        jLabel12.setBounds(40, 560, 80, 14);
 
-        box_Pilihan_Layanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokter Umum", "Dokter Gigi", "Dokter Kulit", "Dokter Kandungan", "USG", "Lab", "Kecantikan" }));
+        box_Pilihan_Layanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOKTER UMUM", "DOKTER GIGI", "DOKTER KULIT", "DOKTER KANDUNGAN", "USG", "LAB", "KECANTIKAN" }));
         box_Pilihan_Layanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 box_Pilihan_LayananActionPerformed(evt);
             }
         });
         jPanel3.add(box_Pilihan_Layanan);
-        box_Pilihan_Layanan.setBounds(140, 560, 150, 27);
+        box_Pilihan_Layanan.setBounds(140, 560, 150, 20);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -385,7 +387,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Cari);
-        Cari.setBounds(970, 490, 120, 29);
+        Cari.setBounds(970, 490, 120, 27);
 
         jTextFieldAlamat.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldAlamat.addActionListener(new java.awt.event.ActionListener() {
@@ -408,7 +410,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(PilihLayanan);
-        PilihLayanan.setBounds(840, 430, 140, 27);
+        PilihLayanan.setBounds(840, 430, 140, 20);
 
         Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
         Button_search.addActionListener(new java.awt.event.ActionListener() {
@@ -417,7 +419,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Button_search);
-        Button_search.setBounds(320, 310, 40, 36);
+        Button_search.setBounds(320, 310, 40, 33);
 
         PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         PilihLayananLabel.setText("Pilih Layanan");
@@ -510,14 +512,14 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     }//GEN-LAST:event_Formatted_Tanggal_DaftarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if((field_ID_Pasien.getText().equalsIgnoreCase(""))||(field_No_Ktp.getText().equalsIgnoreCase(""))||(field_Nama_Pasien.getText().equalsIgnoreCase(""))||(field_Alamat.getText().equalsIgnoreCase(""))||(field_Usia.getText().equalsIgnoreCase(""))||(field_No_HP.getText().equalsIgnoreCase(""))){
+    if((field_No_Ktp.getText().equalsIgnoreCase(""))||(field_Nama_Pasien.getText().equalsIgnoreCase(""))||(field_Alamat.getText().equalsIgnoreCase(""))||(field_Usia.getText().equalsIgnoreCase(""))||(field_No_HP.getText().equalsIgnoreCase(""))){
         JOptionPane.showMessageDialog(null, "Terdaftar");
     }
     else{
             //PS.insertPasien(pasien);
         try{
             Pasien pasien = new Pasien();
-            pasien.setId_Pasien(bag_PendaftaranService.getAutoNumber());
+            pasien.setId_Pasien(idPasien);
             pasien.setNo_Ktp(field_No_Ktp.getText());
             pasien.setNama_Pasien(field_Nama_Pasien.getText());
             pasien.setAlamat(field_Alamat.getText());
@@ -531,8 +533,19 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             
             System.out.println("cek 1");
             bag_PendaftaranService.insertPasien(pasien);
+            tableModelPasien.setData(bag_PendaftaranService.getPasien());
             JOptionPane.showMessageDialog(null, "Terdaftar");
         }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+        try {
+            Antrian antrian = new Antrian();
+            antrian.setId_Antrian(bag_PendaftaranService.getAutoNumberAntrian());
+            antrian.setId_Pasien(idPasien);
+            antrian.setJenis_Antrian(box_Pilihan_Layanan.getSelectedItem().toString());
+            System.out.println("cek 2");
+            bag_PendaftaranService.insertAntrian(antrian);
+        }  catch(RemoteException exception){
             exception.printStackTrace();
         }
     }
