@@ -678,7 +678,7 @@ public class FormLab extends javax.swing.JFrame {
                 namaPasien.setText(nama);
             }
             else{
-                JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" JOptionPane.ERROR_MESSAGE);
+               // JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" JOptionPane.ERROR_MESSAGE);
             }
             dataTransaksi.setEnabled(true); 
             

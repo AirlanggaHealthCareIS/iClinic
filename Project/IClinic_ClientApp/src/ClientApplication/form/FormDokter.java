@@ -299,10 +299,10 @@ public class FormDokter extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -606,10 +606,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboDiagnosa.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Diagnosa" }));
         comboDiagnosa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboDiagnosaPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -618,12 +618,17 @@ public class FormDokter extends javax.swing.JFrame {
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Laboratorium", "USG", "Kecantikan", "" }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTambahanPopupMenuWillBecomeVisible(evt);
             }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        comboTambahan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTambahanActionPerformed(evt);
             }
         });
 
@@ -646,10 +651,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Tindakan" }));
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -879,19 +884,19 @@ public class FormDokter extends javax.swing.JFrame {
                         .addGap(10, 10, 10)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel11)
                                     .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(antrianButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1265,6 +1270,10 @@ public class FormDokter extends javax.swing.JFrame {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_antrianButtonActionPerformed
+
+    private void comboTambahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTambahanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTambahanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

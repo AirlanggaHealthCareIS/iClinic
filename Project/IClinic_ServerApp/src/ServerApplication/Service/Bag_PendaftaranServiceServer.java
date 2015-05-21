@@ -214,25 +214,19 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
     
     public Antrian insertAntrian(Antrian antrian) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Pasien Lama");
+        System.out.println("Client Melakukan Proses Insert pada Tabel Antrian");
          PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                   "INSERT INTO pasien (Id_Pasien,Nama_Pasien,Alamat,TTL,Usia,No_Hp,Jenis_Kelamin) values(?,?,?,?,?,?,?,?)"
-                   );
+                   "INSERT INTO antrian (ID_ANTRIAN, ID_PASIEN, JENIS_ANTRIAN, KETERANGAN) "
+                    + "VALUES (?,?,?,'BELUM')");
            statement.setString(1, antrian.getId_Antrian());
            statement.setString(2, antrian.getId_Pasien());
            statement.setString(3, antrian.getJenis_Antrian());
-           statement.setString( 4, antrian.getKeterangan());
-           
+//           statement.setString(4, antrian.getKeterangan());
            
            statement.executeUpdate();
-           ResultSet result = statement.getGeneratedKeys();
-           if(result.next()){
-               antrian.setId_Pasien(result.getString(1));
-           }
-        result.close();
-        return antrian;
+            return antrian;
        }catch(SQLException exception){
         exception.printStackTrace();
             return null;
@@ -280,6 +274,47 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
        }
     }
 
+    public String getAutoNumberAntrian() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Antrian");
+        Statement state = null;
+        ResultSet rs = null;
+
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_ANTRIAN FROM antrian ORDER BY ID_ANTRIAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        } catch (Throwable ex) {
+            System.out.println("masuk catch");
+        }
+        System.out.println(number);
+        if (number.equals("")) {
+            nomerBaru = "ANT0001";
+        } else {
+            String[] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5] + pisah[6];
+            numberBaru = Integer.parseInt(numbersebelumnya) + 1;
+            String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol = "";
+            if (pisah1.length == 1) {
+                nol = "000";
+            } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
+                nol = "0";
+            }
+            nomerBaru = "ANT" + nol + numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
+
+    }
        
         
 

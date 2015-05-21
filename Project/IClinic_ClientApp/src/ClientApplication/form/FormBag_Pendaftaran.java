@@ -377,7 +377,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(Usia);
         Usia.setBounds(740, 350, 80, 20);
 
-        Cari.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
+        Cari.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
         Cari.setText("DaftarAntrian");
         Cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,7 +401,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel1.add(Alamat);
         Alamat.setBounds(40, 390, 80, 20);
 
-        PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dokter Umum", "Dokter Gigi", "Dokter Kulit", "Dokter Kandungan", "USG", "Lab", "Kecantikan" }));
+        PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOKTER UMUM", "DOKTER GIGI", "DOKTER KULIT", "DOKTER KANDUNGAN", "USG", "LAB", "KECANTIKAN" }));
         PilihLayanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PilihLayananActionPerformed(evt);
@@ -479,7 +479,18 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUmurActionPerformed
 
     private void CariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariActionPerformed
-        // TODO add your handling code here:
+      try {
+           Antrian antrian = new Antrian();
+                antrian.setId_Antrian(bag_PendaftaranService.getAutoNumberAntrian());
+                antrian.setId_Pasien(TextField_idPasien.getText());
+                antrian.setJenis_Antrian(PilihLayanan.getSelectedItem().toString());
+                bag_PendaftaranService.insertAntrian(antrian);
+                
+             //   idRekam.setText(antrian.getId_Antrian());
+            }
+            catch (RemoteException exception) {
+                exception.printStackTrace();
+      }
     }//GEN-LAST:event_CariActionPerformed
 
     private void jTextFieldAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAlamatActionPerformed

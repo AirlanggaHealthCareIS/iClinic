@@ -31,6 +31,8 @@ public interface Bag_PendaftaranService extends Remote {
     void updateAntrian(Antrian antrian) throws RemoteException;
 
     void deleteAntrian(String Id_Antrian) throws RemoteException;
+    
+    String getAutoNumberAntrian() throws RemoteException;
 
     Antrian getAntrian(String Id_Antrian) throws RemoteException;
 
