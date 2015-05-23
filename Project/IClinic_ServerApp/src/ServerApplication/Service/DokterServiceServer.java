@@ -113,7 +113,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
     public Antrian insertAntrian(Antrian antrian) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Insert pada Tindakan");
+        System.out.println("Client Melakukan Proses Insert pada Antrian");
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -149,6 +149,27 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
     public void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Rekam Medis");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE rekam_medis SET TOTAL_HARGA = ? "
+                    + "WHERE ID_REKAM = ?");
+            statement.setInt(1, rekam_medis.getTotal_Harga());
+            statement.setString(2, rekam_medis.getId_Rekam());
+            
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 
     public void deleteRekam_Medis(String Id_Rekam) throws RemoteException {
@@ -516,7 +537,7 @@ public String getAutoNumberAntrian() throws RemoteException {
         int numberBaru = 0;
         try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT ID_ANTRIAN FROM antrian ORDER BY ID_REKAM DESC limit 1";
+            String sql = "SELECT ID_ANTRIAN FROM antrian ORDER BY ID_ANTRIAN DESC limit 1";
             rs = state.executeQuery(sql);
             while (rs.next()) {
                 number = rs.getString(1);
