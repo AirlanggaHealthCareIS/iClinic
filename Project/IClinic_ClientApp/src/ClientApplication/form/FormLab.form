@@ -230,11 +230,11 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="idPasein" max="32767" attributes="0"/>
+                                          <Component id="idPasien2" max="32767" attributes="0"/>
                                           <Component id="idTransaksi" pref="92" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="CariIdPasien" min="-2" pref="29" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -260,7 +260,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Proses" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Kembali" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" max="32767" attributes="0"/>
                       </Group>
@@ -278,11 +278,11 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="idPasein" min="-2" max="-2" attributes="0"/>
+                              <Component id="idPasien2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="CariIdPasien" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -305,7 +305,7 @@
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="totalHarga" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Proses" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Kembali" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="135" max="32767" attributes="0"/>
@@ -330,7 +330,7 @@
                 <Property name="text" type="java.lang.String" value="ID Transaksi   : "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="idPasein">
+            <Component class="javax.swing.JTextField" name="idPasien2">
             </Component>
             <Component class="javax.swing.JTextField" name="idTransaksi">
             </Component>
@@ -661,20 +661,26 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="CariIdPasien">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Icon/icon_Search.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CariIdPasienActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="Kembali">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="KEMBALI AWAL"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KembaliActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

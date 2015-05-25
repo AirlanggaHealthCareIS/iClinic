@@ -10,7 +10,7 @@
  */
 package ClientApplication.form;
 
-import ClientApplication.FormLogin;
+//import ClientApplication.FormLogin;
 import ClientApplication.model.TableModelLab_detailLab;
 import Database.Entity.Antrian;
 import Database.Entity.Lab_detailLab;
@@ -49,12 +49,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FormLab extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
-    private Antrian antrian= new Antrian();
-    private String idLabisi = "";
-    private String tggl = "";
-    
-    
- LabService labService;
+  
+    LabService labService;
     private TableModelLab_detailLab tableLabDetailLab = new TableModelLab_detailLab();
     public List<Lab_tabelMaster> listLaboratorium = new ArrayList<Lab_tabelMaster>();
     private List<Lab_detailLab> listDetailLab = new ArrayList<Lab_detailLab>();
@@ -62,10 +58,13 @@ public class FormLab extends javax.swing.JFrame {
     
     public Boolean pasienExist = false;
     public int number = 1;
+    public Antrian antrian = null;
     
     public FormLab(LabService labService) {
-        this.labService = labService;
         initComponents();
+        jTabbedPane1.setEnabledAt(1, false);
+        this.labService = labService;
+        
         
         try {
             listLaboratorium = labService.getLaboratorium();
@@ -81,7 +80,7 @@ public class FormLab extends javax.swing.JFrame {
                 String harga = Integer.toString(listLaboratorium.get(comboJenisPem.getSelectedIndex()).getHarga());
                 hargaJenis.setText(harga);
             }
-        });   
+          }); 
     }
     @SuppressWarnings("unchecked")
     
@@ -105,7 +104,7 @@ public class FormLab extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        idPasein = new javax.swing.JTextField();
+        idPasien2 = new javax.swing.JTextField();
         idTransaksi = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -129,8 +128,8 @@ public class FormLab extends javax.swing.JFrame {
         totalHarga = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDetLab = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CariIdPasien = new javax.swing.JButton();
+        Kembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -426,10 +425,20 @@ public class FormLab extends javax.swing.JFrame {
         tableDetLab.setPreferredSize(new java.awt.Dimension(375, 0));
         jScrollPane2.setViewportView(tableDetLab);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        CariIdPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        CariIdPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CariIdPasienActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jButton3.setText("KEMBALI AWAL");
+        Kembali.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        Kembali.setText("KEMBALI AWAL");
+        Kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KembaliActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -446,10 +455,10 @@ public class FormLab extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(idPasein)
+                                    .addComponent(idPasien2)
                                     .addComponent(idTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CariIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 15, Short.MAX_VALUE)
@@ -469,7 +478,7 @@ public class FormLab extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Proses)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
+                        .addComponent(Kembali))
                     .addComponent(jScrollPane2))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -482,10 +491,10 @@ public class FormLab extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(idPasein, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idPasien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CariIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -503,7 +512,7 @@ public class FormLab extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Proses)
-                        .addComponent(jButton3)))
+                        .addComponent(Kembali)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
 
@@ -545,36 +554,35 @@ public class FormLab extends javax.swing.JFrame {
             Lab_transaksiLab transaksi = new Lab_transaksiLab();
             try {
                 transaksi.setId_Transaksi_Lab(idTransaksi.getText());
-                transaksi.setId_Pasien(idPasien.getText());
+                transaksi.setId_Pasien(idPasien2.getText());
                 transaksi.setTotal_Harga(checkTotal());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                
                 String now = dateFormat.format(date);
-                
                 transaksi.setTanggal(now);
-                labService.insertLab_transaksiLab(transaksi);
                 
+                labService.insertLab_transaksiLab(transaksi);
                 for(int i=0;i<listDetailLab.size();i++){
                     Lab_detailLab detail = new Lab_detailLab();
                     detail.setId_Detail_Lab(listDetailLab.get(i).getId_Detail_Lab());
                     detail.setId_Transaksi_Lab(listDetailLab.get(i).getId_Transaksi_Lab());
                     detail.setId_Lab(listDetailLab.get(i).getId_Lab());
-                    detail.setHasil(listDetailLab.get(i).getHasil());
+                    detail.setHasil (listDetailLab.get(i).getHasil());
                     detail.setKeterangan(listDetailLab.get(i).getKeterangan());
-                    labService.insertLab_transaksiLab(transaksi);
+                    labService.insertLab_detailLab(detail);
                 }
+                JOptionPane.showMessageDialog(this,"Selamat Data Telah Berhasil Diinputkan!", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if(pasienExist = false){
-            System.out.println("Silakan Mengisi ID Pasien terlebih dahulu");
+             else if(pasienExist = false){
+            System.out.println("Silakan isi ID Pasien terlebih dahulu");
         }
         else{
-            System.out.println("Beberapa Field Masih Kosong..");
-        }       
-
+            System.out.println("Beberapa Field Belum Diisi");
+        }
+                               
     }//GEN-LAST:event_SaveActionPerformed
 
     private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
@@ -588,24 +596,25 @@ public class FormLab extends javax.swing.JFrame {
             String idtransaksi = idTransaksi.getText();
             String iddetail = idtransaksi +"-"+ number;
             number++;
-            String idjenispemeriksaan = listLaboratorium.get( comboJenisPem.getSelectedIndex()).getId_Lab();
+            String idjenispemeriksaan = listLaboratorium.get(comboJenisPem.getSelectedIndex()).getId_Lab();
             String keterangan = Keterangan.getText();
+            String hasil = hasilPemeriksaan.getText();
             Lab_detailLab detail = new Lab_detailLab();
             detail.setId_Detail_Lab(iddetail);
             detail.setId_Transaksi_Lab(idtransaksi);
             detail.setId_Lab(idjenispemeriksaan);
+           // detail.setHasil(hasil);
             detail.setKeterangan(keterangan);
-           
             listDetailLab.add(detail);
             tableLabDetailLab.setData(listDetailLab);
             tableDetLab.setModel(tableLabDetailLab);
             totalHarga.setText(Integer.toString(checkTotal()));
-        }
+          }
     }//GEN-LAST:event_insertPemeriksaanActionPerformed
 
     private void deletePemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePemeriksaanActionPerformed
         // TODO add your handling code here:
-         if(tableDetLab.getSelectedRow() > -1){
+        if(tableDetLab.getSelectedRow() > -1){
             listDetailLab.remove(tableDetLab.getSelectedRow());
             tableLabDetailLab.setData(listDetailLab);
             tableDetLab.setModel(tableLabDetailLab);
@@ -617,8 +626,9 @@ public class FormLab extends javax.swing.JFrame {
         // TODO add your handling code here:
         number = 1;
        
-        idPasien.setEditable(false);
+        idPasien2.setEditable(false);
         idTransaksi.setText("");
+        idPasien2.setText("");
         idDetLab.setText("");
         hargaJenis.setText("");   
         Keterangan.setText("");
@@ -652,7 +662,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void pasinSelanjutnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasinSelanjutnyaActionPerformed
         // TODO add your handling code here:
-         try {          
+        try {          
             if(antrian!=null){
                 antrian.setKeterangan("sudah dilayani");
                 boolean update = labService.updateAntrian(antrian);
@@ -673,7 +683,7 @@ public class FormLab extends javax.swing.JFrame {
                 namaPasien.setText(nama);
             }
             else{
-               // JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" , JOptionPane.ERROR_MESSAGE);
             }
             dataTransaksi.setEnabled(true); 
             
@@ -684,12 +694,48 @@ public class FormLab extends javax.swing.JFrame {
 
     private void dataTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTransaksiActionPerformed
         // TODO add your handling code here:
+        dataTransaksi.setEnabled(false);
+        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, true);
+        idPasien2.setText(antrian.getId_Pasien());
     }//GEN-LAST:event_dataTransaksiActionPerformed
+
+    private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(0, true);
+        this.ClearActionPerformed(evt);
+    }//GEN-LAST:event_KembaliActionPerformed
+
+    private void CariIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariIdPasienActionPerformed
+        // TODO add your handling code here:
+        if(!idPasien2.equals("")){
+            String idpasien = idPasien2.getText();
+            try {
+                pasienExist = labService.getPasienId(idpasien);
+                if(pasienExist == false){
+                    idPasien2.setText("");
+                    JOptionPane.showMessageDialog(this, "ID Pasien Tidak Terdaftar");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "ID Pasien Ada dan Terdaftar");
+                    idPasien2.setEditable(false);
+                }                   
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_CariIdPasienActionPerformed
 
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CariIdPasien;
     private javax.swing.JButton Clear;
+    private javax.swing.JButton Kembali;
     private javax.swing.JTextArea Keterangan;
     private javax.swing.JButton Proses;
     private javax.swing.JButton Save;
@@ -699,13 +745,11 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JTextField hargaJenis;
     private javax.swing.JTextField hasilPemeriksaan;
     private javax.swing.JTextField idDetLab;
-    private javax.swing.JTextField idPasein;
     private javax.swing.JTextField idPasien;
+    private javax.swing.JTextField idPasien2;
     private javax.swing.JTextField idTransaksi;
     private javax.swing.JButton insertPemeriksaan;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -745,7 +789,7 @@ public class FormLab extends javax.swing.JFrame {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-    }
+}
 
     private int checkTotal() {
         int total = 0;
@@ -762,7 +806,7 @@ public class FormLab extends javax.swing.JFrame {
         }
         return total;
     }
-
+    
     private void browseDOC() {
         JFileChooser jfc = new JFileChooser();
         javax.swing.filechooser.FileFilter fileFilter = new javax.swing.filechooser.FileFilter() {
@@ -788,11 +832,11 @@ public class FormLab extends javax.swing.JFrame {
         hasilPemeriksaan.setText(path);
     }
     
-     private String validatePath(String invalidPath){
-        String validPath;
-        validPath = invalidPath.replace('\\', '/');
-        return validPath;
-    }
+//     private String validatePath(String invalidPath){
+//        String validPath;
+//        validPath = invalidPath.replace('\\', '/');
+//        return validPath;
+//    }
 
     
 }
