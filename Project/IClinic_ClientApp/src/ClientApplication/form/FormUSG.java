@@ -59,11 +59,7 @@ public class FormUSG extends javax.swing.JFrame {
     private String tgl = "";
     public FormUSG(USGService usgService) {
         this.usgService = usgService;
-//        initComponents();
-//        isiid();
-//        cekdaftar();
-//        isitanggal();
-//        antrian();
+
         try {
             tableModelusg.setData(this.usgService.getUSG());
         } catch (RemoteException exception) {
@@ -96,8 +92,9 @@ public class FormUSG extends javax.swing.JFrame {
     public void clear() {
         idpasien.setText("");
         idusg.setText("");
-//        tanggal.setText("");
+        Nama.setText("");
         hasil.setText("");
+        panelGambar1.setImage(null);
         deskrip.setText("");
         harga.setText("");
     }
@@ -106,8 +103,13 @@ public class FormUSG extends javax.swing.JFrame {
         try {
             antrian=usgService.Id_pasien(antrian);
              if("kosong".equals(antrian.getId_Pasien())){
-                JOptionPane.showMessageDialog(null, "Belum ada antrian");
-                cekdaftar();
+                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian", "konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    cekdaftar();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Silahkan klik mulai jika ingin memulai kembali");
+                }
             }
             else if("salah".equals(antrian.getId_Pasien())){
                 JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
@@ -115,6 +117,7 @@ public class FormUSG extends javax.swing.JFrame {
             }
             else{
                 idpasien.setText(antrian.getId_Pasien());
+                Nama.setText(usgService.Nama_pasien(idpasien.getText()));
             }
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
@@ -155,35 +158,6 @@ public class FormUSG extends javax.swing.JFrame {
 //        isitanggal();
         harga.setText("100000");
     }
-//    public void antrian() {
-//        String in = idusg.getText();
-//        Connection conn = null;
-//        PreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        try {
-//            Class.forName("com.jdbc.mysql.Driver");
-//            conn = DriverManager.getConnection("jdbcmysql:///klinik2", "root", "usg");
-//            pstmt = conn.prepareStatement("select ID_PASIEN,ID_USG,TANGGAL_USG from transaksi_usg where ID_USG=?");
-//            pstmt.setString(1, in);
-//            rs = pstmt.executeQuery();
-//            if (rs.next()) {
-//                idusg.setText(rs.getString("ID_USG"));
-//                idpasien.setText(rs.getString("ID_PASIEN"));
-//                tanggal.setText(rs.getString("TANGGAL_USG"));
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Antrian selanjutnya masih kosong, silahkan tunggu  ");
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        } finally {
-//            try {
-//                conn.close();
-//                pstmt.close();
-//                rs.close();
-//            } catch (Exception e) {
-//            }
-//        }
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -213,38 +187,36 @@ public class FormUSG extends javax.swing.JFrame {
         tanggal = new javax.swing.JFormattedTextField();
         Mulai = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Nama = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jLabel2.setText("ID Pasien              :");
+        jLabel2.setText("ID Pasien                 :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 200, 110, 14);
+        jLabel2.setBounds(140, 200, 120, 14);
 
         idpasien.setEditable(false);
-        idpasien.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idpasien);
         idpasien.setBounds(260, 200, 80, 20);
 
-        jLabel4.setText("Tanggal Pemeriksaan :");
+        jLabel4.setText("Tanggal Pemeriksaan   :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(570, 170, 130, 14);
+        jLabel4.setBounds(560, 170, 140, 14);
 
-        jLabel5.setText("ID USG                  :");
+        jLabel5.setText("ID USG                      :");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(150, 170, 110, 14);
+        jLabel5.setBounds(140, 170, 120, 14);
 
         idusg.setEditable(false);
-        idusg.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idusg);
         idusg.setBounds(260, 170, 80, 20);
 
-        jLabel7.setText("Hasil pemeriksaan  :");
+        jLabel7.setText("Hasil pemeriksaan :");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(150, 300, 110, 14);
+        jLabel7.setBounds(140, 300, 120, 14);
         jPanel1.add(hasil);
         hasil.setBounds(260, 300, 170, 20);
 
@@ -315,13 +287,13 @@ public class FormUSG extends javax.swing.JFrame {
         jPanel1.add(Mulai);
         Mulai.setBounds(260, 260, 80, 23);
 
-        jLabel3.setText("Nama Pasien         :");
+        jLabel3.setText("Nama Pasien          :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(150, 230, 110, 14);
+        jLabel3.setBounds(140, 230, 120, 14);
 
-        jTextField1.setEditable(false);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(260, 230, 170, 20);
+        Nama.setEditable(false);
+        jPanel1.add(Nama);
+        Nama.setBounds(260, 230, 170, 20);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
         jPanel1.add(jLabel6);
@@ -370,7 +342,10 @@ public class FormUSG extends javax.swing.JFrame {
            }
         try {
             usgService.insertUSG(usg);
-            
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
+            }
+        }
         String idPasien = idpasien.getText();
         String idTransaksiUSG = idusg.getText();
         int hargaTransaksi = Integer.parseInt(harga.getText());
@@ -385,21 +360,17 @@ public class FormUSG extends javax.swing.JFrame {
                 usgService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idTransaksiUSG, hargaTransaksi);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             usgService.ubahstatus(antrian.getId_Antrian());
              JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
+            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
         clear();
         kembaliawal();
-         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
-               }
-        }
     }//GEN-LAST:event_simpanActionPerformed
 
     private void pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihActionPerformed
@@ -426,6 +397,7 @@ public class FormUSG extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Mulai;
+    private javax.swing.JTextField Nama;
     private javax.swing.JTextArea deskrip;
     private javax.swing.JTextField harga;
     private javax.swing.JTextField hasil;
@@ -441,7 +413,6 @@ public class FormUSG extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private ClientApplication.form.PanelGambar panelGambar1;
     private javax.swing.JButton pilih;
     private javax.swing.JButton simpan;

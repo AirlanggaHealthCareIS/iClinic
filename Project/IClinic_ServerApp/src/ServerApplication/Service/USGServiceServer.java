@@ -67,8 +67,22 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         }
     }
 
+     public String Nama_pasien(String id_pasien) throws RemoteException {
+        PreparedStatement statement = null;
+        String Nama_pasien = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT NAMA_PASIEN FROM pasien WHERE ID_PASIEN= '"+id_pasien+"' ");
+            ResultSet result = statement.executeQuery();
+            result.first();
+            Nama_pasien=result.getString("NAMA_PASIEN");
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Nama_pasien;
+    }
+     
     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
-//<<<<<<< Updated upstream
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -91,31 +105,6 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             antrian.setId_Pasien("salah");
             return antrian;  
         }
-//=======
-//        PreparedStatement statement = null;
-//        try {
-//            statement = DatabaseUtilities.getConnection().prepareStatement(
-//                    "SELECT* FROM antrian WHERE jenis_antrian=USG");
-//            ResultSet result = statement.executeQuery();
-//            if(result.first()==false){
-//                antrian.setId_Pasien("kosong");
-//                return antrian;
-//            }
-//            else{
-//               result.first();
-//               antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
-//               antrian.setId_Pasien(result.getString("ID_PASIEN"));
-//               antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
-//               antrian.setKeterangan(result.getString("KETERANGAN"));
-//               return antrian;
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
-//            antrian.setId_Pasien("salah");
-//            return antrian;  
-//        }
-//        return null;
-//>>>>>>> Stashed changes
 }
     public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
         PreparedStatement statement = null;

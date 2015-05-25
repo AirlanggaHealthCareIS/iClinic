@@ -40,4 +40,5 @@ public interface USGService extends Remote {
     Antrian Id_pasien(Antrian antrian)throws RemoteException;
     String Id_usg()throws RemoteException;
     void ubahstatus(String ID_ANTRIAN)throws RemoteException;
+    String Nama_pasien(String id_pasien) throws RemoteException;
 }
