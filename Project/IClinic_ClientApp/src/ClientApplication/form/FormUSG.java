@@ -212,7 +212,9 @@ public class FormUSG extends javax.swing.JFrame {
         panelGambar1 = new ClientApplication.form.PanelGambar();
         tanggal = new javax.swing.JFormattedTextField();
         Mulai = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -222,11 +224,12 @@ public class FormUSG extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(150, 200, 110, 14);
 
+        idpasien.setEditable(false);
         idpasien.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idpasien);
         idpasien.setBounds(260, 200, 80, 20);
 
-        jLabel4.setText("Tanggal Pemerikasaan :");
+        jLabel4.setText("Tanggal Pemeriksaan :");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(570, 170, 130, 14);
 
@@ -234,11 +237,12 @@ public class FormUSG extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(150, 170, 110, 14);
 
+        idusg.setEditable(false);
         idusg.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(idusg);
         idusg.setBounds(260, 170, 80, 20);
 
-        jLabel7.setText("Hasil pemeriksaan :");
+        jLabel7.setText("Hasil pemeriksaan  :");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(150, 300, 110, 14);
         jPanel1.add(hasil);
@@ -309,11 +313,19 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Mulai);
-        Mulai.setBounds(260, 240, 80, 23);
+        Mulai.setBounds(260, 260, 80, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1270, 740);
+        jLabel3.setText("Nama Pasien         :");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(150, 230, 110, 14);
+
+        jTextField1.setEditable(false);
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(260, 230, 170, 20);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(0, 0, 1270, 730);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -419,15 +431,17 @@ public class FormUSG extends javax.swing.JFrame {
     private javax.swing.JTextField hasil;
     private javax.swing.JTextField idpasien;
     private javax.swing.JTextField idusg;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private ClientApplication.form.PanelGambar panelGambar1;
     private javax.swing.JButton pilih;
     private javax.swing.JButton simpan;
