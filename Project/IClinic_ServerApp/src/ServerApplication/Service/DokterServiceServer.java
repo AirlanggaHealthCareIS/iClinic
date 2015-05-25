@@ -24,6 +24,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -110,7 +112,32 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
             }
         }
     }
-
+    
+    public Antrian Id_pasien(Antrian antrian)throws RemoteException {
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN = 'DOKTER' AND KETERANGAN = 'BELUM' ");
+            ResultSet result = statement.executeQuery();
+            if(result.first()==false){
+                antrian.setId_Pasien("kosong");
+                return antrian;
+            }
+            else{
+               result.first();
+               antrian.setId_Antrian(result.getString("ID_ANTRIAN"));
+               antrian.setId_Pasien(result.getString("ID_PASIEN"));
+               antrian.setJenis_Antrian(result.getString("JENIS_ANTRIAN"));
+               antrian.setKeterangan(result.getString("KETERANGAN"));
+               return antrian;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DokterServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+            antrian.setId_Pasien("salah");
+            return antrian;  
+        }
+     }
+    
     public Antrian insertAntrian(Antrian antrian) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Insert pada Antrian");

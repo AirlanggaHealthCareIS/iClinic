@@ -97,4 +97,6 @@ public interface DokterService extends Remote {
     void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException;
     
     String getLastIDRekamMedis() throws RemoteException;
+    
+    Antrian Id_pasien(Antrian antrian)throws RemoteException;
 }

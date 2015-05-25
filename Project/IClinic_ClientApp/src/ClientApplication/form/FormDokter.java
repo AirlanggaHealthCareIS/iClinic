@@ -216,6 +216,11 @@ public class FormDokter extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         dokterTabPane.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        dokterTabPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dokterTabPaneMouseClicked(evt);
+            }
+        });
 
         tabelRiwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1286,7 +1291,37 @@ public class FormDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTambahanActionPerformed
 
+    private void dokterTabPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dokterTabPaneMouseClicked
+        if(dokterTabPane.getSelectedIndex() == 2){
+            cekdaftar();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_dokterTabPaneMouseClicked
 
+    private void cekdaftar(){
+        try {
+            Antrian antrian=new Antrian();
+            antrian=dokterService.Id_pasien(antrian);
+             if("kosong".equals(antrian.getId_Pasien())){
+                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian", "konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    cekdaftar();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Silahkan klik rekam medis lagi jika ingin memulai kembali");
+                }
+            }
+            else if("salah".equals(antrian.getId_Pasien())){
+                JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
+                cekdaftar();
+            }
+            else{
+                Field_idPasien.setText(antrian.getId_Pasien());
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormDokter.class.getName()).log(Level.ALL, null, ex);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BeratBadan;
     private javax.swing.JTextField Field_idPasien;
