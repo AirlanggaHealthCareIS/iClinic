@@ -5,6 +5,7 @@
 package Database.Service;
 
 import Database.Entity.Obat_detailResep;
+import Database.Entity.Obat_detailResepPembelian;
 import Database.Entity.Obat_resep;
 import Database.Entity.Obat_tabelMaster;
 import Database.Entity.Pembayaran;
@@ -35,6 +36,8 @@ public interface ApotekerService extends Remote {
     void deleteObat_detailResep(String No_Detail_Resep) throws RemoteException;
 
     Obat_detailResep getObat_detailResep(String Id_Obat) throws RemoteException;
+    
+    List<Obat_detailResepPembelian>  getObat_detailResepPembelian(String Id_Obat) throws RemoteException;
 
     List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
 

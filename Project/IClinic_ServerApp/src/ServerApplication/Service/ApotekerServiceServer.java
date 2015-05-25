@@ -5,6 +5,7 @@
 package ServerApplication.Service;
 
 import Database.Entity.Obat_detailResep;
+import Database.Entity.Obat_detailResepPembelian;
 import Database.Entity.Obat_resep;
 import Database.Entity.Obat_tabelMaster;
 import Database.Entity.Pembayaran;
@@ -326,6 +327,53 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
     }
 
+    public List<Obat_detailResepPembelian> getObat_detailResepPembelian(String Id_Resep) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
+
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT detail_resep.*, obat.NAMA_OBAT AS Nama_Obat, obat.HARGA_OBAT AS harga FROM detail_resep , obat  WHERE Id_Resep = '"+Id_Resep+"' AND detail_resep.ID_OBAT = obat.ID_OBAT");
+
+            ResultSet result = statement.executeQuery();
+
+            Obat_detailResepPembelian detail_resep = null;
+            
+            List<Obat_detailResepPembelian> list = new ArrayList<Obat_detailResepPembelian>();
+
+            if (result.next()) {
+                detail_resep = new Obat_detailResepPembelian();
+                detail_resep.setNo_Detail_Resep(result.getString("No_Detail_Resep"));
+                System.out.println(detail_resep.getNo_Detail_Resep());
+                detail_resep.setNama_Obat(result.getString("Nama_Obat"));
+                System.out.println(detail_resep.getNama_Obat());
+                detail_resep.setTakaran(result.getString("Takaran"));
+                System.out.println(detail_resep.getTakaran());
+                detail_resep.setPemakaian(result.getString("Pemakaian"));
+                System.out.println(detail_resep.getPemakaian());
+                detail_resep.setJumlah(result.getString("Jumlah"));
+                System.out.println(detail_resep.getJumlah());
+                detail_resep.setHarga(result.getString("Harga"));
+                System.out.println(detail_resep.getHarga());
+                System.out.println("");
+            }
+            result.close();
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    
     public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
@@ -761,13 +809,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
         System.out.println(number);
         if (number.equals("")) {
-            nomerBaru = "R0001";
+            nomerBaru = "RSP0001";
         } else {
             String[] pisah = number.split("(?<=\\G.{1})");
             for (int i = 0; i < pisah.length; i++) {
                 System.out.println(pisah[i]);
             }
-            String numbersebelumnya = pisah[1] + pisah[2] + pisah[3] + pisah[4];
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5] + pisah[6];
             numberBaru = Integer.parseInt(numbersebelumnya) + 1;
             String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol = "";
@@ -778,7 +826,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             } else if (pisah1.length == 3) {
                 nol = "0";
             }
-            nomerBaru = "R" + nol + numberBaru;
+            nomerBaru = "RSP" + nol + numberBaru;
         }
         System.out.println(nomerBaru);
         return nomerBaru;
