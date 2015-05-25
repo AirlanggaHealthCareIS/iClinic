@@ -13,14 +13,14 @@ import java.sql.Blob;
  * @author erin
  */
 public class Lab_detailLab implements Serializable{
-    private String Id_Detail_Lab;
+   private String Id_Detail_Lab;
     private String Id_Transaksi_Lab;
     private String Id_Lab;
-    private byte[] Hasil;
+    private String Hasil;
     private String Keterangan;
     
     
-     public byte[] getHasil() {
+     public String getHasil() {
         return Hasil;
     }
 
@@ -48,7 +48,7 @@ public class Lab_detailLab implements Serializable{
         this.Id_Lab = Id_Lab;
     }
     
-     public void setHasil(byte[] Hasil) {
+     public void setHasil(String Hasil) {
         this.Hasil = Hasil;
     }
 
@@ -56,7 +56,9 @@ public class Lab_detailLab implements Serializable{
         this.Keterangan = Keterangan;
     }
 
-    public void setId_Transaksi_Lab(String idtransaksi) {
+    public void setId_Transaksi_Lab(String Id_Transaksi_Lab) {
         this.Id_Transaksi_Lab = Id_Transaksi_Lab;
     }
+
+    
 }

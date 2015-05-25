@@ -12,10 +12,10 @@ import java.util.Date;
  * @author erin
  */
 public class Lab_transaksiLab implements Serializable{
-    private String Id_Transaksi_Lab;
+     private String Id_Transaksi_Lab;
     private String Id_Pasien;
     private int Total_Harga;
-    private Date Tanggal;
+    private String Tanggal;
    
 
     public String getId_Transaksi_Lab() {
@@ -30,7 +30,7 @@ public class Lab_transaksiLab implements Serializable{
         return Total_Harga;
     }
     
-    public Date getTanggal() {
+    public String getTanggal() {
         return Tanggal;
     }
 
@@ -46,13 +46,10 @@ public class Lab_transaksiLab implements Serializable{
         this.Id_Pasien = Id_Pasien;
     }
 
-    public void setTanggal(Date Tanggal) {
+    public void setTanggal(String Tanggal) {
         this.Tanggal = Tanggal;
     }
 
-    public void setTanggal(String now) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
 }
 
 

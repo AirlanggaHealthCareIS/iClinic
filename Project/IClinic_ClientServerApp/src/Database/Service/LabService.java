@@ -21,7 +21,7 @@ public interface LabService extends Remote {
 
     List<Lab_tabelMaster> getLaboratorium()throws RemoteException;
     
-//  Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
+   // Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
     
     
     void insertLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
