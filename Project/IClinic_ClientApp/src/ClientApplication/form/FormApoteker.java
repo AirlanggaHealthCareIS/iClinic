@@ -60,7 +60,7 @@ public class FormApoteker extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setSize(665, 730);
-
+        idResepField.setText(idResep);
         Table_Apotek.setModel(tableModelObat_detailResep);
         Table_Apotek.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
