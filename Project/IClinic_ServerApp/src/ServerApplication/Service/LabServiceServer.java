@@ -449,7 +449,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_PASIEN,ID_USG,"+
-                    "ID_DETAIL_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,"+
+                    "ID_TRANSAKSI_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,"+
                     "TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?,?,?)");
             statement.setString(1, idPembayaran);
             statement.setString(2, idPasien);
