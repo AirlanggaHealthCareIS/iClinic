@@ -13,6 +13,7 @@ import Database.Entity.Antrian;
 import Database.Entity.Pasien;
 import Database.Service.Bag_PendaftaranService;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.ResultSet;
@@ -93,6 +94,13 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         box_Jenis_Kelamin.setBackground(Color.gray);
         box_Pilihan_Layanan.setBackground(Color.gray);
        
+    }
+    private void typeonlynumber(KeyEvent evt){
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c)||c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE){
+            getToolkit().beep();
+            evt.consume();
+        }
     }
     
     
@@ -182,8 +190,16 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jLabel7.setText("Tanggal Daftar");
         jPanel3.add(jLabel7);
         jLabel7.setBounds(40, 440, 90, 20);
+
+        field_ID_Pasien.setEditable(false);
         jPanel3.add(field_ID_Pasien);
         field_ID_Pasien.setBounds(140, 290, 150, 20);
+
+        field_No_Ktp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                field_No_KtpKeyTyped(evt);
+            }
+        });
         jPanel3.add(field_No_Ktp);
         field_No_Ktp.setBounds(140, 320, 150, 20);
 
@@ -196,8 +212,20 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         field_Nama_Pasien.setBounds(140, 350, 150, 20);
         jPanel3.add(field_Alamat);
         field_Alamat.setBounds(140, 380, 150, 20);
+
+        field_Usia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                field_UsiaKeyTyped(evt);
+            }
+        });
         jPanel3.add(field_Usia);
         field_Usia.setBounds(140, 470, 150, 20);
+
+        field_No_HP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                field_No_HPKeyTyped(evt);
+            }
+        });
         jPanel3.add(field_No_HP);
         field_No_HP.setBounds(140, 500, 150, 20);
 
@@ -513,7 +541,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if((field_No_Ktp.getText().equalsIgnoreCase(""))||(field_Nama_Pasien.getText().equalsIgnoreCase(""))||(field_Alamat.getText().equalsIgnoreCase(""))||(field_Usia.getText().equalsIgnoreCase(""))||(field_No_HP.getText().equalsIgnoreCase(""))){
-        JOptionPane.showMessageDialog(null, "Terdaftar");
+        JOptionPane.showMessageDialog(null, "Tidak Terdaftar");
     }
     else{
             //PS.insertPasien(pasien);
@@ -563,7 +591,6 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         }
        
        else if( !TextField_idPasien.getText().equals("")){
-//           Pasien pasien = new Pasien() ; 
            try {
                System.out.println(TextField_idPasien.getText());
                Pasien pasien = bag_PendaftaranService.getPasien(TextField_idPasien.getText());
@@ -632,6 +659,30 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
     private void box_Pilihan_LayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_Pilihan_LayananActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_box_Pilihan_LayananActionPerformed
+
+    private void field_No_KtpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_No_KtpKeyTyped
+        typeonlynumber(evt);
+        if(field_No_Ktp.getText().length()>15){
+            evt.setKeyChar((char)0);
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_field_No_KtpKeyTyped
+
+    private void field_UsiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_UsiaKeyTyped
+        typeonlynumber(evt);
+        if(field_Usia.getText().length()>2){
+            evt.setKeyChar((char)0);
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_field_UsiaKeyTyped
+
+    private void field_No_HPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_No_HPKeyTyped
+        typeonlynumber(evt);
+        if(field_No_HP.getText().length()>12){
+            evt.setKeyChar((char)0);
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_field_No_HPKeyTyped
 
     
 
