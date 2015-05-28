@@ -7,6 +7,7 @@ package ServerApplication.Service;
 import Database.Entity.Antrian;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
+import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
 import Database.Entity.Penyakit_diagnosa;
 import Database.Entity.Penyakit_tabelMaster;
@@ -117,7 +118,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT* FROM antrian WHERE JENIS_ANTRIAN = 'DOKTER' AND KETERANGAN = 'BELUM' ");
+                    "SELECT * FROM antrian WHERE JENIS_ANTRIAN = 'DOKTER UMUM' AND KETERANGAN = 'BELUM' ");
             ResultSet result = statement.executeQuery();
             if(result.first()==false){
                 antrian.setId_Pasien("kosong");
@@ -199,6 +200,31 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
     }
 
+public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Update pada Antrian");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE antrian SET KETERANGAN = 'SUDAH' "
+                    + "WHERE ID_ANTRIAN = '" + IDAntrianSaatIni + "'");
+            
+            statement.executeUpdate();
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    
     public void deleteRekam_Medis(String Id_Rekam) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Rekam Medis");
@@ -653,7 +679,27 @@ public String getAutoNumberAntrian() throws RemoteException {
         }
 
     }
-    public String getRekamMedisbyID() throws RemoteException {
+    public String getNamaPasien (String Id_Pasien) throws RemoteException{
+         System.out.println("Client Melakukan Proses Get Nama Pasien");
+        Statement state = null;
+        ResultSet rs = null;
+        String idPasien = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT NAMA_PASIEN FROM PASIEN WHERE  ID_PASIEN = '" + Id_Pasien + "'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                idPasien = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        System.out.println(idPasien);
+        return idPasien;
+    }
+    
+    
+    public String getRekamMedisbyID(String Jabatan) throws RemoteException {
         System.out.println("Client Melakukan Proses Pengambilan ID_PASIEN Pertama dalam Antrian dengan Mengakses Tabel Antrian");
         Statement state = null;
         ResultSet rs = null;
@@ -662,7 +708,7 @@ public String getAutoNumberAntrian() throws RemoteException {
 
         try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT ID_PASIEN FROM ANTRIAN WHERE JENIS_ANTRIAN = DOKTER DESC limit 1";
+            String sql = "SELECT ID_PASIEN FROM ANTRIAN WHERE JENIS_ANTRIAN = '" + Jabatan + "' DESC limit 1";
             rs = state.executeQuery(sql);
             while (rs.next()){
                 idPasienPertama = rs.getString(1);
