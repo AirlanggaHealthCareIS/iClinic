@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Afifah, piudt, Ayundha
+ * @author Afifah, piudt, Ayundha, Arline
  */
 public class DokterServiceServer extends UnicastRemoteObject implements DokterService {
 
@@ -138,6 +138,21 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
             return antrian;  
         }
      }
+    
+    public String Nama_pasien(String id_pasien) throws RemoteException {
+        PreparedStatement statement = null;
+        String Nama_pasien = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT NAMA_PASIEN FROM pasien WHERE ID_PASIEN= '"+id_pasien+"' ");
+            ResultSet result = statement.executeQuery();
+            result.first();
+            Nama_pasien=result.getString("NAMA_PASIEN");
+        } catch (SQLException ex) {
+            Logger.getLogger(USGServiceServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Nama_pasien;
+    }
     
     public Antrian insertAntrian(Antrian antrian) throws RemoteException {
 

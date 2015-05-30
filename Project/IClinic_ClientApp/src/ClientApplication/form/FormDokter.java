@@ -48,7 +48,7 @@ import net.sf.jasperreports.view.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 /**
  *
- * @author Afifah + piudt + ayundhapus + erin
+ * @author Afifah + piudt + ayundhapus + erin + lynnarlin
  */
 public class FormDokter extends javax.swing.JFrame {
     private TableModelRekam_Medis tableModelRekamMedis = new TableModelRekam_Medis();
@@ -57,6 +57,7 @@ public class FormDokter extends javax.swing.JFrame {
     private TableModelObat_detailResep tabelModelDetailResep = new TableModelObat_detailResep();
     private TableModelObat_resep tabelModelResep = new TableModelObat_resep();
     private Pasien pasien;
+    private Antrian antrian=new Antrian();
     int total = 0;
     int harga = 0;
     String id_Rekam = "";
@@ -333,9 +334,9 @@ public class FormDokter extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -647,9 +648,9 @@ public class FormDokter extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboDiagnosaPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -659,9 +660,9 @@ public class FormDokter extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTambahanPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTambahan.addActionListener(new java.awt.event.ActionListener() {
@@ -694,9 +695,9 @@ public class FormDokter extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -808,6 +809,7 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel8.setText("Nama Pasien");
 
+        fieldNamaPasien.setEditable(false);
         fieldNamaPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldNamaPasienActionPerformed(evt);
@@ -1346,6 +1348,14 @@ public class FormDokter extends javax.swing.JFrame {
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         clearUser();
+        try {
+            dokterService.updateAntrian(antrian.getId_Antrian());
+             JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
+        }
+        cekdaftar();
         // TODO add your handling code here:
     }//GEN-LAST:event_clearActionPerformed
 
@@ -1355,11 +1365,9 @@ public class FormDokter extends javax.swing.JFrame {
 
     private void cekdaftar(){
         try {
-            Antrian antrian=new Antrian();
             antrian=dokterService.Id_pasien(antrian);
-            idAntrianSaatIni = antrian.getId_Antrian();
              if("kosong".equals(antrian.getId_Pasien())){
-                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian", "konfirmasi", JOptionPane.YES_NO_OPTION);
+                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian. Apakah ingin memproses kembali ?", "konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     cekdaftar();
                 }
@@ -1373,6 +1381,7 @@ public class FormDokter extends javax.swing.JFrame {
             }
             else{
                 Field_idPasien.setText(antrian.getId_Pasien());
+                fieldNamaPasien.setText(dokterService.Nama_pasien(Field_idPasien.getText()));
             }
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.ALL, null, ex);

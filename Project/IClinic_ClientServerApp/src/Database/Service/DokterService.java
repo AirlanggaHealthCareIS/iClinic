@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * @author Afifah, piudt, Ayundha
+ * @author Afifah, piudt, Ayundha, Arline
  */
 public interface DokterService extends Remote {
 
@@ -104,4 +104,6 @@ public interface DokterService extends Remote {
     String getLastIDRekamMedis() throws RemoteException;
     
     Antrian Id_pasien(Antrian antrian)throws RemoteException;
+    
+    String Nama_pasien(String id_pasien) throws RemoteException;
 }
