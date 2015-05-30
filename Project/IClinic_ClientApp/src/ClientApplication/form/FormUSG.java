@@ -51,8 +51,6 @@ public class FormUSG extends javax.swing.JFrame {
     private USGService usgService;
     private TableModelUSG tableModelusg =  new TableModelUSG();
     private Image image;
-//    public Boolean pasienExist = false;
-//    public int number = 1;
     private USG usg;
     private Antrian antrian= new Antrian();
     private String idusgisi = "";
@@ -103,7 +101,7 @@ public class FormUSG extends javax.swing.JFrame {
         try {
             antrian=usgService.Id_pasien(antrian);
              if("kosong".equals(antrian.getId_Pasien())){
-                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian", "konfirmasi", JOptionPane.YES_NO_OPTION);
+                int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian. Apakah ingin memproses kembali?", "konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     cekdaftar();
                 }
@@ -155,7 +153,6 @@ public class FormUSG extends javax.swing.JFrame {
     public void kembaliawal() {
         isiid();
         cekdaftar();
-//        isitanggal();
         harga.setText("100000");
     }
 
@@ -194,32 +191,37 @@ public class FormUSG extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel2.setText("ID Pasien                 :");
+        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel2.setText("ID Pasien ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(140, 200, 120, 14);
+        jLabel2.setBounds(140, 200, 120, 17);
 
         idpasien.setEditable(false);
         jPanel1.add(idpasien);
         idpasien.setBounds(260, 200, 80, 20);
 
-        jLabel4.setText("Tanggal Pemeriksaan   :");
+        jLabel4.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel4.setText("Tanggal Pemeriksaan");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(560, 170, 140, 14);
+        jLabel4.setBounds(540, 170, 140, 17);
 
-        jLabel5.setText("ID USG                      :");
+        jLabel5.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel5.setText("ID USG ");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(140, 170, 120, 14);
+        jLabel5.setBounds(140, 170, 120, 17);
 
         idusg.setEditable(false);
         jPanel1.add(idusg);
         idusg.setBounds(260, 170, 80, 20);
 
-        jLabel7.setText("Hasil pemeriksaan :");
+        jLabel7.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel7.setText("Hasil pemeriksaan");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(140, 300, 120, 14);
+        jLabel7.setBounds(140, 300, 120, 17);
         jPanel1.add(hasil);
         hasil.setBounds(260, 300, 170, 20);
 
+        pilih.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         pilih.setText("Pilih");
         pilih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,11 +229,12 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(pilih);
-        pilih.setBounds(440, 300, 80, 23);
+        pilih.setBounds(440, 300, 80, 25);
 
-        jLabel8.setText("Keterangan          :");
+        jLabel8.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel8.setText("Keterangan");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(590, 300, 100, 14);
+        jLabel8.setBounds(580, 300, 100, 17);
 
         deskrip.setColumns(20);
         deskrip.setRows(5);
@@ -240,14 +243,17 @@ public class FormUSG extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(700, 300, 260, 150);
 
-        jLabel11.setText("Total transasksi    :");
+        jLabel11.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel11.setText("Total transasksi");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(590, 480, 110, 14);
+        jLabel11.setBounds(580, 480, 110, 17);
 
+        harga.setEditable(false);
         harga.setBackground(new java.awt.Color(240, 240, 240));
         jPanel1.add(harga);
         harga.setBounds(700, 480, 140, 20);
 
+        simpan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpan.setText("Simpan");
         simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +261,7 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(simpan);
-        simpan.setBounds(880, 560, 80, 23);
+        simpan.setBounds(880, 560, 80, 25);
 
         javax.swing.GroupLayout panelGambar1Layout = new javax.swing.GroupLayout(panelGambar1);
         panelGambar1.setLayout(panelGambar1Layout);
@@ -278,6 +284,7 @@ public class FormUSG extends javax.swing.JFrame {
         jPanel1.add(tanggal);
         tanggal.setBounds(700, 170, 160, 20);
 
+        Mulai.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Mulai.setText("Mulai");
         Mulai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,11 +292,12 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Mulai);
-        Mulai.setBounds(260, 260, 80, 23);
+        Mulai.setBounds(260, 260, 80, 25);
 
-        jLabel3.setText("Nama Pasien          :");
+        jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel3.setText("Nama Pasien");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 230, 120, 14);
+        jLabel3.setBounds(140, 230, 120, 17);
 
         Nama.setEditable(false);
         jPanel1.add(Nama);
