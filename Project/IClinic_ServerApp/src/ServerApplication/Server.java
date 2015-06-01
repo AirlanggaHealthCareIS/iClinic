@@ -9,6 +9,7 @@ import ServerApplication.Service.KecantikanServiceServer;
 import ServerApplication.Service.KepalaKlinikServiceServer;
 import ServerApplication.Service.LabServiceServer;
 import ServerApplication.Service.USGServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.awt.HeadlessException;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
@@ -23,24 +24,26 @@ import javax.swing.JOptionPane;
  *
  * @author piudt
  */
-
 public class Server extends javax.swing.JFrame {
 
+    TableModelLog tableModelLog = new TableModelLog();
+
     Registry server = LocateRegistry.createRegistry(6789);
-        
+
     AdministratorServiceServer administratorServiceServer = new AdministratorServiceServer();
     ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer();
-    Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+    Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer();
     DokterServiceServer dokterServiceServer = new DokterServiceServer();
     KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer();
     KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer();
     LabServiceServer labServiceServer = new LabServiceServer();
     USGServiceServer uSGServiceServer = new USGServiceServer();
-    
+
     public Server() throws RemoteException {
         initComponents();
         setLocationRelativeTo(this);
+        logTable.setModel(tableModelLog);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,10 +53,12 @@ public class Server extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        logTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Server");
-        setPreferredSize(new java.awt.Dimension(300, 150));
+        setMinimumSize(new java.awt.Dimension(825, 400));
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,31 +81,50 @@ public class Server extends javax.swing.JFrame {
             }
         });
 
+        logTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(logTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(startButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stopButton)
-                .addGap(67, 67, 67))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addComponent(startButton)
+                        .addGap(174, 174, 174)
+                        .addComponent(stopButton)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startButton)
-                    .addComponent(stopButton))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(stopButton)
+                    .addComponent(startButton))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,13 +141,12 @@ public class Server extends javax.swing.JFrame {
             server.rebind("service6", kepalaKlinikServiceServer);
             server.rebind("service7", labServiceServer);
             server.rebind("service8", uSGServiceServer);
-            
+
             JOptionPane.showMessageDialog(null, "Server aktif!", "Start Server", JOptionPane.INFORMATION_MESSAGE);
-        
+
             startButton.setEnabled(false);
             stopButton.setEnabled(true);
-        }
-        catch (RemoteException ex) {
+        } catch (RemoteException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Server gagal start!", "Error", JOptionPane.ERROR);
         }
@@ -140,9 +163,9 @@ public class Server extends javax.swing.JFrame {
             server.unbind("service6");
             server.unbind("service7");
             server.unbind("service8");
-            
+
             JOptionPane.showMessageDialog(null, "Server telah di-nonaktif-kan!", "Stop Server", JOptionPane.INFORMATION_MESSAGE);
-            
+
             startButton.setEnabled(true);
             stopButton.setEnabled(false);
         } catch (RemoteException ex) {
@@ -168,6 +191,8 @@ public class Server extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable logTable;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     // End of variables declaration//GEN-END:variables
