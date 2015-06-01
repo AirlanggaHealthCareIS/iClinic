@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableModelLab_detailLab extends AbstractTableModel {
 
-    private List<Lab_detailLab> list = new ArrayList<Lab_detailLab>();
+     private List<Lab_detailLab> list = new ArrayList<Lab_detailLab>();
 
     public TableModelLab_detailLab(){
     }
@@ -59,6 +59,7 @@ public class TableModelLab_detailLab extends AbstractTableModel {
     }
 
     public int getRowCount() {
+        System.out.println(list.size());
         return list.size();
     }
 

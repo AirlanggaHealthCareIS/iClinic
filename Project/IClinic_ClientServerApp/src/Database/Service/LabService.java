@@ -5,6 +5,7 @@
 package Database.Service;
 
 import Database.Entity.Antrian;
+import Database.Entity.Pasien;
 import Database.Entity.Lab_detailLab;
 import Database.Entity.Lab_tabelMaster;
 import Database.Entity.Lab_transaksiLab;

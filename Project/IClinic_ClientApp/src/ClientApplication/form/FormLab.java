@@ -41,7 +41,6 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 /**
  *
  * @author erin
@@ -582,7 +581,7 @@ public class FormLab extends javax.swing.JFrame {
         else{
             System.out.println("Beberapa Field Belum Diisi");
         }
-                               
+        
     }//GEN-LAST:event_SaveActionPerformed
 
     private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
@@ -592,18 +591,18 @@ public class FormLab extends javax.swing.JFrame {
 
     private void insertPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPemeriksaanActionPerformed
         // TODO add your handling code here:
-          if (!idTransaksi.getText().equals("")){
-            String idtransaksi = idTransaksi.getText();
-            String iddetail = idtransaksi +"-"+ number;
+           if (!idTransaksi.getText().equals("")){
+            String idtrans = idTransaksi.getText();
+            String iddetail = idtrans +"-"+ number;
             number++;
-            String idjenispemeriksaan = listLaboratorium.get(comboJenisPem.getSelectedIndex()).getId_Lab();
+            String idjenpem = listLaboratorium.get(comboJenisPem.getSelectedIndex()).getId_Lab();
             String keterangan = Keterangan.getText();
             String hasil = hasilPemeriksaan.getText();
             Lab_detailLab detail = new Lab_detailLab();
             detail.setId_Detail_Lab(iddetail);
-            detail.setId_Transaksi_Lab(idtransaksi);
-            detail.setId_Lab(idjenispemeriksaan);
-           // detail.setHasil(hasil);
+            detail.setId_Transaksi_Lab(idtrans);
+            detail.setId_Lab(idjenpem);
+            detail.setHasil(hasil);
             detail.setKeterangan(keterangan);
             listDetailLab.add(detail);
             tableLabDetailLab.setData(listDetailLab);
@@ -662,9 +661,9 @@ public class FormLab extends javax.swing.JFrame {
 
     private void pasinSelanjutnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasinSelanjutnyaActionPerformed
         // TODO add your handling code here:
-        try {          
+       try {          
             if(antrian!=null){
-                antrian.setKeterangan("sudah dilayani");
+                antrian.setKeterangan("SUDAH");
                 boolean update = labService.updateAntrian(antrian);
                 if(update=false){
                     JOptionPane.showMessageDialog(this,"Status antrian tidak dapat diupdate !", "UPDATE GAGAL", JOptionPane.ERROR_MESSAGE);
@@ -778,7 +777,7 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JButton uploadFile;
     // End of variables declaration//GEN-END:variables
 
-     private void setComboboxJenisPemeriksaan() {
+    private void setComboboxJenisPemeriksaan() {
        comboJenisPem.removeAllItems();
         try {
             listLaboratorium = labService.getLaboratorium();
@@ -829,7 +828,8 @@ public class FormLab extends javax.swing.JFrame {
         jfc.showOpenDialog(this);
         //mengambil path file
         String path = jfc.getSelectedFile().getAbsolutePath();
-        hasilPemeriksaan.setText(path);
+        String name = jfc.getSelectedFile().getName();
+        hasilPemeriksaan.setText(name);
     }
     
 //     private String validatePath(String invalidPath){

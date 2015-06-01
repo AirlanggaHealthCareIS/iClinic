@@ -15,13 +15,13 @@ public class TableModelLab_tabelMaster extends AbstractTableModel {
         return list.get(row);
     }
 
-    public void insert(Lab_tabelMaster lab){
-        list.add(lab);
+    public void insert(Lab_tabelMaster laboratorium){
+        list.add(laboratorium);
         fireTableDataChanged();
     }
 
-    public void update(int row, Lab_tabelMaster lab){
-        list.set(row, lab);
+    public void update(int row, Lab_tabelMaster laboratorium){
+        list.set(row, laboratorium);
         fireTableDataChanged();
     }
 
@@ -47,6 +47,7 @@ public class TableModelLab_tabelMaster extends AbstractTableModel {
     }
 
     public int getRowCount() {
+        System.out.println(list.size());
         return list.size();
     }
 

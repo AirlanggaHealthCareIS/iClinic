@@ -23,13 +23,13 @@ public class TableModelLab_transaksiLab extends AbstractTableModel{
         return list.get(row);
     }
 
-    public void insert(Lab_transaksiLab transaksi_Lab){
-        list.add(transaksi_Lab);
+    public void insert(Lab_transaksiLab transaksi_lab){
+        list.add(transaksi_lab);
         fireTableDataChanged();
         }
 
-    public void update(int row, Lab_transaksiLab transaksi_Lab){
-        list.set(row, transaksi_Lab);
+    public void update(int row, Lab_transaksiLab transaksi_lab){
+        list.set(row, transaksi_lab);
         fireTableDataChanged();
     }
 

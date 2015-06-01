@@ -12,7 +12,7 @@ import java.util.Date;
  * @author erin
  */
 public class Lab_transaksiLab implements Serializable{
-     private String Id_Transaksi_Lab;
+      private String Id_Transaksi_Lab;
     private String Id_Pasien;
     private int Total_Harga;
     private String Tanggal;

@@ -13,7 +13,7 @@ import java.sql.Blob;
  * @author erin
  */
 public class Lab_detailLab implements Serializable{
-   private String Id_Detail_Lab;
+    private String Id_Detail_Lab;
     private String Id_Transaksi_Lab;
     private String Id_Lab;
     private String Hasil;

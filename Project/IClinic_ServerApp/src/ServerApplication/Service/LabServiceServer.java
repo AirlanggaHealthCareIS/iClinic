@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 
 public class LabServiceServer extends UnicastRemoteObject implements LabService {
 
-   public LabServiceServer() throws RemoteException {
+    public LabServiceServer() throws RemoteException {
     }
 
     
@@ -152,12 +152,12 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
           List<Lab_tabelMaster> jenis = new ArrayList<Lab_tabelMaster>();
 
           while(result.next()){
-                Lab_tabelMaster laboratorium = new Lab_tabelMaster();
-                laboratorium.setId_Lab(result.getString("ID_LAB"));
-                laboratorium.setJenis_Pemeriksaan(result.getString("JENIS_PEMERIKSAAN"));
-                laboratorium.setHarga(result.getInt("HARGA"));
-                laboratorium.setDeskripsi(result.getString("DESKRIPSI"));
-                jenis.add(laboratorium);
+                Lab_tabelMaster lab = new Lab_tabelMaster();
+                lab.setId_Lab(result.getString("ID_LAB"));
+                lab.setJenis_Pemeriksaan(result.getString("JENIS_PEMERIKSAAN"));
+                lab.setHarga(result.getInt("HARGA"));
+                lab.setDeskripsi(result.getString("DESKRIPSI"));
+                jenis.add(lab);
           }
           return jenis;
 
@@ -363,7 +363,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT * FROM `antrian` WHERE JENIS_ANTRIAN = 'laboratorium' AND KETERANGAN = 'belum dilayani'");
+                    "SELECT * FROM `antrian` WHERE JENIS_ANTRIAN = 'LABORATORIUM' AND KETERANGAN = 'BELUM'");
             ResultSet result = statement.executeQuery();
             Antrian antrian = null;
             if (result.next()) {
