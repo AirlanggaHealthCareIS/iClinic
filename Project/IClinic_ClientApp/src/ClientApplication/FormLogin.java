@@ -33,31 +33,76 @@ import javax.swing.JOptionPane;
 
 public class FormLogin extends javax.swing.JFrame {
     
-    Registry registry = LocateRegistry.getRegistry("localhost", 6789);
-    final AdministratorService service = (AdministratorService) registry.lookup("service");
-    final ApotekerService service1 = (ApotekerService) registry.lookup("service1");
-    final Bag_PembayaranService service2 = (Bag_PembayaranService) registry.lookup("service2");
-    final Bag_PendaftaranService service3 = (Bag_PendaftaranService) registry.lookup("service3");
-    final DokterService service4 = (DokterService) registry.lookup("service4");
-    final KecantikanService service5 = (KecantikanService) registry.lookup("service5");
-    final Kepala_KlinikService service6 = (Kepala_KlinikService) registry.lookup("service6");
-    final LabService service7 = (LabService) registry.lookup("service7");
-    final USGService service8 = (USGService) registry.lookup("service8");
+//    Registry registry = LocateRegistry.getRegistry("localhost", 6789);
+//    final AdministratorService service = (AdministratorService) registry.lookup("service");
+//    final ApotekerService service1 = (ApotekerService) registry.lookup("service1");
+//    final Bag_PembayaranService service2 = (Bag_PembayaranService) registry.lookup("service2");
+//    final Bag_PendaftaranService service3 = (Bag_PendaftaranService) registry.lookup("service3");
+//    final DokterService service4 = (DokterService) registry.lookup("service4");
+//    final KecantikanService service5 = (KecantikanService) registry.lookup("service5");
+//    final Kepala_KlinikService service6 = (Kepala_KlinikService) registry.lookup("service6");
+//    final LabService service7 = (LabService) registry.lookup("service7");
+//    final USGService service8 = (USGService) registry.lookup("service8");
     
-    FormAdministrator formAdministrator = new FormAdministrator(service);
-    FormApoteker formApoteker = new FormApoteker(service1);
-    FormBag_Pembayaran formBag_Pembayaran = new FormBag_Pembayaran(service2);
-    FormBag_Pendaftaran formBag_Pendaftaran = new FormBag_Pendaftaran(service3);
-    FormDokter formDokter = new FormDokter(service4);
-    FormKecantikan formKecantikan = new FormKecantikan(service5);
-    FormKepala_Klinik formKepala_Klinik = new FormKepala_Klinik(service6);
-    FormLab formLab = new FormLab(service7);
-    FormUSG formUSG = new FormUSG(service8);
+    Registry registry;
+    AdministratorService service;
+    ApotekerService service1;
+    Bag_PembayaranService service2;
+    Bag_PendaftaranService service3;
+    DokterService service4;
+    KecantikanService service5;
+    Kepala_KlinikService service6;
+    LabService service7;
+    USGService service8;
+    
+//    FormAdministrator formAdministrator = new FormAdministrator(service);
+//    FormApoteker formApoteker = new FormApoteker(service1);
+//    FormBag_Pembayaran formBag_Pembayaran = new FormBag_Pembayaran(service2);
+//    FormBag_Pendaftaran formBag_Pendaftaran = new FormBag_Pendaftaran(service3);
+//    FormDokter formDokter = new FormDokter(service4);
+//    FormKecantikan formKecantikan = new FormKecantikan(service5);
+//    FormKepala_Klinik formKepala_Klinik = new FormKepala_Klinik(service6);
+//    FormLab formLab = new FormLab(service7);
+//    FormUSG formUSG = new FormUSG(service8);
+    
+    FormAdministrator formAdministrator;
+    FormApoteker formApoteker;
+    FormBag_Pembayaran formBag_Pembayaran;
+    FormBag_Pendaftaran formBag_Pendaftaran;
+    FormDokter formDokter;
+    FormKecantikan formKecantikan;
+    FormKepala_Klinik formKepala_Klinik;
+    FormLab formLab;
+    FormUSG formUSG;
  
+    Splash splash = new Splash();
     private AdministratorService administratorService;
+    String ipServer = splash.getIPServer();
     
     public FormLogin(AdministratorService administratorService) throws RemoteException, NotBoundException{
         this.administratorService = administratorService;
+        
+        registry = LocateRegistry.getRegistry(ipServer, 6789);
+        service = (AdministratorService)registry.lookup("service");
+        service1 = (ApotekerService) registry.lookup("service1");
+        service2 = (Bag_PembayaranService) registry.lookup("service2");
+        service3 = (Bag_PendaftaranService) registry.lookup("service3");
+        service4 = (DokterService) registry.lookup("service4");
+        service5 = (KecantikanService) registry.lookup("service5");
+        service6 = (Kepala_KlinikService) registry.lookup("service6");
+        service7 = (LabService) registry.lookup("service7");
+        service8 = (USGService) registry.lookup("service8");
+        
+        formAdministrator = new FormAdministrator(service);
+        formApoteker = new FormApoteker(service1);
+        formBag_Pembayaran = new FormBag_Pembayaran(service2);
+        formBag_Pendaftaran = new FormBag_Pendaftaran(service3);
+        formDokter = new FormDokter(service4);
+        formKecantikan = new FormKecantikan(service5);
+        formKepala_Klinik = new FormKepala_Klinik(service6);
+        formLab = new FormLab(service7);
+        formUSG = new FormUSG(service8);
+        
         initComponents();
         setLocationRelativeTo(this);
     }
