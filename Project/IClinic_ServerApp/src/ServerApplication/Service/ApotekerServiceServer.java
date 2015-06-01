@@ -342,7 +342,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             
             List<Obat_detailResepPembelian> list = new ArrayList<Obat_detailResepPembelian>();
 
-            if (result.next()) {
+            while (result.next()) {
                 detail_resep = new Obat_detailResepPembelian();
                 detail_resep.setNo_Detail_Resep(result.getString("No_Detail_Resep"));
                 System.out.println(detail_resep.getNo_Detail_Resep());
@@ -352,11 +352,15 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 System.out.println(detail_resep.getTakaran());
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
                 System.out.println(detail_resep.getPemakaian());
-                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setJumlah(result.getInt("Jumlah"));
                 System.out.println(detail_resep.getJumlah());
-                detail_resep.setHarga(result.getString("Harga"));
+                detail_resep.setHarga(result.getInt("Harga"));
                 System.out.println(detail_resep.getHarga());
+                int jumlah = result.getInt("JUMLAH");
+                int harga = result.getInt("HARGA");
+                detail_resep.setTotal(jumlah * harga);
                 System.out.println("");
+                list.add(detail_resep);
             }
             result.close();
             return list;
