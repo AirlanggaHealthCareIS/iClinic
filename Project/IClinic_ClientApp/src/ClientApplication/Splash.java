@@ -1,6 +1,12 @@
 package ClientApplication;
 
 import Database.Service.AdministratorService;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -9,11 +15,6 @@ import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-
-/**
- *
- * @author Tiara Ratna Sari
- */
 
 public class Splash extends javax.swing.JFrame {
 //    Registry registry = LocateRegistry.getRegistry("localhost", 6789);
@@ -24,10 +25,23 @@ public class Splash extends javax.swing.JFrame {
     AdministratorService service;
     FormLogin logForm;
     String ipServer = "";
+    BufferedReader br;
+    File file = new File("ipserver.txt");
     
     public Splash() throws RemoteException, NotBoundException{
         initComponents();
         setLocationRelativeTo(this);
+        
+        try{
+            if(file.exists()){
+                br = new BufferedReader(new FileReader(file));
+                ipServer = br.readLine();
+                ipServerField.setEnabled(false);
+                ipServerField.setText(ipServer);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -110,6 +124,23 @@ public class Splash extends javax.swing.JFrame {
             Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
             Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+            if(file.createNewFile()){
+                System.out.println("File berhasil dibuat!");
+            } else {
+                System.out.println("File sudah pernah dibuat!");
+            }
+            
+            FileWriter writer = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bf = new BufferedWriter(writer);
+            
+            bf.write(ipServer);
+            bf.close();
+            System.out.println("Oke selesai. Sekarang cek isi file!");
+        } catch(IOException e){
+            e.printStackTrace();
         }
     }//GEN-LAST:event_inButtonActionPerformed
 
