@@ -1,0 +1,14 @@
+Feature 	Memasukkan Data Transaksi Layanan Kesehatan Laboratorium 
+Scenario	Petugas Berhasil Memasukkan Data Transaksi Pasien di Layanan Kesehatan Laboratorium
+
+Given 		Petugas sudah melakukan login
+and 		Petugas masuk ke halaman atau form data transaksi pasien 
+and 		Pasien telah dilayani
+When 		Petugas memasukkan data transaksi layanan kesehatan laboratorium
+Then		Sistem akan menghitung total biaya transaksi yang telah dilakukan oleh pasien tersebut
+When  		Data transaksi yang dimasukkan sudah lengkap 		
+and		Petugas meng-klik button "Save"
+Then 		Sistem akan menyimpan semua data transaksi tersebut ke dalam database
+and 		Sistem menampilkan pesan atau pemberitahuan bahwa "Selamat Data Telah Berhasil Diinputkan!" 
+and 		Sistem mengirimkan data tersebut ke bagian pembayaran	
+

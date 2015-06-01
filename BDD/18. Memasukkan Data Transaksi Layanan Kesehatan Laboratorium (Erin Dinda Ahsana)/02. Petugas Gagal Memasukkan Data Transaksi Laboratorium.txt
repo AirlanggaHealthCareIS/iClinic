@@ -1,0 +1,14 @@
+Feature 	Memasukkan Data Transaksi Layanan Kesehatan Laboratorium 
+Scenario 	Petugas Gagal Memasukkan Data Transaksi Karena Satu atau Lebih Field Tidak Diisi atau Kosong
+
+Given 		Petugas sudah melakukan login
+and 		Petugas masuk ke form data transaksi pasien 
+and 		Pasien telah dilayani
+When 		Petugas memasukkan data transaksi layanan kesehatan laboratorium
+and 		Tidak mengisi satu field atau beberapa field (misalnya memilih jenis pemeriksaan)
+Then		Sistem tidak akan menghitung total biaya transaksi yang telah dilakukan oleh pasien tersebut
+When  		Data transaksi yang dimasukkan tidak lengkap 	
+Then 		Sistem tidak menyimpan data tersebut ke dalam database	
+and		Sistem menampilkan pesan atau pemberitahuan bahwa data tidak lengkap
+and 		Sistem tidak akan menyimpan semua data transaksi tersebut ke dalam database 
+and 		Sistem tidak mengirimkan data tersebut ke bagian pembayaran	
