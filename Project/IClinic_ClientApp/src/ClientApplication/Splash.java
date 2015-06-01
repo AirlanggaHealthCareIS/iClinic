@@ -20,26 +20,29 @@ public class Splash extends javax.swing.JFrame {
 //    Registry registry = LocateRegistry.getRegistry("localhost", 6789);
 //    final AdministratorService service = (AdministratorService) registry.lookup("service");
 //    FormLogin logForm = new FormLogin(service);
-    
+
     Registry registry;
     AdministratorService service;
     FormLogin logForm;
     String ipServer = "";
     BufferedReader br;
     File file = new File("ipserver.txt");
-    
-    public Splash() throws RemoteException, NotBoundException{
-        initComponents();
-        setLocationRelativeTo(this);
-        
-        try{
-            if(file.exists()){
+
+    public Splash() throws RemoteException, NotBoundException {
+        try {
+            if (file.exists()) {
                 br = new BufferedReader(new FileReader(file));
                 ipServer = br.readLine();
-                ipServerField.setEnabled(false);
-                ipServerField.setText(ipServer);
+                registry = LocateRegistry.getRegistry(ipServer, 6789);
+                service = (AdministratorService) registry.lookup("service");
+                logForm = new FormLogin(service, ipServer);
+                logForm.setVisible(true);
+            } else if (!file.exists()){
+                this.setVisible(true);
+                initComponents();
+                setLocationRelativeTo(this);
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -115,9 +118,9 @@ public class Splash extends javax.swing.JFrame {
         try {
             ipServer = ipServerField.getText();
             registry = LocateRegistry.getRegistry(ipServer, 6789);
-            service = (AdministratorService)registry.lookup("service");
-            logForm = new FormLogin(service);
-            
+            service = (AdministratorService) registry.lookup("service");
+            logForm = new FormLogin(service, ipServer);
+
             logForm.setVisible(true);
             this.dispose();
         } catch (RemoteException ex) {
@@ -125,34 +128,34 @@ public class Splash extends javax.swing.JFrame {
         } catch (NotBoundException ex) {
             Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        try{
-            if(file.createNewFile()){
+
+        try {
+            if (file.createNewFile()) {
                 System.out.println("File berhasil dibuat!");
             } else {
                 System.out.println("File sudah pernah dibuat!");
             }
-            
+
             FileWriter writer = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bf = new BufferedWriter(writer);
-            
+
             bf.write(ipServer);
             bf.close();
             System.out.println("Oke selesai. Sekarang cek isi file!");
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_inButtonActionPerformed
 
-    public String getIPServer(){
+    public String getIPServer() {
         return ipServer;
     }
-    
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Splash().setVisible(true);
+                    new Splash();
                 } catch (RemoteException ex) {
                     Logger.getLogger(Splash.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NotBoundException ex) {
@@ -160,7 +163,7 @@ public class Splash extends javax.swing.JFrame {
                 }
             }
         });
-       
+
     }
 
 

@@ -75,11 +75,11 @@ public class FormLogin extends javax.swing.JFrame {
     FormLab formLab;
     FormUSG formUSG;
  
-    Splash splash = new Splash();
+//    Splash splash = new Splash();
     private AdministratorService administratorService;
-    String ipServer = splash.getIPServer();
+//    String ipServer = splash.getIPServer();
     
-    public FormLogin(AdministratorService administratorService) throws RemoteException, NotBoundException{
+    public FormLogin(AdministratorService administratorService,String ipServer) throws RemoteException, NotBoundException{
         this.administratorService = administratorService;
         
         registry = LocateRegistry.getRegistry(ipServer, 6789);
