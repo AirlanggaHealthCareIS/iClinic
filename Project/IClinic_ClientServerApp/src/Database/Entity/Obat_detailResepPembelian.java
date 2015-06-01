@@ -16,15 +16,15 @@ public class Obat_detailResepPembelian implements Serializable{
     private String Nama_Obat;
     private String Takaran;
     private String Pemakaian;
-    private String Jumlah;
-    private String Harga;
-    private String Total;
+    private int Jumlah;
+    private int Harga;
+    private int Total;
 
     public void setNama_Obat(String Nama_Obat) {
         this.Nama_Obat = Nama_Obat;
     }
 
-    public void setTotal(String Total) {
+    public void setTotal(int Total) {
         this.Total = Total;
     }
 
@@ -32,15 +32,15 @@ public class Obat_detailResepPembelian implements Serializable{
         return Nama_Obat;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return Total;
     }
 
-    public void setHarga(String Harga) {
+    public void setHarga(int Harga) {
         this.Harga = Harga;
     }
 
-    public String getHarga() {
+    public int getHarga() {
         return Harga;
     }
 
@@ -56,7 +56,7 @@ public class Obat_detailResepPembelian implements Serializable{
         return Pemakaian;
     }
 
-    public String getJumlah() {
+    public int getJumlah() {
         return Jumlah;
     }
 
@@ -72,7 +72,7 @@ public class Obat_detailResepPembelian implements Serializable{
         this.Pemakaian = Pemakaian;
     }
 
-    public void setJumlah(String Jumlah) {
+    public void setJumlah(int Jumlah) {
         this.Jumlah = Jumlah;
     }
 }

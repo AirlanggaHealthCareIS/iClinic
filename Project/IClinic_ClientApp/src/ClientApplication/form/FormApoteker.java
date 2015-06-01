@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,37 +34,30 @@ import javax.swing.event.ListSelectionListener;
  */
 public class FormApoteker extends javax.swing.JFrame {
 
-      private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
+    private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
     private TableModelObat_detailResep tableModelObat_detailResepPO = new TableModelObat_detailResep();
     private TableModelObat_detailResepPembelian tableModelObat_detailResepPR = new TableModelObat_detailResepPembelian();
     private ApotekerService apotekerService;
     int total = 0;
     String idResep;
-    
+    private DefaultTableModel tabel_penukaran;
+
     public FormApoteker(ApotekerService apotekerService) {
         this.apotekerService = apotekerService;
         try {
             tableModelObat_detailResepPO.setData(this.apotekerService.getObat_detailresep(null));
+            tableModelObat_detailResepPR.setData(this.apotekerService.getObat_detailResepPembelian(null));
             idResep = apotekerService.getAutoNumberDariResep();
         } catch (RemoteException exception) {
             exception.printStackTrace();
         }
-        
-//        this.apotekerService = apotekerService;
-//        try {
-//            tableModelObat_detailResepPR.setData(this.apotekerService.getObat_detailResepPembelian(null));
-//            idResep = apotekerService.getAutoNumberDariResep();
-//        } catch (RemoteException exception) {
-//            exception.printStackTrace();
-//        }
-        
+
         initComponents();
         setLocationRelativeTo(this);
         setSize(665, 730);
         idResepField.setText(idResep);
         Table_Apotek.setModel(tableModelObat_detailResep);
         Table_Apotek.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
             public void valueChanged(ListSelectionEvent e) {
                 int row = Table_Apotek.getSelectedRow();
                 if (row != -1) {
@@ -71,42 +65,40 @@ public class FormApoteker extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         TabelDetailResepPO.setModel(tableModelObat_detailResepPO);
         TabelDetailResepPO.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
             public void valueChanged(ListSelectionEvent e) {
                 int row = TabelDetailResepPO.getSelectedRow();
                 if (row != -1) {
                     Obat_detailResep obat_detailResep = tableModelObat_detailResepPO.get(row);
                     idResepField.setText(obat_detailResep.getId_Resep());
                     noDetailResepField.setText(obat_detailResep.getNo_Detail_Resep());
-                    
-               }
+
+                }
             }
         });
         PenukaranResepTable3.setModel(tableModelObat_detailResepPR);
-        PenukaranResepTable3.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
+        PenukaranResepTable3.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 int row = PenukaranResepTable3.getSelectedRow();
                 if (row != -1) {
                     Obat_detailResepPembelian obat_detailResepPembelian = tableModelObat_detailResepPR.get(row);
-               }
+                    jNamaObatPRTextField2.setText(obat_detailResepPembelian.getNama_Obat());
+                    jJumlahPRTextField3.setText(String.valueOf(obat_detailResepPembelian.getJumlah()));
+                    jHargaPRTextField4.setText(String.valueOf(obat_detailResepPembelian.getHarga()));
+                    jTotalPRTextField1.setText(String.valueOf(obat_detailResepPembelian.getTotal()));
+
+                }
             }
         });
-        
-//        PenukaranResepTable3.getModel().addTableModelListener(new TableModelListener() {
-//
-//            public void tableChanged(TableModelEvent e) {
-//                System.out.println(e);
-//            }
-//        });
     }
 
     public void clear() {
         TextField_IdResep.setText("");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,26 +112,6 @@ public class FormApoteker extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table_Apotek = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        clear1 = new javax.swing.JButton();
-        submit = new javax.swing.JButton();
-        Exit = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         resepPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -180,6 +152,14 @@ public class FormApoteker extends javax.swing.JFrame {
         IDResepPRTextField1 = new javax.swing.JTextField();
         DeletePRButton4 = new javax.swing.JButton();
         ProsesPRButton3 = new javax.swing.JButton();
+        jTotalPRLabel = new javax.swing.JLabel();
+        jNamaObatPRLabel = new javax.swing.JLabel();
+        jlHargaPRLabel = new javax.swing.JLabel();
+        jJumlahPRLabel = new javax.swing.JLabel();
+        jTotalPRTextField1 = new javax.swing.JTextField();
+        jNamaObatPRTextField2 = new javax.swing.JTextField();
+        jJumlahPRTextField3 = new javax.swing.JTextField();
+        jHargaPRTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,99 +209,6 @@ public class FormApoteker extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("LIHAT RESEP", jPanel1);
 
-        jPanel2.setLayout(null);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(100, 330, 183, 22);
-
-        jLabel4.setText("ID Resep");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(10, 290, 106, 22);
-
-        jLabel5.setText("ID Obat");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(10, 330, 106, 22);
-        jPanel2.add(jTextField4);
-        jTextField4.setBounds(100, 250, 183, 22);
-
-        jLabel8.setText("No. Detail Resep");
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(10, 250, 106, 22);
-        jPanel2.add(jTextField7);
-        jTextField7.setBounds(100, 290, 183, 22);
-
-        jLabel9.setText("Kuantitas");
-        jPanel2.add(jLabel9);
-        jLabel9.setBounds(10, 410, 106, 22);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(100, 370, 183, 22);
-
-        jLabel10.setText("Nama Obat");
-        jPanel2.add(jLabel10);
-        jLabel10.setBounds(10, 370, 106, 22);
-        jPanel2.add(jTextField8);
-        jTextField8.setBounds(100, 410, 50, 22);
-
-        jLabel11.setText("Detail Resep");
-        jPanel2.add(jLabel11);
-        jLabel11.setBounds(10, 460, 106, 22);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Nama Obat", "Jenis Obat", "Kuantitas", "Harga"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel2.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 510, 999, 101);
-
-        clear1.setText("Clear");
-        clear1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clear1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(clear1);
-        clear1.setBounds(550, 690, 168, 58);
-
-        submit.setText("Simpan Data");
-        submit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitActionPerformed(evt);
-            }
-        });
-        jPanel2.add(submit);
-        submit.setBounds(330, 690, 178, 54);
-
-        Exit.setText("Exit");
-        Exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Exit);
-        Exit.setBounds(770, 690, 168, 58);
-
-        jLabel20.setText("Total Harga");
-        jPanel2.add(jLabel20);
-        jLabel20.setBounds(10, 640, 106, 22);
-        jPanel2.add(jTextField12);
-        jTextField12.setBounds(100, 640, 183, 22);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(0, 0, 1280, 810);
-
-        jTabbedPane1.addTab("PENUKARAN RESEP", jPanel2);
-
         jPanel3.setLayout(null);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.gray));
@@ -352,10 +239,10 @@ public class FormApoteker extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -649,6 +536,26 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
 
+        jTotalPRLabel.setText("Total");
+
+        jNamaObatPRLabel.setText("Nama Obat");
+
+        jlHargaPRLabel.setText("Harga");
+
+        jJumlahPRLabel.setText("Jumlah");
+
+        jNamaObatPRTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNamaObatPRTextField2ActionPerformed(evt);
+            }
+        });
+
+        jJumlahPRTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jJumlahPRTextField3KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -657,6 +564,18 @@ public class FormApoteker extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTotalPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTotalPRTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jJumlahPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jJumlahPRTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jNamaObatPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jNamaObatPRTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(IDResepPRLabel2)
                         .addGap(55, 55, 55)
                         .addComponent(IDResepPRTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -664,15 +583,18 @@ public class FormApoteker extends javax.swing.JFrame {
                         .addComponent(SearchIDResepPRButton1))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(DeletePRButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ProsesPRButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
-                    .addComponent(jTotalHargaPRLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(DeletePRButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ProsesPRButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(TotalHargaPRTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(336, Short.MAX_VALUE))
+                        .addComponent(jlHargaPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jHargaPRTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTotalHargaPRLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TotalHargaPRTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -683,20 +605,37 @@ public class FormApoteker extends javax.swing.JFrame {
                     .addComponent(IDResepPRTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchIDResepPRButton1))
                 .addGap(95, 95, 95)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(DeletePRButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ProsesPRButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
+                        .addGap(40, 40, 40)
+                        .addComponent(DeletePRButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jNamaObatPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jNamaObatPRTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jJumlahPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jJumlahPRTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jHargaPRTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlHargaPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTotalPRLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTotalPRTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTotalHargaPRLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TotalHargaPRTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(432, Short.MAX_VALUE))
+                    .addComponent(TotalHargaPRTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addComponent(ProsesPRButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("PENUKARAN RESEP 2", jPanel5);
+        jTabbedPane1.addTab("PENUKARAN RESEP", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -717,81 +656,15 @@ public class FormApoteker extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clear1ActionPerformed
-
-    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        //if(tglTransaksiBeli.getText().equals("")||idCustomer.getText().equalsIgnoreCase("")
-        //                ||idKaryawan.getSelectedItem().equals("")||totalHarga.getText().equals("")||diskon.getText().equals("")){
-        //            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
-        //        }
-        //        else{
-        //            try{
-        //                TransaksiBeli transaksiBeli = new TransaksiBeli();
-        //                transaksiBeli.setID_TRANSAKSIBELI(idTransaksiBeli.getText());
-        //                transaksiBeli.setID_CUSTOMER(idCustomer.getText());
-        //                transaksiBeli.setID_KARYAWAN(idKaryawan.getSelectedItem().toString());
-        //                transaksiBeli.setTGL_TRANSAKSIBELI((Date)tglTransaksiBeli.getValue());
-        //                transaksiBeli.setTOTAL_HARGA(Integer.parseInt(totalHarga.getText()));
-        //                transaksiBeli.setDISKON(Integer.parseInt(diskon.getText()));
-        //                transaksiBeli.setTOTAL_TAGIHAN(Integer.parseInt(totalTagihan.getText()));
-        //                transaksiBeli.setSTATUS_PEMBAYARAN(status.getText());
-        //
-        //                TransaksiBeliService.updateTransaksiBeli(transaksiBeli);
-        //                tableModelTransaksiBeli.insert(transaksiBeli);
-        //
-        //                TransaksiBeliService.insertPembayaran(transaksiBeli, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()), Integer.parseInt(sisaTagihan.getText()));
-        //
-        //                String idPemasukan = TransaksiBeliService.getAutoNumberPemasukan();
-        //                TransaksiBeliService.insertPemasukan(transaksiBeli, idPemasukan, idPembayaran.getText(), Integer.parseInt(jumlahBayar.getText()));
-        //                TransaksiBeliService.insertBukuBesar(transaksiBeli, idPemasukan, Integer.parseInt(jumlahBayar.getText()));
-        //
-        //                int jumlah_transaksi = TransaksiBeliService.hitungMember(idCustomer.getText());
-        //                if(jumlah_transaksi == 3){
-        //                    TransaksiBeliService.insertMember(idCustomer.getText());
-        //                }
-        //                clear();
-        //            }
-        //            catch(RemoteException exception){
-        //                exception.printStackTrace();
-        //            }
-        //        }
-        // TODO add your handling code here:
-
-        //-----Pembayaran-----//
-        String idResep = jTextField7.getText();
-        int harga = Integer.parseInt(jTextField12.getText());
-        try {
-            String idPasien = apotekerService.mencariIdPasienDariPembayaran(idResep);
-            String idPembayaran = apotekerService.mencariIdPembayaranDariPembayaran(idPasien);
-            if (!idPembayaran.equalsIgnoreCase("")) {
-                Pembayaran pembayaran = apotekerService.getPembayaranDariPembayaran(idPembayaran);
-                apotekerService.updatePembayaranDariPembayaran(pembayaran, idResep, harga);
-            }
-            else if(idPembayaran.equalsIgnoreCase("")){
-                idPembayaran = apotekerService.getAutoNumberDariPembayaran();
-                apotekerService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idResep, harga);
-            }
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_submitActionPerformed
-
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ExitActionPerformed
-
     private void Button_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SearchActionPerformed
         if (TextField_IdResep.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
         } else if (!TextField_IdResep.getText().equals("")) {
             try {
                 String menemukan = apotekerService.mencocokan_IdResep(TextField_IdResep.getText());
-            if(menemukan.equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(null, "Anda Menginputkan ID RESEP SALAH");
-            }
+                if (menemukan.equalsIgnoreCase("")) {
+                    JOptionPane.showMessageDialog(null, "Anda Menginputkan ID RESEP SALAH");
+                }
                 tableModelObat_detailResep.setData(apotekerService.getObat_detailresep(TextField_IdResep.getText()));
                 Table_Apotek.setModel(tableModelObat_detailResep);
             } catch (RemoteException exception) {
@@ -817,12 +690,12 @@ public class FormApoteker extends javax.swing.JFrame {
             try {
                 Obat_detailResep detailResep = new Obat_detailResep();
                 String idDetResep = apotekerService.getAutoNumberDariObat_detailResep();
-                
+
                 detailResep.setId_Resep(idResep);
                 detailResep.setNo_Detail_Resep(idDetResep);
-                
+
                 String id_obat = apotekerService.getIdObat(namaObatComboBox.getSelectedItem().toString());
-                
+
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
@@ -831,16 +704,10 @@ public class FormApoteker extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
                 tableModelObat_detailResepPO.insert(detailResep1);
-                
+
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-//            try {
-//                tableModelObat_detailResepPO.setData(apotekerService.getObat_detailresep(TextField_IdResep.getText()));
-//                TabelDetailResepPO.setModel(tableModelObat_detailResepPO);
-//            } catch (RemoteException exception) {
-//                exception.printStackTrace();
-//            }
         }
     }//GEN-LAST:event_tambahObatButtonActionPerformed
 
@@ -876,9 +743,9 @@ public class FormApoteker extends javax.swing.JFrame {
     }//GEN-LAST:event_pemakaianComboBoxActionPerformed
 
     private void simpanObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanObatButtonActionPerformed
-if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
-    || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
-    || (keteranganField.getText().equals(""))) {
+        if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
+                || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
+                || (keteranganField.getText().equals(""))) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
             try {
@@ -892,16 +759,16 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-            
+
             try {
                 Obat_detailResep detailResep = new Obat_detailResep();
                 String idDetResep = apotekerService.getAutoNumberDariObat_detailResep();
-                
+
                 detailResep.setId_Resep(idResep);
                 detailResep.setNo_Detail_Resep(idDetResep);
-                
+
                 String id_obat = apotekerService.getIdObat(namaObatComboBox.getSelectedItem().toString());
-                
+
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
@@ -914,7 +781,7 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
                 exception.printStackTrace();
             }
         }
-//        }        // TODO add your handling code here:
+
     }//GEN-LAST:event_simpanObatButtonActionPerformed
 
     private void hapusObatDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusObatDetailResepButtonActionPerformed
@@ -931,10 +798,10 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
     }//GEN-LAST:event_hapusObatDetailResepButtonActionPerformed
 
     private void prosesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prosesButtonActionPerformed
-     Obat_resep resep = new Obat_resep();
+        Obat_resep resep = new Obat_resep();
         try {
             apotekerService.updateResep(resep, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
-         //-----Pembayaran-----//
+            //-----Pembayaran-----//
             String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
             apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
         } catch (RemoteException ex) {
@@ -948,17 +815,17 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
 
     private void PenukaranResepTable3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PenukaranResepTable3KeyReleased
         int row = PenukaranResepTable3.getSelectedRow();
-    
-    int jumlah = 0;
-    
-    String harga = String.valueOf(PenukaranResepTable3.getValueAt(row, 5));
-    String qty = String.valueOf(PenukaranResepTable3.getValueAt(row, 4));
-    jumlah = Integer.parseInt(harga) * Integer.parseInt(qty);
-    tableModelObat_detailResepPR = (TableModelObat_detailResepPembelian)PenukaranResepTable3.getModel();
-    tableModelObat_detailResepPR.setValueAt(jumlah, row, 6);
-    PenukaranResepTable3.setModel(tableModelObat_detailResepPR);
-    total = total + jumlah;
-    TotalHargaPRTextField13.setText(String.valueOf(total));
+
+        int jumlah = 0;
+
+        String harga = String.valueOf(PenukaranResepTable3.getValueAt(row, 5));
+        String qty = String.valueOf(PenukaranResepTable3.getValueAt(row, 4));
+        jumlah = Integer.parseInt(harga) * Integer.parseInt(qty);
+        tableModelObat_detailResepPR = (TableModelObat_detailResepPembelian) PenukaranResepTable3.getModel();
+        tableModelObat_detailResepPR.setValueAt(jumlah, row, 6);
+        PenukaranResepTable3.setModel(tableModelObat_detailResepPR);
+        total = total + jumlah;
+        TotalHargaPRTextField13.setText(String.valueOf(total));
 
     }//GEN-LAST:event_PenukaranResepTable3KeyReleased
 
@@ -969,12 +836,9 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
             try {
                 String Id_Resep = IDResepPRTextField1.getText();
                 String menemukan = apotekerService.mencocokan_IdResep(Id_Resep);
-                if(menemukan.equalsIgnoreCase("")){
+                if (menemukan.equalsIgnoreCase("")) {
                     JOptionPane.showMessageDialog(null, "Anda Menginputkan ID RESEP SALAH");
                 }
-                //                List<Obat_detailResepPembelian> resep_pembelian = apotekerService.getObat_detailResepPembelian(Id_Resep);
-                //                System.out.println(resep_pembelian.get(0));
-                //              tableModelObat_detailResepPR.setData(resep_pembelian);
                 tableModelObat_detailResepPR.setData(apotekerService.getObat_detailResepPembelian(Id_Resep));
                 PenukaranResepTable3.setModel(tableModelObat_detailResepPR);
             } catch (RemoteException exception) {
@@ -1008,15 +872,35 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
         }
     }//GEN-LAST:event_ProsesPRButton3ActionPerformed
 
+    private void jNamaObatPRTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNamaObatPRTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNamaObatPRTextField2ActionPerformed
+
+    private void jJumlahPRTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJumlahPRTextField3KeyReleased
+        int row = PenukaranResepTable3.getSelectedRow();
+        int totalPerObat = 0;
+
+        if (!jJumlahPRTextField3.getText().equals("")) {
+            String harga = jHargaPRTextField4.getText();
+            String qty = jJumlahPRTextField3.getText();
+            totalPerObat = Integer.parseInt(harga) * Integer.parseInt(qty);
+
+            Obat_detailResepPembelian obat_pembelian = tableModelObat_detailResepPR.get(row);
+            obat_pembelian.setJumlah(Integer.parseInt(qty));
+            obat_pembelian.setTotal(totalPerObat);
+            tableModelObat_detailResepPR.update(row, obat_pembelian);
+
+            total = total + totalPerObat;
+            jTotalPRTextField1.setText(String.valueOf(totalPerObat));
+            TotalHargaPRTextField13.setText(String.valueOf(total));
+        }
+    }//GEN-LAST:event_jJumlahPRTextField3KeyReleased
     /**
      * @param args the command line arguments
      */
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Search;
     private javax.swing.JButton DeletePRButton4;
-    private javax.swing.JButton Exit;
     private javax.swing.JLabel IDResepPRLabel2;
     private javax.swing.JTextField IDResepPRTextField1;
     private javax.swing.JTable PenukaranResepTable3;
@@ -1026,42 +910,32 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
     private javax.swing.JTable Table_Apotek;
     private javax.swing.JTextField TextField_IdResep;
     private javax.swing.JTextField TotalHargaPRTextField13;
-    private javax.swing.JButton clear1;
     private javax.swing.JButton hapusObatDetailResepButton;
     private javax.swing.JTextField hargaField;
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JTextField idResepField;
     private javax.swing.JLabel idResepLabel;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JTextField jHargaPRTextField4;
+    private javax.swing.JLabel jJumlahPRLabel;
+    private javax.swing.JTextField jJumlahPRTextField3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jNamaObatPRLabel;
+    private javax.swing.JTextField jNamaObatPRTextField2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel jTotalHargaPRLabel21;
+    private javax.swing.JLabel jTotalPRLabel;
+    private javax.swing.JTextField jTotalPRTextField1;
+    private javax.swing.JLabel jlHargaPRLabel;
     private javax.swing.JLabel jumlahLabel;
     private javax.swing.JSpinner jumlahSpinner;
     private javax.swing.JTextField keteranganField;
@@ -1076,7 +950,6 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
     private javax.swing.JPanel resepPanel;
     private javax.swing.JComboBox satuanComboBox;
     private javax.swing.JButton simpanObatButton;
-    private javax.swing.JButton submit;
     private javax.swing.JLabel takaranLabel;
     private javax.swing.JComboBox takaranSatuanWaktuComboBox;
     private javax.swing.JSpinner takaranSpinner;

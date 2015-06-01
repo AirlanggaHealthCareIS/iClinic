@@ -3,10 +3,9 @@ Skenario	Petugas gagal melihat pasien selanjutnya karena database antrian
                 untuk layanan Laboratorium masih kosong
  		
 
-Given 		Petugas masuk ke halaman khusus layanan Laboratorium
-Then		Sistem mengirimkan Id pasien ke layanan Laboratorium
-And 		Sistem menampilkan field id pasien, id transaksi, dan tanggal yang masih kosong 
-And		Sistem menampilkan message dialog box bahwa "antrian selanjutnya masih kosong ,silahkan 			tunggu pasien selanjutnya"
+Given 		Petugas sudah melakukan login
+and 		Petugas masuk ke halaman khusus layanan Laboratorium
+and 		Petugas masuk ke Tab Pasien 
+When		Petugas meng-klik button Pasien Selanjutnya
+Then		Sistem menampilkan pesan atau pemmberitahuan bahwa "Tidak ada antrian di layanan 				Laboratorium !", "ANTRIAN KOSONG"
 
-When		Petugas mengklik button "OK"
-Then		Sistem mengulang proses menampilkan pasien selanjutnya 
