@@ -331,12 +331,12 @@ public class FormDokter extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                namaObatComboBoxPopupMenuWillBecomeVisible(evt);
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -645,24 +645,24 @@ public class FormDokter extends javax.swing.JFrame {
         comboDiagnosa.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Diagnosa" }));
         comboDiagnosa.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboDiagnosaPopupMenuWillBecomeVisible(evt);
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboDiagnosaPopupMenuWillBecomeVisible(evt);
             }
         });
 
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIDAK ADA", "LABORATORIUM", "USG", "KECANTIKAN" }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboTambahanPopupMenuWillBecomeVisible(evt);
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTambahanPopupMenuWillBecomeVisible(evt);
             }
         });
         comboTambahan.addActionListener(new java.awt.event.ActionListener() {
@@ -692,12 +692,12 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Tindakan" }));
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboTindakanPopupMenuWillBecomeVisible(evt);
-            }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTindakanPopupMenuWillBecomeVisible(evt);
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -1141,7 +1141,7 @@ public class FormDokter extends javax.swing.JFrame {
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
-                detailResep.setJumlah(jumlahSpinner.getValue().toString());
+                detailResep.setJumlah(Integer.parseInt(jumlahSpinner.getValue().toString()));
                 detailResep.setKeterangan(keteranganField.getText());
 
                 Obat_detailResep detailResep1 = dokterService.insertDetailResep(detailResep);
@@ -1243,7 +1243,7 @@ public class FormDokter extends javax.swing.JFrame {
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
-                detailResep.setJumlah(jumlahSpinner.getValue().toString());
+                detailResep.setJumlah(Integer.parseInt(jumlahSpinner.getValue().toString()));
                 detailResep.setKeterangan(keteranganField.getText());
 
                 Obat_detailResep detailResep1 = dokterService.insertDetailResep(detailResep);

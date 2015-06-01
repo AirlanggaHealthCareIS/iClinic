@@ -826,7 +826,7 @@ public class FormApoteker extends javax.swing.JFrame {
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
-                detailResep.setJumlah(jumlahSpinner.getValue().toString());
+                detailResep.setJumlah(Integer.parseInt(jumlahSpinner.getValue().toString()));
                 detailResep.setKeterangan(keteranganField.getText());
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
@@ -905,7 +905,7 @@ if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (tak
                 detailResep.setId_Obat(id_obat);
                 detailResep.setTakaran((String) (takaranSpinner.getValue() + " kali " + takaranSatuanWaktuComboBox.getSelectedItem()));
                 detailResep.setPemakaian(pemakaianComboBox.getSelectedItem().toString());
-                detailResep.setJumlah(jumlahSpinner.getValue().toString());
+                detailResep.setJumlah(Integer.parseInt(jumlahSpinner.getValue().toString()));
                 detailResep.setKeterangan(keteranganField.getText());
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);

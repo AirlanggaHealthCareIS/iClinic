@@ -1017,7 +1017,7 @@ public String getAutoNumberAntrian() throws RemoteException {
             statement.setString(3, detailResep.getId_Obat());
             statement.setString(4, detailResep.getTakaran());
             statement.setString(5, detailResep.getPemakaian());
-            statement.setString(6, detailResep.getJumlah());
+            statement.setInt(6, detailResep.getJumlah());
             statement.setString(7, detailResep.getKeterangan());
 
             statement.executeUpdate();
@@ -1051,7 +1051,7 @@ public String getAutoNumberAntrian() throws RemoteException {
             statement.setString(2, detailResep.getId_Obat());
             statement.setString(3, detailResep.getTakaran());
             statement.setString(4, detailResep.getPemakaian());
-            statement.setString(5, detailResep.getJumlah());
+            statement.setInt(5, detailResep.getJumlah());
             statement.setString(6, detailResep.getKeterangan());
             statement.setString(7, detailResep.getNo_Detail_Resep());
 
@@ -1111,7 +1111,7 @@ public String getAutoNumberAntrian() throws RemoteException {
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setJumlah(result.getInt("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
                 list.add(detail_resep);
             }

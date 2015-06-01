@@ -208,7 +208,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             statement.setString(3, detail_resep.getId_Obat());
             statement.setString(4, detail_resep.getTakaran());
             statement.setString(5, detail_resep.getPemakaian());
-            statement.setString(6, detail_resep.getJumlah());
+            statement.setInt(6, detail_resep.getJumlah());
             statement.setString(7, detail_resep.getKeterangan());
 
             statement.executeUpdate();
@@ -244,7 +244,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             statement.setString(3, detail_resep.getId_Obat());
             statement.setString(4, detail_resep.getTakaran());
             statement.setString(5, detail_resep.getPemakaian());
-            statement.setString(6, detail_resep.getJumlah());
+            statement.setInt(6, detail_resep.getJumlah());
             statement.setString(7, detail_resep.getKeterangan());
 
             statement.executeUpdate();
@@ -308,7 +308,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setJumlah(result.getInt("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
             }
 
@@ -393,7 +393,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setJumlah(result.getInt("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
                 list.add(detail_resep);
             }

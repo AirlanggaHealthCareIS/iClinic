@@ -17,7 +17,7 @@ public class Obat_detailResep implements Serializable{
     private String Id_Obat;
     private String Takaran;
     private String Pemakaian;
-    private String Jumlah;
+    private int Jumlah;
     private String Keterangan;
 
     public String getNo_Detail_Resep() {
@@ -40,7 +40,7 @@ public class Obat_detailResep implements Serializable{
         return Pemakaian;
     }
 
-    public String getJumlah() {
+    public int getJumlah() {
         return Jumlah;
     }
 
@@ -68,7 +68,7 @@ public class Obat_detailResep implements Serializable{
         this.Pemakaian = Pemakaian;
     }
 
-    public void setJumlah(String Jumlah) {
+    public void setJumlah(int Jumlah) {
         this.Jumlah = Jumlah;
     }
 

@@ -240,7 +240,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
                 detail_resep.setId_Obat(result.getString("Id_Obat"));
                 detail_resep.setTakaran(result.getString("Takaran"));
                 detail_resep.setPemakaian(result.getString("Pemakaian"));
-                detail_resep.setJumlah(result.getString("Jumlah"));
+                detail_resep.setJumlah(result.getInt("Jumlah"));
                 detail_resep.setKeterangan(result.getString("Keterangan"));
                 list.add(detail_resep);
             }

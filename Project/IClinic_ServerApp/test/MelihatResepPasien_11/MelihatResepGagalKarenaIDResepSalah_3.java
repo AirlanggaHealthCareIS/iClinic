@@ -26,7 +26,7 @@ public class MelihatResepGagalKarenaIDResepSalah_3 {
         expResult.setId_Obat("OBT0001");
         expResult.setTakaran("SATU SENDOK TEH");
         expResult.setPemakaian("SETELAH MAKAN");
-        expResult.setJumlah("1");
+        expResult.setJumlah(1);
         expResult.setKeterangan("TIDAK ADA");
         Obat_detailResep result = instance.getObat_detailResep(Id_Obat);
         assertEquals(expResult, result);
