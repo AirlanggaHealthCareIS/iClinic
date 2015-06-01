@@ -179,52 +179,53 @@ public class FormLogin extends javax.swing.JFrame {
             String pass = passwordField.getText();
             System.out.println(pass);
             try {
-                if(administratorService.loginUser(user, pass).equals("PENDAFTARAN")){
+                String jabatan = administratorService.loginUser(user, pass);
+                if(jabatan.equals("PENDAFTARAN")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pendaftaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formBag_Pendaftaran.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("DOKTER")){
+                else if(jabatan.equals("DOKTER")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Dokter!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formDokter.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("APOTEKER")){
+                else if(jabatan.equals("APOTEKER")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Apoteker!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formApoteker.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("LAB")){
+                else if(jabatan.equals("LAB")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Laboratorium!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formLab.setVisible(true);
                     this.dispose();    
                 }
-                else if(administratorService.loginUser(user, pass).equals("USG")){
+                else if(jabatan.equals("USG")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian USG!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formUSG.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("KECANTIKAN")){
+                else if(jabatan.equals("KECANTIKAN")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Kecantikan!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formKecantikan.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("PEMBAYARAN")){
+                else if(jabatan.equals("PEMBAYARAN")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pembayaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formBag_Pembayaran.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("KEP.KLINIK")){
+                else if(jabatan.equals("KEP.KLINIK")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Kepala iClinic!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formKepala_Klinik.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("ADMINISTRATOR")){
+                else if(jabatan.equals("ADMINISTRATOR")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Administrator!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     formAdministrator.setVisible(true);
                     this.dispose();
                 }
-                else if(administratorService.loginUser(user, pass).equals("0")){
+                else if(jabatan.equals("0")){
                     JOptionPane.showMessageDialog(null, "Maaf data yang anda masukkan salah, Silahkan mencoba kembali", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
