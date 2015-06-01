@@ -2,6 +2,7 @@ package MemprosesPembayaranPasien_22;
 
 import Database.Entity.Pembayaran;
 import ServerApplication.Service.Bag_PembayaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.junit.After;
@@ -24,9 +25,10 @@ import org.junit.Test;
 public class BerhasilMemprosesPembayaranPasiendenganTunai implements Remote {
 
     Bag_PembayaranServiceServer bag_PembayaranServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
 
     public BerhasilMemprosesPembayaranPasiendenganTunai() throws RemoteException {
-        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     }
 
     @BeforeClass
@@ -48,16 +50,16 @@ public class BerhasilMemprosesPembayaranPasiendenganTunai implements Remote {
     @Test
     public void testUpdateStatusPembayaran() throws Exception {
         System.out.println("updateStatusPembayaran");
-        
-        bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+
+        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
         String Id_Pembayaran = "BYR0001";
         String Status = "LUNAS TUNAI";
-        
+
         String instance = bag_PembayaranServiceServer.updateStatusPembayaran(Id_Pembayaran, Status);
         System.out.println(instance);
-        
+
         String expResult = "LUNAS TUNAI";
-        
+
         assertEquals(expResult, instance);
     }
 
@@ -67,15 +69,15 @@ public class BerhasilMemprosesPembayaranPasiendenganTunai implements Remote {
     @Test
     public void testGetStatus() throws Exception {
         System.out.println("getStatus");
-        
-        bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+
+        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
         String Id_Pembayaran = "BYR0001";
-        
+
         String instance = bag_PembayaranServiceServer.getStatus(Id_Pembayaran);
         System.out.println(instance);
-        
+
         String expResult = "LUNAS TUNAI";
-        
+
         assertEquals(expResult, instance);
     }
 }
