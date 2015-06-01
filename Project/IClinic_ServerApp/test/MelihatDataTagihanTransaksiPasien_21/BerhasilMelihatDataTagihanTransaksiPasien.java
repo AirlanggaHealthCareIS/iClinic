@@ -3,6 +3,7 @@ package MelihatDataTagihanTransaksiPasien_21;
 import Database.Entity.Pembayaran;
 import ServerApplication.Server;
 import ServerApplication.Service.Bag_PembayaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -22,9 +23,10 @@ import org.junit.Test;
 public class BerhasilMelihatDataTagihanTransaksiPasien implements Remote {
 
     Bag_PembayaranServiceServer bag_PembayaranServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
 
     public BerhasilMelihatDataTagihanTransaksiPasien() throws RemoteException {
-        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+        this.bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     }
 
     @BeforeClass
@@ -46,11 +48,11 @@ public class BerhasilMelihatDataTagihanTransaksiPasien implements Remote {
     @Test
     public void testMeihatTotalTagihanPembayaran() throws Exception {
         System.out.println("MeihatTotalTagihanPembayaran");
-        
-        bag_PembayaranServiceServer = new Bag_PembayaranServiceServer();
+
+        bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
         String Id_Pasien = "P0001";
         Date tanggal = new java.util.Date();
-        
+
         Pembayaran instance = bag_PembayaranServiceServer.MeihatTotalTagihanPembayaran(Id_Pasien, tanggal);
         System.out.println(instance.getID_PEMBAYARAN());
         System.out.println(instance.getID_PASIEN());
@@ -61,7 +63,7 @@ public class BerhasilMelihatDataTagihanTransaksiPasien implements Remote {
         System.out.println(instance.getTOTAL_KECANTIKAN());
         System.out.println(instance.getTOTAL_HARGA());
         System.out.println(instance.getSTATUS());
-        
+
         Pembayaran expResult = new Pembayaran();
         expResult.setID_PEMBAYARAN("BYR0001");
         expResult.setNAMA_PASIEN("AGUS");
@@ -72,7 +74,7 @@ public class BerhasilMelihatDataTagihanTransaksiPasien implements Remote {
         expResult.setTOTAL_KECANTIKAN(0);
         expResult.setTOTAL_HARGA(562000);
         expResult.setSTATUS("HUTANG");
-        
+
         assertEquals(expResult.getID_PEMBAYARAN(), instance.getID_PEMBAYARAN());
         assertEquals(expResult.getNAMA_PASIEN(), instance.getNAMA_PASIEN());
         assertEquals(expResult.getTOTAL_USG(), instance.getTOTAL_USG());
