@@ -193,7 +193,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         field_ID_Pasien.setEditable(false);
         jPanel3.add(field_ID_Pasien);
-        field_ID_Pasien.setBounds(140, 290, 150, 20);
+        field_ID_Pasien.setBounds(140, 290, 150, 28);
 
         field_No_Ktp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -201,7 +201,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_No_Ktp);
-        field_No_Ktp.setBounds(140, 320, 150, 20);
+        field_No_Ktp.setBounds(140, 320, 150, 28);
 
         field_Nama_Pasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,9 +209,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Nama_Pasien);
-        field_Nama_Pasien.setBounds(140, 350, 150, 20);
+        field_Nama_Pasien.setBounds(140, 350, 150, 28);
         jPanel3.add(field_Alamat);
-        field_Alamat.setBounds(140, 380, 150, 20);
+        field_Alamat.setBounds(140, 380, 150, 28);
 
         field_Usia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -219,7 +219,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_Usia);
-        field_Usia.setBounds(140, 470, 150, 20);
+        field_Usia.setBounds(140, 470, 150, 28);
 
         field_No_HP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -227,7 +227,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(field_No_HP);
-        field_No_HP.setBounds(140, 500, 150, 20);
+        field_No_HP.setBounds(140, 500, 150, 28);
 
         jLabel8.setText("Usia");
         jPanel3.add(jLabel8);
@@ -243,12 +243,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         box_Jenis_Kelamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L", "P" }));
         box_Jenis_Kelamin.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                box_Jenis_KelaminPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         box_Jenis_Kelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +257,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Jenis_Kelamin);
-        box_Jenis_Kelamin.setBounds(140, 530, 150, 20);
+        box_Jenis_Kelamin.setBounds(140, 530, 150, 27);
 
         Formatted_Tanggal_Daftar.setEditable(false);
         Formatted_Tanggal_Daftar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat(""))));
@@ -268,11 +268,11 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(Formatted_Tanggal_Daftar);
-        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 20);
+        Formatted_Tanggal_Daftar.setBounds(140, 440, 150, 28);
 
         jLabel11.setText("Tanggal Lahir");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(40, 410, 80, 14);
+        jLabel11.setBounds(40, 410, 80, 16);
 
         jButton1.setText("Daftar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +283,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         jPanel3.add(jButton1);
         jButton1.setBounds(140, 590, 150, 50);
         jPanel3.add(DateChooser_Tanggal_Lahir);
-        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 20);
+        DateChooser_Tanggal_Lahir.setBounds(141, 410, 150, 28);
 
         tabel_pasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -312,7 +312,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jLabel12.setText("Pilihan Layanan");
         jPanel3.add(jLabel12);
-        jLabel12.setBounds(40, 560, 80, 14);
+        jLabel12.setBounds(40, 560, 80, 16);
 
         box_Pilihan_Layanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOKTER UMUM", "DOKTER GIGI", "DOKTER KULIT", "DOKTER KANDUNGAN", "USG", "LAB", "KECANTIKAN" }));
         box_Pilihan_Layanan.addActionListener(new java.awt.event.ActionListener() {
@@ -321,7 +321,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel3.add(box_Pilihan_Layanan);
-        box_Pilihan_Layanan.setBounds(140, 560, 150, 20);
+        box_Pilihan_Layanan.setBounds(140, 560, 150, 27);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -332,10 +332,10 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        No_Hp.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        No_Hp.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         No_Hp.setText("Telepon");
         jPanel1.add(No_Hp);
-        No_Hp.setBounds(740, 390, 80, 20);
+        No_Hp.setBounds(700, 410, 80, 20);
 
         jTextFieldTelepon.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldTelepon.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +344,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldTelepon);
-        jTextFieldTelepon.setBounds(840, 390, 190, 30);
+        jTextFieldTelepon.setBounds(860, 410, 190, 40);
 
         TextField_idPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         TextField_idPasien.addActionListener(new java.awt.event.ActionListener() {
@@ -353,7 +353,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(TextField_idPasien);
-        TextField_idPasien.setBounds(120, 310, 190, 30);
+        TextField_idPasien.setBounds(120, 290, 200, 40);
 
         jTextFieldNama.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldNama.addActionListener(new java.awt.event.ActionListener() {
@@ -362,7 +362,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldNama);
-        jTextFieldNama.setBounds(120, 350, 190, 30);
+        jTextFieldNama.setBounds(120, 340, 200, 40);
 
         jTextFieldGender.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldGender.addActionListener(new java.awt.event.ActionListener() {
@@ -371,7 +371,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldGender);
-        jTextFieldGender.setBounds(840, 310, 190, 30);
+        jTextFieldGender.setBounds(860, 310, 40, 40);
 
         jTextFieldUmur.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldUmur.addActionListener(new java.awt.event.ActionListener() {
@@ -380,42 +380,42 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldUmur);
-        jTextFieldUmur.setBounds(840, 350, 190, 30);
+        jTextFieldUmur.setBounds(860, 350, 40, 40);
 
-        Id_Pasien.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Id_Pasien.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Id_Pasien.setText("ID Pasien");
         jPanel1.add(Id_Pasien);
-        Id_Pasien.setBounds(40, 310, 80, 20);
+        Id_Pasien.setBounds(40, 300, 80, 20);
 
-        Nama_Pasien.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Nama_Pasien.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Nama_Pasien.setText("Nama");
         jPanel1.add(Nama_Pasien);
         Nama_Pasien.setBounds(40, 350, 80, 20);
 
-        Gender.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Gender.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Gender.setText("TTL");
         jPanel1.add(Gender);
-        Gender.setBounds(40, 430, 80, 20);
+        Gender.setBounds(40, 470, 80, 20);
 
-        Jenis_Kelamin.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Jenis_Kelamin.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Jenis_Kelamin.setText("Gender");
         jPanel1.add(Jenis_Kelamin);
-        Jenis_Kelamin.setBounds(740, 310, 80, 20);
+        Jenis_Kelamin.setBounds(700, 320, 80, 20);
 
-        Usia.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Usia.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Usia.setText("Umur");
         jPanel1.add(Usia);
-        Usia.setBounds(740, 350, 80, 20);
+        Usia.setBounds(700, 360, 80, 20);
 
-        Cari.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
-        Cari.setText("DaftarAntrian");
+        Cari.setFont(new java.awt.Font("Caviar Dreams", 1, 15)); // NOI18N
+        Cari.setText("Daftar Antrian");
         Cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CariActionPerformed(evt);
             }
         });
         jPanel1.add(Cari);
-        Cari.setBounds(970, 490, 120, 27);
+        Cari.setBounds(970, 520, 120, 40);
 
         jTextFieldAlamat.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jTextFieldAlamat.addActionListener(new java.awt.event.ActionListener() {
@@ -424,12 +424,12 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldAlamat);
-        jTextFieldAlamat.setBounds(120, 390, 190, 30);
+        jTextFieldAlamat.setBounds(120, 400, 200, 50);
 
-        Alamat.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        Alamat.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         Alamat.setText("Alamat");
         jPanel1.add(Alamat);
-        Alamat.setBounds(40, 390, 80, 20);
+        Alamat.setBounds(40, 410, 80, 20);
 
         PilihLayanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOKTER UMUM", "DOKTER GIGI", "DOKTER KULIT", "DOKTER KANDUNGAN", "USG", "LAB", "KECANTIKAN" }));
         PilihLayanan.addActionListener(new java.awt.event.ActionListener() {
@@ -438,7 +438,7 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(PilihLayanan);
-        PilihLayanan.setBounds(840, 430, 140, 20);
+        PilihLayanan.setBounds(860, 450, 180, 60);
 
         Button_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
         Button_search.addActionListener(new java.awt.event.ActionListener() {
@@ -447,24 +447,23 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Button_search);
-        Button_search.setBounds(320, 310, 40, 33);
+        Button_search.setBounds(350, 300, 40, 36);
 
-        PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 13)); // NOI18N
+        PilihLayananLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 16)); // NOI18N
         PilihLayananLabel.setText("Pilih Layanan");
         jPanel1.add(PilihLayananLabel);
-        PilihLayananLabel.setBounds(740, 430, 100, 20);
+        PilihLayananLabel.setBounds(700, 470, 120, 20);
 
         JTextFieldTanggal_lahir.setEditable(false);
         JTextFieldTanggal_lahir.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         JTextFieldTanggal_lahir.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        JTextFieldTanggal_lahir.setValue(new java.util.Date());
         JTextFieldTanggal_lahir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTextFieldTanggal_lahirActionPerformed(evt);
             }
         });
         jPanel1.add(JTextFieldTanggal_lahir);
-        JTextFieldTanggal_lahir.setBounds(120, 430, 190, 30);
+        JTextFieldTanggal_lahir.setBounds(120, 460, 200, 40);
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 0, 13)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/2.jpg"))); // NOI18N

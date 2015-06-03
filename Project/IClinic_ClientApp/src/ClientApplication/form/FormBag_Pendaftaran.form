@@ -366,13 +366,13 @@
             <Component class="javax.swing.JLabel" name="No_Hp">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Telepon"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="740" y="390" width="80" height="20"/>
+                  <AbsoluteConstraints x="700" y="410" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -387,7 +387,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="840" y="390" width="190" height="30"/>
+                  <AbsoluteConstraints x="860" y="410" width="190" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -402,7 +402,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="120" y="310" width="190" height="30"/>
+                  <AbsoluteConstraints x="120" y="290" width="200" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -417,7 +417,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="120" y="350" width="190" height="30"/>
+                  <AbsoluteConstraints x="120" y="340" width="200" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -432,7 +432,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="840" y="310" width="190" height="30"/>
+                  <AbsoluteConstraints x="860" y="310" width="40" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -447,27 +447,27 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="840" y="350" width="190" height="30"/>
+                  <AbsoluteConstraints x="860" y="350" width="40" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="Id_Pasien">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ID Pasien"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="40" y="310" width="80" height="20"/>
+                  <AbsoluteConstraints x="40" y="300" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="Nama_Pasien">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nama"/>
               </Properties>
@@ -480,55 +480,55 @@
             <Component class="javax.swing.JLabel" name="Gender">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="TTL"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="40" y="430" width="80" height="20"/>
+                  <AbsoluteConstraints x="40" y="470" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="Jenis_Kelamin">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gender"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="740" y="310" width="80" height="20"/>
+                  <AbsoluteConstraints x="700" y="320" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="Usia">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Umur"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="740" y="350" width="80" height="20"/>
+                  <AbsoluteConstraints x="700" y="360" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="Cari">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="15" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DaftarAntrian"/>
+                <Property name="text" type="java.lang.String" value="Daftar Antrian"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CariActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="970" y="490" width="120" height="-1"/>
+                  <AbsoluteConstraints x="970" y="520" width="120" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -543,20 +543,20 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="120" y="390" width="190" height="30"/>
+                  <AbsoluteConstraints x="120" y="400" width="200" height="50"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="Alamat">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Alamat"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="40" y="390" width="80" height="20"/>
+                  <AbsoluteConstraints x="40" y="410" width="80" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -579,7 +579,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="840" y="430" width="140" height="-1"/>
+                  <AbsoluteConstraints x="860" y="450" width="180" height="60"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -594,20 +594,20 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="310" width="40" height="-1"/>
+                  <AbsoluteConstraints x="350" y="300" width="40" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="PilihLayananLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Caviar Dreams" size="13" style="1"/>
+                  <Font name="Caviar Dreams" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pilih Layanan"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="740" y="430" width="100" height="20"/>
+                  <AbsoluteConstraints x="700" y="470" width="120" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -620,16 +620,13 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Caviar Dreams" size="18" style="0"/>
                 </Property>
-                <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.util.Date()" type="code"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextFieldTanggal_lahirActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="120" y="430" width="190" height="30"/>
+                  <AbsoluteConstraints x="120" y="460" width="200" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
