@@ -168,6 +168,10 @@ public class FormLab extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel2.setText("Nama Pasien    :");
 
+        idPasien.setEditable(false);
+
+        namaPasien.setEditable(false);
+
         pasinSelanjutnya.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         pasinSelanjutnya.setText("Pasien Selanjutnya");
         pasinSelanjutnya.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +242,8 @@ public class FormLab extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel5.setText("ID Transaksi   : ");
+
+        idPasien2.setEditable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -402,26 +408,20 @@ public class FormLab extends javax.swing.JFrame {
         tableDetLab.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         tableDetLab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID Detail Lab", "ID Transaksi", "ID Jenis Pemeriksaan", "Hasil Pemeriksaan", "Keterangan "
+                "Id_Detail_Lab", "Id_Transaksi_Lab", "Id_Lab", "Hasil", "Keterangan "
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableDetLab.setMaximumSize(new java.awt.Dimension(2147483647, 0));
-        tableDetLab.setMinimumSize(new java.awt.Dimension(75, 0));
-        tableDetLab.setPreferredSize(new java.awt.Dimension(375, 0));
         jScrollPane2.setViewportView(tableDetLab);
 
         CariIdPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
@@ -581,7 +581,7 @@ public class FormLab extends javax.swing.JFrame {
         else{
             System.out.println("Beberapa Field Belum Diisi");
         }
-        
+                               
     }//GEN-LAST:event_SaveActionPerformed
 
     private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
@@ -613,7 +613,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void deletePemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePemeriksaanActionPerformed
         // TODO add your handling code here:
-        if(tableDetLab.getSelectedRow() > -1){
+         if(tableDetLab.getSelectedRow() > -1){
             listDetailLab.remove(tableDetLab.getSelectedRow());
             tableLabDetailLab.setData(listDetailLab);
             tableDetLab.setModel(tableLabDetailLab);
@@ -623,7 +623,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         // TODO add your handling code here:
-        number = 1;
+         number = 1;
        
         idPasien2.setEditable(false);
         idTransaksi.setText("");
@@ -661,7 +661,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void pasinSelanjutnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasinSelanjutnyaActionPerformed
         // TODO add your handling code here:
-       try {          
+         try {          
             if(antrian!=null){
                 antrian.setKeterangan("SUDAH");
                 boolean update = labService.updateAntrian(antrian);
@@ -702,7 +702,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(0);
+         jTabbedPane1.setSelectedIndex(0);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(0, true);
         this.ClearActionPerformed(evt);

@@ -20,7 +20,7 @@ public class Lab_detailLab implements Serializable{
     private String Keterangan;
     
     
-     public String getHasil() {
+    public String getHasil() {
         return Hasil;
     }
 

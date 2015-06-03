@@ -178,8 +178,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="idPasien">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="namaPasien">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="pasinSelanjutnya">
               <Properties>
@@ -331,6 +337,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="idPasien2">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="idTransaksi">
             </Component>
@@ -608,11 +617,11 @@
                       <Font name="Caviar Dreams" size="14" style="1"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="4">
-                        <Column editable="false" title="ID Detail Lab" type="java.lang.Object"/>
-                        <Column editable="false" title="ID Transaksi" type="java.lang.Object"/>
-                        <Column editable="true" title="ID Jenis Pemeriksaan" type="java.lang.Object"/>
-                        <Column editable="false" title="Hasil Pemeriksaan" type="java.lang.Object"/>
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="false" title="Id_Detail_Lab" type="java.lang.Object"/>
+                        <Column editable="false" title="Id_Transaksi_Lab" type="java.lang.Object"/>
+                        <Column editable="false" title="Id_Lab" type="java.lang.Object"/>
+                        <Column editable="false" title="Hasil" type="java.lang.Object"/>
                         <Column editable="false" title="Keterangan " type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -644,15 +653,6 @@
                           <Renderer/>
                         </Column>
                       </TableColumnModel>
-                    </Property>
-                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[2147483647, 0]"/>
-                    </Property>
-                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[75, 0]"/>
-                    </Property>
-                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[375, 0]"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
