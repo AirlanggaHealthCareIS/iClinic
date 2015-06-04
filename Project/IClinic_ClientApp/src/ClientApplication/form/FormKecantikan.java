@@ -128,7 +128,6 @@ public class FormKecantikan extends javax.swing.JFrame {
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setMaximumSize(new java.awt.Dimension(1300, 693));
-        jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 575));
 
         jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
@@ -138,8 +137,10 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel3.setText("Nama Pasien");
 
         fieldIdPasienA.setEditable(false);
+        fieldIdPasienA.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
 
         fieldNamaPasienA.setEditable(false);
+        fieldNamaPasienA.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
 
         buttonNext.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonNext.setText("Pasien Berikutnya");
@@ -192,7 +193,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonNext)
                     .addComponent(buttonTransaksi))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pasien", jPanel1);
