@@ -30,7 +30,7 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public KecantikanServiceServer() throws RemoteException {
     }
 
-    public void insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
+    public boolean insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -42,9 +42,11 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
             statement.setString(4, detail_layanan.getKeterangan());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Detail Layanan Kecantikan");
+            return true;
         } catch (SQLException exception) {
             System.out.println("Client Gagal Melakukan Proses Insert pada Table Detail Layanan Kecantikan");
             System.out.println(exception.toString());
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -85,8 +87,8 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
         return list;
     }
 
-    public void insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
-PreparedStatement statement = null;
+    public boolean insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
+        PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "INSERT INTO transaksi_layanan_kecantikan (ID_TRANSAKSI_LAYANAN, ID_PASIEN, TOTAL_HARGA, TANGGAL) values (?,?,?,?)"
@@ -97,9 +99,11 @@ PreparedStatement statement = null;
             statement.setString(4,  transaksi_layanan.getTanggal());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Transaksi Layanan Kecantikan");
+            return true;
         } catch (SQLException exception) {
             System.out.println("Client Gagal Melakukan Proses Insert pada Table Transaksi Layanan Kecantikan");
             System.out.println(exception.toString());
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -452,6 +456,51 @@ PreparedStatement statement = null;
                 }
             }
         }
+    }
+
+    public String getAutoNumberTransaksi() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        Statement state = null;
+        ResultSet rs = null;
+        
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_TRANSAKSI_LAYANAN FROM transaksi_layanan_kecantikan ORDER BY ID_TRANSAKSI_LAYANAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+            System.out.println(number);
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        System.out.println(number);
+        if(number.equals("")){
+            nomerBaru ="C0001";
+        }
+        else{
+            String [] pisah = number.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[1]+pisah[2]+pisah[3]+pisah[4];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "C"+nol+numberBaru;
+        }
+        System.out.println(nomerBaru);
+        return nomerBaru;
     }
 
 }

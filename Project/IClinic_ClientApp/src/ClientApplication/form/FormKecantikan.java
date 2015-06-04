@@ -75,6 +75,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonSearch = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -105,11 +106,19 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         buttonPrint = new javax.swing.JButton();
         buttonProcess = new javax.swing.JButton();
-        buttonSearch = new javax.swing.JButton();
         buttonInsert = new javax.swing.JButton();
         buttonClear = new javax.swing.JButton();
         buttonPasien = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        fieldNamaPasien = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+
+        buttonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSearchActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -127,6 +136,10 @@ public class FormKecantikan extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel3.setText("Nama Pasien");
+
+        fieldIdPasienA.setEditable(false);
+
+        fieldNamaPasienA.setEditable(false);
 
         buttonNext.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonNext.setText("Pasien Berikutnya");
@@ -190,7 +203,8 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel12.setText("Total Harga");
 
-        fieldIDTransaksi.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        fieldIDTransaksi.setEditable(false);
+        fieldIDTransaksi.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
 
         fieldTotalHarga.setEditable(false);
         fieldTotalHarga.setText("0");
@@ -198,7 +212,8 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel13.setText("ID Pasien");
 
-        fieldIDPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        fieldIDPasien.setEditable(false);
+        fieldIDPasien.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
 
         tabelLayanan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         tabelLayanan.setModel(new javax.swing.table.DefaultTableModel(
@@ -329,13 +344,6 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
-        buttonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
-            }
-        });
-
         buttonInsert.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         buttonInsert.setText("Insert");
         buttonInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -360,6 +368,12 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel16.setText("Nama Pasien");
+
+        fieldNamaPasien.setEditable(false);
+        fieldNamaPasien.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -368,20 +382,20 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel9))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                                .addComponent(fieldIDTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE))
+                                .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fieldNamaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fieldIDTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -416,7 +430,8 @@ public class FormKecantikan extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(fieldIDPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16)
+                            .addComponent(fieldNamaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -467,6 +482,7 @@ public class FormKecantikan extends javax.swing.JFrame {
             String nama = kecantikanService.getPasienName(antrian.getId_Pasien());
             if (nama != null){
                 fieldNamaPasienA.setText(nama);
+                fieldNamaPasien.setText(nama);
             }
             else{
                 JOptionPane.showMessageDialog(this,"Tidak dapat mencari nama pasien !", "Nama tidak ada", JOptionPane.ERROR_MESSAGE);
@@ -495,6 +511,9 @@ public class FormKecantikan extends javax.swing.JFrame {
             tableKecantikanDetailLayanan.setData(listDetail);
             tabelLayanan.setModel(tableKecantikanDetailLayanan);
             fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Silahkan isi idTransaksi", "Ada field kosong", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
@@ -550,7 +569,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
-        if(pasienExist = true && !listDetail.isEmpty() && !fieldIDTransaksi.getText().equals("")){
+        if(!listDetail.isEmpty() && !fieldIDTransaksi.getText().equals("")){
             Kecantikan_transaksiLayanan transaksi = new Kecantikan_transaksiLayanan();
             try {
                 transaksi.setId_Transaksi_Layanan(fieldIDTransaksi.getText());
@@ -563,22 +582,27 @@ public class FormKecantikan extends javax.swing.JFrame {
                 String now = dateFormat.format(date);
                 //System.out.println(sqlDate);
                 transaksi.setTanggal(now);
-                kecantikanService.insertKecantikan_transaksiLayanan(transaksi);
+                boolean success = kecantikanService.insertKecantikan_transaksiLayanan(transaksi);
+                if(!success){
+                        JOptionPane.showMessageDialog(this,"Insert gagal !", "Transaksi", JOptionPane.ERROR_MESSAGE);
+                    }
                 for(int i=0;i<listDetail.size();i++){
                     Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
                     detail.setId_Det_Kesehatan(listDetail.get(i).getId_Det_Kesehatan());
                     detail.setId_Trans_Layanan(listDetail.get(i).getId_Trans_Layanan());
                     detail.setId_Kecantikan(listDetail.get(i).getId_Kecantikan());
                     detail.setKeterangan(listDetail.get(i).getKeterangan());
-                    kecantikanService.insertKecantikan_detailLayanan(detail);
+                    success = kecantikanService.insertKecantikan_detailLayanan(detail);       
+                    if(!success){
+                        JOptionPane.showMessageDialog(this,"Insert gagal !", "Transaksi", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-                JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
+                if(success) {
+                    JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (RemoteException ex) {
                 Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else if(pasienExist = false){
-            System.out.println("Belum mencari atau mengisi idPasien");
         }
         else{
             System.out.println("Ada data yang belom terisi");
@@ -606,6 +630,20 @@ public class FormKecantikan extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(1, true);
         fieldIDPasien.setText(antrian.getId_Pasien());
+        try {
+            String idtrans = kecantikanService.getAutoNumberTransaksi();
+            if (idtrans != ""){
+                fieldIDTransaksi.setText(idtrans);              
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                fieldIDTransaksi.setEditable(false);
+            }
+        } catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+            fieldIDTransaksi.setEditable(false);
+            Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonTransaksiActionPerformed
 
     private void buttonPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPasienActionPerformed
@@ -664,6 +702,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JTextField fieldIDTransaksi;
     private javax.swing.JTextField fieldIdPasienA;
     private javax.swing.JTextField fieldKeterangan;
+    private javax.swing.JTextField fieldNamaPasien;
     private javax.swing.JTextField fieldNamaPasienA;
     private javax.swing.JTextField fieldNoDetailLayanan;
     private javax.swing.JTextField fieldTotalHarga;
@@ -674,6 +713,7 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;

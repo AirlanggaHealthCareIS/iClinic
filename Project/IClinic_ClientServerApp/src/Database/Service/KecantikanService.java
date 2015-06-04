@@ -22,21 +22,21 @@ public interface KecantikanService extends Remote {
 
     List<Kecantikan_tabelMaster> getLayananKecantikan() throws RemoteException;
 
-    void insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
+    boolean insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
     
     //void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException;
 
     //void deleteKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
 
-    Kecantikan_detailLayanan getKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
+    //Kecantikan_detailLayanan getKecantikan_detailLayanan(int Id_Det_Kesehatan) throws RemoteException;
 
-    List<Kecantikan_detailLayanan> getKecantikan_detailLayanan() throws RemoteException;
+    //List<Kecantikan_detailLayanan> getKecantikan_detailLayanan() throws RemoteException;
 
-    void insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
+    boolean insertKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
 
-    void updateKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
+    //void updateKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException;
 
-    void deleteKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException;
+    //void deleteKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException;
 
     Kecantikan_transaksiLayanan getKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException;
 
@@ -49,6 +49,8 @@ public interface KecantikanService extends Remote {
     String getPasienName(String Id_Pasien) throws RemoteException;
     
     Boolean updateAntrian(Antrian antrian) throws RemoteException;
+    
+    String getAutoNumberTransaksi() throws RemoteException;
     
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
