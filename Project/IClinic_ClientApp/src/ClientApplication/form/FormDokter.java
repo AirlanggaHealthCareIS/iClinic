@@ -234,9 +234,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dokter");
-        setMaximumSize(new java.awt.Dimension(1280, 730));
         setMinimumSize(new java.awt.Dimension(1280, 730));
-        setPreferredSize(new java.awt.Dimension(1280, 730));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -257,10 +255,10 @@ public class FormDokter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelRiwayat);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
         jLabel22.setText("Id Pasien");
 
-        fieldIdPasien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        fieldIdPasien.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
 
         cariRMbyIdPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
         cariRMbyIdPasien.addActionListener(new java.awt.event.ActionListener() {
@@ -1087,14 +1085,29 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_simpanActionPerformed
 
     private void cariRMbyIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariRMbyIdPasienActionPerformed
-        String idPasien = fieldIdPasien.getText();
-        System.out.println(idPasien);
-        try {
-            tableModelRekamMedis.setData(this.dokterService.GetRekam_MedisbyPasien(idPasien));
-        } catch (RemoteException exception) {
-            exception.printStackTrace();
+        if(!fieldIdPasien.getText().equalsIgnoreCase("")){
+            String idPasien = fieldIdPasien.getText();
+            System.out.println(idPasien);
+            try {
+                List<Rekam_Medis> listRM = this.dokterService.GetRekam_MedisbyPasien(idPasien);
+                if(!listRM.isEmpty()){
+                    tableModelRekamMedis.setData(listRM);
+                }
+                else {
+                    tableModelRekamMedis.setData(listRM);
+                    JOptionPane.showMessageDialog(this,"Gagal mencari rekam medis pasien !", "Rekam Medis", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (RemoteException exception) {
+                exception.printStackTrace();
+            }
+            tabelRiwayat.setModel(tableModelRekamMedis);
         }
-        tabelRiwayat.setModel(tableModelRekamMedis);
+        else{
+            List<Rekam_Medis> rms = new ArrayList<Rekam_Medis>();
+            tableModelRekamMedis.setData(rms);
+            tabelRiwayat.setModel(tableModelRekamMedis);
+            JOptionPane.showMessageDialog(this,"Isi id pasien !", "Rekam Medis", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_cariRMbyIdPasienActionPerformed
 
     private void comboDiagnosaPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comboDiagnosaPopupMenuWillBecomeVisible
