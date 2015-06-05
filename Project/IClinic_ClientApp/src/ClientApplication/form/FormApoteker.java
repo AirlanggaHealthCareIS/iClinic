@@ -853,11 +853,12 @@ public class FormApoteker extends javax.swing.JFrame {
             return;
         }
         try {
-            apotekerService.deleteObat_detailResep(tableModelObat_detailResep.get(row).getNo_Detail_Resep());
+            String no_detail = tableModelObat_detailResepPR.get(row).getNo_Detail_Resep();
+            apotekerService.deleteObat_detailResep(no_detail);
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tableModelObat_detailResep.delete(row);
+        tableModelObat_detailResepPR.delete(row);
     }//GEN-LAST:event_DeletePRButton4ActionPerformed
 
     private void ProsesPRButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProsesPRButton3ActionPerformed

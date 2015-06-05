@@ -269,10 +269,10 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "DELETE FROM detail_resep WHERE NO_DETAIL_RESEP = ?");
+                    "DELETE FROM detail_resep WHERE NO_DETAIL_RESEP = '"+Id_Obat+"'");
 
             statement.setString(1, Id_Obat);
-
+  
             statement.executeUpdate();
 
         } catch (SQLException exception) {
@@ -857,6 +857,34 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
                 }
             }
         }
+    }
+    
+    public void updatePenukaranResep(Obat_detailResep detail_resep) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+
+        PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE pembayaran SET JUMLAH = ? " +
+                    "WHERE ID_PEMBAYARAN = ?"
+                   );
+           statement.setString(1, detail_resep.getId_Resep());
+           statement.setInt(2, detail_resep.getJumlah());
+
+           statement.executeUpdate();
+
+       }catch(SQLException exception){
+        exception.printStackTrace();
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+                exception.printStackTrace();
+               }
+           }
+       }
     }
     
     //-----Pembayaran-----//
