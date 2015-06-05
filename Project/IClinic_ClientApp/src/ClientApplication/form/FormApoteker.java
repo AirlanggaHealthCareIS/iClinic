@@ -163,7 +163,9 @@ public class FormApoteker extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1280, 730));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         jPanel1.setLayout(null);
 
@@ -235,16 +237,17 @@ public class FormApoteker extends javax.swing.JFrame {
         keteranganLabel.setText("Keterangan");
 
         noDetailResepField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        noDetailResepField.setEnabled(false);
 
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -409,6 +412,7 @@ public class FormApoteker extends javax.swing.JFrame {
         totalHargaObatLabel.setText("Total Harga Obat");
 
         idResepField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        idResepField.setEnabled(false);
 
         totalHargaObatField.setEditable(false);
         totalHargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -751,7 +755,7 @@ public class FormApoteker extends javax.swing.JFrame {
             try {
                 Obat_resep resep = new Obat_resep();
                 resep.setId_Resep(idResep);
-                resep.setId_Rekam("REK9999");
+                resep.setId_Rekam("REK0000");
                 resep.setTotal_Harga(0);
                 apotekerService.insertObat_resep(resep);
                 simpanObatButton.setEnabled(false);
@@ -807,6 +811,11 @@ public class FormApoteker extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
+        namaObatComboBox.setSelectedItem("");
+        takaranSpinner.setValue("");
+        hargaField.setText("");
+        jumlahSpinner.setValue("");
+        keteranganField.setText("");
     }//GEN-LAST:event_prosesButtonActionPerformed
 
     private void TotalHargaPRTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalHargaPRTextField13ActionPerformed
