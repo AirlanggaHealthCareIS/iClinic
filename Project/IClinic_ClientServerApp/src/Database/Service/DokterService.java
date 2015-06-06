@@ -30,6 +30,8 @@ public interface DokterService extends Remote {
 
     Tindakan_detailTindakan getDetailTindakan(String No_Detail) throws RemoteException;
 
+    Penyakit_diagnosa insertDiagnosa (Penyakit_diagnosa diagnosa)throws RemoteException;
+    
     String getNamaPasien (String Id_Pasien) throws RemoteException;
     
     List<Tindakan_detailTindakan> getDetailTindakanById(String ID_Rekam) throws RemoteException;
@@ -44,9 +46,9 @@ public interface DokterService extends Remote {
 
     List<Rekam_Medis> getRekam_Medis() throws RemoteException;
 
-    List getNamaDiagnosa() throws RemoteException;
+    List getNamaPenyakit() throws RemoteException;
 
-    String getIdDiagnosa(String namaDiagnosa) throws RemoteException;
+    String getIdPenyakit(String namaPenyakit) throws RemoteException;
 
     String getRekamMedisbyID (String Jabatan) throws RemoteException;
 
@@ -64,6 +66,8 @@ public interface DokterService extends Remote {
     String getAutoNumberIdRekam() throws RemoteException;
 
     String getAutoNumberAntrian () throws RemoteException;
+    
+    String getAutoNumberIdDiagnosa () throws RemoteException;
     
     int getTarif(String nama_tindakan) throws RemoteException;
 
