@@ -46,25 +46,26 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Afifah + piudt + ayundhapus + erin + lynnarlin
  */
 public class FormDokter extends javax.swing.JFrame {
+
     private TableModelRekam_Medis tableModelRekamMedis = new TableModelRekam_Medis();
     private DokterService dokterService;
     private TableModelTindakan_detailTindakan tableModelTindakan = new TableModelTindakan_detailTindakan();
     private TableModelObat_detailResep tabelModelDetailResep = new TableModelObat_detailResep();
     private TableModelObat_resep tabelModelResep = new TableModelObat_resep();
     private Pasien pasien;
-    private Antrian antrian=new Antrian();
+    private Antrian antrian = new Antrian();
     int total = 0;
     int harga = 0;
     String id_Rekam = "";
     String idResep = "";
     String idAntrianSaatIni = "";
-    
-    
+
     public FormDokter(DokterService dokterService) throws RemoteException {
         this.dokterService = dokterService;
         try {
@@ -72,10 +73,10 @@ public class FormDokter extends javax.swing.JFrame {
             tableModelTindakan.setData(dokterService.getDetailTindakanById(null));
             id_Rekam = dokterService.getAutoNumberIdRekam();
             idResep = dokterService.getAutoNumberResep();
-        } catch(RemoteException exception){
+        } catch (RemoteException exception) {
             exception.printStackTrace();
         }
-        
+
         total = 0;
         initComponents();
         setLocationRelativeTo(this);
@@ -94,7 +95,7 @@ public class FormDokter extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         tabelDetailResep.setModel(tabelModelDetailResep);
         tabelDetailResep.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -114,7 +115,8 @@ public class FormDokter extends javax.swing.JFrame {
             }
         });
     }
-    private void clearUser(){
+
+    private void clearUser() {
         idRekam.setText("");
         Field_idPasien.setText("");
         fieldNamaPasien.setText("");
@@ -135,6 +137,7 @@ public class FormDokter extends javax.swing.JFrame {
 //        passwordUserPasswordField.setText("");
 //        idUserField.getFocusListeners();
     }
+
     private void typeOnlyNumber(KeyEvent evt) {
         char c = evt.getKeyChar();
         if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE) || c == KeyEvent.VK_DELETE) {
@@ -815,7 +818,7 @@ public class FormDokter extends javax.swing.JFrame {
         });
 
         clear.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        clear.setText("CLEAR");
+        clear.setText("NEXT");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
@@ -980,7 +983,7 @@ public class FormDokter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
-           if (comboDiagnosa.getSelectedItem().equals("") || Field_idPasien.getText().equals("")
+        if (comboDiagnosa.getSelectedItem().equals("") || Field_idPasien.getText().equals("")
                 || tglRekam.getText().equals("") || tinggiBadan.getText().equals("") || BeratBadan.getText().equals("") || TekananDarah.getText().equals("")
                 || hasilPemeriksaan.getText().equals("") || alergi.getText().equals("") || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
@@ -1014,10 +1017,9 @@ public class FormDokter extends javax.swing.JFrame {
                 dokterService.insertRekam_Medis(rekam_medis);
 
                 idRekam.setText(id_Rekam);
-                
+
 //                String nama = dokterService.getNamaPasien(Field_idPasien.getText());
 //                fieldNamaPasien.setText("" + nama);
-
 //           tableModelDetailTransaksiBeli.insert(order1);
 //           clear();
             } catch (RemoteException exception) {
@@ -1035,32 +1037,14 @@ public class FormDokter extends javax.swing.JFrame {
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-            
-            try{
-                dokterService.updateAntrian(idAntrianSaatIni);
-            }  catch (RemoteException ex) {
-                   Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
-               }
-            
-            
 
-        //-----Pembayaran-----//
-//        String idPasien = Field_idPasien.getText();
-//        String idRekamMedis = idRekamField.getText();
-//        int harga = Integer.parseInt(totalHarga.getText());
-//        try {
-//            String idPembayaran = dokterService.mencariIdPembayaranDariPembayaran(idPasien);
-//            if (!idPembayaran.equalsIgnoreCase("")) {
-//                Pembayaran pembayaran = dokterService.getPembayaranDariPembayaran(idPembayaran);
-//                dokterService.updatePembayaranDariPembayaran(pembayaran, idRekamMedis, harga);
-//            } else if (idPembayaran.equalsIgnoreCase("")) {
-//                idPembayaran = dokterService.getAutoNumberDariPembayaran();
-//                dokterService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idRekamMedis, harga);
-//            }
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }
+            try {
+                dokterService.updateAntrian(idAntrianSaatIni);
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
 
 //   try{
 //           List<Rekam_Medis> list = dokterService.getRekam_Medis(idRekam.getText());
@@ -1085,28 +1069,26 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_simpanActionPerformed
 
     private void cariRMbyIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariRMbyIdPasienActionPerformed
-        if(!fieldIdPasien.getText().equalsIgnoreCase("")){
+        if (!fieldIdPasien.getText().equalsIgnoreCase("")) {
             String idPasien = fieldIdPasien.getText();
             System.out.println(idPasien);
             try {
                 List<Rekam_Medis> listRM = this.dokterService.GetRekam_MedisbyPasien(idPasien);
-                if(!listRM.isEmpty()){
+                if (!listRM.isEmpty()) {
                     tableModelRekamMedis.setData(listRM);
-                }
-                else {
+                } else {
                     tableModelRekamMedis.setData(listRM);
-                    JOptionPane.showMessageDialog(this,"Gagal mencari rekam medis pasien !", "Rekam Medis", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Gagal mencari rekam medis pasien !", "Rekam Medis", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
             tabelRiwayat.setModel(tableModelRekamMedis);
-        }
-        else{
+        } else {
             List<Rekam_Medis> rms = new ArrayList<Rekam_Medis>();
             tableModelRekamMedis.setData(rms);
             tabelRiwayat.setModel(tableModelRekamMedis);
-            JOptionPane.showMessageDialog(this,"Isi id pasien !", "Rekam Medis", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Isi id pasien !", "Rekam Medis", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_cariRMbyIdPasienActionPerformed
 
@@ -1139,7 +1121,7 @@ public class FormDokter extends javax.swing.JFrame {
         keteranganField.setText("");
         namaObatComboBox.getFocusListeners();
     }
-    
+
     private void tambahObatDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahObatDetailResepButtonActionPerformed
         if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
                 || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
@@ -1183,33 +1165,33 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanPopupMenuWillBecomeVisible
 
     private void TambahTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahTindakanActionPerformed
-        if (idRekam.getText().equals("")|| comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
-                ||comboTambahan.getSelectedItem().equals("")) {
+        if (idRekam.getText().equals("") || comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
+                || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
-        try {
-
-            Tindakan_detailTindakan detail_tindakan = new Tindakan_detailTindakan();
-            detail_tindakan.setNo_Detail(dokterService.getAutoNumberNoDetail());
-            String id_tindakan = dokterService.getIdTindakan(comboTindakan.getSelectedItem().toString());
-            detail_tindakan.setId_Tindakan(id_tindakan);
-            detail_tindakan.setId_Rekam(idRekam.getText());
-            detail_tindakan.setKeterangan(fieldKeterangan.getText());
-            total = total + harga;
-            totalHarga.setText("" + total);
-
-            Tindakan_detailTindakan detail_tindakan1 = dokterService.insertDetailTindakan(detail_tindakan);
-            tableModelTindakan.insert(detail_tindakan1);
-
             try {
-            tableModelTindakan.setData(this.dokterService.getDetailTindakanById(idRekam.getText()));
+
+                Tindakan_detailTindakan detail_tindakan = new Tindakan_detailTindakan();
+                detail_tindakan.setNo_Detail(dokterService.getAutoNumberNoDetail());
+                String id_tindakan = dokterService.getIdTindakan(comboTindakan.getSelectedItem().toString());
+                detail_tindakan.setId_Tindakan(id_tindakan);
+                detail_tindakan.setId_Rekam(idRekam.getText());
+                detail_tindakan.setKeterangan(fieldKeterangan.getText());
+                total = total + harga;
+                totalHarga.setText("" + total);
+
+                Tindakan_detailTindakan detail_tindakan1 = dokterService.insertDetailTindakan(detail_tindakan);
+                tableModelTindakan.insert(detail_tindakan1);
+
+                try {
+                    tableModelTindakan.setData(this.dokterService.getDetailTindakanById(idRekam.getText()));
+                } catch (RemoteException exception) {
+                    exception.printStackTrace();
+                }
+
             } catch (RemoteException exception) {
-            exception.printStackTrace();
+                exception.printStackTrace();
             }
-            
-        } catch (RemoteException exception) {
-            exception.printStackTrace();
-        }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_TambahTindakanActionPerformed
@@ -1218,7 +1200,7 @@ public class FormDokter extends javax.swing.JFrame {
         try {
             harga = dokterService.getTarif(comboTindakan.getSelectedItem().toString());
             fieldHarga.setText("" + harga);
-            
+
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1235,7 +1217,7 @@ public class FormDokter extends javax.swing.JFrame {
                 Obat_resep resep = new Obat_resep();
                 resep.setId_Resep(idResep);
                 System.out.println(idResep);
-                
+
                 String lastIDRM = dokterService.getLastIDRekamMedis();
                 System.out.println(lastIDRM);
                 resep.setId_Rekam(lastIDRM);
@@ -1244,10 +1226,10 @@ public class FormDokter extends javax.swing.JFrame {
                 simpanDetailResepButton.setEnabled(false);
                 tambahObatDetailResepButton.setEnabled(true);
                 hapusObatDetailResepButton.setEnabled(true);
-            } catch(RemoteException exception){
+            } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-            
+
             try {
                 Obat_detailResep detailResep = new Obat_detailResep();
                 detailResep.setId_Resep(idResep);
@@ -1265,8 +1247,7 @@ public class FormDokter extends javax.swing.JFrame {
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-            
-            
+
         }
     }//GEN-LAST:event_simpanDetailResepButtonActionPerformed
 
@@ -1336,7 +1317,7 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTambahanActionPerformed
 
     private void dokterTabPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dokterTabPaneMouseClicked
-        if(dokterTabPane.getSelectedIndex() == 2){
+        if (dokterTabPane.getSelectedIndex() == 2) {
             cekdaftar();
         }// TODO add your handling code here:
     }//GEN-LAST:event_dokterTabPaneMouseClicked
@@ -1360,13 +1341,33 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        clearUser();
+        
         try {
             dokterService.updateAntrian(antrian.getId_Antrian());
-             JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
+            //-----Pembayaran-----//
+            String idPasien = Field_idPasien.getText();
+            int hargaRM = Integer.parseInt(totalHarga.getText());
+            try {
+                String idPembayaran = dokterService.mencariIdPembayaranDariPembayaran(idPasien);
+                if (!idPembayaran.equalsIgnoreCase("")) {
+                    Pembayaran pembayaran = dokterService.getPembayaranDariPembayaran(idPembayaran);
+                    dokterService.updatePembayaranDariPembayaran(pembayaran, id_Rekam, hargaRM);
+                } else if (idPembayaran.equalsIgnoreCase("")) {
+                    idPembayaran = dokterService.getAutoNumberDariPembayaran();
+                    dokterService.insertPembayaranDariPembayaran(idPembayaran, idPasien, id_Rekam, hargaRM);
+                    System.out.println(idPembayaran);
+                    System.out.println(idPasien);
+                    System.out.println(id_Rekam);
+                    System.out.println(hargaRM);
+                }
+                clearUser();
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
+            JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
         cekdaftar();
         // TODO add your handling code here:
@@ -1376,23 +1377,20 @@ public class FormDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNoDetailActionPerformed
 
-    private void cekdaftar(){
+    private void cekdaftar() {
         try {
-            antrian=dokterService.Id_pasien(antrian);
-             if("kosong".equals(antrian.getId_Pasien())){
+            antrian = dokterService.Id_pasien(antrian);
+            if ("kosong".equals(antrian.getId_Pasien())) {
                 int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian. Apakah ingin memproses kembali ?", "konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     cekdaftar();
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Silahkan klik rekam medis lagi jika ingin memulai kembali");
                 }
-            }
-            else if("salah".equals(antrian.getId_Pasien())){
+            } else if ("salah".equals(antrian.getId_Pasien())) {
                 JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
                 cekdaftar();
-            }
-            else{
+            } else {
                 Field_idPasien.setText(antrian.getId_Pasien());
                 fieldNamaPasien.setText(dokterService.Nama_pasien(Field_idPasien.getText()));
             }
@@ -1400,7 +1398,7 @@ public class FormDokter extends javax.swing.JFrame {
             Logger.getLogger(FormDokter.class.getName()).log(Level.ALL, null, ex);
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BeratBadan;
     private javax.swing.JTextField Field_idPasien;
