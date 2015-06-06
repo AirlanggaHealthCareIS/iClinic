@@ -1032,16 +1032,18 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
         System.out.println(number);
         if (number.equals("")) {
-            nomerBaru = "BYR001";
+            nomerBaru = "BYR0001";
         } else {
             String[] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5];
+            String numbersebelumnya = pisah[3] + pisah[4] + pisah[5] + pisah[6];
             numberBaru = Integer.parseInt(numbersebelumnya) + 1;
             String[] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
             String nol = "";
             if (pisah1.length == 1) {
-                nol = "00";
+                nol = "000";
             } else if (pisah1.length == 2) {
+                nol = "00";
+            } else if (pisah1.length == 3) {
                 nol = "0";
             }
             nomerBaru = "BYR" + nol + numberBaru;

@@ -875,8 +875,21 @@ public class FormApoteker extends javax.swing.JFrame {
         try {
             apotekerService.updateResep(resep, IDResepPRTextField1.getText(), Integer.parseInt(TotalHargaPRTextField13.getText()));
             //-----Pembayaran-----//
-            String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
-            apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, IDResepPRTextField1.getText(), Integer.parseInt(TotalHargaPRTextField13.getText()));
+            String idResepPR = IDResepPRTextField1.getText();
+            int harga = Integer.parseInt(TotalHargaPRTextField13.getText());
+            try {
+                String idPasien = apotekerService.mencariIdPasienDariPembayaran(idResepPR);
+                String idPembayaran = apotekerService.mencariIdPembayaranDariPembayaran(idPasien);
+                if (!idPembayaran.equalsIgnoreCase("")) {
+                    Pembayaran pembayaran = apotekerService.getPembayaranDariPembayaran(idPembayaran);
+                    apotekerService.updatePembayaranDariPembayaran(pembayaran, idResepPR, harga);
+                } else if (idPembayaran.equalsIgnoreCase("")) {
+                    idPembayaran = apotekerService.getAutoNumberDariPembayaran();
+                    apotekerService.insertPembayaranDariPembayaran(idPembayaran, idPasien, idResepPR, harga);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
