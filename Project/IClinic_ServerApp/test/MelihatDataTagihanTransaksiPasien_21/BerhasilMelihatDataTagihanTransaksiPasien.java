@@ -51,9 +51,8 @@ public class BerhasilMelihatDataTagihanTransaksiPasien implements Remote {
 
         bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
         String Id_Pasien = "P0001";
-        Date tanggal = new java.util.Date();
 
-        Pembayaran instance = bag_PembayaranServiceServer.MeihatTotalTagihanPembayaran(Id_Pasien, tanggal);
+        Pembayaran instance = bag_PembayaranServiceServer.MeihatTotalTagihanPembayaran(Id_Pasien);
         System.out.println(instance.getID_PEMBAYARAN());
         System.out.println(instance.getID_PASIEN());
         System.out.println(instance.getTOTAL_USG());

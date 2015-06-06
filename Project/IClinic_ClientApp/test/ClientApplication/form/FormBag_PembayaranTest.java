@@ -44,7 +44,7 @@ public class FormBag_PembayaranTest {
     public void testClear() {
         System.out.println("clear");
         FormBag_Pembayaran instance = null;
-        instance.clear();
+        instance.clearLk();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

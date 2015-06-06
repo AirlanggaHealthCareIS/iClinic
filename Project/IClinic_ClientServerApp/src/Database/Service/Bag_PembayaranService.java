@@ -29,7 +29,7 @@ public interface Bag_PembayaranService extends Remote {
     
     List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
     
-    Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN,Date TANGGAL) throws RemoteException;
+    Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN) throws RemoteException;
     
     public Pembayaran MeihatTotalTagihanPembelianObat(String Id_Resep) throws RemoteException;
     

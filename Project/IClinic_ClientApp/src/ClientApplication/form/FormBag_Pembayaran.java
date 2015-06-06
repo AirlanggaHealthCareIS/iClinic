@@ -79,6 +79,8 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 int row = Table_Pembayaran.getSelectedRow();
                 if(row != -1){
                     Pembayaran pembayaran = tableModelPembayaran.get(row);
+                    FieldLk_idPasien.setText(pembayaran.getID_PASIEN());
+                    FieldLk_namaPasien.setText(pembayaran.getNAMA_PASIEN());
                     FieldLk_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
                     FieldLk_tglPembayaran.setValue(pembayaran.getTANGGAL_BAYAR());
                     FieldLk_Usg.setText(String.valueOf(pembayaran.getTOTAL_USG()));
@@ -94,7 +96,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Table_Resep.setModel(tableModelObat_detailResep);
     }
     
-    public void clear(){
+    public void clearLk(){
         FieldLk_idPasien.setText("");
         FieldLk_namaPasien.setText("");
         FieldLk_idPembayaran.setText("");
@@ -106,6 +108,20 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         FieldLk_Usg.setText("");
         FieldLk_totalPembayaran.setText("");
         FieldLk_status.setText("");
+        buttonLk_Tunai.setEnabled(false);
+        buttonLk_Debit.setEnabled(false);
+        buttonLk_Print.setEnabled(false);
+    }
+    public void clearPo(){
+        FieldPo_idResep.setText("");
+        FieldPo_idPembayaran.setText("");
+        FieldPo_tglPembayaran.setText("");
+        FieldPo_totalPembayaran.setText("");
+        FieldPo_status.setText("");
+        tableModelObat_detailResep.setData(null);
+        buttonPo_Tunai.setEnabled(false);
+        buttonPo_Debit.setEnabled(false);
+        buttonPo_Print.setEnabled(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -192,7 +208,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_namaPasien.setText("NAMA PASIEN");
         jPanel3.add(Lk_namaPasien);
-        Lk_namaPasien.setBounds(30, 40, 110, 19);
+        Lk_namaPasien.setBounds(30, 40, 110, 18);
 
         FieldLk_namaPasien.setEditable(false);
         FieldLk_namaPasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -221,12 +237,12 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_Kecantikan.setText("KECANTIKAN");
         jPanel4.add(Lk_Kecantikan);
-        Lk_Kecantikan.setBounds(60, 210, 150, 19);
+        Lk_Kecantikan.setBounds(60, 210, 150, 18);
 
         Lk_idPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_idPembayaran.setText("ID PEMBAYARAN");
         jPanel4.add(Lk_idPembayaran);
-        Lk_idPembayaran.setBounds(30, 20, 175, 19);
+        Lk_idPembayaran.setBounds(30, 20, 175, 18);
 
         FieldLk_Lab.setEditable(false);
         FieldLk_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -238,7 +254,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_Resep.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_Resep.setText("RESEP");
         jPanel4.add(Lk_Resep);
-        Lk_Resep.setBounds(60, 120, 150, 19);
+        Lk_Resep.setBounds(60, 120, 150, 18);
 
         FieldLk_RekamMedis.setEditable(false);
         FieldLk_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -259,17 +275,17 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_status.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_status.setText("STATUS");
         jPanel4.add(Lk_status);
-        Lk_status.setBounds(30, 280, 175, 19);
+        Lk_status.setBounds(30, 280, 175, 18);
 
         Lk_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_totalPembayaran.setText("TOTAL PEMBAYARAN");
         jPanel4.add(Lk_totalPembayaran);
-        Lk_totalPembayaran.setBounds(30, 250, 175, 19);
+        Lk_totalPembayaran.setBounds(30, 250, 175, 18);
 
         Lk_tglPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_tglPembayaran.setText("TGL PEMBAYARAN");
         jPanel4.add(Lk_tglPembayaran);
-        Lk_tglPembayaran.setBounds(30, 50, 175, 19);
+        Lk_tglPembayaran.setBounds(30, 50, 175, 18);
 
         FieldLk_totalPembayaran.setEditable(false);
         FieldLk_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -288,7 +304,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_Usg.setText("USG");
         jPanel4.add(Lk_Usg);
-        Lk_Usg.setBounds(60, 180, 150, 19);
+        Lk_Usg.setBounds(60, 180, 150, 18);
 
         FieldLk_Kecantikan.setEditable(false);
         FieldLk_Kecantikan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -314,12 +330,12 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_Lab.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_Lab.setText("LAB");
         jPanel4.add(Lk_Lab);
-        Lk_Lab.setBounds(60, 150, 150, 19);
+        Lk_Lab.setBounds(60, 150, 150, 18);
 
         Lk_RekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_RekamMedis.setText("REKAM MEDIS");
         jPanel4.add(Lk_RekamMedis);
-        Lk_RekamMedis.setBounds(60, 90, 150, 19);
+        Lk_RekamMedis.setBounds(60, 90, 150, 18);
 
         FieldLk_Usg.setEditable(false);
         FieldLk_Usg.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -431,7 +447,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_idPembayaran1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_idPembayaran1.setText("ID PEMBAYARAN");
         jPanel7.add(Lk_idPembayaran1);
-        Lk_idPembayaran1.setBounds(30, 10, 175, 19);
+        Lk_idPembayaran1.setBounds(30, 10, 175, 18);
 
         FieldPo_tglPembayaran.setEditable(false);
         FieldPo_tglPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
@@ -445,17 +461,17 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         Lk_status1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_status1.setText("STATUS");
         jPanel7.add(Lk_status1);
-        Lk_status1.setBounds(30, 320, 175, 19);
+        Lk_status1.setBounds(30, 320, 175, 18);
 
         Lk_totalPembayaran1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_totalPembayaran1.setText("TOTAL HARGA OBAT");
         jPanel7.add(Lk_totalPembayaran1);
-        Lk_totalPembayaran1.setBounds(30, 290, 175, 19);
+        Lk_totalPembayaran1.setBounds(30, 290, 175, 18);
 
         Lk_tglPembayaran1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Lk_tglPembayaran1.setText("TGL PEMBAYARAN");
         jPanel7.add(Lk_tglPembayaran1);
-        Lk_tglPembayaran1.setBounds(30, 40, 175, 19);
+        Lk_tglPembayaran1.setBounds(30, 40, 175, 18);
 
         FieldPo_totalPembayaran.setEditable(false);
         FieldPo_totalPembayaran.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -557,8 +573,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         }
         else if( !FieldLk_idPasien.getText().equals("")){
             try {
-                Date tanggal = (Date)FieldLk_tglPembayaran.getValue();
-                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(FieldLk_idPasien.getText(), tanggal);
+                Pembayaran pembayaran = bag_PembayaranService.MeihatTotalTagihanPembayaran(FieldLk_idPasien.getText());
                 if(pembayaran != null){
                     FieldLk_namaPasien.setText(pembayaran.getNAMA_PASIEN());
                     FieldLk_idPembayaran.setText(pembayaran.getID_PEMBAYARAN());
@@ -642,6 +657,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 new JRTableModelDataSource(tableModelPembayaranPrint));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
+            clearLk();
         } catch (JRException ex) {
             ex.printStackTrace();
         }
@@ -739,6 +755,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                 new JRTableModelDataSource(tableModelPembayaranPrint));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
+            clearPo();
         } catch (JRException ex) {
             ex.printStackTrace();
         }
