@@ -642,17 +642,17 @@ public class FormLab extends javax.swing.JFrame {
         // TODO add your handling code here:
         //-----Pembayaran-----//
         String idPasien2 = idPasien.getText();
-        String idDetailLab2 = idDetLab.getText();
+        String idTransaksiLab2 = idTransaksi.getText();
         int harga = Integer.parseInt(totalHarga.getText());
         try {
             String idPembayaran = labService.mencariIdPembayaranDariPembayaran(idPasien2);
             if(!idPembayaran.equalsIgnoreCase("")){
                 Pembayaran pembayaran = labService.getPembayaranDariPembayaran(idPembayaran);
-                labService.updatePembayaranDariPembayaran(pembayaran, idDetailLab2, harga);
+                labService.updatePembayaranDariPembayaran(pembayaran, idTransaksiLab2, harga);
             }
             else if(idPembayaran.equalsIgnoreCase("")){
                 idPembayaran = labService.getAutoNumberDariPembayaran();
-                labService.insertPembayaranDariPembayaran(idPembayaran, idPasien2, idDetailLab2, harga);
+                labService.insertPembayaranDariPembayaran(idPembayaran, idPasien2, idTransaksiLab2, harga);
             }
         } catch (RemoteException ex) {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
