@@ -188,10 +188,10 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
             String sql = "SELECT `pembayaran`.ID_PEMBAYARAN \n"
-                    + "FROM `pembayaran`,`detail_lab` \n"
-                    + "WHERE `detail_lab`.ID_PASIEN = `pembayaran`.ID_PASIEN \n"
+                    + "FROM `pembayaran`,`transaksi_lab` \n"
+                    + "WHERE `transaksi_lab`.ID_PASIEN = `pembayaran`.ID_PASIEN \n"
                     + "AND `pembayaran`.ID_PASIEN = '" + idPasien + "' \n"
-                    + "AND `detail_lab`.TANGGAL = `pembayaran`.TANGGAL_BAYAR \n"
+                    + "AND `transaksi_lab`.TANGGAL = `pembayaran`.TANGGAL_BAYAR \n"
                     + "AND `pembayaran`.TANGGAL_BAYAR = '" + date + "' \n"
                     + "AND `pembayaran`.STATUS = 'HUTANG'";
             rs = state.executeQuery(sql);
@@ -247,18 +247,18 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         return pembayaranDB;
     }
     
-    public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idDetailLab, int Harga) throws RemoteException {
+    public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idTransaksiLab, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
         int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                "UPDATE pembayaran SET ID_USG = ?, ID_DETAIL_LAB = ?, "+
+                "UPDATE pembayaran SET ID_USG = ?, ID_TRANSAKSI_LAB = ?, "+
                 "ID_RESEP = ?, ID_REKAM = ?, ID_TRANSAKSI_LAYANAN = ?, "+
                 "TOTAL_HARGA = ? " +
                 "WHERE ID_PEMBAYARAN = ?");
             statement.setString(1, pembayaranDB.getID_USG());
-            statement.setString(2, idDetailLab);
+            statement.setString(2, idTransaksiLab);
             statement.setString(3, pembayaranDB.getID_RESEP());
             statement.setString(4, pembayaranDB.getID_REKAM());
             statement.setString(5, pembayaranDB.getID_TRANSAKSI_LAYANAN());
@@ -325,19 +325,19 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         return nomerBaru;
     }
     
-    public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idDetailLab, int Harga) throws RemoteException {
+    public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiLab, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
         PreparedStatement statement = null;
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "INSERT INTO pembayaran (ID_PEMBAYARAN,ID_PASIEN,ID_USG,"+
-                    "ID_DETAIL_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,"+
+                    "ID_TRANSAKSI_LAB,ID_RESEP,ID_REKAM,ID_TRANSAKSI_LAYANAN,"+
                     "TANGGAL_BAYAR,TOTAL_HARGA,STATUS) values(?,?,?,?,?,?,?,?,?,?)");
             statement.setString(1, idPembayaran);
             statement.setString(2, idPasien);
             statement.setString(3, null);
-            statement.setString(4, idDetailLab);
+            statement.setString(4, idTransaksiLab);
             statement.setString(5, null);
             statement.setString(6, null);
             statement.setString(7, null);
