@@ -52,6 +52,8 @@ public interface KecantikanService extends Remote {
     
     String getAutoNumberTransaksi() throws RemoteException;
     
+    String getAutoNumberDetailTransaksi() throws RemoteException;
+    
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
 

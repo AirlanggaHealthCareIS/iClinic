@@ -42,13 +42,11 @@ public class FormKecantikan extends javax.swing.JFrame {
     public ArrayList<Object> details = new ArrayList<Object>();
     //public DefaultTableModel model = new DefaultTableModel();
     public Boolean pasienExist = false;
-    public int number = 1;
     public Antrian antrian = null;
     public FormKecantikan(KecantikanService kecantikanService) {
         initComponents();
         jTabbedPane1.setEnabledAt(1, false);
         this.kecantikanService = kecantikanService;
-        //model = (DefaultTableModel) tabelLayanan.getModel();
         try {
             listLayananKecantikan = kecantikanService.getLayananKecantikan();
         } catch (RemoteException ex) {
@@ -58,8 +56,6 @@ public class FormKecantikan extends javax.swing.JFrame {
         comboLayanan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                //JComboBox<String> combo = (JComboBox<String>) event.getSource();
-                //String selectedLayanan = (String) combo.getSelectedItem();
                 String harga = Integer.toString(listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getTarif());
                 fieldHarga.setText(harga);
             }
@@ -75,7 +71,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonSearch = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -112,13 +107,6 @@ public class FormKecantikan extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         fieldNamaPasien = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-
-        buttonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
-        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSearchActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -325,7 +313,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonHapusLayanan)
-                    .addComponent(buttonTambahLayanan))
+                    .addComponent(buttonTambahLayanan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -476,30 +464,33 @@ public class FormKecantikan extends javax.swing.JFrame {
             antrian = kecantikanService.getNextPasienKecantikan();
             if(antrian != null){
                 fieldIdPasienA.setText(antrian.getId_Pasien());
+                String nama = kecantikanService.getPasienName(antrian.getId_Pasien());
+                if (nama != null){
+                    fieldNamaPasienA.setText(nama);
+                    fieldNamaPasien.setText(nama);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Tidak dapat mencari nama pasien !", "Nama tidak ada", JOptionPane.ERROR_MESSAGE);
+                }
+                buttonTransaksi.setEnabled(true); 
             }
             else{
+                buttonTransaksi.setEnabled(false);
+                fieldIdPasienA.setText("");
+                fieldNamaPasienA.setText("");
                 JOptionPane.showMessageDialog(this,"Tidak ada antrian layanan kecantikan !", "Antrian kosong", JOptionPane.ERROR_MESSAGE);
-            }
-            String nama = kecantikanService.getPasienName(antrian.getId_Pasien());
-            if (nama != null){
-                fieldNamaPasienA.setText(nama);
-                fieldNamaPasien.setText(nama);
-            }
-            else{
-                JOptionPane.showMessageDialog(this,"Tidak dapat mencari nama pasien !", "Nama tidak ada", JOptionPane.ERROR_MESSAGE);
-            }
-            buttonTransaksi.setEnabled(true); 
+            }          
             
+
         } catch (RemoteException ex) {
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void buttonTambahLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahLayananActionPerformed
-        if (!fieldIDTransaksi.getText().equals("")){
+        if (!fieldIDTransaksi.getText().equals("") && !fieldHarga.getText().equals("") && !fieldNoDetailLayanan.getText().equals("")){
             String idtrans = fieldIDTransaksi.getText();
-            String iddetail = idtrans +"-"+ number;
-            number++;
+            String iddetail = fieldNoDetailLayanan.getText();
             String idjenislayanan = listLayananKecantikan.get(comboLayanan.getSelectedIndex()).getId_Kecantikan();
             String keterangan = fieldKeterangan.getText();
             Kecantikan_detailLayanan detail = new Kecantikan_detailLayanan();
@@ -507,20 +498,29 @@ public class FormKecantikan extends javax.swing.JFrame {
             detail.setId_Trans_Layanan(idtrans);
             detail.setId_Kecantikan(idjenislayanan);
             detail.setKeterangan(keterangan);
-            //tableKecantikanDetailLayanan.insert(detail);
             listDetail.add(detail);
             tableKecantikanDetailLayanan.setData(listDetail);
             tabelLayanan.setModel(tableKecantikanDetailLayanan);
             fieldTotalHarga.setText(Integer.toString(checkTotalHarga()));
+            fieldHarga.setText("");
+            fieldKeterangan.setText("");
+            try {
+                String iddettrans = getNextNumberDetailTransaksi(listDetail.get(listDetail.size()-1).getId_Det_Kesehatan());
+                fieldNoDetailLayanan.setText(iddettrans);
+                fieldNoDetailLayanan.setEditable(false);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idDetailTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                fieldNoDetailLayanan.setEditable(true);
+                Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else {
-            JOptionPane.showMessageDialog(this,"Silahkan isi idTransaksi", "Ada field kosong", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Silahkan isi field yang kosong dan pilih layanan", "Ada field kosong", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonTambahLayananActionPerformed
 
     private void buttonHapusLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusLayananActionPerformed
         if(tabelLayanan.getSelectedRow() > -1){
-            //tableKecantikanDetailLayanan.delete(tabelLayanan.getSelectedRow());
             listDetail.remove(tabelLayanan.getSelectedRow());
             tableKecantikanDetailLayanan.setData(listDetail);
             tabelLayanan.setModel(tableKecantikanDetailLayanan);
@@ -548,27 +548,6 @@ public class FormKecantikan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonProcessActionPerformed
 
-    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
-        if(!fieldIDPasien.equals("")){
-            String idpasien = fieldIDPasien.getText();
-            try {
-                pasienExist = kecantikanService.getPasienbyId(idpasien);
-                if(pasienExist == false){
-                    fieldIDPasien.setText("");
-                    JOptionPane.showMessageDialog(this, "ID Pasien salah/tidak ada");
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "ID Pasien ada");
-                    //fieldIDPasien.disable();
-                    fieldIDPasien.setEditable(false);
-                }                   
-            } catch (RemoteException ex) {
-                Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
-    }//GEN-LAST:event_buttonSearchActionPerformed
-
     private void buttonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertActionPerformed
         if(!listDetail.isEmpty() && !fieldIDTransaksi.getText().equals("")){
             Kecantikan_transaksiLayanan transaksi = new Kecantikan_transaksiLayanan();
@@ -578,10 +557,7 @@ public class FormKecantikan extends javax.swing.JFrame {
                 transaksi.setTotal_Harga(checkTotalHarga());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = new Date();
-                //java.util.Date utilDate = new java.util.Date();
-                //java.sql.Date sqlDate = new java.sql.Date(utilDate.getDate());
                 String now = dateFormat.format(date);
-                //System.out.println(sqlDate);
                 transaksi.setTanggal(now);
                 boolean success = kecantikanService.insertKecantikan_transaksiLayanan(transaksi);
                 if(!success){
@@ -606,18 +582,15 @@ public class FormKecantikan extends javax.swing.JFrame {
             }
         }
         else{
-            System.out.println("Ada data yang belom terisi");
+            JOptionPane.showMessageDialog(this,"Ada yang belum terisi !", "Transaksi", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonInsertActionPerformed
 
     private void buttonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearActionPerformed
-        number = 1;
-        //fieldIDPasien.enable();
-        fieldIDPasien.setEditable(false);
-        fieldIDTransaksi.setText("");
-        fieldIDPasien.setText("");
+        if(fieldIDTransaksi.isEditable()){
+            fieldIDTransaksi.setText("");
+        }
         fieldHarga.setText("");
-        fieldNoDetailLayanan.setText("");
         fieldKeterangan.setText("");
         listDetail = new ArrayList<Kecantikan_detailLayanan>();
         tableKecantikanDetailLayanan.setData(listDetail);
@@ -633,17 +606,34 @@ public class FormKecantikan extends javax.swing.JFrame {
         fieldIDPasien.setText(antrian.getId_Pasien());
         try {
             String idtrans = kecantikanService.getAutoNumberTransaksi();
-            if (idtrans != ""){
+            if (idtrans != null){
                 fieldIDTransaksi.setText(idtrans);              
             }
             else{
                 JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
-                fieldIDTransaksi.setEditable(false);
+                fieldIDTransaksi.setEditable(true);
             }
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
-            fieldIDTransaksi.setEditable(false);
+            fieldIDTransaksi.setEditable(true);
             Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(fieldNoDetailLayanan.getText().equals("")){
+            try {
+                String iddettrans = kecantikanService.getAutoNumberDetailTransaksi();
+                if (iddettrans != null){
+                    fieldNoDetailLayanan.setText(iddettrans);
+                    fieldNoDetailLayanan.setEditable(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idDetaialTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                    fieldNoDetailLayanan.setEditable(true);
+                }
+            } catch (RemoteException ex) {
+                JOptionPane.showMessageDialog(this,"Tidak dapat menggenerate auto idDetailTransaksi !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                fieldNoDetailLayanan.setEditable(true);
+                Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_buttonTransaksiActionPerformed
 
@@ -685,6 +675,35 @@ public class FormKecantikan extends javax.swing.JFrame {
         }
         return total;
     }
+    
+    private String getNextNumberDetailTransaksi(String dettrans){
+        int numberBaru =0;
+        String nomerBaru = "";
+        String [] pisah = dettrans.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "DK"+nol+numberBaru;
+            System.out.println(nomerBaru);
+            return nomerBaru;
+//        try {
+//            
+//        } catch (NumberFormatException e) {
+//            return null;
+//        } catch (ArrayIndexOutOfBoundsException e) {
+//            return null;
+//        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonClear;
@@ -694,7 +713,6 @@ public class FormKecantikan extends javax.swing.JFrame {
     private javax.swing.JButton buttonPasien;
     private javax.swing.JButton buttonPrint;
     private javax.swing.JButton buttonProcess;
-    private javax.swing.JButton buttonSearch;
     private javax.swing.JButton buttonTambahLayanan;
     private javax.swing.JButton buttonTransaksi;
     private javax.swing.JComboBox comboLayanan;

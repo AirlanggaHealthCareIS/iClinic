@@ -462,7 +462,6 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
         Statement state = null;
         ResultSet rs = null;
-        
         String number = "";
         String nomerBaru = "";
         int numberBaru = 0;
@@ -473,34 +472,87 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
             while (rs.next()){
                 number = rs.getString(1);
             }
-            System.out.println(number);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
-        }
-        System.out.println(number);
-        if(number.equals("")){
-            nomerBaru ="C0001";
-        }
-        else{
-            String [] pisah = number.split("(?<=\\G.{1})");
-            String numbersebelumnya = pisah[1]+pisah[2]+pisah[3]+pisah[4];
-            numberBaru = Integer.parseInt(numbersebelumnya)+1;
-            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
-            String nol= "";
-            if(pisah1.length == 1){
-                nol = "000";
+        } 
+        try {
+            if(number.equals("")){
+                nomerBaru ="TK0001";
             }
-            else if (pisah1.length == 2){
-                nol = "00";
+            else{
+                String [] pisah = number.split("(?<=\\G.{1})");
+                String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+                numberBaru = Integer.parseInt(numbersebelumnya)+1;
+                String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+                String nol= "";
+                if(pisah1.length == 1){
+                    nol = "000";
+                }
+                else if (pisah1.length == 2){
+                    nol = "00";
+                }
+                else if(pisah1.length == 3){
+                    nol = "0";
+                }
+                nomerBaru = "TK"+nol+numberBaru;
             }
-            else if(pisah1.length == 3){
-                nol = "0";
+            System.out.println(nomerBaru);
+            return nomerBaru;
+        } catch (NumberFormatException e) {
+            return null;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }           
+    }
+
+    public String getAutoNumberDetailTransaksi() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        Statement state = null;
+        ResultSet rs = null;
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_DET_KESEHATAN FROM det_layanan_kecantikan ORDER BY ID_DET_KESEHATAN DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
             }
-            nomerBaru = "C"+nol+numberBaru;
         }
-        System.out.println(nomerBaru);
-        return nomerBaru;
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        } 
+        try {
+            if(number.equals("")){
+                nomerBaru ="DK0001";
+            }
+            else{
+                String [] pisah = number.split("(?<=\\G.{1})");
+                String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+                numberBaru = Integer.parseInt(numbersebelumnya)+1;
+                String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+                String nol= "";
+                if(pisah1.length == 1){
+                    nol = "000";
+                }
+                else if (pisah1.length == 2){
+                    nol = "00";
+                }
+                else if(pisah1.length == 3){
+                    nol = "0";
+                }
+                nomerBaru = "DK"+nol+numberBaru;
+            }
+            System.out.println(nomerBaru);
+            return nomerBaru;
+        } catch (NumberFormatException e) {
+            return null;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+
     }
 
 }
