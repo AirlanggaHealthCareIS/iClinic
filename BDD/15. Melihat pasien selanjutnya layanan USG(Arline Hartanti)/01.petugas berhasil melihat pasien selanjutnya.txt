@@ -1,0 +1,9 @@
+Fitur        Melihat pasien selanjutnya
+Skenario     Petugas berhasil melihat pasien selanjutnya di layanan USG
+
+
+Given 	     Petugas melakukan login
+And	     Petugas masuk ke halaman layanan USG
+When	     Petugas mengklik tombol "mulai"
+Then 	     Sistem melakukan pengecekkan ke database
+And	     Sistem menampilkan id USG, id pasien dan nama pasien

@@ -1,0 +1,10 @@
+Fitur	        Melihat pasien selanjutnya
+Skenario	Petugas gagal melihat pasien selanjutnya karena database antrian 
+                untuk layanan USG belum terisi (masih kosong)
+ 		
+
+Given 	     	Petugas melakukan login
+And	     	Petugas masuk ke halaman layanan USG
+When	     	Petugas mengklik tombol "mulai"
+Then 	     	Sistem akan memunculkan Confirm Dialog 
+		"Tidak ada antrian. Apakah ingin memproses kembali ?"
