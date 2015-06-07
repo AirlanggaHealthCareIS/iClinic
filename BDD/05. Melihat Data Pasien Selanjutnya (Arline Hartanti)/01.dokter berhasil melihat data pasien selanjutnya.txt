@@ -1,0 +1,8 @@
+Fitur        Melihat data pasien selanjutnya
+Skenario     Dokter berhasil melihat data pasien selanjutnya
+
+Given 	     Dokter melakukan login
+And	     Dokter masuk ke halaman khusus dokter
+When	     Dokter mengklik tab rekam medis
+Then 	     Sistem melakukan pengecekkan ke database
+And	     Sistem menampilkan id pasien dan nama pasien

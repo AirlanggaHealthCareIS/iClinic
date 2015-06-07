@@ -1,0 +1,10 @@
+Fitur	        Melihat data pasien selanjutnya
+Skenario	Dokter gagal melihat data pasien selanjutnya karena database antrian 
+                untuk dokter belum terisi (masih kosong)
+ 		
+
+Given 	     	Dokter melakukan login
+And	     	Dokter masuk ke halaman khusus dokter
+When	     	Dokter mengklik tab rekam medis
+Then 	     	Sistem akan memunculkan Confirm Dialog 
+		"Tidak ada antrian. Apakah ingin memproses kembali ?"
