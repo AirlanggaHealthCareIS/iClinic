@@ -1,0 +1,12 @@
+Fitur	    Memasukkan data transaksi layanan USG
+Skenario    Petugas gagal memasukkan data transaksi karena terdapat beberapa field yang tidak diisi/kosong
+
+Given 	     Petugas melakukan login
+When	     Petugas masuk ke halaman layanan USG
+Then 	     Sistem akan menampilkan total transaksi pasien
+When	     Petugas telah melakukan pemeriksaan
+And	     Petugas memasukkan data pasien tidak secara lengkap (ada field belum terisi)
+And	     Petugas mengklik tombol "simpan"
+Then	     Sistem akan menampilkan Message Dialog 
+	     "Data Yang Anda Inputkan Belum Lengkap"
+

@@ -1,11 +1,13 @@
 Fitur 	     Memasukkan data transaksi layanan USG
 Skenario     Petugas berhasil memasukkan data transaksi pasien layanan USG
 
-Given	     Petugas masuk ke halaman/form data layanan USG
-When	     Petugas mengupload hasil pemeriksaan 
-And 	     Menginputkan keterangan pemeriksaan
-And 	     Memilih fasilitas yang diinginkan pasien dengan mencentang opsi pilihan yang ada 
-Then 	     Sistem akan menampilkan fasilitas yang diinginkan pasien beserta harganya
-When         Petugas mengklik tombol "simpan"
-Then 	     Sistem akan menampilkan pesan bahwa data transaksi berhasil disimpan ke dalam database 	  
-And	     Sistem mengirimkan data transaksi ke bagian pembayaran   
+Given 	     Petugas melakukan login
+When	     Petugas masuk ke halaman layanan USG
+Then 	     Sistem menampilkan total transaksi pasien
+When	     Petugas telah melakukan pemeriksaan
+And	     Petugas memasukkan semua data pasien secara lengkap
+And	     Petugas mengklik tombol "simpan"
+Then	     Sistem menyimpan data tersebut ke database
+And	     Sistem memunculkan Message Dialog
+	     "Data berhasil disimpan ke database"
+And	     Sistem mengirimkan total transaksi ke bagian pembayaran
