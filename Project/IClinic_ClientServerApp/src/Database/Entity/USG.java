@@ -15,9 +15,8 @@ import java.util.Date;
  */
 public class USG implements Serializable {
     private String Id_USG;
-    //private Blob Hasil;
     private int Harga;
-    private String Tanggal;
+    private Date Tanggal;
     private String Id_pasien;
     private String Deskripsi;
     private byte[] Hasil;
@@ -30,11 +29,11 @@ public class USG implements Serializable {
         this.Hasil = Hasil;
     }
 
-    public String getTanggal() {
+    public Date getTanggal() {
         return Tanggal;
     }
 
-    public void setTanggal(String Tanggal) {
+    public void setTanggal(Date Tanggal) {
         this.Tanggal = Tanggal;
     }
 

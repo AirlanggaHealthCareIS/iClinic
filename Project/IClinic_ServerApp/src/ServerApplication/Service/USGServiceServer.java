@@ -41,7 +41,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
             );
             statement.setString(1, usg.getId_USG());
             statement.setString(2, usg.getId_pasien());
-            statement.setString(3, usg.getTanggal());
+            statement.setDate(3, new Date(usg.getTanggal().getTime()));
             statement.setBytes(4, usg.getHasil());
             statement.setString(5, usg.getDeskripsi());
             statement.setInt(6, usg.getHarga());
@@ -213,7 +213,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "SELECT * FROM transaksi_usg WHERE ID_USG = ?");
-
+            statement.setString(1, Id_USG);
             ResultSet result = statement.executeQuery();
 
             USG usg = null;
@@ -222,7 +222,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                 usg = new USG();
                 usg.setId_USG(result.getString("ID_USG"));
                 usg.setId_pasien(result.getString("ID_PASIEN"));
-                usg.setTanggal(result.getString("TANGGAL"));
+                usg.setTanggal(result.getDate("TANGGAL"));
                 usg.setHasil(result.getBytes("HASIL"));
                 usg.setDeskripsi(result.getString("DESKRIPSI"));
                 usg.setHarga(result.getInt("HARGA"));
@@ -260,7 +260,7 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
                 USG usg = new USG();
                 usg.setId_USG(result.getString("ID_USG"));
                 usg.setId_pasien(result.getString("ID_PASIEN"));
-                usg.setTanggal(result.getString("TANGGAL"));
+                usg.setTanggal(result.getDate("TANGGAL"));
                 usg.setHasil(result.getBytes("HASIL"));
                 usg.setDeskripsi(result.getString("DESKRIPSI"));
                 usg.setHarga(result.getInt("HARGA"));

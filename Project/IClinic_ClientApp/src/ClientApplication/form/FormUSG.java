@@ -40,6 +40,9 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -332,7 +335,15 @@ public class FormUSG extends javax.swing.JFrame {
          usg.setId_pasien(idpasien.getText());
          usg.setId_USG(idusg.getText());
          usg.setHarga(Integer.parseInt(harga.getText()));
-         usg.setTanggal(tanggal.getText());
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+          Date date = new Date();
+          String now = dateFormat.format(date);
+        try {
+            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(now);
+            usg.setTanggal(date2);
+        } catch (ParseException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+        }
          usg.setDeskripsi(deskrip.getText());
          if(!hasil.getText().equals("")){
              ObjectOutputStream objectOutputStream=null;
@@ -353,7 +364,15 @@ public class FormUSG extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.ALL, null, ex);
             }
+        try {
+            usgService.ubahstatus(antrian.getId_Antrian());
+             JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
+        } catch (RemoteException ex) {
+            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
+    }
+    
         String idPasien = idpasien.getText();
         String idTransaksiUSG = idusg.getText();
         int hargaTransaksi = Integer.parseInt(harga.getText());
@@ -370,13 +389,7 @@ public class FormUSG extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            usgService.ubahstatus(antrian.getId_Antrian());
-             JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
-        }
+
         clear();
         kembaliawal();
     }//GEN-LAST:event_simpanActionPerformed
