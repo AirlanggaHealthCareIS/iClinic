@@ -43,11 +43,11 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "INSERT INTO rekam_medis (ID_REKAM, ID_DIAGNOSA, ID_PASIEN, TGL_REKAM, TINGGI, "
+                    "INSERT INTO rekam_medis (ID_REKAM, ID_PENYAKIT, ID_PASIEN, TGL_REKAM, TINGGI, "
                     + "BERAT, TEKANAN_DARAH, HASIL_PEMERIKSAAN, ALERGI, TOTAL_HARGA, LAYANAN_TAMBAHAN) values(?,?,?,?,?,?,?,?,?,?,?)"
             );
             statement.setString(1, rekam_medis.getId_Rekam());
-            statement.setString(2, rekam_medis.getId_Diagnosa());
+            statement.setString(2, rekam_medis.getId_Penyakit());
             statement.setString(3, rekam_medis.getId_Pasien());
             statement.setDate(4, new Date(rekam_medis.getTgl_Rekam().getTime()));
             statement.setInt(5, rekam_medis.getTinggi());
@@ -295,7 +295,7 @@ public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
                 rekam_medis = new Rekam_Medis();
 
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
-                rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
+                rekam_medis.setId_Penyakit(result.getString("Id_Penyakit"));
                 rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
                 rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
                 rekam_medis.setTinggi(result.getInt("Tinggi"));
@@ -343,7 +343,7 @@ public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
                 Rekam_Medis rekam_medis = new Rekam_Medis();
 
                 rekam_medis.setId_Rekam(result.getString("Id_Rekam"));
-                rekam_medis.setId_Diagnosa(result.getString("Id_Diagnosa"));
+                rekam_medis.setId_Penyakit(result.getString("Id_Penyakit"));
                 rekam_medis.setId_Pasien(result.getString("Id_Pasien"));
                 rekam_medis.setTgl_Rekam(result.getDate("Tgl_Rekam"));
                 rekam_medis.setTinggi(result.getInt("Tinggi"));
@@ -424,7 +424,7 @@ public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
             while (result.next()) {
                 Rekam_Medis rm = new Rekam_Medis();
                 rm.setId_Rekam(result.getString("ID_REKAM"));
-                rm.setId_Diagnosa(result.getString("ID_DIAGNOSA"));
+                rm.setId_Penyakit(result.getString("ID_PENYAKIT"));
                 rm.setId_Pasien(result.getString("ID_PASIEN"));
                 rm.setTgl_Rekam(result.getDate("TGL_REKAM"));
                 rm.setTinggi(result.getInt("TINGGI"));

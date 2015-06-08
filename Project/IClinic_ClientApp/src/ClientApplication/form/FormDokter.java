@@ -86,7 +86,7 @@ public class FormDokter extends javax.swing.JFrame {
         setSize(1278, 730);
 
         dokterTabPane.setEnabledAt(1, false);
-
+        idRekam.setText(id_Rekam);
         tableTindakan.setModel(tableModelTindakan);
         tableTindakan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -240,19 +240,10 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         fieldNamaPasien = new javax.swing.JTextField();
         clear = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        idDiagnosaField = new javax.swing.JTextField();
-        comboPenyakitPas = new javax.swing.JComboBox();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        diagnosaField = new javax.swing.JTextField();
-        KetDiagnosa = new javax.swing.JTextField();
-        ButtonDiagnosa = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         goToResepButton = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        comboPenyakitPas = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -359,10 +350,10 @@ public class FormDokter extends javax.swing.JFrame {
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -670,14 +661,14 @@ public class FormDokter extends javax.swing.JFrame {
         tglRekam.setValue(new java.util.Date());
 
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
-        comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LABORATORIUM", "USG", "KECANTIKAN" }));
+        comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIDAK ADA", "LABORATORIUM", "USG", "KECANTIKAN" }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTambahanPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTambahan.addActionListener(new java.awt.event.ActionListener() {
@@ -709,10 +700,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -764,8 +755,8 @@ public class FormDokter extends javax.swing.JFrame {
                             .addComponent(jLabel19))
                         .addGap(52, 52, 52)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTindakan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fieldHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(comboTindakan, 0, 158, Short.MAX_VALUE)
+                            .addComponent(fieldHarga)
                             .addComponent(fieldKeterangan)
                             .addComponent(fieldNoDetail))))
                 .addGap(24, 24, 24))
@@ -831,96 +822,8 @@ public class FormDokter extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        jLabel3.setText("ID Diagnosa");
-
-        idDiagnosaField.setEditable(false);
-
-        comboPenyakitPas.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
-        comboPenyakitPas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Penyakit" }));
-        comboPenyakitPas.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboPenyakitPasPopupMenuWillBecomeVisible(evt);
-            }
-        });
-
-        jLabel21.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        jLabel21.setText("Penyakit");
-
-        jLabel24.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        jLabel24.setText("Diagnosa");
-
-        jLabel25.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        jLabel25.setText("Keterangan");
-
-        ButtonDiagnosa.setFont(new java.awt.Font("Caviar Dreams", 0, 10)); // NOI18N
-        ButtonDiagnosa.setText("SIMPAN DIAGNOSA");
-        ButtonDiagnosa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDiagnosaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(idDiagnosaField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    .addComponent(diagnosaField))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(comboPenyakitPas, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(KetDiagnosa)
-                        .addGap(27, 27, 27))))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(246, 246, 246)
-                .addComponent(ButtonDiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(idDiagnosaField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPenyakitPas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(diagnosaField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(KetDiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ButtonDiagnosa, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jLabel20.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
         jLabel20.setText("Tindakan Dokter");
-
-        jLabel17.setFont(new java.awt.Font("Caviar Dreams", 3, 14)); // NOI18N
-        jLabel17.setText("Input Diagnosa");
 
         goToResepButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         goToResepButton.setText("BERI RESEP");
@@ -928,6 +831,21 @@ public class FormDokter extends javax.swing.JFrame {
         goToResepButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goToResepButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel21.setText("Penyakit");
+
+        comboPenyakitPas.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
+        comboPenyakitPas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Penyakit" }));
+        comboPenyakitPas.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboPenyakitPasPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -939,73 +857,75 @@ public class FormDokter extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel21)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel13)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel5)))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TekananDarah, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Field_idPasien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(tinggiBadan, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(29, 29, 29)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel5))
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(TekananDarah, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Field_idPasien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                            .addComponent(tinggiBadan, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(29, 29, 29)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel10))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(fieldNamaPasien, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                            .addComponent(BeratBadan)
-                                            .addComponent(alergi)))))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(hasilPemeriksaan))))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel10))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fieldNamaPasien, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(BeratBadan)
+                                    .addComponent(alergi)))
+                            .addComponent(idRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboPenyakitPas, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(hasilPemeriksaan, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(124, 124, 124)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(totalHargaTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(tglRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
                         .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(totalHargaTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(tglRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)))))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(782, Short.MAX_VALUE)
+                    .addContainerGap(627, Short.MAX_VALUE)
                     .addComponent(jLabel20)
                     .addGap(507, 507, 507)))
         );
@@ -1024,15 +944,14 @@ public class FormDokter extends javax.swing.JFrame {
                                     .addComponent(tglRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14))))
                         .addGap(7, 7, 7)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
                                     .addComponent(totalHargaTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel13)
@@ -1056,25 +975,25 @@ public class FormDokter extends javax.swing.JFrame {
                             .addComponent(TekananDarah, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(alergi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(comboPenyakitPas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(hasilPemeriksaan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(hasilPemeriksaan, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 8, Short.MAX_VALUE))
+                            .addComponent(jLabel11)
+                            .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 3, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
@@ -1098,12 +1017,15 @@ public class FormDokter extends javax.swing.JFrame {
                 || hasilPemeriksaan.getText().equals("") || alergi.getText().equals("") || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
+            if(comboTambahan.getSelectedItem().equals("TIDAK ADA")){
+                
+            }
             try {
                 Rekam_Medis rekam_medis = new Rekam_Medis();
                 rekam_medis.setId_Rekam(id_Rekam);
                 System.out.println(idRekam);
-                rekam_medis.setId_Diagnosa(idDiagnosaField.getText());
-                System.out.println(idDiagnosaField.getText());
+                rekam_medis.setId_Penyakit(comboPenyakitPas.getSelectedItem().toString());
+                System.out.println(comboPenyakitPas.getSelectedItem().toString());
                 rekam_medis.setId_Pasien(Field_idPasien.getText());
                 System.out.println(Field_idPasien.getText());
                 rekam_medis.setTgl_Rekam((Date) tglRekam.getValue());
@@ -1122,10 +1044,10 @@ public class FormDokter extends javax.swing.JFrame {
                 System.out.println(totalHargaTindakan.getText());
                 rekam_medis.setLayanan_Tambahan(comboTambahan.getSelectedItem().toString());
                 System.out.println(comboTambahan.getSelectedItem().toString());
-
+                
+                 
                 dokterService.insertRekam_Medis(rekam_medis);
 
-                idRekam.setText(id_Rekam);
                 JOptionPane.showMessageDialog(null, "Data rekam medis berhasil disimpan");
 //                String nama = dokterService.getNamaPasien(Field_idPasien.getText());
 //                fieldNamaPasien.setText("" + nama);
@@ -1486,31 +1408,6 @@ public class FormDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNoDetailActionPerformed
 
-    private void ButtonDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDiagnosaActionPerformed
-        if (comboPenyakitPas.getSelectedItem().equals("") || diagnosaField.getText().equals("")
-                || KetDiagnosa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
-        } else {
-            try {
-                Penyakit_diagnosa diagnosa = new Penyakit_diagnosa();
-                diagnosa.setId_Diagnosa(dokterService.getAutoNumberIdDiagnosa());
-                String id_penyakit = dokterService.getIdPenyakit(comboPenyakitPas.getSelectedItem().toString());
-                diagnosa.setId_Penyakit(id_penyakit);
-                diagnosa.setDiagnosa(diagnosaField.getText());
-                diagnosa.setKeterangan(KetDiagnosa.getText());
-                dokterService.insertDiagnosa(diagnosa);
-
-                idDiagnosaField.setText(id_Diagnosa);
-                JOptionPane.showMessageDialog(null, "Diagnosa berhasil disimpan");
-
-            } catch (RemoteException exception) {
-                exception.printStackTrace();
-            }
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_ButtonDiagnosaActionPerformed
-
     private void tinggiBadanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tinggiBadanKeyTyped
         typeonlynumber(evt);
         if (tinggiBadan.getText().length() > 3) {
@@ -1567,9 +1464,7 @@ public class FormDokter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BeratBadan;
-    private javax.swing.JButton ButtonDiagnosa;
     private javax.swing.JTextField Field_idPasien;
-    private javax.swing.JTextField KetDiagnosa;
     private javax.swing.JButton TambahTindakan;
     private javax.swing.JTextField TekananDarah;
     private javax.swing.JTextField alergi;
@@ -1579,7 +1474,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JComboBox comboPenyakitPas;
     private javax.swing.JComboBox comboTambahan;
     private javax.swing.JComboBox comboTindakan;
-    private javax.swing.JTextField diagnosaField;
     private javax.swing.JTabbedPane dokterTabPane;
     private javax.swing.JTextField fieldHarga;
     private javax.swing.JTextField fieldIdPasien;
@@ -1591,7 +1485,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JTextField hargaObatField;
     private javax.swing.JTextField hasilPemeriksaan;
-    private javax.swing.JTextField idDiagnosaField;
     private javax.swing.JTextField idRekam;
     private javax.swing.JTextField idResepField;
     private javax.swing.JLabel idResepLabel;
@@ -1603,7 +1496,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1611,9 +1503,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1623,7 +1512,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
