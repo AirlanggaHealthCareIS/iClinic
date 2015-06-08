@@ -24,7 +24,8 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     
     public BerhasilMelihatPasienSelanjutnya() throws RemoteException{
 //        this.server = new Server();
-    }
+    } 
+    
      /**
      * Test of Id_usg method, of class USGServiceServer.
      */
@@ -36,7 +37,6 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
         String result = instance.Id_usg();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        
     }
     
     /**
@@ -55,6 +55,20 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
         // TODO review the generated test code and remove the default call to fail.
     }
 
+     /**
+     * Test of Nama_pasien method, of class USGServiceServer.
+     */
+    @Test
+    public void testNama_pasien() throws Exception {
+        System.out.println("Nama_pasien");
+        String id_pasien = "P0001";
+        USGServiceServer instance = new USGServiceServer();
+        String expResult = "AGUS";
+        String result = instance.Nama_pasien(id_pasien);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
     /**
      * Test of ubahstatus method, of class USGServiceServer.
      */
