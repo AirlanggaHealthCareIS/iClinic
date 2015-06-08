@@ -4,5 +4,6 @@ Skenario	Dokter dapat melihat rekam medis pasien
 
 Given 		Dokter telah melakukan log in
 And 		Dokter telah masuk ke dalam frame dokter tab rekam medis
-When 		Dokter mengklik perintah melihat rekam medis
+When 		Dokter memasukkan ID pasien
+And		Dokter mengklik perintah melihat rekam medis
 Then		Seharusnya sistem menampilkan rekam medis pasien
