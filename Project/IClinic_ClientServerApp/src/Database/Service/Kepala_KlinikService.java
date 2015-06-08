@@ -6,6 +6,8 @@
 package Database.Service;
 
 import Database.Entity.Antrian;
+import Database.Entity.LaporanJumlahPasien;
+import Database.Entity.LaporanKeuangan;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
@@ -18,7 +20,8 @@ import java.util.List;
  * @author Tiara Ratna Sari
  */
 public interface Kepala_KlinikService extends Remote {
-    
+    List<LaporanKeuangan> getLaporanKeuangan () throws RemoteException;
+    public List<LaporanJumlahPasien> getLaporanJumlahPasien() throws RemoteException;
     Pembayaran getPembayaran(int Id_Pembayaran) throws RemoteException;
 
     List<Pembayaran> getPembayaran() throws RemoteException;

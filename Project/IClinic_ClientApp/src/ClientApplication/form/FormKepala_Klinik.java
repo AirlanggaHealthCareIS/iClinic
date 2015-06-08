@@ -12,6 +12,8 @@
 package ClientApplication.form;
 
 import ClientApplication.FormLogin;
+import ClientApplication.model.TableModelLaporanJumlahPasien;
+import ClientApplication.model.TableModelLaporanKeuangan;
 import ClientApplication.model.TableModelPembayaran;
 import Database.Entity.Pembayaran;
 import ClientApplication.model.TableModelPasien;
@@ -21,12 +23,19 @@ import Database.Entity.Obat_detailResep;
 import Database.Service.Kepala_KlinikService;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -34,13 +43,19 @@ import javax.swing.event.ListSelectionListener;
  * @author Tiara Ratna Sari
  */
 public class FormKepala_Klinik extends javax.swing.JFrame {
-    Kepala_KlinikService a;
-    TableModelPembayaran b = new TableModelPembayaran();
-    Pembayaran c = new Pembayaran();
-    
+    Kepala_KlinikService kepala_KlinikService;
+    TableModelLaporanKeuangan tableModelLaporanKeuangan  = new TableModelLaporanKeuangan();
+    TableModelLaporanJumlahPasien tableModelLaporanJumlahPasien = new TableModelLaporanJumlahPasien();
 
     public FormKepala_Klinik(Kepala_KlinikService kepala_KlinikService) {
-        a=kepala_KlinikService;
+        this.kepala_KlinikService = kepala_KlinikService;
+        try{
+            tableModelLaporanKeuangan.setData(this.kepala_KlinikService.getLaporanKeuangan());
+            tableModelLaporanJumlahPasien.setData(this.kepala_KlinikService.getLaporanJumlahPasien());
+        }catch(RemoteException exception){
+            exception.printStackTrace();
+        }
+        initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -54,7 +69,6 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,10 +92,6 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(440, 340, 130, 40);
 
-        jButton3.setText("Cetak Rekam Medis");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(790, 340, 130, 40);
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/9.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1318, 800);
@@ -90,20 +100,35 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JasperPrint jasperPrint = null;
         try {
-            b.setData(a.getPembayaran());
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormKepala_Klinik.class.getName()).log(Level.SEVERE, null, ex);
+            JasperCompileManager.compileReportToFile("src/Report/laporanKeuangan.jrxml");
+            HashMap hash = new HashMap();
+            //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
+            //            System.out.println(FieldLk_idPembayaran.getText());
+            jasperPrint = JasperFillManager.fillReport("src/Report/laporanKeuangan.jasper", hash,
+                new JRTableModelDataSource(tableModelLaporanKeuangan));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
         }
-//<<<<<<< Updated upstream
-////        Table_Pembayaran.setModel(b);
-//=======
-//      //  Table_Pembayaran.setModel(b);
-//>>>>>>> Stashed changes
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        JasperPrint jasperPrint = null;
+        try {
+            JasperCompileManager.compileReportToFile("src/Report/jumlahpasien.jrxml");
+            HashMap hash = new HashMap();
+            //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
+            //            System.out.println(FieldLk_idPembayaran.getText());
+            jasperPrint = JasperFillManager.fillReport("src/Report/jumlahpasien.jasper", hash,
+                new JRTableModelDataSource(tableModelLaporanJumlahPasien));
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -111,7 +136,6 @@ public class FormKepala_Klinik extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 

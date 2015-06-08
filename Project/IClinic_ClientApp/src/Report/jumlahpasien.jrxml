@@ -42,26 +42,19 @@ OR MONTH(`transaksi_usg`.TANGGAL) = MONTH(CURDATE())]]>
 	<title>
 		<band height="102" splitType="Stretch">
 			<image>
-				<reportElement x="447" y="0" width="355" height="102" uuid="f284f6b1-9893-4581-af24-28e4533b8b7b"/>
+				<reportElement x="517" y="-10" width="285" height="102" uuid="f284f6b1-9893-4581-af24-28e4533b8b7b"/>
 				<imageExpression><![CDATA["iClinic_1.png"]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="70" width="430" height="32" forecolor="#000000" backcolor="#CCCCCC" uuid="6c27c469-d7f5-411d-8ffc-0244b63be307"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="119" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="92c6feb9-66e3-4406-88bd-0a0fb87ddecc"/>
-					<textElement textAlignment="Right">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
+				<reportElement mode="Opaque" x="0" y="77" width="802" height="25" forecolor="#000000" backcolor="#CCCCCC" uuid="6c27c469-d7f5-411d-8ffc-0244b63be307"/>
 			</frame>
 			<staticText>
-				<reportElement style="Title" x="0" y="0" width="430" height="66" forecolor="#000000" backcolor="#000000" uuid="e6e4d551-1806-498c-95af-7cc4a453cd1d"/>
+				<reportElement style="Title" x="0" y="0" width="475" height="66" forecolor="#000000" backcolor="#000000" uuid="e6e4d551-1806-498c-95af-7cc4a453cd1d"/>
 				<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[Jumlah Pasien]]></text>
+				<text><![CDATA[Laporan Jumlah Pasien]]></text>
 			</staticText>
 		</band>
 	</title>
