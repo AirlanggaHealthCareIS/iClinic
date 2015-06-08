@@ -74,7 +74,7 @@ public class TableModelRekam_Medis extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0 : return list.get(rowIndex).getId_Rekam();
-            case 1 : return list.get(rowIndex).getId_Diagnosa();
+            case 1 : return list.get(rowIndex).getId_Penyakit();
             case 2 : return list.get(rowIndex).getId_Pasien();
             case 3 : return list.get(rowIndex).getTgl_Rekam();
             case 4 : return list.get(rowIndex).getTinggi();

@@ -15,7 +15,7 @@ import java.util.Date;
 public class Rekam_Medis implements Serializable {
 
     private String Id_Rekam;
-    private String Id_Diagnosa;
+    private String Id_Penyakit;
     private String Id_Pasien;
     private Date Tgl_Rekam;
     private int Tinggi;
@@ -30,8 +30,8 @@ public class Rekam_Medis implements Serializable {
         return Id_Rekam;
     }
 
-    public String getId_Diagnosa() {
-        return Id_Diagnosa;
+    public String getId_Penyakit() {
+        return Id_Penyakit;
     }
 
     public String getId_Pasien() {
@@ -74,8 +74,8 @@ public class Rekam_Medis implements Serializable {
         this.Id_Rekam = Id_Rekam;
     }
 
-    public void setId_Diagnosa(String Id_Diagnosa) {
-        this.Id_Diagnosa = Id_Diagnosa;
+    public void setId_Penyakit(String Id_Penyakit) {
+        this.Id_Penyakit = Id_Penyakit;
     }
 
     public void setId_Pasien(String Id_Pasien) {
