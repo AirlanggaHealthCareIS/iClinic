@@ -5,6 +5,7 @@
 package ServerApplication.Service;
 
 import Database.Entity.Obat_detailResep;
+import Database.Entity.Obat_detailResepPrint;
 import Database.Entity.Pembayaran;
 import Database.Service.Bag_PembayaranService;
 import ServerApplication.Utilities.DatabaseUtilities;
@@ -282,7 +283,8 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
-public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteException {
+
+    public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteException {
         log Log = new log();
         Log.setTanggal(Calendar.getInstance().getTime());
         Log.setKegiatan("Melakukan Proses Get All pada Tabel Pembayaran");
@@ -295,7 +297,7 @@ public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteExc
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "SELECT pasien.ID_PASIEN AS ID_PASIEN, pasien.NAMA_PASIEN AS NAMA, pembayaran.ID_PEMBAYARAN AS ID, pembayaran.TANGGAL_BAYAR AS TANGGAL, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS AS STATUS\n"
                     + "FROM pasien,pembayaran\n"
-                    + "WHERE pasien.ID_PASIEN = pembayaran.ID_PASIEN AND pembayaran.ID_PEMBAYARAN = '"+idPembayaran+"'");
+                    + "WHERE pasien.ID_PASIEN = pembayaran.ID_PASIEN AND pembayaran.ID_PEMBAYARAN = '" + idPembayaran + "'");
             result = statement.executeQuery();
             List<Pembayaran> list = new ArrayList<Pembayaran>();
             Pembayaran pembayaran = null;
@@ -401,6 +403,57 @@ public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteExc
 
             result.close();
             return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    public List<Obat_detailResepPrint> getObat_detailresepPrint(String ID_RESEP) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Meihat Total Tagihan Pembelian Obat");
+        Log.setAktor("Bagian Pembayaran");
+        tableModelLog.insert(Log);
+
+        Statement statement = null;
+        ResultSet result = null;
+        try {
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT * FROM pembayaran WHERE ID_RESEP = '" + ID_RESEP + "'");
+            List<Obat_detailResepPrint> list = new ArrayList<Obat_detailResepPrint>();
+            Obat_detailResepPrint obat_detailResepPrint = new Obat_detailResepPrint();
+            if (result.next()) {
+                obat_detailResepPrint.setID_PEMBAYARAN(result.getString("ID_PEMBAYARAN"));
+                obat_detailResepPrint.setTANGGAL_BAYAR(result.getDate("TANGGAL_BAYAR"));
+                obat_detailResepPrint.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                obat_detailResepPrint.setSTATUS(result.getString("STATUS"));
+            }
+            statement = DatabaseUtilities.getConnection().createStatement();
+            result = statement.executeQuery("SELECT * FROM detail_resep WHERE ID_RESEP = '" + ID_RESEP + "'");
+
+            while (result.next()) {
+                obat_detailResepPrint.setNo_Detail_Resep(result.getString("No_Detail_Resep"));
+                obat_detailResepPrint.setId_Resep(result.getString("Id_Resep"));
+                obat_detailResepPrint.setId_Obat(result.getString("Id_Obat"));
+                obat_detailResepPrint.setTakaran(result.getString("Takaran"));
+                obat_detailResepPrint.setPemakaian(result.getString("Pemakaian"));
+                obat_detailResepPrint.setJumlah(result.getInt("Jumlah"));
+                obat_detailResepPrint.setKeterangan(result.getString("Keterangan"));
+                list.add(obat_detailResepPrint);
+                obat_detailResepPrint = new Obat_detailResepPrint();
+            }
+
+            result.close();
+            return list;
+
         } catch (SQLException exception) {
             exception.printStackTrace();
             return null;

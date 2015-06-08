@@ -8,6 +8,7 @@ package ClientApplication.form;
 import ClientApplication.FormLogin;
 import ClientApplication.Splash;
 import ClientApplication.model.TableModelObat_detailResep;
+import ClientApplication.model.TableModelObat_detailResepPrint;
 import ClientApplication.model.TableModelPembayaran;
 import ClientApplication.model.TableModelPembayaranPrint;
 import Database.Entity.Pembayaran;
@@ -58,6 +59,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private TableModelPembayaranPrint tableModelPembayaranPrint = new TableModelPembayaranPrint();
     private TableModelPembayaran tableModelPembayaran = new TableModelPembayaran();
     private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
+    private TableModelObat_detailResepPrint tableModelObat_detailResepPrint = new TableModelObat_detailResepPrint();
     private Bag_PembayaranService bag_PembayaranService;
     
     public FormBag_Pembayaran(Bag_PembayaranService bag_PembayaranService) {
@@ -765,12 +767,12 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private void buttonPo_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPo_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
-            tableModelObat_detailResep.setData(this.bag_PembayaranService.getObat_detailresep(FieldLk_idPembayaran.getText()));
-            JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran_1.jrxml");
+            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrint(FieldLk_idPembayaran.getText()));
+            JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
             HashMap hash = new HashMap();
             //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
             //            System.out.println(FieldLk_idPembayaran.getText());
-            jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran_1.jasper", hash,
+            jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran.jasper", hash,
                 new JRTableModelDataSource(tableModelPembayaranPrint));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
