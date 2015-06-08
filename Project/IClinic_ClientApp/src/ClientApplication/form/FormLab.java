@@ -56,15 +56,12 @@ public class FormLab extends javax.swing.JFrame {
     public ArrayList<Object> details = new ArrayList<Object>();
     
     public Boolean pasienExist = false;
-    public int number = 1;
     public Antrian antrian = null;
     
     public FormLab(LabService labService) {
         initComponents();
         jTabbedPane1.setEnabledAt(1, false);
         this.labService = labService;
-        
-        
         try {
             listLaboratorium = labService.getLaboratorium();
         } catch (RemoteException ex) {
@@ -593,13 +590,13 @@ public class FormLab extends javax.swing.JFrame {
         // TODO add your handling code here:
            if (!idTransaksi.getText().equals("")){
             String idtrans = idTransaksi.getText();
-            String iddetail = idtrans +"-"+ number;
-            number++;
+//            String iddetail = idtrans +"-"+ number;
+//            number++;
             String idjenpem = listLaboratorium.get(comboJenisPem.getSelectedIndex()).getId_Lab();
             String keterangan = Keterangan.getText();
             String hasil = hasilPemeriksaan.getText();
             Lab_detailLab detail = new Lab_detailLab();
-            detail.setId_Detail_Lab(iddetail);
+            //detail.setId_Detail_Lab(iddetail);
             detail.setId_Transaksi_Lab(idtrans);
             detail.setId_Lab(idjenpem);
             detail.setHasil(hasil);
@@ -623,7 +620,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         // TODO add your handling code here:
-         number = 1;
+//         number = 1;
        
         idPasien2.setEditable(false);
         idTransaksi.setText("");
@@ -673,19 +670,24 @@ public class FormLab extends javax.swing.JFrame {
             antrian = labService.getPasienSelanjutnya();
             if(antrian != null){
                 idPasien.setText(antrian.getId_Pasien());
-            }
+                String nama = labService.getNamaPasien(antrian.getId_Pasien());
+                if (nama != null){
+                    namaPasien.setText(nama);
+                    namaPasien2.setText(nama);
+                }
             else{
-                JOptionPane.showMessageDialog(this,"Tidak ada antrian di layanan Laboratorium !", "ANTRIAN KOSONG", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Nama pasien tidak ada !", "Tidak Ada", JOptionPane.ERROR_MESSAGE);
             }
-            String nama = labService.getNamaPasien(antrian.getId_Pasien());
-            if (nama != null){
-                namaPasien.setText(nama);
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Nama pasien tidak ada", " Tidak Ada" , JOptionPane.ERROR_MESSAGE);
-            }
+           
             dataTransaksi.setEnabled(true); 
             
+        } 
+            else{
+                dataTransaksi.setEnabled(false);
+                idPasien.setText("");
+                namaPasien.setText("");
+                JOptionPane.showMessageDialog(this,"Tidak ada antrian layanan laboratorium !", "Antrian masih kosong", JOptionPane.ERROR_MESSAGE);
+            }          
         } catch (RemoteException ex) {
             Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
         }
