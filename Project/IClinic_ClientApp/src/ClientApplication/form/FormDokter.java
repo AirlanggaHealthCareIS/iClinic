@@ -1454,7 +1454,6 @@ public class FormDokter extends javax.swing.JFrame {
 
         try {
             dokterService.updateAntrian(antrian.getId_Antrian());
-            JOptionPane.showMessageDialog(null, "Data berhasil disimpan ke database");
             //-----Pembayaran-----//
             String idPasien = Field_idPasien.getText();
             int hargaRM = Integer.parseInt(totalHargaTindakan.getText());
@@ -1476,7 +1475,7 @@ public class FormDokter extends javax.swing.JFrame {
                 Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(FormUSG.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
         cekdaftar();
