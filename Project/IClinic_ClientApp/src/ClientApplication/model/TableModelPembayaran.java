@@ -49,7 +49,7 @@ public class TableModelPembayaran extends AbstractTableModel {
     public String getColumnName(int column) {
         switch(column){
             case 0 : return "ID_PEMBAYARAN";
-            case 1 : return "ID_PASIEN";
+            case 1 : return "NAMA_PASIEN";
             case 2 : return "TANGGAL_BAYAR";
             case 3 : return "TOTAL_HARGA";
             case 4 : return "STATUS";
@@ -68,7 +68,7 @@ public class TableModelPembayaran extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0 : return list.get(rowIndex).getID_PEMBAYARAN();
-            case 1 : return list.get(rowIndex).getID_PASIEN();
+            case 1 : return list.get(rowIndex).getNAMA_PASIEN();
             case 2 : return list.get(rowIndex).getTANGGAL_BAYAR();
             case 3 : return list.get(rowIndex).getTOTAL_HARGA();
             case 4 : return list.get(rowIndex).getSTATUS();

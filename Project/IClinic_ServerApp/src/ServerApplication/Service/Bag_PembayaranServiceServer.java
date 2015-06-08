@@ -201,71 +201,72 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         ResultSet result = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT pasien.NAMA_PASIEN AS NAMA, pembayaran.ID_PEMBAYARAN AS ID, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS AS STATUS\n"
+                    "SELECT pasien.ID_PASIEN AS ID_PASIEN, pasien.NAMA_PASIEN AS NAMA, pembayaran.ID_PEMBAYARAN AS ID, pembayaran.TANGGAL_BAYAR AS TANGGAL, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS AS STATUS\n"
                     + "FROM pasien,pembayaran\n"
-                    + "WHERE pembayaran.STATUS = 'HUTANG'\n"
-                    + "AND pasien.ID_PASIEN = pembayaran.ID_PASIEN");
+                    + "WHERE pasien.ID_PASIEN = pembayaran.ID_PASIEN");
             result = statement.executeQuery();
             List<Pembayaran> list = new ArrayList<Pembayaran>();
+            Pembayaran pembayaran = null;
             while (result.next()) {
+                pembayaran = new Pembayaran();
+                pembayaran.setID_PEMBAYARAN(result.getString("ID"));
+                pembayaran.setID_PASIEN(result.getString("ID_PASIEN"));
+                pembayaran.setNAMA_PASIEN(result.getString("NAMA"));
+                pembayaran.setTANGGAL_BAYAR(result.getDate("TANGGAL"));
+                pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaran.setSTATUS(result.getString("STATUS"));
+
+                System.out.println(pembayaran.getID_PEMBAYARAN());
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT rekam_medis.TOTAL_HARGA AS REKAM "
+                        + "FROM rekam_medis,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM");
+                result = statement.executeQuery();
                 if (result.next()) {
-                    Pembayaran pembayaran = new Pembayaran();
-                    pembayaran.setID_PEMBAYARAN(result.getString("ID"));
-                    pembayaran.setNAMA_PASIEN(result.getString("NAMA"));
-                    pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
-                    pembayaran.setSTATUS(result.getString("STATUS"));
-
-                    statement = DatabaseUtilities.getConnection().prepareStatement(
-                            "SELECT rekam_medis.TOTAL_HARGA AS REKAM "
-                            + "FROM rekam_medis,pembayaran "
-                            + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
-                            + "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM");
-                    result = statement.executeQuery();
-                    if (result.next()) {
-                        pembayaran.setTOTAL_REKAM(result.getInt("REKAM"));
-                    }
-
-                    statement = DatabaseUtilities.getConnection().prepareStatement(
-                            "SELECT resep.TOTAL_HARGA AS RESEP "
-                            + "FROM resep,pembayaran "
-                            + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
-                            + "AND pembayaran.ID_RESEP = resep.ID_RESEP");
-                    result = statement.executeQuery();
-                    if (result.next()) {
-                        pembayaran.setTOTAL_RESEP(result.getInt("RESEP"));
-                    }
-
-                    statement = DatabaseUtilities.getConnection().prepareStatement(
-                            "SELECT transaksi_usg.HARGA AS USG "
-                            + "FROM transaksi_usg,pembayaran "
-                            + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
-                            + "AND pembayaran.ID_USG = transaksi_usg.ID_USG");
-                    result = statement.executeQuery();
-                    if (result.next()) {
-                        pembayaran.setTOTAL_USG(result.getInt("USG"));
-                    }
-
-                    statement = DatabaseUtilities.getConnection().prepareStatement(
-                            "SELECT transaksi_lab.TOTAL_HARGA AS LAB "
-                            + "FROM transaksi_lab,pembayaran "
-                            + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
-                            + "AND pembayaran.ID_TRANSAKSI_LAB = transaksi_lab.ID_TRANSAKSI_LAB");
-                    result = statement.executeQuery();
-                    if (result.next()) {
-                        pembayaran.setTOTAL_LAB(result.getInt("LAB"));
-                    }
-
-                    statement = DatabaseUtilities.getConnection().prepareStatement(
-                            "SELECT transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN "
-                            + "FROM transaksi_layanan_kecantikan,pembayaran "
-                            + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
-                            + "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
-                    result = statement.executeQuery();
-                    if (result.next()) {
-                        pembayaran.setTOTAL_KECANTIKAN(result.getInt("KECANTIKAN"));
-                    }
-                    list.add(pembayaran);
+                    pembayaran.setTOTAL_REKAM(result.getInt("REKAM"));
                 }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT resep.TOTAL_HARGA AS RESEP "
+                        + "FROM resep,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_RESEP = resep.ID_RESEP");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_RESEP(result.getInt("RESEP"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_usg.HARGA AS USG "
+                        + "FROM transaksi_usg,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_USG = transaksi_usg.ID_USG");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_USG(result.getInt("USG"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_lab.TOTAL_HARGA AS LAB "
+                        + "FROM transaksi_lab,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_TRANSAKSI_LAB = transaksi_lab.ID_TRANSAKSI_LAB");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_LAB(result.getInt("LAB"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN "
+                        + "FROM transaksi_layanan_kecantikan,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_KECANTIKAN(result.getInt("KECANTIKAN"));
+                }
+                list.add(pembayaran);
             }
             return list;
         } catch (SQLException exception) {
@@ -281,7 +282,98 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
             }
         }
     }
+public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Pembayaran");
+        Log.setAktor("Bagian Pembayaran");
+        tableModelLog.insert(Log);
 
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT pasien.ID_PASIEN AS ID_PASIEN, pasien.NAMA_PASIEN AS NAMA, pembayaran.ID_PEMBAYARAN AS ID, pembayaran.TANGGAL_BAYAR AS TANGGAL, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS AS STATUS\n"
+                    + "FROM pasien,pembayaran\n"
+                    + "WHERE pasien.ID_PASIEN = pembayaran.ID_PASIEN AND pembayaran.ID_PEMBAYARAN = '"+idPembayaran+"'");
+            result = statement.executeQuery();
+            List<Pembayaran> list = new ArrayList<Pembayaran>();
+            Pembayaran pembayaran = null;
+            while (result.next()) {
+                pembayaran = new Pembayaran();
+                pembayaran.setID_PEMBAYARAN(result.getString("ID"));
+                pembayaran.setID_PASIEN(result.getString("ID_PASIEN"));
+                pembayaran.setNAMA_PASIEN(result.getString("NAMA"));
+                pembayaran.setTANGGAL_BAYAR(result.getDate("TANGGAL"));
+                pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaran.setSTATUS(result.getString("STATUS"));
+
+                System.out.println(pembayaran.getID_PEMBAYARAN());
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT rekam_medis.TOTAL_HARGA AS REKAM "
+                        + "FROM rekam_medis,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_REKAM = rekam_medis.ID_REKAM");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_REKAM(result.getInt("REKAM"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT resep.TOTAL_HARGA AS RESEP "
+                        + "FROM resep,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_RESEP = resep.ID_RESEP");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_RESEP(result.getInt("RESEP"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_usg.HARGA AS USG "
+                        + "FROM transaksi_usg,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_USG = transaksi_usg.ID_USG");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_USG(result.getInt("USG"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_lab.TOTAL_HARGA AS LAB "
+                        + "FROM transaksi_lab,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_TRANSAKSI_LAB = transaksi_lab.ID_TRANSAKSI_LAB");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_LAB(result.getInt("LAB"));
+                }
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT transaksi_layanan_kecantikan.TOTAL_HARGA AS KECANTIKAN "
+                        + "FROM transaksi_layanan_kecantikan,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + pembayaran.getID_PEMBAYARAN() + "' "
+                        + "AND pembayaran.ID_TRANSAKSI_LAYANAN = transaksi_layanan_kecantikan.ID_TRANSAKSI_LAYANAN");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_KECANTIKAN(result.getInt("KECANTIKAN"));
+                }
+                list.add(pembayaran);
+            }
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
     public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
         log Log = new log();
         Log.setTanggal(Calendar.getInstance().getTime());
