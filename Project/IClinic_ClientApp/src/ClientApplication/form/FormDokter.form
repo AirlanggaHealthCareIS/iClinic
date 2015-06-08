@@ -105,18 +105,18 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="12" rowCount="0">
-                        <Column editable="true" title="Id_Rekam" type="java.lang.Object"/>
-                        <Column editable="true" title="Id_Diagnosa" type="java.lang.Object"/>
-                        <Column editable="true" title="Id_Pasien" type="java.lang.Object"/>
-                        <Column editable="true" title="No_Detail" type="java.lang.Object"/>
-                        <Column editable="true" title="Tgl_Rekam" type="java.lang.Object"/>
-                        <Column editable="true" title="Tinggi" type="java.lang.Object"/>
-                        <Column editable="true" title="Berat" type="java.lang.Object"/>
-                        <Column editable="true" title="Tekanan_Darah" type="java.lang.Object"/>
-                        <Column editable="true" title="Hasil_Pemeriksaan" type="java.lang.Object"/>
-                        <Column editable="true" title="Alergi" type="java.lang.Object"/>
-                        <Column editable="true" title="Total Harga" type="java.lang.Object"/>
-                        <Column editable="true" title="Layanan_Tambahan" type="java.lang.Object"/>
+                        <Column editable="false" title="Id_Rekam" type="java.lang.Object"/>
+                        <Column editable="false" title="Id_Penyakit" type="java.lang.Object"/>
+                        <Column editable="false" title="Id_Pasien" type="java.lang.Object"/>
+                        <Column editable="false" title="No_Detail" type="java.lang.Object"/>
+                        <Column editable="false" title="Tgl_Rekam" type="java.lang.Object"/>
+                        <Column editable="false" title="Tinggi" type="java.lang.Object"/>
+                        <Column editable="false" title="Berat" type="java.lang.Object"/>
+                        <Column editable="false" title="Tekanan_Darah" type="java.lang.Object"/>
+                        <Column editable="false" title="Hasil_Pemeriksaan" type="java.lang.Object"/>
+                        <Column editable="false" title="Alergi" type="java.lang.Object"/>
+                        <Column editable="false" title="Total Harga" type="java.lang.Object"/>
+                        <Column editable="false" title="Layanan_Tambahan" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>

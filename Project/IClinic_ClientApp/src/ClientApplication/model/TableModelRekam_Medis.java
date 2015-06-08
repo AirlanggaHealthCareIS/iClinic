@@ -49,7 +49,7 @@ public class TableModelRekam_Medis extends AbstractTableModel {
     public String getColumnName(int column) {
         switch(column){
             case 0 : return "Id_Rekam";
-            case 1 : return "Id_Diagnosa";
+            case 1 : return "Id_Penyakit";
             case 2 : return "Id_Pasien";
             case 3 : return "Tgl_Rekam";
             case 4 : return "Tinggi";
