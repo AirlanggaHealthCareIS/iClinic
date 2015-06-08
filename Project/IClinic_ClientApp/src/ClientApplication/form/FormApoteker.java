@@ -103,7 +103,7 @@ public class FormApoteker extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        LihatResepTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,7 +111,7 @@ public class FormApoteker extends javax.swing.JFrame {
         Button_Search = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table_Apotek = new javax.swing.JTable();
-        jNextLRButton1 = new javax.swing.JButton();
+        GoToPenukaranResepButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jTotalHargaPRLabel21 = new javax.swing.JLabel();
@@ -166,25 +166,25 @@ public class FormApoteker extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1280, 730));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(0, 0));
+        LihatResepTabbedPane1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        LihatResepTabbedPane1.setMinimumSize(new java.awt.Dimension(1280, 730));
+        LihatResepTabbedPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel1.setText("ID Resep");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 310, 110, 22);
+        jLabel1.setBounds(10, 280, 110, 22);
 
         jLabel3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jLabel3.setText("Detail Resep");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(10, 420, 110, 22);
+        jLabel3.setBounds(10, 360, 110, 22);
 
         TextField_IdResep.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jPanel1.add(TextField_IdResep);
-        TextField_IdResep.setBounds(120, 310, 190, 22);
+        TextField_IdResep.setBounds(120, 280, 190, 22);
 
         Button_Search.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         Button_Search.setText("Search");
@@ -194,7 +194,7 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Button_Search);
-        Button_Search.setBounds(330, 310, 120, 27);
+        Button_Search.setBounds(330, 280, 120, 27);
 
         Table_Apotek.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         Table_Apotek.setModel(new javax.swing.table.DefaultTableModel(
@@ -211,23 +211,23 @@ public class FormApoteker extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Table_Apotek);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 470, 610, 100);
+        jScrollPane1.setBounds(60, 410, 610, 100);
 
-        jNextLRButton1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jNextLRButton1.setText("NEXT");
-        jNextLRButton1.addActionListener(new java.awt.event.ActionListener() {
+        GoToPenukaranResepButton1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        GoToPenukaranResepButton1.setText("NEXT");
+        GoToPenukaranResepButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNextLRButton1ActionPerformed(evt);
+                GoToPenukaranResepButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jNextLRButton1);
-        jNextLRButton1.setBounds(270, 630, 210, 50);
+        jPanel1.add(GoToPenukaranResepButton1);
+        GoToPenukaranResepButton1.setBounds(270, 570, 210, 50);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(0, 0, 1280, 810);
 
-        jTabbedPane1.addTab("LIHAT RESEP", jPanel1);
+        LihatResepTabbedPane1.addTab("LIHAT RESEP", jPanel1);
 
         jPanel5.setFont(new java.awt.Font("Caviar Dreams", 1, 11)); // NOI18N
         jPanel5.setLayout(null);
@@ -235,7 +235,7 @@ public class FormApoteker extends javax.swing.JFrame {
         jTotalHargaPRLabel21.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jTotalHargaPRLabel21.setText("Total Harga");
         jPanel5.add(jTotalHargaPRLabel21);
-        jTotalHargaPRLabel21.setBounds(298, 596, 106, 22);
+        jTotalHargaPRLabel21.setBounds(350, 580, 106, 22);
 
         TotalHargaPRTextField13.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         TotalHargaPRTextField13.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +244,7 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel5.add(TotalHargaPRTextField13);
-        TotalHargaPRTextField13.setBounds(422, 592, 189, 31);
+        TotalHargaPRTextField13.setBounds(480, 580, 189, 31);
 
         PenukaranResepTable3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         PenukaranResepTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -266,7 +266,7 @@ public class FormApoteker extends javax.swing.JFrame {
         jScrollPane5.setViewportView(PenukaranResepTable3);
 
         jPanel5.add(jScrollPane5);
-        jScrollPane5.setBounds(10, 290, 810, 129);
+        jScrollPane5.setBounds(10, 290, 980, 129);
 
         IDResepPRLabel2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         IDResepPRLabel2.setText("ID Resep");
@@ -281,7 +281,7 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel5.add(SearchIDResepPRButton1);
-        SearchIDResepPRButton1.setBounds(450, 250, 81, 27);
+        SearchIDResepPRButton1.setBounds(450, 250, 120, 27);
 
         IDResepPRTextField1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jPanel5.add(IDResepPRTextField1);
@@ -295,7 +295,7 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel5.add(DeletePRButton4);
-        DeletePRButton4.setBounds(850, 340, 80, 39);
+        DeletePRButton4.setBounds(1020, 330, 80, 39);
 
         ProsesPRButton3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         ProsesPRButton3.setText("Proses");
@@ -305,12 +305,12 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel5.add(ProsesPRButton3);
-        ProsesPRButton3.setBounds(347, 673, 216, 61);
+        ProsesPRButton3.setBounds(10, 660, 980, 40);
 
         jTotalPRLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jTotalPRLabel.setText("Total");
         jPanel5.add(jTotalPRLabel);
-        jTotalPRLabel.setBounds(453, 520, 106, 22);
+        jTotalPRLabel.setBounds(690, 520, 106, 22);
 
         jNamaObatPRLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jNamaObatPRLabel.setText("Nama Obat");
@@ -325,11 +325,16 @@ public class FormApoteker extends javax.swing.JFrame {
         jJumlahPRLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jJumlahPRLabel.setText("Jumlah");
         jPanel5.add(jJumlahPRLabel);
-        jJumlahPRLabel.setBounds(453, 453, 106, 22);
+        jJumlahPRLabel.setBounds(690, 450, 106, 22);
 
         jTotalPRTextField1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        jTotalPRTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTotalPRTextField1ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jTotalPRTextField1);
-        jTotalPRTextField1.setBounds(563, 515, 189, 33);
+        jTotalPRTextField1.setBounds(800, 510, 189, 33);
 
         jNamaObatPRTextField2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jNamaObatPRTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -341,15 +346,25 @@ public class FormApoteker extends javax.swing.JFrame {
         jNamaObatPRTextField2.setBounds(134, 448, 186, 33);
 
         jJumlahPRTextField3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        jJumlahPRTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jJumlahPRTextField3ActionPerformed(evt);
+            }
+        });
         jJumlahPRTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jJumlahPRTextField3KeyReleased(evt);
             }
         });
         jPanel5.add(jJumlahPRTextField3);
-        jJumlahPRTextField3.setBounds(563, 448, 186, 33);
+        jJumlahPRTextField3.setBounds(800, 450, 186, 33);
 
         jHargaPRTextField4.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        jHargaPRTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHargaPRTextField4ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jHargaPRTextField4);
         jHargaPRTextField4.setBounds(134, 515, 186, 33);
 
@@ -357,7 +372,7 @@ public class FormApoteker extends javax.swing.JFrame {
         jPanel5.add(jLabel4);
         jLabel4.setBounds(0, 0, 1280, 800);
 
-        jTabbedPane1.addTab("PENUKARAN RESEP", jPanel5);
+        LihatResepTabbedPane1.addTab("PENUKARAN RESEP", jPanel5);
 
         jPanel2.setLayout(null);
 
@@ -390,12 +405,12 @@ public class FormApoteker extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -423,7 +438,7 @@ public class FormApoteker extends javax.swing.JFrame {
         });
 
         pemakaianComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        pemakaianComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Setelah Makan", "Sebelum Makan" }));
+        pemakaianComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Cara Pemakaian --", "Diminum", "Dioleskan", "Disuntukkan" }));
         pemakaianComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pemakaianComboBoxActionPerformed(evt);
@@ -436,7 +451,7 @@ public class FormApoteker extends javax.swing.JFrame {
         jumlahSpinner.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         satuanComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pack", "Botol", "Tablet", "Kapsul", "Sachet", "dus" }));
+        satuanComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Satuan", "Pil", "Kapsul", "Tablet", "Ampul", "Botol", "Bungkus" }));
 
         keteranganField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
@@ -635,32 +650,54 @@ public class FormApoteker extends javax.swing.JFrame {
         );
 
         jPanel2.add(resepPanel);
-        resepPanel.setBounds(0, 270, 1280, 429);
+        resepPanel.setBounds(0, 220, 1280, 429);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 1280, 800);
 
-        jTabbedPane1.addTab("PEMBELIAN OBAT", jPanel2);
+        LihatResepTabbedPane1.addTab("PEMBELIAN OBAT", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LihatResepTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LihatResepTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     private void clearFormPembelianObat() {
+        idResepField.setText("");
+        noDetailResepField.setText("");
+        namaObatComboBox.setSelectedIndex(0);
+        takaranSpinner.setValue(0);
+        pemakaianComboBox.setSelectedIndex(0);
+        hargaField.setText("");
+        jumlahSpinner.setValue(0);
+        satuanComboBox.setSelectedIndex(0);
+        keteranganField.setText("");
+        namaObatComboBox.getFocusListeners();
+    }
+    
+     private void clearFormPenukaranResep() {
+        IDResepPRTextField1.setText("");
+        jNamaObatPRTextField2.setText("");
+        jJumlahPRTextField3.setText("");
+        jHargaPRTextField4.setText("");
+        jTotalPRTextField1.setText("");
+        TotalHargaPRTextField13.setText("");
+    }
+     
     private void Button_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SearchActionPerformed
         if (TextField_IdResep.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
@@ -753,6 +790,7 @@ public class FormApoteker extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
+        clearFormPenukaranResep();
     }//GEN-LAST:event_ProsesPRButton3ActionPerformed
 
     private void jNamaObatPRTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNamaObatPRTextField2ActionPerformed
@@ -779,9 +817,10 @@ public class FormApoteker extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jJumlahPRTextField3KeyReleased
 
-    private void jNextLRButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNextLRButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNextLRButton1ActionPerformed
+    private void GoToPenukaranResepButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToPenukaranResepButton1ActionPerformed
+        LihatResepTabbedPane1.setEnabledAt(1, true);
+        LihatResepTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_GoToPenukaranResepButton1ActionPerformed
 
     private void namaObatComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_namaObatComboBoxPopupMenuWillBecomeVisible
 
@@ -821,6 +860,7 @@ public class FormApoteker extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pemakaianComboBoxActionPerformed
 
+     
     private void simpanObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanObatButtonActionPerformed
         if ((namaObatComboBox.getSelectedItem().toString().equalsIgnoreCase("")) || (takaranSpinner.getValue().equals(""))
             || (hargaField.getText().equals("")) || (jumlahSpinner.getValue().equals(""))
@@ -885,7 +925,7 @@ public class FormApoteker extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
                 tableModelObat_detailResepPO.insert(detailResep1);
-
+                clearFormPembelianObat();
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
@@ -914,21 +954,30 @@ public class FormApoteker extends javax.swing.JFrame {
             apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        namaObatComboBox.setSelectedItem("");
-        takaranSpinner.setValue("");
-        hargaField.setText("");
-        jumlahSpinner.setValue("");
-        keteranganField.setText("");
+        } 
     }//GEN-LAST:event_prosesButtonActionPerformed
+
+    private void jTotalPRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTotalPRTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTotalPRTextField1ActionPerformed
+
+    private void jHargaPRTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHargaPRTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jHargaPRTextField4ActionPerformed
+
+    private void jJumlahPRTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jJumlahPRTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jJumlahPRTextField3ActionPerformed
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Search;
     private javax.swing.JButton DeletePRButton4;
+    private javax.swing.JButton GoToPenukaranResepButton1;
     private javax.swing.JLabel IDResepPRLabel2;
     private javax.swing.JTextField IDResepPRTextField1;
+    private javax.swing.JTabbedPane LihatResepTabbedPane1;
     private javax.swing.JTable PenukaranResepTable3;
     private javax.swing.JButton ProsesPRButton3;
     private javax.swing.JButton SearchIDResepPRButton1;
@@ -952,7 +1001,6 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jNamaObatPRLabel;
     private javax.swing.JTextField jNamaObatPRTextField2;
-    private javax.swing.JButton jNextLRButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -960,7 +1008,6 @@ public class FormApoteker extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jTotalHargaPRLabel21;
     private javax.swing.JLabel jTotalPRLabel;
     private javax.swing.JTextField jTotalPRTextField1;
