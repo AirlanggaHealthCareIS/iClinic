@@ -18,64 +18,77 @@ import static org.junit.Assert.fail;
 
 /**
  *
- * @author acer
+ * @author Erin
  */
+
+
+
+
 public class BerhasilMelihatPasienSelanjutnya implements Remote{
-   
-   LabServiceServer labServiceServer;
 
-    public BerhasilMelihatPasienSelanjutnya() throws RemoteException {
-        this.labServiceServer = new LabServiceServer();
-    }
-  @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() throws RemoteException {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-   
-        @Test 
-        public void testMelihatPasienSelanjutnya() throws Exception {
-        System.out.println("MelihatPasienSelanjutnya");
+    
+    public BerhasilMelihatPasienSelanjutnya() throws RemoteException{
         
-        labServiceServer = new LabServiceServer();
+    }
+    
+    
+     @Test
+    public void testGetPasienSelanjutnya() throws Exception {
+        System.out.println("getPasienSelanjutnya");
+        LabServiceServer instance = new LabServiceServer();
+        Antrian expResult = null;
+        Antrian result = instance.getPasienSelanjutnya();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getPasienId method, of class LabServiceServer.
+     */
+    @Test
+    public void testGetPasienId() throws Exception {
+        System.out.println("getPasienId");
+        String Id_Pasien = "";
+        LabServiceServer instance = new LabServiceServer();
+        Boolean expResult = null;
+        Boolean result = instance.getPasienId(Id_Pasien);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getNamaPasien method, of class LabServiceServer.
+     */
+    @Test
+    public void testGetNamaPasien() throws Exception {
+        System.out.println("getNamaPasien");
         String Id_Pasien = "P0001";
-       // Date tanggal = new java.util.Date();
-      
-        
-//        Antrian instance = labServiceServer.ubahstatus(String id_Antrian);
-//        System.out.println(instance.getId_Antrian());
-//        System.out.println(instance.getId_Pasien());
-//        System.out.println(instance.getJenis_Antrian());
-//        System.out.println(instance.getKeterangan());
-       
-        
-        Antrian expResult = new Antrian();
-        
-        expResult.getId_Pasien("P001");
-        
-        
-//        assertEquals(expResult.getId_Antrian(), instance.getId_Antrian());
-//        assertEquals(expResult.getId_Pasien(), instance.getId_Pasien());
-//        assertEquals(expResult.getJenis_Antrian(), instance.getJenis_Antrian());
-//        assertEquals(expResult.getKeterangan(), instance.getKeterangan());
-//       
+        LabServiceServer instance = new LabServiceServer();
+        String expResult = "Agus";
+        String result = instance.getNamaPasien(Id_Pasien);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
-}
 
-       
+    /**
+     * Test of updateAntrian method, of class LabServiceServer.
+     */
+//    @Test
+//    public void testUpdateAntrian() throws Exception {
+//        System.out.println("updateAntrian");
+//        Antrian antrian = null;
+//        LabServiceServer instance = new LabServiceServer();
+//        Boolean expResult = null;
+//        Boolean result = instance.updateAntrian(antrian);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+    
+//    } 
    
-
     
     
-
