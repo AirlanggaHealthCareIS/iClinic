@@ -83,17 +83,20 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
         field_Usia.setText("");
         field_No_HP.setText("");
     }
-    void refresh(){
-        field_ID_Pasien.setText("");
-        field_No_Ktp.setText("");
-        field_Nama_Pasien.setText("");
+     
+    public void refresh(){
+        TextField_idPasien.setText("");
+        jTextFieldNama.setText("");
+        jTextFieldAlamat.setText("");
         field_Alamat.setText("");
+        jTextFieldGender.setText("");
+        JTextFieldTanggal_lahir.setText("");
         DateChooser_Tanggal_Lahir.setDate(null);
         Formatted_Tanggal_Daftar.setText("");
-        field_Usia.setText("");
-        field_No_HP.setText("");
-        box_Jenis_Kelamin.setBackground(Color.gray);
-        box_Pilihan_Layanan.setBackground(Color.gray);
+        jTextFieldUmur.setText("");
+        jTextFieldTelepon.setText("");
+        //jTextFieldGender.setBackground(Color.gray);
+        PilihLayanan.setBackground(Color.gray);
        
     }
     private void typeonlynumber(KeyEvent evt){
@@ -529,7 +532,9 @@ public class FormBag_Pendaftaran extends javax.swing.JFrame {
             }
             catch (RemoteException exception) {
                 exception.printStackTrace();
+                
       }
+        refresh();
     }//GEN-LAST:event_CariActionPerformed
 
     private void jTextFieldAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAlamatActionPerformed
