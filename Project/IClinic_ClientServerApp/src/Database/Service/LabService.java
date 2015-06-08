@@ -23,19 +23,18 @@ public interface LabService extends Remote {
     List<Lab_tabelMaster> getLaboratorium()throws RemoteException;
     
    // Lab_tabelMaster getLab_tabelMaster(String Id_Lab) throws RemoteException;
+   
+    boolean insertLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
     
+    //Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException;
     
-    void insertLab_detailLab(Lab_detailLab detail_lab) throws RemoteException;
-    
-    Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException;
-    
-    List<Lab_detailLab> getLab_detailLab() throws RemoteException;
+    //List<Lab_detailLab> getLab_detailLab() throws RemoteException;
 
-    void insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException;
+    boolean insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException;
 
-    void updateLab_transaksiLab (Lab_transaksiLab transaksi_lab) throws RemoteException;
-
-    void deleteLab_transaksiLab (int Id_Transaksi_Lab) throws RemoteException;
+//    void updateLab_transaksiLab (Lab_transaksiLab transaksi_lab) throws RemoteException;
+//
+//    void deleteLab_transaksiLab (int Id_Transaksi_Lab) throws RemoteException;
 
     Lab_transaksiLab getLab_transaksiLab(int Id_Transaksi_Lab) throws RemoteException;
 
@@ -49,6 +48,10 @@ public interface LabService extends Remote {
     String getNamaPasien(String Id_Pasien) throws RemoteException;
     
     Boolean updateAntrian(Antrian antrian) throws RemoteException;
+    
+    String getAutoNumberTransaksi() throws RemoteException;
+    
+    String getAutoNumberDetailTransaksi() throws RemoteException;
     
     
     //-----Pembayaran-----//

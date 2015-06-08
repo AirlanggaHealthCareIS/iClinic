@@ -73,6 +73,8 @@ public interface DokterService extends Remote {
     String getAutoNumberIdDiagnosa () throws RemoteException;
     
     int getTarif(String nama_tindakan) throws RemoteException;
+    
+    String getIDPenyakit(String namaPenyakit) throws RemoteException;
 
     //-----Pembayaran-----//
     String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException;
