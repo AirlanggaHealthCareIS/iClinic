@@ -267,9 +267,17 @@ public class FormDokter extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id_Rekam", "Id_Diagnosa", "Id_Pasien", "No_Detail", "Tgl_Rekam", "Tinggi", "Berat", "Tekanan_Darah", "Hasil_Pemeriksaan", "Alergi", "Total Harga", "Layanan_Tambahan"
+                "Id_Rekam", "Id_Penyakit", "Id_Pasien", "No_Detail", "Tgl_Rekam", "Tinggi", "Berat", "Tekanan_Darah", "Hasil_Pemeriksaan", "Alergi", "Total Harga", "Layanan_Tambahan"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelRiwayat);
 
         jLabel22.setFont(new java.awt.Font("Caviar Dreams", 1, 18)); // NOI18N
