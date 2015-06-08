@@ -194,35 +194,37 @@ public class FormUSG extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel2.setText("ID Pasien ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(140, 200, 120, 17);
+        jLabel2.setBounds(110, 200, 120, 19);
 
         idpasien.setEditable(false);
+        idpasien.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jPanel1.add(idpasien);
-        idpasien.setBounds(260, 200, 80, 20);
+        idpasien.setBounds(290, 190, 130, 30);
 
-        jLabel4.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel4.setText("Tanggal Pemeriksaan");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(540, 170, 140, 17);
+        jLabel4.setBounds(710, 170, 180, 17);
 
-        jLabel5.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel5.setText("ID USG ");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(140, 170, 120, 17);
+        jLabel5.setBounds(110, 160, 120, 19);
 
         idusg.setEditable(false);
+        idusg.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jPanel1.add(idusg);
-        idusg.setBounds(260, 170, 80, 20);
+        idusg.setBounds(290, 150, 130, 30);
 
-        jLabel7.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel7.setText("Hasil pemeriksaan");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(140, 300, 120, 17);
+        jLabel7.setBounds(110, 350, 160, 19);
         jPanel1.add(hasil);
-        hasil.setBounds(260, 300, 170, 20);
+        hasil.setBounds(290, 350, 260, 30);
 
         pilih.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         pilih.setText("Pilih");
@@ -232,29 +234,30 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(pilih);
-        pilih.setBounds(440, 300, 80, 25);
+        pilih.setBounds(560, 350, 90, 30);
 
-        jLabel8.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel8.setText("Keterangan");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(580, 300, 100, 17);
+        jLabel8.setBounds(720, 350, 110, 17);
 
         deskrip.setColumns(20);
+        deskrip.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         deskrip.setRows(5);
         jScrollPane1.setViewportView(deskrip);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(700, 300, 260, 150);
+        jScrollPane1.setBounds(900, 350, 260, 170);
 
-        jLabel11.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel11.setText("Total transasksi");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(580, 480, 110, 17);
+        jLabel11.setBounds(720, 540, 130, 17);
 
         harga.setEditable(false);
-        harga.setBackground(new java.awt.Color(240, 240, 240));
+        harga.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jPanel1.add(harga);
-        harga.setBounds(700, 480, 140, 20);
+        harga.setBounds(900, 540, 160, 30);
 
         simpan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpan.setText("Simpan");
@@ -264,7 +267,9 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(simpan);
-        simpan.setBounds(880, 560, 80, 25);
+        simpan.setBounds(1060, 610, 100, 30);
+
+        panelGambar1.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout panelGambar1Layout = new javax.swing.GroupLayout(panelGambar1);
         panelGambar1.setLayout(panelGambar1Layout);
@@ -278,14 +283,14 @@ public class FormUSG extends javax.swing.JFrame {
         );
 
         jPanel1.add(panelGambar1);
-        panelGambar1.setBounds(260, 330, 260, 250);
+        panelGambar1.setBounds(290, 390, 260, 250);
 
         tanggal.setEditable(false);
         tanggal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        tanggal.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tanggal.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         tanggal.setValue(new java.util.Date());
         jPanel1.add(tanggal);
-        tanggal.setBounds(700, 170, 160, 20);
+        tanggal.setBounds(900, 160, 160, 30);
 
         Mulai.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         Mulai.setText("Mulai");
@@ -295,17 +300,19 @@ public class FormUSG extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Mulai);
-        Mulai.setBounds(260, 260, 80, 25);
+        Mulai.setBounds(290, 270, 90, 30);
 
-        jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel3.setText("Nama Pasien");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 230, 120, 17);
+        jLabel3.setBounds(110, 240, 120, 17);
 
         Nama.setEditable(false);
+        Nama.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jPanel1.add(Nama);
-        Nama.setBounds(260, 230, 170, 20);
+        Nama.setBounds(290, 230, 260, 30);
 
+        jLabel6.setFont(new java.awt.Font("Caviar Dreams", 0, 16)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/6.jpg"))); // NOI18N
         jPanel1.add(jLabel6);
         jLabel6.setBounds(0, 0, 1270, 730);
