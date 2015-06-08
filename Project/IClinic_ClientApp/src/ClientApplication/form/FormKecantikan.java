@@ -577,6 +577,9 @@ public class FormKecantikan extends javax.swing.JFrame {
                 if(success) {
                     JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
                 }
+                buttonPrint.setEnabled(true);
+                buttonProcess.setEnabled(true);
+                buttonPasien.setEnabled(true);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormKecantikan.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -599,6 +602,9 @@ public class FormKecantikan extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonClearActionPerformed
 
     private void buttonTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTransaksiActionPerformed
+        buttonPrint.setEnabled(false);
+        buttonProcess.setEnabled(false);
+        buttonPasien.setEnabled(false);
         buttonTransaksi.setEnabled(false);
         jTabbedPane1.setSelectedIndex(1);
         jTabbedPane1.setEnabledAt(0, false);
