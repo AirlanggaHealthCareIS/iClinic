@@ -224,7 +224,7 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         idRekamField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        simpan = new javax.swing.JButton();
+        simpanRekamMedis = new javax.swing.JButton();
         tglRekam = new javax.swing.JFormattedTextField();
         comboTambahan = new javax.swing.JComboBox();
         Field_idPasien = new javax.swing.JTextField();
@@ -242,7 +242,7 @@ public class FormDokter extends javax.swing.JFrame {
         tableTindakan = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         fieldNamaPasien = new javax.swing.JTextField();
-        clear = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         goToResepButton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
@@ -361,10 +361,10 @@ public class FormDokter extends javax.swing.JFrame {
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -658,11 +658,12 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel14.setText("Tanggal");
 
-        simpan.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        simpan.setText("SIMPAN REKAM MEDIS");
-        simpan.addActionListener(new java.awt.event.ActionListener() {
+        simpanRekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        simpanRekamMedis.setText("SIMPAN REKAM MEDIS");
+        simpanRekamMedis.setEnabled(false);
+        simpanRekamMedis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpanActionPerformed(evt);
+                simpanRekamMedisActionPerformed(evt);
             }
         });
 
@@ -676,10 +677,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTambahanPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -706,10 +707,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -820,11 +821,12 @@ public class FormDokter extends javax.swing.JFrame {
 
         fieldNamaPasien.setEditable(false);
 
-        clear.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
-        clear.setText("NEXT");
-        clear.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setFont(new java.awt.Font("Caviar Dreams", 0, 18)); // NOI18N
+        nextButton.setText("NEXT");
+        nextButton.setEnabled(false);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -848,10 +850,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboPenyakitPas.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboPenyakitPasPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -901,11 +903,11 @@ public class FormDokter extends javax.swing.JFrame {
                         .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(239, 239, 239)
-                        .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(simpanRekamMedis, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -994,10 +996,10 @@ public class FormDokter extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(simpanRekamMedis, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1017,7 +1019,7 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel2.setBounds(0, -10, 1300, 820);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
+    private void simpanRekamMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanRekamMedisActionPerformed
         if (comboPenyakitPas.getSelectedItem().equals("") || Field_idPasien.getText().equals("")
                 || tglRekam.getText().equals("") || tinggiBadan.getText().equals("") || BeratBadan.getText().equals("") || TekananDarah.getText().equals("")
                 || hasilPemeriksaan.getText().equals("") || alergi.getText().equals("") || comboTambahan.getSelectedItem().equals("")) {
@@ -1050,6 +1052,7 @@ public class FormDokter extends javax.swing.JFrame {
                 System.out.println(comboTambahan.getSelectedItem().toString());
 
                 dokterService.insertRekam_Medis(rekam_medis);
+                dokterService.updateAntrian(idAntrianSaatIni);
 
                 JOptionPane.showMessageDialog(null, "Data rekam medis berhasil disimpan");
 //                String nama = dokterService.getNamaPasien(Field_idPasien.getText());
@@ -1072,13 +1075,14 @@ public class FormDokter extends javax.swing.JFrame {
                 exception.printStackTrace();
             }
 
-            try {
-                dokterService.updateAntrian(idAntrianSaatIni);
-            } catch (RemoteException ex) {
-                Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+//            try {
+//                dokterService.updateAntrian(idAntrianSaatIni);
+//            } catch (RemoteException ex) {
+//                Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            nextButton.setEnabled(true);
             goToResepButton.setEnabled(true);
+            
         }
 
 //   try{
@@ -1101,7 +1105,7 @@ public class FormDokter extends javax.swing.JFrame {
 //           statement.setInt(11, rekam_medis.getTotal_Harga());
 //           statement.setString(11, rekam_medis.getLayanan_Tambahan());
 
-    }//GEN-LAST:event_simpanActionPerformed
+    }//GEN-LAST:event_simpanRekamMedisActionPerformed
 
     private void cariRMbyIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariRMbyIdPasienActionPerformed
         if (!fieldIdPasien.getText().equalsIgnoreCase("")) {
@@ -1375,7 +1379,7 @@ public class FormDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTindakanActionPerformed
 
-    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
         try {
             dokterService.updateAntrian(antrian.getId_Antrian());
@@ -1406,9 +1410,11 @@ public class FormDokter extends javax.swing.JFrame {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
+        
         cekdaftar();
+        simpanRekamMedis.setEnabled(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_clearActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     private void fieldNoDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoDetailActionPerformed
         // TODO add your handling code here:
@@ -1477,7 +1483,6 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JTextField alergi;
     private javax.swing.JButton backToRekamMedis;
     private javax.swing.JButton cariRMbyIdPasien;
-    private javax.swing.JButton clear;
     private javax.swing.JComboBox comboPenyakitPas;
     private javax.swing.JComboBox comboTambahan;
     private javax.swing.JComboBox comboTindakan;
@@ -1528,6 +1533,7 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel keteranganLabel;
     private javax.swing.JComboBox namaObatComboBox;
     private javax.swing.JLabel namaObatLabel;
+    private javax.swing.JButton nextButton;
     private javax.swing.JTextField noDetailResepField;
     private javax.swing.JLabel noDetailResepLabel;
     private javax.swing.JComboBox pemakaianComboBox;
@@ -1535,8 +1541,8 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JButton printResepButton;
     private javax.swing.JPanel resepPanel;
     private javax.swing.JComboBox satuanComboBox;
-    private javax.swing.JButton simpan;
     private javax.swing.JButton simpanDetailResepButton;
+    private javax.swing.JButton simpanRekamMedis;
     private javax.swing.JTable tabelDetailResep;
     private javax.swing.JTable tabelRiwayat;
     private javax.swing.JTable tableTindakan;
