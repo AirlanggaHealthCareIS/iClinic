@@ -546,7 +546,7 @@ public class FormLab extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-        if(pasienExist = true && !listDetailLab.isEmpty() && !idTransaksi.getText().equals("")){
+        if(!listDetailLab.isEmpty() && !idTransaksi.getText().equals("")){
             Lab_transaksiLab transaksi = new Lab_transaksiLab();
             try {
                 transaksi.setId_Transaksi_Lab(idTransaksi.getText());
@@ -556,8 +556,10 @@ public class FormLab extends javax.swing.JFrame {
                 Date date = new Date();
                 String now = dateFormat.format(date);
                 transaksi.setTanggal(now);
-                
-                labService.insertLab_transaksiLab(transaksi);
+                boolean berhasil = labService.insertLab_transaksiLab(transaksi);
+                if(!berhasil){
+                        JOptionPane.showMessageDialog(this,"Insert data gagal !", "Transaksi", JOptionPane.ERROR_MESSAGE);
+                    } 
                 for(int i=0;i<listDetailLab.size();i++){
                     Lab_detailLab detail = new Lab_detailLab();
                     detail.setId_Detail_Lab(listDetailLab.get(i).getId_Detail_Lab());
@@ -565,20 +567,22 @@ public class FormLab extends javax.swing.JFrame {
                     detail.setId_Lab(listDetailLab.get(i).getId_Lab());
                     detail.setHasil (listDetailLab.get(i).getHasil());
                     detail.setKeterangan(listDetailLab.get(i).getKeterangan());
-                    labService.insertLab_detailLab(detail);
+                    berhasil = labService.insertLab_detailLab(detail);       
+                    if(!berhasil){
+                        JOptionPane.showMessageDialog(this,"Insert gagal !", "Transaksi", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-                JOptionPane.showMessageDialog(this,"Selamat Data Telah Berhasil Diinputkan!", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
+                if(berhasil) {
+                    JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (RemoteException ex) {
                 Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-             else if(pasienExist = false){
-            System.out.println("Silakan isi ID Pasien terlebih dahulu");
-        }
         else{
-            System.out.println("Beberapa Field Belum Diisi");
+            JOptionPane.showMessageDialog(this,"Ada beberapa field yang belum terisi !", "Transaksi", JOptionPane.WARNING_MESSAGE);
         }
-                               
+                                   
     }//GEN-LAST:event_SaveActionPerformed
 
     private void uploadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadFileActionPerformed
@@ -588,15 +592,14 @@ public class FormLab extends javax.swing.JFrame {
 
     private void insertPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPemeriksaanActionPerformed
         // TODO add your handling code here:
-           if (!idTransaksi.getText().equals("")){
+            if (!idTransaksi.getText().equals("") && !hargaJenis.getText().equals("") && !idDetLab.getText().equals("")){
             String idtrans = idTransaksi.getText();
-//            String iddetail = idtrans +"-"+ number;
-//            number++;
+            String iddetail = idDetLab.getText();
             String idjenpem = listLaboratorium.get(comboJenisPem.getSelectedIndex()).getId_Lab();
             String keterangan = Keterangan.getText();
             String hasil = hasilPemeriksaan.getText();
             Lab_detailLab detail = new Lab_detailLab();
-            //detail.setId_Detail_Lab(iddetail);
+            detail.setId_Detail_Lab(iddetail);
             detail.setId_Transaksi_Lab(idtrans);
             detail.setId_Lab(idjenpem);
             detail.setHasil(hasil);
@@ -605,7 +608,22 @@ public class FormLab extends javax.swing.JFrame {
             tableLabDetailLab.setData(listDetailLab);
             tableDetLab.setModel(tableLabDetailLab);
             totalHarga.setText(Integer.toString(checkTotal()));
-          }
+            hargaJenis.setText("");
+            Keterangan.setText("");
+            
+            try {
+                String iddettrans = getNextNumberDetailTransaksi(listDetailLab.get(listDetailLab.size()-1).getId_Detail_Lab());
+                idDetLab.setText(iddettrans);
+                idDetLab.setEditable(false);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Auto Number ERROR !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                idDetLab.setEditable(true);
+                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Silahkan isi field yang masih kosong", "Ada beberapa field kosong", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_insertPemeriksaanActionPerformed
 
     private void deletePemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePemeriksaanActionPerformed
@@ -620,15 +638,11 @@ public class FormLab extends javax.swing.JFrame {
 
     private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
         // TODO add your handling code here:
-//         number = 1;
-       
-        idPasien2.setEditable(false);
-        idTransaksi.setText("");
-        idPasien2.setText("");
-        idDetLab.setText("");
-        hargaJenis.setText("");   
+        if(idTransaksi.isEditable()){
+            idTransaksi.setText("");
+        }
+        hargaJenis.setText("");
         Keterangan.setText("");
-        hasilPemeriksaan.setText("");
         listDetailLab = new ArrayList<Lab_detailLab>();
         tableLabDetailLab.setData(listDetailLab);
         tableDetLab.setModel(tableLabDetailLab);
@@ -700,11 +714,44 @@ public class FormLab extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(1, true);
         idPasien2.setText(antrian.getId_Pasien());
+        try {
+            String idtrans = labService.getAutoNumberTransaksi();
+            if (idtrans != null){
+                idTransaksi.setText(idtrans);              
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Auto Number Transaksi ERROR !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                idTransaksi.setEditable(true);
+            }
+        } 
+            catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(this,"Auto Number Transaksi ERROR !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+            idTransaksi.setEditable(true);
+            Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(idDetLab.getText().equals("")){
+            try {
+                String iddettrans = labService.getAutoNumberDetailTransaksi();
+                if (iddettrans != null){
+                    idDetLab.setText(iddettrans);
+                    idDetLab.setEditable(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Auto Number id DetaialTransaksi ERROR !\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                    idDetLab.setEditable(true);
+                }
+            } catch 
+                    (RemoteException ex) {
+                JOptionPane.showMessageDialog(this,"Auto Number id DetaialTransaksi ERROR!\nSilahkan tuliskan manual", "Generate gagal", JOptionPane.ERROR_MESSAGE);
+                idDetLab.setEditable(true);
+                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_dataTransaksiActionPerformed
 
     private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
         // TODO add your handling code here:
-         jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setSelectedIndex(0);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(0, true);
         this.ClearActionPerformed(evt);
@@ -820,5 +867,25 @@ public class FormLab extends javax.swing.JFrame {
 //        return validPath;
 //    }
 
-    
+    private String getNextNumberDetailTransaksi(String dettrans){
+        int numberBaru =0;
+        String nomerBaru = "";
+        String [] pisah = dettrans.split("(?<=\\G.{1})");
+            String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+            numberBaru = Integer.parseInt(numbersebelumnya)+1;
+            String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+            String nol= "";
+            if(pisah1.length == 1){
+                nol = "000";
+            }
+            else if (pisah1.length == 2){
+                nol = "00";
+            }
+            else if(pisah1.length == 3){
+                nol = "0";
+            }
+            nomerBaru = "DL"+nol+numberBaru;
+            System.out.println(nomerBaru);
+            return nomerBaru;
+    }
 }

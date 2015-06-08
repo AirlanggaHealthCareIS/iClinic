@@ -36,7 +36,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     }
 
     
-    public void insertLab_detailLab (Lab_detailLab detail_lab) throws RemoteException {
+    public boolean insertLab_detailLab (Lab_detailLab detail_lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Insert pada Tabel Detail Lab");
 
@@ -52,9 +52,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             statement.setString(5, detail_lab.getKeterangan());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Detail Laboratorium");
+            return true;
         } catch (SQLException exception) {
             System.out.println("Client Gagal Melakukan Proses Insert pada Table Detail Laboratorium");
             System.out.println(exception.toString());
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -83,7 +85,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         return list;
     }
      
-    public void insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
+    public boolean insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
     PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -95,9 +97,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
             statement.setString(4,  transaksi_lab.getTanggal());
             statement.executeUpdate();
             System.out.println("Client Melakukan Proses Insert pada Table Transaksi Laboratorium");
+            return true;
         } catch (SQLException exception) {
             System.out.println("Client Gagal Melakukan Proses Insert pada Table Transaksi Laboratorium");
             System.out.println(exception.toString());
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -465,6 +469,102 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
                     exception.printStackTrace();
                 }
             }
+        }
+    }
+
+    public String getAutoNumberTransaksi() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        Statement state = null;
+        ResultSet rs = null;
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_TRANSAKSI_LAB FROM transaksi_lab ORDER BY ID_TRANSAKSI_LAB DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        } 
+        try {
+            if(number.equals("")){
+                nomerBaru ="TL0001";
+            }
+            else{
+                String [] pisah = number.split("(?<=\\G.{1})");
+                String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+                numberBaru = Integer.parseInt(numbersebelumnya)+1;
+                String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+                String nol= "";
+                if(pisah1.length == 1){
+                    nol = "000";
+                }
+                else if (pisah1.length == 2){
+                    nol = "00";
+                }
+                else if(pisah1.length == 3){
+                    nol = "0";
+                }
+                nomerBaru = "TL"+nol+numberBaru;
+            }
+            System.out.println(nomerBaru);
+            return nomerBaru;
+        } catch (NumberFormatException e) {
+            return null;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }           
+    }
+
+    public String getAutoNumberDetailTransaksi() throws RemoteException {
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        Statement state = null;
+        ResultSet rs = null;
+        String number = "";
+        String nomerBaru = "";
+        int numberBaru = 0;
+	try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_DETAIL_LAB FROM det_lab ORDER BY ID_DETAIL_LAB DESC limit 1";
+            rs = state.executeQuery(sql);
+            while (rs.next()){
+                number = rs.getString(1);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        } 
+        try {
+            if(number.equals("")){
+                nomerBaru ="DL0001";
+            }
+            else{
+                String [] pisah = number.split("(?<=\\G.{1})");
+                String numbersebelumnya = pisah[2]+pisah[3]+pisah[4]+pisah[5];
+                numberBaru = Integer.parseInt(numbersebelumnya)+1;
+                String [] pisah1 = String.valueOf(numberBaru).split("(?<=\\G.{1})");
+                String nol= "";
+                if(pisah1.length == 1){
+                    nol = "000";
+                }
+                else if (pisah1.length == 2){
+                    nol = "00";
+                }
+                else if(pisah1.length == 3){
+                    nol = "0";
+                }
+                nomerBaru = "DL"+nol+numberBaru;
+            }
+            System.out.println(nomerBaru);
+            return nomerBaru;
+        } catch (NumberFormatException e) {
+            return null;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
         }
     }
 
