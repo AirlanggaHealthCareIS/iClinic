@@ -64,6 +64,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
         this.bag_PembayaranService = bag_PembayaranService;
         try{
             tableModelPembayaran.setData(this.bag_PembayaranService.getPembayaran());
+//            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaran());
             tableModelObat_detailResep.setData(this.bag_PembayaranService.getObat_detailresep(null));
         }catch(RemoteException exception){
             exception.printStackTrace();
@@ -90,6 +91,16 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     FieldLk_Kecantikan.setText(String.valueOf(pembayaran.getTOTAL_KECANTIKAN()));
                     FieldLk_totalPembayaran.setText(String.valueOf(pembayaran.getTOTAL_HARGA()));
                     FieldLk_status.setText(String.valueOf(pembayaran.getSTATUS()));
+                    if (pembayaran.getSTATUS().equals("HUTANG")){
+                        buttonLk_Debit.setEnabled(true);
+                        buttonLk_Tunai.setEnabled(true);
+                        buttonLk_Print.setEnabled(false);
+                    }
+                    else if(!pembayaran.getSTATUS().equals("HUTANG")){
+                        buttonLk_Debit.setEnabled(false);
+                        buttonLk_Tunai.setEnabled(false);
+                        buttonLk_Print.setEnabled(true);
+                    }
                 }
             }
         });
@@ -586,6 +597,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     FieldLk_status.setText(String.valueOf(pembayaran.getSTATUS()));
                     buttonLk_Tunai.setEnabled(true);
                     buttonLk_Debit.setEnabled(true);
+                    buttonLk_Print.setEnabled(false);
                 }
                 else if(pembayaran == null){
                     JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
@@ -611,6 +623,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     buttonLk_Print.setEnabled(true);
                     buttonLk_Tunai.setEnabled(false);
                     buttonLk_Debit.setEnabled(false);
+                    tableModelPembayaran.setData(this.bag_PembayaranService.getPembayaran());
                 }
                 else if(newStatus.equals("HUTANG")){
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Tunai Tidak Berhasil");
@@ -636,6 +649,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     buttonLk_Print.setEnabled(true);
                     buttonLk_Tunai.setEnabled(false);
                     buttonLk_Debit.setEnabled(false);
+                    tableModelPembayaran.setData(this.bag_PembayaranService.getPembayaran());
                 }
                 else if(newStatus.equals("HUTANG")){
                     JOptionPane.showMessageDialog(null, "Maaf, Transaksi Pembayaran dengan Debit Tidak Berhasil");
@@ -649,6 +663,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private void buttonLk_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLk_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
+            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrint(FieldLk_idPembayaran.getText()));
             JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
             HashMap hash = new HashMap();
             //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
@@ -660,6 +675,8 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
             clearLk();
         } catch (JRException ex) {
             ex.printStackTrace();
+        } catch (RemoteException ex) {
+            java.util.logging.Logger.getLogger(FormBag_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonLk_PrintActionPerformed
 
@@ -680,6 +697,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
                     FieldPo_status.setText(pembayaran.getSTATUS());
                     buttonPo_Tunai.setEnabled(true);
                     buttonPo_Debit.setEnabled(true);
+                    buttonPo_Print.setEnabled(false);
                 }
                 else if(pembayaran == null){
                     JOptionPane.showMessageDialog(null, "Pasien tidak memiliki tagihan pembayaran");
@@ -747,17 +765,20 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private void buttonPo_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPo_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
-            JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
+            tableModelObat_detailResep.setData(this.bag_PembayaranService.getObat_detailresep(FieldLk_idPembayaran.getText()));
+            JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran_1.jrxml");
             HashMap hash = new HashMap();
             //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
             //            System.out.println(FieldLk_idPembayaran.getText());
-            jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran.jasper", hash,
+            jasperPrint = JasperFillManager.fillReport("src/Report/buktiPembayaran_1.jasper", hash,
                 new JRTableModelDataSource(tableModelPembayaranPrint));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
             clearPo();
         } catch (JRException ex) {
             ex.printStackTrace();
+        } catch (RemoteException ex) {
+            java.util.logging.Logger.getLogger(FormBag_Pembayaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonPo_PrintActionPerformed
 

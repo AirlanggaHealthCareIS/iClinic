@@ -27,6 +27,8 @@ public interface Bag_PembayaranService extends Remote {
 
     List<Pembayaran> getPembayaran() throws RemoteException;
     
+    List<Pembayaran> getPembayaranPrint (String idPembayaran) throws RemoteException;
+    
     List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
     
     Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN) throws RemoteException;
