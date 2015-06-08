@@ -271,8 +271,6 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
             statement = DatabaseUtilities.getConnection().prepareStatement(
                     "DELETE FROM detail_resep WHERE NO_DETAIL_RESEP = '"+Id_Obat+"'");
 
-            statement.setString(1, Id_Obat);
-  
             statement.executeUpdate();
 
         } catch (SQLException exception) {
