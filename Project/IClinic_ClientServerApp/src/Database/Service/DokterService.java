@@ -7,6 +7,7 @@ package Database.Service;
 import Database.Entity.Antrian;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
+import Database.Entity.LaporanResepPasien;
 import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
 import Database.Entity.Penyakit_diagnosa;
@@ -20,9 +21,11 @@ import java.util.List;
 
 /**
  *
- * @author Afifah, piudt, Ayundha, Arline
+ * @author Afifah, piudt, Ayundha, Arline, Erin
  */
 public interface DokterService extends Remote {
+    
+    List<LaporanResepPasien> getLaporanResepPasien() throws RemoteException;
 
     Rekam_Medis insertRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException;
 

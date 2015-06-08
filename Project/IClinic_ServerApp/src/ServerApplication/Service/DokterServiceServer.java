@@ -6,6 +6,7 @@ package ServerApplication.Service;
 
 import Database.Entity.Antrian;
 import Database.Entity.Obat_detailResep;
+import Database.Entity.LaporanResepPasien;
 import Database.Entity.Obat_resep;
 import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
@@ -30,7 +31,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Afifah, piudt, Ayundha, Arline
+ * @author Afifah, piudt, Ayundha,Erin, Arline
  */
 public class DokterServiceServer extends UnicastRemoteObject implements DokterService {
 
@@ -413,6 +414,56 @@ public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
         }
     }
 
+     public List<LaporanResepPasien> getLaporanResepPasien() throws RemoteException {
+
+        //System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        PreparedStatement statement = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                   
+                    "SELECT\n"
+                    + " obat.`NAMA_OBAT` AS obat_NAMA_OBAT,\n"
+                    + " obat.`HARGA_OBAT` AS obat_HARGA_OBAT,\n"
+                    + " resep.`ID_RESEP` AS resep_ID_RESEP,\n"
+                    + " resep.`TOTAL_HARGA` AS resep_TOTAL_HARGA,\n"
+                    + " detail_resep.`TAKARAN` AS detail_resep_TAKARAN,\n"
+                    + " detail_resep.`PEMAKAIAN` AS detail_resep_PEMAKAIAN,\n"
+                    + " detail_resep.`JUMLAH` AS detail_resep_JUMLAH,\n"
+                    + " detail_resep.`KETERANGAN` AS detail_resep_KETERANGAN\n"
+                    + " FROM\n"
+                    + " `obat`,`detail_resep`\n");
+                    
+            ResultSet result = statement.executeQuery();
+
+            List<LaporanResepPasien> list = new ArrayList<LaporanResepPasien>();
+
+            if (result.next()) {
+                LaporanResepPasien laporanResepPasien = new LaporanResepPasien();
+                laporanResepPasien.setID_RESEP(result.getString("ID_RESEP"));
+                laporanResepPasien.setNAMA_OBAT(result.getString ("NAMA_OBAT"));
+                laporanResepPasien.setHARGA_OBAT(result.getInt("HARGA_OBAT"));
+                laporanResepPasien.setJUMLAH_OBAT(result.getInt("JUMLAH_OBAT"));
+                laporanResepPasien.setTAKARAN(result.getString ("TAKARAN"));
+                laporanResepPasien.setPEMAKAIAN(result.getString ("PEMAKAIAN"));
+                laporanResepPasien.setKETERANGAN(result.getString ("KETERANGAN"));
+                
+                list.add(laporanResepPasien);
+            }
+
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
     public List<Rekam_Medis> GetRekam_MedisbyPasien(String idpasien) throws RemoteException {
         PreparedStatement statement = null;
         try {

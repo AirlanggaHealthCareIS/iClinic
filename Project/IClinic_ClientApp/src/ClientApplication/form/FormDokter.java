@@ -6,6 +6,7 @@
 package ClientApplication.form;
 
 import ClientApplication.FormLogin;
+import ClientApplication.model.TableModelLaporanResepPasien;
 import ClientApplication.model.TableModelObat_detailResep;
 import ClientApplication.model.TableModelObat_resep;
 import ClientApplication.model.TableModelRekam_Medis;
@@ -57,6 +58,7 @@ public class FormDokter extends javax.swing.JFrame {
     private DokterService dokterService;
     private TableModelTindakan_detailTindakan tableModelTindakan = new TableModelTindakan_detailTindakan();
     private TableModelObat_detailResep tabelModelDetailResep = new TableModelObat_detailResep();
+    private TableModelLaporanResepPasien tableModelLaporanResepPasien = new TableModelLaporanResepPasien();
     private TableModelObat_resep tabelModelResep = new TableModelObat_resep();
     private Pasien pasien;
     private Antrian antrian = new Antrian();
@@ -73,6 +75,7 @@ public class FormDokter extends javax.swing.JFrame {
         this.dokterService = dokterService;
         try {
             tabelModelDetailResep.setData(dokterService.getAllDetailResepByIDResep(null));
+            tableModelLaporanResepPasien.setData(this.dokterService.getLaporanResepPasien());
             tableModelTindakan.setData(dokterService.getDetailTindakanById(null));
             id_Rekam = dokterService.getAutoNumberIdRekam();
             idResep = dokterService.getAutoNumberResep();
@@ -1346,7 +1349,7 @@ public class FormDokter extends javax.swing.JFrame {
             JasperCompileManager.compileReportToFile("src/Report/resepPasien_1.jrxml");
             HashMap hash = new HashMap();
             jasperPrint = JasperFillManager.fillReport("src/Report/resepPasien_1.jasper", hash,
-                    new JRTableModelDataSource(tabelModelResep));
+                new JRTableModelDataSource(tableModelLaporanResepPasien));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
         } catch (JRException ex) {
