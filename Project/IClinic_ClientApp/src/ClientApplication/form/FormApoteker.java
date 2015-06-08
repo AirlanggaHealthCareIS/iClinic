@@ -38,7 +38,8 @@ public class FormApoteker extends javax.swing.JFrame {
     private TableModelObat_detailResep tableModelObat_detailResepPO = new TableModelObat_detailResep();
     private TableModelObat_detailResepPembelian tableModelObat_detailResepPR = new TableModelObat_detailResepPembelian();
     private ApotekerService apotekerService;
-    int total = 0;
+    int totalPR = 0;
+    int totalPO = 0;
     String idResep;
     private DefaultTableModel tabel_penukaran;
 
@@ -405,10 +406,10 @@ public class FormApoteker extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -579,6 +580,11 @@ public class FormApoteker extends javax.swing.JFrame {
 
         totalHargaObatField.setEditable(false);
         totalHargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
+        totalHargaObatField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalHargaObatFieldActionPerformed(evt);
+            }
+        });
 
         prosesButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         prosesButton.setText("Proses");
@@ -730,8 +736,8 @@ public class FormApoteker extends javax.swing.JFrame {
         tableModelObat_detailResepPR = (TableModelObat_detailResepPembelian) PenukaranResepTable3.getModel();
         tableModelObat_detailResepPR.setValueAt(jumlah, row, 6);
         PenukaranResepTable3.setModel(tableModelObat_detailResepPR);
-        total = total + jumlah;
-        TotalHargaPRTextField13.setText(String.valueOf(total));
+        totalPR = totalPR + jumlah;
+        TotalHargaPRTextField13.setText(String.valueOf(totalPR));
 
     }//GEN-LAST:event_PenukaranResepTable3KeyReleased
 
@@ -811,9 +817,9 @@ public class FormApoteker extends javax.swing.JFrame {
             obat_pembelian.setTotal(totalPerObat);
             tableModelObat_detailResepPR.update(row, obat_pembelian);
 
-            total = total + totalPerObat;
+            totalPR = totalPR + totalPerObat;
             jTotalPRTextField1.setText(String.valueOf(totalPerObat));
-            TotalHargaPRTextField13.setText(String.valueOf(total));
+            TotalHargaPRTextField13.setText(String.valueOf(totalPR));
         }
     }//GEN-LAST:event_jJumlahPRTextField3KeyReleased
 
@@ -840,9 +846,11 @@ public class FormApoteker extends javax.swing.JFrame {
     private void namaObatComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namaObatComboBoxItemStateChanged
         try {
             int harga = apotekerService.getHargaObat(namaObatComboBox.getSelectedItem().toString());
+            int qty = Integer.parseInt(jumlahSpinner.getValue().toString());
             hargaField.setText(String.valueOf(harga));
-            total = total + harga;
-            totalHargaObatField.setText("" + total);
+            int totalPOperobat = qty * harga;
+            totalPO = totalPO + totalPOperobat;
+            totalHargaObatField.setText("" + totalPO);
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -925,11 +933,12 @@ public class FormApoteker extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
                 tableModelObat_detailResepPO.insert(detailResep1);
-                clearFormPembelianObat();
+                
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
         }
+        clearFormPembelianObat();
     }//GEN-LAST:event_tambahObatButtonActionPerformed
 
     private void hapusObatDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusObatDetailResepButtonActionPerformed
@@ -952,6 +961,7 @@ public class FormApoteker extends javax.swing.JFrame {
             //-----Pembayaran-----//
             String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
             apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
+            totalPO = 0;
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -968,6 +978,10 @@ public class FormApoteker extends javax.swing.JFrame {
     private void jJumlahPRTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jJumlahPRTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jJumlahPRTextField3ActionPerformed
+
+    private void totalHargaObatFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalHargaObatFieldActionPerformed
+
+    }//GEN-LAST:event_totalHargaObatFieldActionPerformed
     /**
      * @param args the command line arguments
      */
