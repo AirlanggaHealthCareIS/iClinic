@@ -180,8 +180,16 @@ public class FormLogin extends javax.swing.JFrame {
             System.out.println(pass);
             try {
                 String jabatan = administratorService.loginUser(user, pass);
-                if(jabatan.equals("PENDAFTARAN")){
+                if(jabatan.equals("PENDAFTARAN LAMA")){
                     JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pendaftaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    formBag_Pendaftaran.pisahtab(1, true);
+                    formBag_Pendaftaran.setAktif(1);
+                    formBag_Pendaftaran.setVisible(true);
+                    this.dispose();
+                }
+                else if(jabatan.equals("PENDAFTARAN BARU")){
+                    JOptionPane.showMessageDialog(null, "Selamat Datang Karyawan Bagian Pendaftaran!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    formBag_Pendaftaran.pisahtab(0, true);
                     formBag_Pendaftaran.setVisible(true);
                     this.dispose();
                 }

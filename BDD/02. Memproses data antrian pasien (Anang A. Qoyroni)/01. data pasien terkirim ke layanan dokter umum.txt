@@ -5,7 +5,3 @@ when  = memilih layanan dokter umum
 then  = pasien akan melihat nomor urut antrian yang dia terima di layanan dokter umum
 Skenario data pasien terkirim ke layanan kecantikan
 
-dokter umum
-kecantikan
-laboratorium
-usg
