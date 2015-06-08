@@ -532,7 +532,7 @@ public class FormKecantikan extends javax.swing.JFrame {
         //-----Pembayaran-----//
         String idPasien = fieldIDPasien.getText();
         String idTransaksiLayananKecantikan = fieldIDTransaksi.getText();
-        int harga = Integer.parseInt(fieldHarga.getText());
+        int harga = Integer.parseInt(fieldTotalHarga.getText());
         try {
             String idPembayaran = kecantikanService.mencariIdPembayaranDariPembayaran(idPasien);
             if (!idPembayaran.equalsIgnoreCase("")) {
