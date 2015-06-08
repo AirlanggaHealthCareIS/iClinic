@@ -683,7 +683,7 @@ public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
     }
     
     public String getAutoNumberIdRekam() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pemasukan");
+        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Rekam Medis");
         Statement state = null;
         ResultSet rs = null;
 
@@ -1335,7 +1335,7 @@ public String getAutoNumberAntrian() throws RemoteException {
     }
 
     public String getIDObat(String namaObat) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Jenis Obat");
+        System.out.println("Client Melakukan Proses Get ID Obat");
         Statement state = null;
         ResultSet rs = null;
         String idObat = "";
@@ -1358,8 +1358,8 @@ public String getAutoNumberAntrian() throws RemoteException {
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-            "UPDATE user SET TOTAL_HARGA = " + TOTAL_HARGA 
-                    + " WHERE ID_RESEP =  " + ID_RESEP + "'");
+            "UPDATE resep SET TOTAL_HARGA = " + TOTAL_HARGA 
+                    + " WHERE ID_RESEP =  '" + ID_RESEP + "'");
         
             statement.executeUpdate();
         }catch(SQLException exception){
@@ -1395,6 +1395,24 @@ public String getAutoNumberAntrian() throws RemoteException {
             exception.printStackTrace();
         }
         return idRekamTerakhir;
+    }
+
+    public String getIDPenyakit(String namaPenyakit) throws RemoteException {
+        System.out.println("Client Melakukan Proses Get ID Penyakit");
+        Statement state = null;
+        ResultSet rs = null;
+        String idPenyakit = "";
+        try {
+            state = (Statement) DatabaseUtilities.getConnection().createStatement();
+            String sql = "SELECT ID_PENYAKIT FROM penyakit WHERE  PENYAKIT = '" + namaPenyakit + "'";
+            rs = state.executeQuery(sql);
+            while (rs.next()) {
+                idPenyakit = rs.getString(1);
+            }
+        } catch (Throwable ex) {
+            System.out.println(ex);
+        }
+        return idPenyakit;
     }
 
 }

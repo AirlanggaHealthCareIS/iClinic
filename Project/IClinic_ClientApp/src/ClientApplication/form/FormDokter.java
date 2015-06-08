@@ -89,7 +89,7 @@ public class FormDokter extends javax.swing.JFrame {
         setSize(1278, 730);
 
         dokterTabPane.setEnabledAt(1, false);
-        idRekam.setText(id_Rekam);
+        idRekamField.setText(id_Rekam);
         tableTindakan.setModel(tableModelTindakan);
         tableTindakan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -125,7 +125,7 @@ public class FormDokter extends javax.swing.JFrame {
     }
 
     private void clearUser() {
-        idRekam.setText("");
+        idRekamField.setText("");
         Field_idPasien.setText("");
         fieldNamaPasien.setText("");
         comboPenyakitPas.setSelectedItem("");
@@ -222,7 +222,7 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         totalHargaTindakan = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        idRekam = new javax.swing.JTextField();
+        idRekamField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         simpan = new javax.swing.JButton();
         tglRekam = new javax.swing.JFormattedTextField();
@@ -353,10 +353,10 @@ public class FormDokter extends javax.swing.JFrame {
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -645,7 +645,7 @@ public class FormDokter extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel13.setText("ID Rekam");
 
-        idRekam.setEditable(false);
+        idRekamField.setEditable(false);
 
         jLabel14.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         jLabel14.setText("Tanggal");
@@ -668,15 +668,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                comboTambahanPopupMenuWillBecomeVisible(evt);
-            }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-        });
-        comboTambahan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTambahanActionPerformed(evt);
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                comboTambahanPopupMenuWillBecomeVisible(evt);
             }
         });
 
@@ -703,10 +698,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -845,10 +840,10 @@ public class FormDokter extends javax.swing.JFrame {
         comboPenyakitPas.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboPenyakitPasPopupMenuWillBecomeVisible(evt);
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -884,7 +879,7 @@ public class FormDokter extends javax.swing.JFrame {
                                     .addComponent(fieldNamaPasien, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                                     .addComponent(BeratBadan)
                                     .addComponent(alergi)))
-                            .addComponent(idRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idRekamField, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboPenyakitPas, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
@@ -916,7 +911,7 @@ public class FormDokter extends javax.swing.JFrame {
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(totalHargaTindakan, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -928,7 +923,7 @@ public class FormDokter extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(627, Short.MAX_VALUE)
+                    .addContainerGap(612, Short.MAX_VALUE)
                     .addComponent(jLabel20)
                     .addGap(507, 507, 507)))
         );
@@ -940,7 +935,7 @@ public class FormDokter extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(idRekam, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(idRekamField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -990,18 +985,18 @@ public class FormDokter extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(comboTambahan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(goToResepButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(21, 21, 21)
                     .addComponent(jLabel20)
-                    .addContainerGap(377, Short.MAX_VALUE)))
+                    .addContainerGap(381, Short.MAX_VALUE)))
         );
 
         dokterTabPane.addTab("Rekam Medis", jPanel3);
@@ -1020,14 +1015,12 @@ public class FormDokter extends javax.swing.JFrame {
                 || hasilPemeriksaan.getText().equals("") || alergi.getText().equals("") || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
-            if(comboTambahan.getSelectedItem().equals("TIDAK ADA")){
-                
-            }
             try {
                 Rekam_Medis rekam_medis = new Rekam_Medis();
                 rekam_medis.setId_Rekam(id_Rekam);
-                System.out.println(idRekam);
-                rekam_medis.setId_Penyakit(comboPenyakitPas.getSelectedItem().toString());
+                System.out.println(id_Rekam);
+                String Id_Penyakit = dokterService.getIDPenyakit(comboPenyakitPas.getSelectedItem().toString());
+                rekam_medis.setId_Penyakit(Id_Penyakit);
                 System.out.println(comboPenyakitPas.getSelectedItem().toString());
                 rekam_medis.setId_Pasien(Field_idPasien.getText());
                 System.out.println(Field_idPasien.getText());
@@ -1047,8 +1040,7 @@ public class FormDokter extends javax.swing.JFrame {
                 System.out.println(totalHargaTindakan.getText());
                 rekam_medis.setLayanan_Tambahan(comboTambahan.getSelectedItem().toString());
                 System.out.println(comboTambahan.getSelectedItem().toString());
-                
-                 
+
                 dokterService.insertRekam_Medis(rekam_medis);
 
                 JOptionPane.showMessageDialog(null, "Data rekam medis berhasil disimpan");
@@ -1176,6 +1168,7 @@ public class FormDokter extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = dokterService.insertDetailResep(detailResep);
                 tabelModelDetailResep.insert(detailResep1);
+                hitungTotalHargaObat();
                 clearFormResep();
             } catch (RemoteException exception) {
                 exception.printStackTrace();
@@ -1200,7 +1193,7 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanPopupMenuWillBecomeVisible
 
     private void TambahTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahTindakanActionPerformed
-        if (idRekam.getText().equals("") || comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
+        if (idRekamField.getText().equals("") || comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
                 || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
         } else {
@@ -1211,7 +1204,7 @@ public class FormDokter extends javax.swing.JFrame {
                 detail_tindakan.setNo_Detail(dokterService.getAutoNumberNoDetail());
                 String id_tindakan = dokterService.getIdTindakan(comboTindakan.getSelectedItem().toString());
                 detail_tindakan.setId_Tindakan(id_tindakan);
-                detail_tindakan.setId_Rekam(idRekam.getText());
+                detail_tindakan.setId_Rekam(idRekamField.getText());
                 detail_tindakan.setKeterangan(fieldKeterangan.getText());
                 totalHargaRM = totalHargaRM + hargaRM;
                 totalHargaTindakan.setText("" + totalHargaRM);
@@ -1223,7 +1216,7 @@ public class FormDokter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Tindakan berhasil ditambahkan");
 
                 try {
-                    tableModelTindakan.setData(this.dokterService.getDetailTindakanById(idRekam.getText()));
+                    tableModelTindakan.setData(this.dokterService.getDetailTindakanById(idRekamField.getText()));
                 } catch (RemoteException exception) {
                     exception.printStackTrace();
                 }
@@ -1255,11 +1248,7 @@ public class FormDokter extends javax.swing.JFrame {
             try {
                 Obat_resep resep = new Obat_resep();
                 resep.setId_Resep(idResep);
-                System.out.println(idResep);
-
-                String lastIDRM = dokterService.getLastIDRekamMedis();
-                System.out.println(lastIDRM);
-                resep.setId_Rekam(lastIDRM);
+                resep.setId_Rekam(id_Rekam);
                 resep.setTotal_Harga(0);
                 dokterService.insertResep(resep);
                 simpanDetailResepButton.setEnabled(false);
@@ -1282,21 +1271,25 @@ public class FormDokter extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = dokterService.insertDetailResep(detailResep);
                 tabelModelDetailResep.insert(detailResep1);
-                clearFormResep();
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
+            hitungTotalHargaObat();
+            clearFormResep();
             printResepButton.setEnabled(true);
             backToRekamMedis.setEnabled(true);
         }
     }//GEN-LAST:event_simpanDetailResepButtonActionPerformed
 
+    public void hitungTotalHargaObat() {
+        totalHargaObat = (Integer.parseInt(jumlahSpinner.getValue().toString()) * hargaObat) + totalHargaObat;
+        totalHargaObatField.setText(String.valueOf(totalHargaObat));
+    }
+
     private void namaObatComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namaObatComboBoxItemStateChanged
         try {
             hargaObat = dokterService.getHargaObat(namaObatComboBox.getSelectedItem().toString());
             hargaObatField.setText(String.valueOf(hargaObat));
-            totalHargaObat = totalHargaObat + hargaObat;
-            totalHargaObatField.setText("" + totalHargaObat);
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1331,12 +1324,15 @@ public class FormDokter extends javax.swing.JFrame {
     private void backToRekamMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToRekamMedisActionPerformed
         Obat_resep resep = new Obat_resep();
         try {
-            dokterService.updateResep(resep, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
+            dokterService.updateResep(resep, idResep, Integer.parseInt(totalHargaObatField.getText()));
             JOptionPane.showMessageDialog(null, "Proses Pemberian Resep Berhasil!\nAnda akan kembali ke form Rekam Medis", "Proses Pemberian Resep Berhasil", JOptionPane.INFORMATION_MESSAGE);
-            dokterTabPane.setSelectedIndex(2);
-            dokterTabPane.setEnabledAt(1, false);
             totalHargaObat = 0;
             totalHargaObatField.setText("");
+            dokterService.updateAntrian(antrian.getId_Antrian());
+            id_Rekam = dokterService.getAutoNumberIdRekam();
+            idRekamField.setText(id_Rekam);
+            dokterTabPane.setSelectedIndex(2);
+            dokterTabPane.setEnabledAt(1, false);
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1349,17 +1345,13 @@ public class FormDokter extends javax.swing.JFrame {
             JasperCompileManager.compileReportToFile("src/Report/resepPasien_1.jrxml");
             HashMap hash = new HashMap();
             jasperPrint = JasperFillManager.fillReport("src/Report/resepPasien_1.jasper", hash,
-                new JRTableModelDataSource(tableModelLaporanResepPasien));
+                    new JRTableModelDataSource(tableModelLaporanResepPasien));
             JasperViewer jasperViewer = new JasperViewer(jasperPrint);
             jasperViewer.setVisible(true);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_printResepButtonActionPerformed
-
-    private void comboTambahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTambahanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTambahanActionPerformed
 
     private void dokterTabPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dokterTabPaneMouseClicked
         if (dokterTabPane.getSelectedIndex() == 2) {
@@ -1379,6 +1371,9 @@ public class FormDokter extends javax.swing.JFrame {
 
         try {
             dokterService.updateAntrian(antrian.getId_Antrian());
+            id_Rekam = dokterService.getAutoNumberIdRekam();
+            idRekamField.setText(id_Rekam);
+            
             //-----Pembayaran-----//
             String idPasien = Field_idPasien.getText();
             int hargaRM = Integer.parseInt(totalHargaTindakan.getText());
@@ -1446,12 +1441,13 @@ public class FormDokter extends javax.swing.JFrame {
     private void cekdaftar() {
         try {
             antrian = dokterService.Id_pasien(antrian);
-            if ("kososng".equals(antrian.getId_Pasien())) {
+            if ("kosong".equals(antrian.getId_Pasien())) {
                 int reply = JOptionPane.showConfirmDialog(null, "Tidak ada antrian. Apakah ingin memproses kembali ?", "konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (reply == JOptionPane.YES_OPTION) {
                     cekdaftar();
                 } else {
                     JOptionPane.showMessageDialog(null, "Silahkan klik rekam medis lagi jika ingin memulai kembali");
+                    //semua field di-disable
                 }
             } else if ("salah".equals(antrian.getId_Pasien())) {
                 JOptionPane.showMessageDialog(null, "Tidak terkoneksi ke database");
@@ -1488,7 +1484,7 @@ public class FormDokter extends javax.swing.JFrame {
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JTextField hargaObatField;
     private javax.swing.JTextField hasilPemeriksaan;
-    private javax.swing.JTextField idRekam;
+    private javax.swing.JTextField idRekamField;
     private javax.swing.JTextField idResepField;
     private javax.swing.JLabel idResepLabel;
     private javax.swing.JLabel jLabel1;
