@@ -127,8 +127,9 @@ public class FormLab extends javax.swing.JFrame {
         totalHarga = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDetLab = new javax.swing.JTable();
-        CariIdPasien = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        namaPasien2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -244,6 +245,10 @@ public class FormLab extends javax.swing.JFrame {
         jLabel5.setText("ID Transaksi   : ");
 
         idPasien2.setEditable(false);
+        idPasien2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+
+        idTransaksi.setEditable(false);
+        idTransaksi.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -262,8 +267,10 @@ public class FormLab extends javax.swing.JFrame {
         comboJenisPem.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         comboJenisPem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilihan Jenis Pemeriksaan" }));
 
+        idDetLab.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         idDetLab.setEnabled(false);
 
+        hargaJenis.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         hargaJenis.setEnabled(false);
         hargaJenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,6 +278,7 @@ public class FormLab extends javax.swing.JFrame {
             }
         });
 
+        hasilPemeriksaan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         hasilPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hasilPemeriksaanActionPerformed(evt);
@@ -281,6 +289,7 @@ public class FormLab extends javax.swing.JFrame {
         jLabel11.setText("Hasil Pemeriksaan  :");
 
         Keterangan.setColumns(20);
+        Keterangan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         Keterangan.setRows(5);
         jScrollPane1.setViewportView(Keterangan);
 
@@ -293,7 +302,7 @@ public class FormLab extends javax.swing.JFrame {
         });
 
         insertPemeriksaan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        insertPemeriksaan.setText("Insert Pemeriksaan");
+        insertPemeriksaan.setText("Insert Pemeriksaan ke Tabel");
         insertPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertPemeriksaanActionPerformed(evt);
@@ -301,7 +310,7 @@ public class FormLab extends javax.swing.JFrame {
         });
 
         deletePemeriksaan.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        deletePemeriksaan.setText("Delete Pemeriksaan");
+        deletePemeriksaan.setText("Delete Pemeriksaan pada Tabel");
         deletePemeriksaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deletePemeriksaanActionPerformed(evt);
@@ -339,13 +348,13 @@ public class FormLab extends javax.swing.JFrame {
                                 .addComponent(hargaJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(uploadFile)
-                        .addContainerGap(83, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(insertPemeriksaan)
-                        .addGap(18, 18, 18)
+                        .addGap(66, 66, 66)
                         .addComponent(deletePemeriksaan)
-                        .addGap(116, 116, 116))))
+                        .addGap(68, 68, 68))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +396,7 @@ public class FormLab extends javax.swing.JFrame {
         });
 
         Save.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        Save.setText("Save");
+        Save.setText("Save ke DataBase");
         Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaveActionPerformed(evt);
@@ -424,13 +433,6 @@ public class FormLab extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tableDetLab);
 
-        CariIdPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icon_Search.png"))); // NOI18N
-        CariIdPasien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CariIdPasienActionPerformed(evt);
-            }
-        });
-
         Kembali.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         Kembali.setText("KEMBALI AWAL");
         Kembali.addActionListener(new java.awt.event.ActionListener() {
@@ -439,6 +441,12 @@ public class FormLab extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+        jLabel6.setText("Nama Pasien :");
+
+        namaPasien2.setEditable(false);
+        namaPasien2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -446,29 +454,27 @@ public class FormLab extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(idPasien2)
-                                    .addComponent(idTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CariIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 15, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(idPasien2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(namaPasien2))
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
+                        .addGap(181, 181, 181)
                         .addComponent(Clear)
-                        .addGap(71, 71, 71)
-                        .addComponent(Save)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(67, 67, 67)
+                        .addComponent(Save))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,43 +482,37 @@ public class FormLab extends javax.swing.JFrame {
                         .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Proses)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Kembali))
                     .addComponent(jScrollPane2))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(idPasien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(CariIdPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idPasien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(idTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(idTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(namaPasien2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Clear)
-                        .addComponent(Save))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Proses)
-                        .addComponent(Kembali)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Clear)
+                    .addComponent(Save)
+                    .addComponent(jLabel12)
+                    .addComponent(totalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Proses)
+                    .addComponent(Kembali))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("DATA TRANSAKSI", jPanel2);
@@ -708,31 +708,9 @@ public class FormLab extends javax.swing.JFrame {
         this.ClearActionPerformed(evt);
     }//GEN-LAST:event_KembaliActionPerformed
 
-    private void CariIdPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariIdPasienActionPerformed
-        // TODO add your handling code here:
-        if(!idPasien2.equals("")){
-            String idpasien = idPasien2.getText();
-            try {
-                pasienExist = labService.getPasienId(idpasien);
-                if(pasienExist == false){
-                    idPasien2.setText("");
-                    JOptionPane.showMessageDialog(this, "ID Pasien Tidak Terdaftar");
-                }
-                else{
-                    JOptionPane.showMessageDialog(this, "ID Pasien Ada dan Terdaftar");
-                    idPasien2.setEditable(false);
-                }                   
-            } catch (RemoteException ex) {
-                Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
-    }//GEN-LAST:event_CariIdPasienActionPerformed
-
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CariIdPasien;
     private javax.swing.JButton Clear;
     private javax.swing.JButton Kembali;
     private javax.swing.JTextArea Keterangan;
@@ -759,6 +737,7 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -771,6 +750,7 @@ public class FormLab extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField namaPasien;
+    private javax.swing.JTextField namaPasien2;
     private javax.swing.JButton pasinSelanjutnya;
     private javax.swing.JTable tableDetLab;
     private javax.swing.JTextField totalHarga;
