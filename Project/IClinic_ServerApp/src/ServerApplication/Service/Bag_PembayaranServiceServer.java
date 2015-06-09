@@ -38,7 +38,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         Log.setTanggal(Calendar.getInstance().getTime());
         Log.setKegiatan("Melakukan Proses Insert pada Tabel Pembayaran");
         Log.setAktor("Bagian Pembayaran");
-        tableModelLog.insert(Log);
+       tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
