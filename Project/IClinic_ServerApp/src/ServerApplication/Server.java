@@ -31,7 +31,7 @@ public class Server extends javax.swing.JFrame {
     Registry server = LocateRegistry.createRegistry(6789);
 
     AdministratorServiceServer administratorServiceServer = new AdministratorServiceServer(tableModelLog);
-    ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer();
+    ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer(tableModelLog);
     Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
     DokterServiceServer dokterServiceServer = new DokterServiceServer(tableModelLog);
