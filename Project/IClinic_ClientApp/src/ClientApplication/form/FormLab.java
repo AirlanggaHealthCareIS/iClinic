@@ -378,9 +378,10 @@ public class FormLab extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(insertPemeriksaan)
-                    .addComponent(deletePemeriksaan))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deletePemeriksaan)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(insertPemeriksaan)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -573,8 +574,10 @@ public class FormLab extends javax.swing.JFrame {
                     }
                 }
                 if(berhasil) {
-                    JOptionPane.showMessageDialog(this,"Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Selamat Data yang Diinputkan Berhasil !", "Transaksi", JOptionPane.INFORMATION_MESSAGE);
                 }
+                Proses.setEnabled(true);
+                Kembali.setEnabled(true);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormLab.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -608,6 +611,7 @@ public class FormLab extends javax.swing.JFrame {
             tableLabDetailLab.setData(listDetailLab);
             tableDetLab.setModel(tableLabDetailLab);
             totalHarga.setText(Integer.toString(checkTotal()));
+            hasilPemeriksaan.setText("");
             hargaJenis.setText("");
             Keterangan.setText("");
             
