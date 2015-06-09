@@ -5,7 +5,6 @@
 package Database.Service;
 
 import Database.Entity.Obat_detailResep;
-import Database.Entity.Obat_detailResepPrint;
 import Database.Entity.Pembayaran;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -32,7 +31,7 @@ public interface Bag_PembayaranService extends Remote {
 
     public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
 
-    List<Obat_detailResepPrint> getObat_detailresepPrint(String ID_RESEP) throws RemoteException;
+//    List<Obat_detailResepPrint> getObat_detailresepPrint(String ID_RESEP) throws RemoteException;
 
     Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN) throws RemoteException;
 

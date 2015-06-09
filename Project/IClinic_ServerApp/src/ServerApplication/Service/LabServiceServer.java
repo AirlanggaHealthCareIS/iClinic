@@ -529,7 +529,7 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         int numberBaru = 0;
 	try {
             state = (Statement) DatabaseUtilities.getConnection().createStatement();
-            String sql = "SELECT ID_DETAIL_LAB FROM det_lab ORDER BY ID_DETAIL_LAB DESC limit 1";
+            String sql = "SELECT ID_DETAIL_LAB FROM detail_lab ORDER BY ID_DETAIL_LAB DESC limit 1";
             rs = state.executeQuery(sql);
             while (rs.next()){
                 number = rs.getString(1);
