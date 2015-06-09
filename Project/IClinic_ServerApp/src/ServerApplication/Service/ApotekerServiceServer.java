@@ -11,6 +11,8 @@ import Database.Entity.Obat_tabelMaster;
 import Database.Entity.Pembayaran;
 import Database.Service.ApotekerService;
 import ServerApplication.Utilities.DatabaseUtilities;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
@@ -18,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -25,13 +28,22 @@ import java.util.List;
  * @author Rindu Puspita
  */
 public class ApotekerServiceServer extends UnicastRemoteObject implements ApotekerService {
+    
+    TableModelLog tableModelLog;
 
-    public ApotekerServiceServer() throws RemoteException {
+    public ApotekerServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+         this.tableModelLog = tableModelLog1;
     }
 
     public Obat_tabelMaster insertObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Insert pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+       
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -66,7 +78,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void updateObat_tabelMaster(Obat_tabelMaster obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Update pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -96,7 +113,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void deleteObat_tabelMaster(int Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Delete pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -121,8 +143,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public Obat_tabelMaster getObat_tabelMaster(int Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Obat");
-
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -159,8 +185,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public List<Obat_tabelMaster> getObat_tabelMaster() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Obat");
-
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().createStatement();
@@ -197,7 +227,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public Obat_detailResep insertObat_detailResep(Obat_detailResep detail_resep) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Insert pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -230,7 +265,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void updateObat_detailResep(Obat_detailResep detail_resep) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Update pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
@@ -264,8 +303,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void deleteObat_detailResep(String Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Delete pada Tabel Detail Resep");
-
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+ 
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -288,7 +331,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public Obat_detailResep getObat_detailResep(String Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
@@ -327,7 +374,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public List<Obat_detailResepPembelian> getObat_detailResepPembelian(String Id_Resep) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
@@ -378,7 +429,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     
     public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Detail Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         Statement statement = null;
         try {
@@ -418,7 +473,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public Obat_resep insertObat_resep(Obat_resep resep) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Insert pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -447,7 +507,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void updateObat_resep(Obat_resep resep) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Update pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
+       
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -475,7 +541,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public void deleteObat_resep(int Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Delete pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -500,7 +572,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public Obat_resep getObat_resep(int Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
@@ -535,7 +611,11 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
 
     public List<Obat_resep> getObat_resep() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Obat");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         Statement statement = null;
         try {
@@ -570,7 +650,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String mencocokan_IdResep (String Id_Resep){
-         System.out.println("Client Melakukan Proses Pencocokan ID RESEP");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencocokan ID RESEP");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+       
          Statement state = null;
          ResultSet rs = null;
         
@@ -590,6 +676,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
     
     public List getNamaObat() throws RemoteException {
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Get Nama Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement statement = null;
         ResultSet resultSet = null;
         List product_code = new ArrayList();
@@ -618,7 +711,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String getIdObat(String namaObat) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Jenis Obat");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Jenis Obat");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
         String noDetail = "";
@@ -637,6 +736,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public List getTakaran() throws RemoteException {
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Takaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement statement = null;
         ResultSet resultSet = null;
         List product_code = new ArrayList();
@@ -665,7 +771,14 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String getIdTakaran(String takaran) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Takaran");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get ID Takaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
+        System.out.println("");
         Statement state = null;
         ResultSet rs = null;
         String noDetail = "";
@@ -684,6 +797,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public List getPemakaian() throws RemoteException {
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Pemakaian");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement statement = null;
         ResultSet resultSet = null;
         List product_code = new ArrayList();
@@ -712,7 +832,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String getIdPemakaian(String pemakaian) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Pemakaian");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get ID Pemakaian");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
         String noDetail = "";
@@ -731,7 +857,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public int getHargaObat(String namaobat) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get Harga");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Harga");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
         int hargaObat = 0;
@@ -750,7 +882,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
     
     public String getAutoNumberDariObat_detailResep() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
 
@@ -791,7 +929,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String getAutoNumberDariResep() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel detail_resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
 
@@ -835,7 +979,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
     
     public void updateResep(Obat_resep resep, String ID_RESEP, int TOTAL_HARGA) throws RemoteException {
-        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
         
         PreparedStatement statement = null;
         try{
@@ -857,8 +1006,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
     
     public void updateJumlahPenukaranResep(int Jumlah, String No_Detail_Resep) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
        try{
@@ -885,8 +1039,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
     
     public void updateHargaPadaResep(Obat_resep resep) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Resep");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
        try{
@@ -914,7 +1072,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     
     //-----Pembayaran-----//
     public String mencariIdPasienDariPembayaran(String idResep) throws RemoteException {
-        System.out.println("Client Melakukan Proses Pencarian ID PASIEN dengan Mengakses Tabel Rekam Medis");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian ID PASIEN dengan Mengakses Tabel Rekam Medis");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+
         Statement state = null;
         ResultSet rs = null;
         String idPasien = "";
@@ -936,7 +1100,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
-        System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         Statement state = null;
         ResultSet rs = null;
@@ -963,7 +1133,12 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException {
-        System.out.println("Client Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+       
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         System.out.println(date);
         PreparedStatement statement = null;
@@ -1004,7 +1179,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idResep, int Harga) throws RemoteException {
-        System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Pembayaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+        
         int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try {
@@ -1037,7 +1218,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public String getAutoNumberDariPembayaran() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+
         Statement state = null;
         ResultSet rs = null;
 
@@ -1078,7 +1265,13 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
     }
 
     public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idResep, int Harga) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
+        
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Pembayaran");
+        Log.setAktor("Bagian Apoteker");
+        tableModelLog.insert(Log);
+
         PreparedStatement statement = null;
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         try {

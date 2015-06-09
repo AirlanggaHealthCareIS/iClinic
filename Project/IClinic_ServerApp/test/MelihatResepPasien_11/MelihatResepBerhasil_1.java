@@ -6,6 +6,7 @@ package MelihatResepPasien_11;
 
 import Database.Entity.Obat_detailResep;
 import ServerApplication.Service.ApotekerServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,9 +22,10 @@ import org.junit.Test;
  */
 public class MelihatResepBerhasil_1 {
     ApotekerServiceServer apotekerServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
 
     public MelihatResepBerhasil_1() throws RemoteException {
-        this.apotekerServiceServer = new ApotekerServiceServer();
+        this.apotekerServiceServer = new ApotekerServiceServer(tableModelLog);
     }
     @BeforeClass
     public static void setUpClass() {
@@ -45,7 +47,7 @@ public class MelihatResepBerhasil_1 {
     public void testGetObat_detailResep_int() throws Exception {
         System.out.println("mencocokan_IdResep");
         
-        apotekerServiceServer = new ApotekerServiceServer();
+        apotekerServiceServer = new ApotekerServiceServer(tableModelLog);
         String Id_Resep = "R0001";
         
         String instance = apotekerServiceServer.mencocokan_IdResep(Id_Resep);
