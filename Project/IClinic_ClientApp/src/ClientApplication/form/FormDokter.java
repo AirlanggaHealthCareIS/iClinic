@@ -359,12 +359,12 @@ public class FormDokter extends javax.swing.JFrame {
             }
         });
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -660,7 +660,6 @@ public class FormDokter extends javax.swing.JFrame {
 
         simpanRekamMedis.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         simpanRekamMedis.setText("SIMPAN REKAM MEDIS");
-        simpanRekamMedis.setEnabled(false);
         simpanRekamMedis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 simpanRekamMedisActionPerformed(evt);
@@ -675,12 +674,12 @@ public class FormDokter extends javax.swing.JFrame {
         comboTambahan.setFont(new java.awt.Font("Caviar Dreams", 0, 12)); // NOI18N
         comboTambahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIDAK ADA", "LABORATORIUM", "USG", "KECANTIKAN" }));
         comboTambahan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTambahanPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -696,6 +695,7 @@ public class FormDokter extends javax.swing.JFrame {
 
         TambahTindakan.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         TambahTindakan.setText("Tambah");
+        TambahTindakan.setEnabled(false);
         TambahTindakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TambahTindakanActionPerformed(evt);
@@ -705,12 +705,12 @@ public class FormDokter extends javax.swing.JFrame {
         comboTindakan.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Tindakan" }));
         comboTindakan.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboTindakanPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         comboTindakan.addItemListener(new java.awt.event.ItemListener() {
@@ -848,12 +848,12 @@ public class FormDokter extends javax.swing.JFrame {
         comboPenyakitPas.setFont(new java.awt.Font("Caviar Dreams", 0, 11)); // NOI18N
         comboPenyakitPas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih Penyakit" }));
         comboPenyakitPas.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 comboPenyakitPasPopupMenuWillBecomeVisible(evt);
             }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -1082,7 +1082,8 @@ public class FormDokter extends javax.swing.JFrame {
 //            }
             nextButton.setEnabled(true);
             goToResepButton.setEnabled(true);
-            
+            TambahTindakan.setEnabled(true);
+            simpanRekamMedis.setEnabled(false);
         }
 
 //   try{
@@ -1205,6 +1206,7 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanPopupMenuWillBecomeVisible
 
     private void TambahTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahTindakanActionPerformed
+        
         if (idRekamField.getText().equals("") || comboTindakan.getSelectedItem().equals("") || fieldHarga.getText().equals("")
                 || comboTambahan.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Data Yang Anda Inputkan Belum Lengkap");
@@ -1345,6 +1347,7 @@ public class FormDokter extends javax.swing.JFrame {
             idRekamField.setText(id_Rekam);
             dokterTabPane.setSelectedIndex(2);
             dokterTabPane.setEnabledAt(1, false);
+            cekdaftar();
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1380,13 +1383,10 @@ public class FormDokter extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTindakanActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-
-        try {
+    try {
             Rekam_Medis rekam_medis = new Rekam_Medis();
-            dokterService.updateAntrian(antrian.getId_Antrian());
-            id_Rekam = dokterService.getAutoNumberIdRekam();
-            idRekamField.setText(id_Rekam);
-            
+            dokterService.updateRekam_Medis(rekam_medis, id_Rekam, Integer.parseInt(totalHargaTindakan.getText()));
+
             //-----Pembayaran-----//
             String idPasien = Field_idPasien.getText();
             int hargaRM = Integer.parseInt(totalHargaTindakan.getText());
@@ -1403,19 +1403,26 @@ public class FormDokter extends javax.swing.JFrame {
                     System.out.println(id_Rekam);
                     System.out.println(hargaRM);
                 }
-                clearUser();
-                dokterService.updateRekam_Medis(rekam_medis);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            hargaRM = 0;
+            totalHargaTindakan.setText("");
+            clearUser();
+            dokterService.updateAntrian(antrian.getId_Antrian());
+            id_Rekam = dokterService.getAutoNumberIdRekam();
+            idRekamField.setText(id_Rekam);
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan karena gagal koneksi ke database");
         }
-        
         cekdaftar();
+        goToResepButton.setEnabled(false);
         simpanRekamMedis.setEnabled(true);
+        nextButton.setEnabled(true);
         // TODO add your handling code here:
+    
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void fieldNoDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoDetailActionPerformed

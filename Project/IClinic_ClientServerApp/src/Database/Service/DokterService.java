@@ -39,7 +39,7 @@ public interface DokterService extends Remote {
     
     List<Tindakan_detailTindakan> getDetailTindakanById(String ID_Rekam) throws RemoteException;
 
-    void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException;
+      void updateRekam_Medis(Rekam_Medis rekam_Medis, String ID_REKAM, int TOTAL_HARGARM) throws RemoteException;
 
     void updateAntrian (String IDAntrianSaatIni) throws RemoteException;
     

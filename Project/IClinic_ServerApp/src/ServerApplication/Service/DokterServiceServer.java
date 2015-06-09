@@ -224,32 +224,28 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
         }
     }
     
-    public void updateRekam_Medis(Rekam_Medis rekam_medis) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Update pada Tabel Rekam Medis");
+public void updateRekam_Medis(Rekam_Medis rekam_Medis, String ID_REKAM, int TOTAL_HARGARM) throws RemoteException {
+        System.out.println("Client Melakukan Proses Update pada Tabel Rekam");
+        
         PreparedStatement statement = null;
-        try {
+        try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE rekam_medis SET TOTAL_HARGA = ? "
-                    + "WHERE ID_REKAM = ?");
-            statement.setInt(1, rekam_medis.getTotal_Harga());
-            statement.setString(2, rekam_medis.getId_Rekam());
-            
+            "UPDATE rekam_medis SET TOTAL_HARGA = " + TOTAL_HARGARM 
+                    + " WHERE ID_REKAM =  '" + ID_REKAM + "'");
+        
             statement.executeUpdate();
-
-        } catch (SQLException exception) {
+        }catch(SQLException exception){
             exception.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
+        }finally{
+            if(statement != null){
+                try{
                     statement.close();
-                } catch (SQLException exception) {
+                }catch(SQLException exception){
                     exception.printStackTrace();
                 }
             }
         }
     }
-
 public void updateAntrian(String IDAntrianSaatIni) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Antrian");
