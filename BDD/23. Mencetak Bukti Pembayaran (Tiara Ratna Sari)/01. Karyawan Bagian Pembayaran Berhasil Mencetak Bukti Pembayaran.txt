@@ -1,8 +1,0 @@
-Feature		Mencetak Bukti Pembayaran
-Scenario	Karyawan Bagian Pembayaran Berhasil Mencetak Bukti Pembayaran
-
-Given	Karyawan bagian Pembayaran sudah melakukan login
-and	Karyawan bagian Pembayaran masuk di frame bagian pembayaran
-and	Sistem telah menampilkan bahwa transaksi telah berhasil dan telah lunas.
-When	Karyawan bagian Pembayaran menekan tombol cetak bukti pembayaran
-Then	Sistem mengeluarkan bukti cetak
