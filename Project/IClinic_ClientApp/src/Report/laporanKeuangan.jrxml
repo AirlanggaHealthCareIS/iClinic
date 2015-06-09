@@ -46,7 +46,7 @@ MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())]]>
 					<reportElement style="Title" x="0" y="0" width="430" height="66" forecolor="#000000" backcolor="#000000" uuid="5c84bed6-811d-4ace-b473-4c08c63f2d54"/>
 					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
 					<textElement textAlignment="Center" verticalAlignment="Bottom">
-						<font fontName="MS PMincho" isBold="false"/>
+						<font isBold="false"/>
 					</textElement>
 					<text><![CDATA[Laporan Keuangan]]></text>
 				</staticText>

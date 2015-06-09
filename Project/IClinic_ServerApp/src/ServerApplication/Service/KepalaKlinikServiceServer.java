@@ -35,30 +35,65 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
         PreparedStatement statement = null;
+        ResultSet result = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT SUM(`rekam_medis`.TOTAL_HARGA) AS DOKTER, SUM(`resep`.TOTAL_HARGA) AS RESEP, "
-                    + "SUM(`transaksi_lab`.TOTAL_HARGA) AS LAB, SUM(`transaksi_layanan_kecantikan`.TOTAL_HARGA) AS KECANTIKAN, "
-                    + "SUM(`transaksi_usg`.HARGA) AS USG\n"
-                    + "FROM\n"
-                    + "`transaksi_usg`,`pembayaran`,`transaksi_lab`,`resep`,`rekam_medis`,`transaksi_layanan_kecantikan` "
+                    "SELECT SUM(`rekam_medis`.TOTAL_HARGA) AS DOKTER\n"
+                    + "FROM `rekam_medis`,`pembayaran` "
                     + "WHERE\n"
                     + "MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())");
-
-            ResultSet result = statement.executeQuery();
-
+            result = statement.executeQuery();
             List<LaporanKeuangan> list = new ArrayList<LaporanKeuangan>();
-
+            LaporanKeuangan laporanKeuangan = new LaporanKeuangan();
             if (result.next()) {
-                LaporanKeuangan laporanKeuangan = new LaporanKeuangan();
                 laporanKeuangan.setDOKTER(result.getInt("DOKTER"));
-                laporanKeuangan.setRESEP(result.getInt("RESEP"));
-                laporanKeuangan.setLAB(result.getInt("LAB"));
-                laporanKeuangan.setUSG(result.getInt("USG"));
-                laporanKeuangan.setKECANTIKAN(result.getInt("KECANTIKAN"));
-                list.add(laporanKeuangan);
             }
-
+            System.out.println(laporanKeuangan.getDOKTER());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT SUM(`resep`.TOTAL_HARGA) AS RESEP\n"
+                    + "FROM\n"
+                    + "`pembayaran`,`resep` "
+                    + "WHERE\n"
+                    + "MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanKeuangan.setRESEP(result.getInt("RESEP"));
+            }
+            System.out.println(laporanKeuangan.getRESEP());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT SUM(`transaksi_lab`.TOTAL_HARGA) AS LAB\n"
+                    + "FROM\n"
+                    + "`pembayaran`,`transaksi_lab`"
+                    + "WHERE\n"
+                    + "MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanKeuangan.setLAB(result.getInt("LAB"));
+            }
+            System.out.println(laporanKeuangan.getLAB());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT SUM(`transaksi_usg`.HARGA) AS USG\n"
+                    + "FROM\n"
+                    + "`transaksi_usg`,`pembayaran`"
+                    + "WHERE\n"
+                    + "MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanKeuangan.setUSG(result.getInt("USG"));
+            }
+            System.out.println(laporanKeuangan.getUSG());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT SUM(`transaksi_layanan_kecantikan`.TOTAL_HARGA) AS KECANTIKAN\n"
+                    + "FROM\n"
+                    + "`pembayaran`,`transaksi_layanan_kecantikan` "
+                    + "WHERE\n"
+                    + "MONTH(`pembayaran`.TANGGAL_BAYAR) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanKeuangan.setKECANTIKAN(result.getInt("KECANTIKAN"));
+            }
+            System.out.println(laporanKeuangan.getKECANTIKAN());
+            list.add(laporanKeuangan);
             return list;
         } catch (SQLException exception) {
             exception.printStackTrace();
@@ -78,36 +113,56 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
         PreparedStatement statement = null;
+        ResultSet result = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "SELECT\n"
-                    + " COUNT(`pasien`.ID_PASIEN) AS PASIEN,\n"
-                    + " COUNT(`rekam_medis`.ID_PASIEN) AS DOKTER,\n"
-                    + " COUNT(`transaksi_lab`.ID_PASIEN) AS LAB,\n"
-                    + " COUNT(`transaksi_layanan_kecantikan`.ID_PASIEN) AS KECANTIKAN,\n"
-                    + " COUNT(`transaksi_usg`.ID_PASIEN) AS USG\n"
-                    + " FROM\n"
-                    + " `pasien`,`rekam_medis`,`transaksi_lab`,`transaksi_layanan_kecantikan`,`transaksi_usg`\n"
-                    + " WHERE MONTH(`pasien`.TGL_DAFTAR) = MONTH(CURDATE())\n"
-                    + " OR MONTH(`rekam_medis`.TGL_REKAM) = MONTH(CURDATE()) \n"
-                    + " OR MONTH(`transaksi_lab`.TANGGAL) = MONTH(CURDATE())\n"
-                    + " OR MONTH(`transaksi_layanan_kecantikan`.TANGGAL) = MONTH(CURDATE())\n"
-                    + " OR MONTH(`transaksi_usg`.TANGGAL) = MONTH(CURDATE())");
-
-            ResultSet result = statement.executeQuery();
-
+                    "SELECT COUNT(`pasien`.ID_PASIEN) AS PASIEN "
+                    + "FROM `pasien` "
+                    + "WHERE MONTH(`pasien`.TGL_DAFTAR) = MONTH(CURDATE())");
+            result = statement.executeQuery();
             List<LaporanJumlahPasien> list = new ArrayList<LaporanJumlahPasien>();
-
+            LaporanJumlahPasien laporanJumlahPasien = new LaporanJumlahPasien();
             if (result.next()) {
-                LaporanJumlahPasien laporanJumlahPasien = new LaporanJumlahPasien();
                 laporanJumlahPasien.setPASIEN(result.getInt("PASIEN"));
-                laporanJumlahPasien.setDOKTER(result.getInt("DOKTER"));
-                laporanJumlahPasien.setLAB(result.getInt("LAB"));
-                laporanJumlahPasien.setKECANTIKAN(result.getInt("KECANTIKAN"));
-                laporanJumlahPasien.setUSG(result.getInt("USG"));
-                list.add(laporanJumlahPasien);
             }
-
+            System.out.println(laporanJumlahPasien.getPASIEN());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT COUNT(`rekam_medis`.ID_PASIEN) AS DOKTER "
+                    + "FROM `rekam_medis` "
+                    + "WHERE MONTH(`rekam_medis`.TGL_REKAM) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanJumlahPasien.setDOKTER(result.getInt("DOKTER"));
+            }
+            System.out.println(laporanJumlahPasien.getDOKTER());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT COUNT(`transaksi_lab`.ID_PASIEN) AS LAB "
+                    + "FROM `transaksi_lab` "
+                    + "WHERE MONTH(`transaksi_lab`.TANGGAL) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanJumlahPasien.setLAB(result.getInt("LAB"));
+            }
+            System.out.println(laporanJumlahPasien.getLAB());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT COUNT(`transaksi_layanan_kecantikan`.ID_PASIEN) AS KECANTIKAN "
+                    + "FROM `transaksi_layanan_kecantikan` "
+                    + "WHERE MONTH(`transaksi_layanan_kecantikan`.TANGGAL) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanJumlahPasien.setKECANTIKAN(result.getInt("KECANTIKAN"));
+            }
+            System.out.println(laporanJumlahPasien.getKECANTIKAN());
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT COUNT(`transaksi_usg`.ID_PASIEN) AS USG "
+                    + "FROM `transaksi_usg` "
+                    + "WHERE MONTH(`transaksi_usg`.TANGGAL) = MONTH(CURDATE())");
+            result = statement.executeQuery();
+            if (result.next()) {
+                laporanJumlahPasien.setUSG(result.getInt("USG"));
+            }
+            System.out.println(laporanJumlahPasien.getUSG());
+            list.add(laporanJumlahPasien);
             return list;
         } catch (SQLException exception) {
             exception.printStackTrace();

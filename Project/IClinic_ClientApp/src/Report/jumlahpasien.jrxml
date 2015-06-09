@@ -21,10 +21,7 @@
      COUNT(`transaksi_layanan_kecantikan`.ID_PASIEN) AS KECANTIKAN,
      COUNT(`transaksi_usg`.ID_PASIEN) AS USG
 FROM
-     `pasien` pasien INNER JOIN `rekam_medis` rekam_medis ON pasien.`ID_PASIEN` = rekam_medis.`ID_PASIEN`
-     INNER JOIN `transaksi_lab` transaksi_lab ON pasien.`ID_PASIEN` = transaksi_lab.`ID_PASIEN`
-     INNER JOIN `transaksi_layanan_kecantikan` transaksi_layanan_kecantikan ON pasien.`ID_PASIEN` = transaksi_layanan_kecantikan.`ID_PASIEN`
-     INNER JOIN `transaksi_usg` transaksi_usg ON pasien.`ID_PASIEN` = transaksi_usg.`ID_PASIEN`
+     `pasien`,`rekam_medis`,`transaksi_lab`,`transaksi_layanan_kecantikan`,`transaksi_usg`
 WHERE MONTH(`pasien`.TGL_DAFTAR) = MONTH(CURDATE())
 OR MONTH(`rekam_medis`.TGL_REKAM) = MONTH(CURDATE()) 
 OR MONTH(`transaksi_lab`.TANGGAL) = MONTH(CURDATE())
