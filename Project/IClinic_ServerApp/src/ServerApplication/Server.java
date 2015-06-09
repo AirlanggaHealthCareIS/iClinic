@@ -30,11 +30,11 @@ public class Server extends javax.swing.JFrame {
 
     Registry server = LocateRegistry.createRegistry(6789);
 
-    AdministratorServiceServer administratorServiceServer = new AdministratorServiceServer();
+    AdministratorServiceServer administratorServiceServer = new AdministratorServiceServer(tableModelLog);
     ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer();
     Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
-    DokterServiceServer dokterServiceServer = new DokterServiceServer();
+    DokterServiceServer dokterServiceServer = new DokterServiceServer(tableModelLog);
     KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer();
     KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer(tableModelLog);
     LabServiceServer labServiceServer = new LabServiceServer();
@@ -124,7 +124,7 @@ public class Server extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stopButton)
                     .addComponent(startButton))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

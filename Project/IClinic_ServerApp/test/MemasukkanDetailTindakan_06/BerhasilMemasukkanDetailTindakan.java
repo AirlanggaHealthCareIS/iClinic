@@ -8,6 +8,7 @@ package MemasukkanDetailTindakan_06;
 import Database.Entity.Rekam_Medis;
 import Database.Entity.Tindakan_detailTindakan;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -26,9 +27,10 @@ import org.junit.Test;
  */
 public class BerhasilMemasukkanDetailTindakan implements Remote{
     DokterServiceServer DokterServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
 
     public BerhasilMemasukkanDetailTindakan() throws RemoteException {
-        this.DokterServiceServer = new DokterServiceServer();
+        this.DokterServiceServer = new DokterServiceServer(tableModelLog);
     }
 
     @BeforeClass
@@ -50,7 +52,6 @@ public class BerhasilMemasukkanDetailTindakan implements Remote{
 @Test
     public void testGetDetailTindakan_String() throws Exception { 
         System.out.println("getDetailTindakan");
-        DokterServiceServer = new DokterServiceServer();
         Tindakan_detailTindakan detail_tindakan = new Tindakan_detailTindakan();
         Tindakan_detailTindakan instance = DokterServiceServer.insertDetailTindakan(detail_tindakan);
         
@@ -123,9 +124,8 @@ public class BerhasilMemasukkanDetailTindakan implements Remote{
     @Test
     public void testGetAutoNumberNoDetail() throws Exception {
         System.out.println("getAutoNumberNoDetail");
-        DokterServiceServer instance = new DokterServiceServer();
         String expResult = "DET0001";
-        String result = instance.getAutoNumberNoDetail();
+        String result = DokterServiceServer.getAutoNumberNoDetail();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

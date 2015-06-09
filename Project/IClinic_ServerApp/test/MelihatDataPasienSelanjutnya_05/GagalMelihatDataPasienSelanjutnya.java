@@ -8,6 +8,7 @@ package MelihatDataPasienSelanjutnya_05;
 
 import Database.Entity.Antrian;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 /**
@@ -15,7 +16,7 @@ import org.junit.Test;
  * @author Arlin
  */
 public class GagalMelihatDataPasienSelanjutnya {
-    
+    TableModelLog tableModelLog = new TableModelLog();
     
     /**
      * Test of Id_pasien method, of class USGServiceServer.
@@ -25,7 +26,7 @@ public class GagalMelihatDataPasienSelanjutnya {
         System.out.println("Id_pasien");
         Antrian antrian = new Antrian();
         antrian.setId_Antrian("kosong");
-        DokterServiceServer instance = new DokterServiceServer();
+        DokterServiceServer instance = new DokterServiceServer(tableModelLog);
         Antrian expResult = antrian;
         Antrian result = new Antrian();
         result = instance.Id_pasien(antrian);

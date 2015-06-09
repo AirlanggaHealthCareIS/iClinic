@@ -8,6 +8,7 @@ package MelihatDataPasienSelanjutnya_05;
 
 import Database.Entity.Antrian;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ import org.junit.Test;
  * @author Arlin
  */
 public class BerhasilMelihatDataPasienSelanjutnya {
-    
+    TableModelLog tableModelLog = new TableModelLog();
      /**
      * Test of Id_pasien method, of class DokterServiceServer.
      */
@@ -28,7 +29,7 @@ public class BerhasilMelihatDataPasienSelanjutnya {
         antrian.setId_Pasien("P0001");
         antrian.setJenis_Antrian("DOKTER UMUM");
         antrian.setKeterangan("1");
-        DokterServiceServer instance = new DokterServiceServer();
+        DokterServiceServer instance = new DokterServiceServer(tableModelLog);
         assertEquals(antrian, instance.Id_pasien(antrian));
         // TODO review the generated test code and remove the default call to fail.
      }
@@ -42,7 +43,7 @@ public class BerhasilMelihatDataPasienSelanjutnya {
     public void testNama_pasien() throws Exception {
         System.out.println("Nama_pasien");
         String id_pasien = "P0001";
-        DokterServiceServer instance = new DokterServiceServer();
+        DokterServiceServer instance = new DokterServiceServer(tableModelLog);
         String expResult = "AGUS";
         String result = instance.Nama_pasien(id_pasien);
         assertEquals(expResult, result);
@@ -58,7 +59,7 @@ public class BerhasilMelihatDataPasienSelanjutnya {
     public void testUpdateAntrian() throws Exception {
         System.out.println("updateAntrian");
         String IDAntrianSaatIni = "A0001";
-        DokterServiceServer instance = new DokterServiceServer();
+        DokterServiceServer instance = new DokterServiceServer(tableModelLog);
         instance.updateAntrian(IDAntrianSaatIni);
         // TODO review the generated test code and remove the default call to fail.
     }

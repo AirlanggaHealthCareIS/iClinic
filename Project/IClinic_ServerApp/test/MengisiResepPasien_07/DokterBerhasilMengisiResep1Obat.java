@@ -3,6 +3,7 @@ package MengisiResepPasien_07;
 import Database.Entity.Obat_detailResep;
 import Database.Entity.Obat_resep;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -16,9 +17,10 @@ import org.junit.Test;
 
 public class DokterBerhasilMengisiResep1Obat implements Remote{
     DokterServiceServer dokterServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
     
     public DokterBerhasilMengisiResep1Obat() throws RemoteException{
-        this.dokterServiceServer = new DokterServiceServer();
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);
     }
     
     @BeforeClass
@@ -126,7 +128,7 @@ public class DokterBerhasilMengisiResep1Obat implements Remote{
         String ID_RESEP = "";
         int TOTAL_HARGA = 0;
         
-        DokterServiceServer instance = new DokterServiceServer();
+        DokterServiceServer instance = new DokterServiceServer(tableModelLog);
         instance.updateResep(resep, ID_RESEP, TOTAL_HARGA);
     }
 }

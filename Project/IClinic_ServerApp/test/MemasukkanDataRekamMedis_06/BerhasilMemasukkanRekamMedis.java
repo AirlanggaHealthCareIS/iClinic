@@ -8,6 +8,7 @@ package MemasukkanDataRekamMedis_06;
 import Database.Entity.Tindakan_detailTindakan;
 import Database.Entity.Rekam_Medis;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -24,9 +25,10 @@ import org.junit.Test;
  */
 public class BerhasilMemasukkanRekamMedis implements Remote{
     DokterServiceServer dokterServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
     
     public BerhasilMemasukkanRekamMedis() throws RemoteException{
-        this.dokterServiceServer = new DokterServiceServer();
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);
     }
     
     @BeforeClass

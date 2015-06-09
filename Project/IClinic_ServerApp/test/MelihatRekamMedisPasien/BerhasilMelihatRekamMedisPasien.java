@@ -8,6 +8,7 @@ package MelihatRekamMedisPasien;
 import Database.Entity.Pasien;
 import Database.Entity.Rekam_Medis;
 import ServerApplication.Service.DokterServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,9 +26,10 @@ import org.junit.Test;
  */
 public class BerhasilMelihatRekamMedisPasien {
     DokterServiceServer dokterServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
 
     public BerhasilMelihatRekamMedisPasien() throws RemoteException {
-        this.dokterServiceServer = new DokterServiceServer();
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);
     }
 
     @BeforeClass
@@ -50,7 +52,6 @@ public class BerhasilMelihatRekamMedisPasien {
     public void testMeihatRekamMedisPasien() throws Exception {
         System.out.println("MeihatRekamMedisPasien");
         
-        dokterServiceServer = new DokterServiceServer();
         String idpasien = "P0001";
         List<Rekam_Medis> instance = dokterServiceServer.GetRekam_MedisbyPasien(idpasien);
         
