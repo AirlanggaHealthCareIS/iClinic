@@ -39,7 +39,8 @@ public class FormApoteker extends javax.swing.JFrame {
     private TableModelObat_detailResepPembelian tableModelObat_detailResepPR = new TableModelObat_detailResepPembelian();
     private ApotekerService apotekerService;
     int totalPR = 0;
-    int totalPO = 0;
+    int totalHargaObat = 0;
+    int hargaObat = 0;
     String idResep;
     private DefaultTableModel tabel_penukaran;
 
@@ -639,8 +640,6 @@ public class FormApoteker extends javax.swing.JFrame {
     }
 
      private void clearFormPembelianObat() {
-        idResepField.setText("");
-        noDetailResepField.setText("");
         namaObatComboBox.setSelectedIndex(0);
         takaranSpinner.setValue(0);
         pemakaianComboBox.setSelectedIndex(0);
@@ -650,7 +649,11 @@ public class FormApoteker extends javax.swing.JFrame {
         keteranganField.setText("");
         namaObatComboBox.getFocusListeners();
     }
-    
+    private void clearPembelianObatSelesai(){
+        idResepField.setText("");
+        noDetailResepField.setText("");
+        totalHargaObatField.setText("");
+    }
      private void clearFormPenukaranResep() {
         IDResepPRTextField1.setText("");
         jNamaObatPRTextField2.setText("");
@@ -721,12 +724,8 @@ public class FormApoteker extends javax.swing.JFrame {
         if (row == -1) {
             return;
         }
-        try {
             String no_detail = tableModelObat_detailResepPR.get(row).getNo_Detail_Resep();
-            apotekerService.deleteObat_detailResep(no_detail);
-        } catch (RemoteException ex) {
-            Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         tableModelObat_detailResepPR.delete(row);
     }//GEN-LAST:event_DeletePRButton4ActionPerformed
 
@@ -774,6 +773,14 @@ public class FormApoteker extends javax.swing.JFrame {
             totalPR = totalPR + totalPerObat;
             jTotalPRTextField1.setText(String.valueOf(totalPerObat));
             TotalHargaPRTextField13.setText(String.valueOf(totalPR));
+            
+            int jumlah = tableModelObat_detailResepPR.get(row).getJumlah();
+            String NoDetailResep = tableModelObat_detailResepPR.get(row).getNo_Detail_Resep();
+            try {
+                apotekerService.updateJumlahPenukaranResep( jumlah, NoDetailResep);
+            } catch (RemoteException ex) {
+                Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jJumlahPRTextField3KeyReleased
 
@@ -785,6 +792,11 @@ public class FormApoteker extends javax.swing.JFrame {
     }//GEN-LAST:event_GoToPenukaranResepButton1ActionPerformed
 
     // Pembelian Obat
+    
+    public void hitungTotalHargaObat() {
+        totalHargaObat = (Integer.parseInt(jumlahSpinner.getValue().toString()) * hargaObat) + totalHargaObat;
+        totalHargaObatField.setText(String.valueOf(totalHargaObat));
+    }
     
     private void namaObatComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_namaObatComboBoxPopupMenuWillBecomeVisible
 
@@ -803,12 +815,8 @@ public class FormApoteker extends javax.swing.JFrame {
 
     private void namaObatComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namaObatComboBoxItemStateChanged
         try {
-            int harga = apotekerService.getHargaObat(namaObatComboBox.getSelectedItem().toString());
-            int qty = Integer.parseInt(jumlahSpinner.getValue().toString());
-            hargaField.setText(String.valueOf(harga));
-            int totalPOperobat = qty * harga;
-            totalPO = totalPO + totalPOperobat;
-            totalHargaObatField.setText("" + totalPO);
+            hargaObat = apotekerService.getHargaObat(namaObatComboBox.getSelectedItem().toString());
+            hargaField.setText(String.valueOf(hargaObat));
         } catch (RemoteException ex) {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -850,11 +858,12 @@ public class FormApoteker extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
                 tableModelObat_detailResepPO.insert(detailResep1);
+                hitungTotalHargaObat();
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
+            clearFormPembelianObat();
         }
-        clearFormPembelianObat();
     }//GEN-LAST:event_simpanObatButtonActionPerformed
 
     private void tambahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahObatButtonActionPerformed
@@ -880,12 +889,12 @@ public class FormApoteker extends javax.swing.JFrame {
 
                 Obat_detailResep detailResep1 = apotekerService.insertObat_detailResep(detailResep);
                 tableModelObat_detailResepPO.insert(detailResep1);
-                
+                hitungTotalHargaObat();
             } catch (RemoteException exception) {
                 exception.printStackTrace();
             }
-        }
         clearFormPembelianObat();
+        }
     }//GEN-LAST:event_tambahObatButtonActionPerformed
 
     private void hapusObatDetailResepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusObatDetailResepButtonActionPerformed
@@ -909,7 +918,8 @@ public class FormApoteker extends javax.swing.JFrame {
             //-----Pembayaran-----//
             String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
             apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
-            totalPO = 0;
+            totalHargaObat = 0;
+            clearPembelianObatSelesai();
         } catch (RemoteException ex) {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         } 

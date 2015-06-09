@@ -840,8 +840,7 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
-            "UPDATE resep SET TOTAL_HARGA = " + TOTAL_HARGA 
-                    + " WHERE ID_RESEP = '"+ ID_RESEP +"'");
+            "UPDATE resep SET TOTAL_HARGA = '"+TOTAL_HARGA+"' WHERE ID_RESEP = '"+ ID_RESEP +"'");
         
             statement.executeUpdate();
         }catch(SQLException exception){
@@ -857,18 +856,46 @@ public class ApotekerServiceServer extends UnicastRemoteObject implements Apotek
         }
     }
     
-    public void updatePenukaranResep(Obat_detailResep detail_resep) throws RemoteException {
+    public void updateJumlahPenukaranResep(int Jumlah, String No_Detail_Resep) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Resep");
 
         PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
-                    "UPDATE pembayaran SET JUMLAH = ? " +
-                    "WHERE ID_PEMBAYARAN = ?"
+                    "UPDATE detail_resep SET JUMLAH = ? " +
+                    "WHERE No_Deail_Resep = ?"
                    );
-           statement.setString(1, detail_resep.getId_Resep());
-           statement.setInt(2, detail_resep.getJumlah());
+           statement.setInt(1, Jumlah); 
+           statement.setString(2, No_Detail_Resep);
+
+           statement.executeUpdate();
+
+       }catch(SQLException exception){
+        exception.printStackTrace();
+       }finally{
+           if(statement != null){
+               try{
+                   statement.close();
+               }catch(SQLException exception){
+                exception.printStackTrace();
+               }
+           }
+       }
+    }
+    
+    public void updateHargaPadaResep(Obat_resep resep) throws RemoteException {
+
+        System.out.println("Client Melakukan Proses Update pada Tabel Resep");
+
+        PreparedStatement statement = null;
+       try{
+           statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "UPDATE resep SET TOTAL_HARGA = ? " +
+                    "WHERE ID_RESEP = ?"
+                   );
+           statement.setInt(1, resep.getTotal_Harga());
+           statement.setString (2, resep.getId_Resep());
 
            statement.executeUpdate();
 
