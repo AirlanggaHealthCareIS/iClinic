@@ -11,6 +11,8 @@ import Database.Entity.Kecantikan_transaksiLayanan;
 import Database.Entity.Pembayaran;
 import Database.Service.KecantikanService;
 import ServerApplication.Utilities.DatabaseUtilities;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
@@ -19,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,11 +29,18 @@ import java.util.List;
  * @author ayundhapus
  */
 public class KecantikanServiceServer extends UnicastRemoteObject implements KecantikanService {
-
-    public KecantikanServiceServer() throws RemoteException {
+    TableModelLog tableModelLog;
+    
+    public KecantikanServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+        this.tableModelLog = tableModelLog1;
     }
 
     public boolean insertKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Detail Layanan Kecantikan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -62,12 +72,22 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public void updateKecantikan_detailLayanan(Kecantikan_detailLayanan detail_layanan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Detail Layanan Kecantikan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Detail Layanan Kecantikan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
     }
 
     public void deleteKecantikan_detailLayanan(int Id_Obat) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Detail Layanan Kecantikan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Detail Layanan Kecantikan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
     }
 
@@ -82,6 +102,11 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public List<Kecantikan_detailLayanan> getKecantikan_detailLayanan() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Detail Layanan Kecantikan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Detail Layanan Kecantikan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
         List<Kecantikan_detailLayanan> list = new ArrayList<Kecantikan_detailLayanan>();
         return list;
@@ -118,18 +143,34 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public void updateKecantikan_transaksiLayanan(Kecantikan_transaksiLayanan transaksi_layanan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Transaksi Layanan Kesehatan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Transaksi Layanan Kesehatan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
 
     }
 
     public void deleteKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Transaksi Layanan Kesehatan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Transaksi Layanan Kesehatan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
     }
 
     public Kecantikan_transaksiLayanan getKecantikan_transaksiLayanan(int Id_Transaksi_Layanan) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Transaksi Layanan Kesehatan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Transaksi Layanan Kesehatan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
         Kecantikan_transaksiLayanan transaksi_layanan = null;
         return transaksi_layanan;
@@ -138,6 +179,11 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
     public List<Kecantikan_transaksiLayanan> getKecantikan_transaksiLayanan() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Transaksi Layanan Kesehatan");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Transaksi Layanan Kesehatan");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
 
         List<Kecantikan_transaksiLayanan> list = new ArrayList<Kecantikan_transaksiLayanan>();
         return list;
@@ -242,6 +288,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
     public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idTransaksiLayananKecantikan, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Pembayaran");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
         int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try {
@@ -275,6 +327,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
     public String getAutoNumberDariPembayaran() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
 
@@ -316,6 +374,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
     public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiLayananKecantikan, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Pembayaran");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         try {
@@ -460,6 +524,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
     public String getAutoNumberTransaksi() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
         String number = "";
@@ -508,6 +578,12 @@ public class KecantikanServiceServer extends UnicastRemoteObject implements Keca
 
     public String getAutoNumberDetailTransaksi() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        Log.setAktor("Bagian Kecantikan");
+        tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
         String number = "";
