@@ -3,6 +3,7 @@ package Login_01;
 import Database.Entity.User;
 import ServerApplication.Server;
 import ServerApplication.Service.AdministratorServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.junit.After;
@@ -14,10 +15,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GagalKarenaDataUserTidakTerdaftarDiDatabase implements Remote{
-    Server server;
+    AdministratorServiceServer adminServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
     
     public GagalKarenaDataUserTidakTerdaftarDiDatabase() throws RemoteException{
-        server = new Server();
+        adminServiceServer = new AdministratorServiceServer(tableModelLog);
     }
     
     @BeforeClass
@@ -41,12 +43,13 @@ public class GagalKarenaDataUserTidakTerdaftarDiDatabase implements Remote{
         System.out.println("loginUser");
         String Username = "Putri";
         String Password = "Putri123";
-        AdministratorServiceServer instance = new AdministratorServiceServer();
+        
         User expResult = new User();
         expResult.setId_User("U0001");
         expResult.setNama_User("Kusumaningtyas Aditya Putri");
         expResult.setJabatan("ADMINISTRATOR");
         
-        assertEquals("0", instance.loginUser(Username, Password));
+        String result = adminServiceServer.loginUser(Username, Password);
+        assertEquals("0", result);
     }
 }

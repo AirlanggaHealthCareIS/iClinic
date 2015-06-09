@@ -2,6 +2,7 @@ package MengelolaDataTabelMaster_14;
 
 import Database.Entity.Kecantikan_tabelMaster;
 import ServerApplication.Service.AdministratorServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.junit.After;
@@ -13,9 +14,10 @@ import org.junit.Test;
 
 public class BerhasilMenambahkanDataDiTabelLayananKecantikan implements Remote{
     AdministratorServiceServer adminServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
     
     public BerhasilMenambahkanDataDiTabelLayananKecantikan() throws RemoteException{
-        this.adminServiceServer = new AdministratorServiceServer();
+        this.adminServiceServer = new AdministratorServiceServer(tableModelLog);
     }
     
     @BeforeClass
