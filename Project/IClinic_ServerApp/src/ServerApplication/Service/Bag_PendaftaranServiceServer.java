@@ -9,6 +9,8 @@ import Database.Entity.Antrian;
 import Database.Entity.Pasien;
 import Database.Service.Bag_PendaftaranService;
 import ServerApplication.Utilities.DatabaseUtilities;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
@@ -17,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,12 +29,21 @@ import java.util.logging.Logger;
  * @author Tiara Ratna Sari
  */
 public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements Bag_PendaftaranService {
+     TableModelLog tableModelLog;
+     
+     public Bag_PendaftaranServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+        this.tableModelLog = tableModelLog1;
 
-    public Bag_PendaftaranServiceServer() throws RemoteException {
+    
     }
     @Override
     public void insertPasien(Pasien pasien) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Pasien Lama");
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Insert pada Tabel Pasien Lama");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+       
          PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -68,7 +80,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 }
 
     public void updatePasien(Pasien pasien) throws RemoteException {
-        System.out.println("Client Melakukan Proses Update pada Tabel Pasien Lama");
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Insert pada Tabel Pasien Lama");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
        try{
@@ -128,7 +145,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 //    }
 
     public Pasien getPasien(String Id_Pasien) throws RemoteException {
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Pasien");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
         try {
@@ -171,8 +193,13 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
 
     public Pasien getPasien(int Pasien) throws RemoteException {
         
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Pasien");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
         
-       System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
+       
 
         PreparedStatement statement = null;
         try {
@@ -214,7 +241,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
     
     public Antrian insertAntrian(Antrian antrian) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Antrian");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Insert pada Tabel Antrian");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
          PreparedStatement statement = null;
        try{
            statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -244,7 +276,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
 
     public void updateAntrian(Antrian antrian) throws RemoteException {
-         System.out.println("Client Melakukan Proses Update pada Tabel Antrian");
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Insert pada Tabel Antrian");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+         
 
         PreparedStatement statement = null;
        try{
@@ -275,7 +312,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
     }
 
     public String getAutoNumberAntrian() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Antrian");
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Auto Number dengan Mengakses Tabel Antrian");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
 
@@ -319,7 +361,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
         
 
     public void deleteAntrian(String Id_Antrian) throws RemoteException {
-        System.out.println("Client Melakukan Proses Delete pada Tabel Pendaftaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Delete pada Tabel Pendaftaran");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
        try{
@@ -346,23 +393,39 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
         
 
     public Antrian getAntrian(String Id_Antrian) throws RemoteException {
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Antrian");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Antrian");
+        
         Antrian antrian = null;
         return antrian;
 
     }
 
     public List<Antrian> getAntrian() throws RemoteException {
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Antrian");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Antrian");
+        
         List<Antrian> list = new ArrayList<Antrian>();
         return list;
 
     }
 
     public List<Pasien> getPasien() throws RemoteException {
-        System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Pasien");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+
+        
 
         Statement statement = null;
         try{
@@ -404,7 +467,12 @@ public class Bag_PendaftaranServiceServer extends UnicastRemoteObject implements
         }
     }
     public String getAutoNumber() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pasien");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pasien");
+        Log.setAktor("Bagian Pendaftaran");
+       tableModelLog.insert(Log);
+        
         Statement state = null;
         ResultSet rs = null;
 
