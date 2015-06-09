@@ -1223,7 +1223,7 @@ public class FormDokter extends javax.swing.JFrame {
 
                 Tindakan_detailTindakan detail_tindakan1 = dokterService.insertDetailTindakan(detail_tindakan);
                 tableModelTindakan.insert(detail_tindakan1);
-                dokterService.updateRekam_Medis(rekam_medis);
+                //dokterService.updateRekam_Medis(rekam_medis);
                 clearTindakan();
                 JOptionPane.showMessageDialog(null, "Tindakan berhasil ditambahkan");
 
@@ -1382,6 +1382,7 @@ public class FormDokter extends javax.swing.JFrame {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
 
         try {
+            Rekam_Medis rekam_medis = new Rekam_Medis();
             dokterService.updateAntrian(antrian.getId_Antrian());
             id_Rekam = dokterService.getAutoNumberIdRekam();
             idRekamField.setText(id_Rekam);
@@ -1403,6 +1404,7 @@ public class FormDokter extends javax.swing.JFrame {
                     System.out.println(hargaRM);
                 }
                 clearUser();
+                dokterService.updateRekam_Medis(rekam_medis);
             } catch (RemoteException ex) {
                 Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
             }
