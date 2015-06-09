@@ -44,14 +44,14 @@ public class TableModelLaporanResepPasien extends AbstractTableModel{
     @Override
     public String getColumnName(int column) {
         switch(column){
-            case 0 : return "ID_RESEP";
-            case 1 : return "TOTAL_HARGA";
-            case 2 : return "NAMA_OBAT";
-            case 3 : return "HARGA_OBAT";
-            case 4 : return "JUMLAH_OBAT";
-            case 5 : return "TAKARAN";
-            case 6 : return "PEMAKAIAN";
-            case 7 : return "KETERANGAN";
+            case 0 : return "obat_NAMA_OBAT";
+            case 1 : return "obat_HARGA_OBAT";
+            case 2 : return "resep_ID_RESEP";
+            case 3 : return "resep_TOTAL_HARGA";
+            case 4 : return "detail_resep_TAKARAN";
+            case 5 : return "detail_resep_PEMAKAIAN";
+            case 6 : return "detail_resep_JUMLAH";
+            case 7 : return "detail_resep_KETERANGAN";
             default : return null;
         }
     }
@@ -63,17 +63,17 @@ public class TableModelLaporanResepPasien extends AbstractTableModel{
     public int getColumnCount() {
         return 8;
     }
-
+ 
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 0 : return list.get(rowIndex).getID_RESEP();
-            case 1 : return list.get(rowIndex).getTOTAL_HARGA();
-            case 2 : return list.get(rowIndex).getNAMA_OBAT();
-            case 3 : return list.get(rowIndex).getHARGA_OBAT();
-            case 4 : return list.get(rowIndex).getJUMLAH_OBAT();
-            case 5 : return list.get(rowIndex).getTAKARAN();
-            case 6 : return list.get(rowIndex).getPEMAKAIAN();
-            case 7 : return list.get(rowIndex).getKETERANGAN();
+            case 0 : return list.get(rowIndex).getobat_NAMA_OBAT();
+            case 1 : return list.get(rowIndex).getobat_HARGA_OBAT();
+            case 2 : return list.get(rowIndex).getresep_ID_RESEP();
+            case 3 : return list.get(rowIndex).getresep_TOTAL_HARGA();
+            case 4 : return list.get(rowIndex).getdetail_resep_TAKARAN();
+            case 5 : return list.get(rowIndex).getdetail_resep_PEMAKAIAN();
+            case 6 : return list.get(rowIndex).getdetail_resep_JUMLAH();
+            case 7 : return list.get(rowIndex).getdetail_resep_KETERANGAN();
             default : return null;
         }
     }

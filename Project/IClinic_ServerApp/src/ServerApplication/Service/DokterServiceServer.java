@@ -479,7 +479,7 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
                     + " detail_resep.`JUMLAH` AS detail_resep_JUMLAH,\n"
                     + " detail_resep.`KETERANGAN` AS detail_resep_KETERANGAN\n"
                     + " FROM\n"
-                    + " `obat`,`detail_resep`\n");
+                    + " `obat`,`resep`,`detail_resep`\n");
 
             ResultSet result = statement.executeQuery();
 
@@ -487,13 +487,17 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
             if (result.next()) {
                 LaporanResepPasien laporanResepPasien = new LaporanResepPasien();
-                laporanResepPasien.setID_RESEP(result.getString("ID_RESEP"));
-                laporanResepPasien.setNAMA_OBAT(result.getString("NAMA_OBAT"));
-                laporanResepPasien.setHARGA_OBAT(result.getInt("HARGA_OBAT"));
-                laporanResepPasien.setJUMLAH_OBAT(result.getInt("JUMLAH_OBAT"));
-                laporanResepPasien.setTAKARAN(result.getString("TAKARAN"));
-                laporanResepPasien.setPEMAKAIAN(result.getString("PEMAKAIAN"));
-                laporanResepPasien.setKETERANGAN(result.getString("KETERANGAN"));
+                laporanResepPasien.setobat_NAMA_OBAT(result.getString("obat_NAMA_OBAT"));
+                laporanResepPasien.setobat_HARGA_OBAT(result.getInt("obat_HARGA_OBAT"));
+                laporanResepPasien.setresep_ID_RESEP(result.getString("resep_ID_RESEP"));
+                laporanResepPasien.setresep_TOTAL_HARGA(result.getInt("resep_TOTAL_HARGA"));
+                laporanResepPasien.setdetail_resep_TAKARAN(result.getString("detail_resep_TAKARAN"));
+                laporanResepPasien.setdetail_resep_PEMAKAIAN(result.getString("detail_resep_PEMAKAIAN"));
+                laporanResepPasien.setdetail_resep_JUMLAH(result.getInt("detail_resep_JUMLAH"));
+                laporanResepPasien.setdetail_resep_KETERANGAN(result.getString("detail_resep_KETERANGAN"));
+                
+                
+                
 
                 list.add(laporanResepPasien);
             }
