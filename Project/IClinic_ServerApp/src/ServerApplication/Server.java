@@ -33,7 +33,7 @@ public class Server extends javax.swing.JFrame {
     AdministratorServiceServer administratorServiceServer = new AdministratorServiceServer();
     ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer();
     Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
-    Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer();
+    Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
     DokterServiceServer dokterServiceServer = new DokterServiceServer();
     KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer();
     KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer();

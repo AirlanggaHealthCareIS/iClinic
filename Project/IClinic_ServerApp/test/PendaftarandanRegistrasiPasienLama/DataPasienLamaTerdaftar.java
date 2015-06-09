@@ -7,6 +7,7 @@ package PendaftarandanRegistrasiPasienLama;
 
 import Database.Entity.Pasien;
 import ServerApplication.Service.Bag_PendaftaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.sql.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -17,11 +18,12 @@ import org.junit.Test;
  * @author adammuhammad
  */
 public class DataPasienLamaTerdaftar {
+    TableModelLog tableModelLog=new TableModelLog();
       @Test
     public void testGetPasien_String() throws Exception {
         System.out.println("getPasien");
         String Id_Pasien = "0023";
-        Bag_PendaftaranServiceServer instance = new Bag_PendaftaranServiceServer();
+        Bag_PendaftaranServiceServer instance = new Bag_PendaftaranServiceServer(tableModelLog);
         Pasien expResult = new Pasien();
         expResult.setNama_Pasien("Jordan");
         expResult.setAlamat("sepanjang");

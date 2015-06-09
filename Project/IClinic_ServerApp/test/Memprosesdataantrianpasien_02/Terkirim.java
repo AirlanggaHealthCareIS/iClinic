@@ -9,6 +9,7 @@ package Memprosesdataantrianpasien_02;
 import Database.Entity.Antrian;
 import Database.Entity.Pasien;
 import ServerApplication.Service.Bag_PendaftaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -26,8 +27,9 @@ import org.junit.Test;
  */
 public class Terkirim implements Remote{
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer;
+    TableModelLog tableModelLog=new TableModelLog();
     public Terkirim() throws RemoteException {
-        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer();
+        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
     }
 
     @BeforeClass

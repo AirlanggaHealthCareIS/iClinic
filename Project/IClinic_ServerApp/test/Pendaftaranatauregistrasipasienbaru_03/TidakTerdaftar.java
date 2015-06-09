@@ -8,6 +8,7 @@ package Pendaftaranatauregistrasipasienbaru_03;
 
 import Database.Entity.Pasien;
 import ServerApplication.Service.Bag_PendaftaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -25,8 +26,9 @@ import org.junit.Test;
  */
 public class TidakTerdaftar implements Remote{
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer;
+    TableModelLog tableModelLog=new TableModelLog();
     public TidakTerdaftar() throws RemoteException {
-        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer();
+        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
     }
 
     @BeforeClass

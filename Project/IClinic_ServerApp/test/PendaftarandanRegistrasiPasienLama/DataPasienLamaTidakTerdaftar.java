@@ -7,6 +7,7 @@ package PendaftarandanRegistrasiPasienLama;
 
 import Database.Entity.Pasien;
 import ServerApplication.Service.Bag_PendaftaranServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.util.Date;
 import org.junit.After;
@@ -22,8 +23,9 @@ import org.junit.Test;
  */
 public class DataPasienLamaTidakTerdaftar {
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer;
+    TableModelLog tableModelLog=new TableModelLog();
     public DataPasienLamaTidakTerdaftar() throws RemoteException {
-        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer();
+        this.bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
     }
 
     @BeforeClass
@@ -46,7 +48,7 @@ public class DataPasienLamaTidakTerdaftar {
         System.out.println("insertPasien");
         Pasien pasien = null;
         String Id_Pasien = "P0001";
-        Bag_PendaftaranServiceServer instance = new Bag_PendaftaranServiceServer();
+        Bag_PendaftaranServiceServer instance = new Bag_PendaftaranServiceServer(tableModelLog);
         Pasien expResult = new Pasien();
         expResult.setNo_Ktp("1234567890123456");
         expResult.setNama_Pasien("Anang");
