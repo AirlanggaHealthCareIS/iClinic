@@ -12,6 +12,8 @@ import Database.Entity.Pasien;
 import Database.Entity.Pembayaran;
 import Database.Service.Kepala_KlinikService;
 import ServerApplication.Utilities.DatabaseUtilities;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
@@ -20,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -27,13 +30,19 @@ import java.util.List;
  * @author Tiara Ratna Sari
  */
 public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Kepala_KlinikService {
+    TableModelLog tablemodellog;
 
-    public KepalaKlinikServiceServer() throws RemoteException {
-    }
+    public KepalaKlinikServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+        this.tablemodellog = tableModelLog1;    }
 
     public List<LaporanKeuangan> getLaporanKeuangan() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses laporan keungan");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+        
+        
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
@@ -110,8 +119,13 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
     }
 
     public List<LaporanJumlahPasien> getLaporanJumlahPasien() throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses laporan jumlah pasien");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
@@ -179,8 +193,13 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
     }
 
     public Pembayaran getPembayaran(int Id_Pembayaran) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -221,49 +240,97 @@ public class KepalaKlinikServiceServer extends UnicastRemoteObject implements Ke
 
     public List<Pembayaran> getPembayaran() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Pembayaran");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+        //System.out.println("Client Melakukan Proses Get All pada Tabel Pembayaran");
         List<Pembayaran> list = new ArrayList<Pembayaran>();
         return list;
     }
 
     public Pasien getPasien(int Id_Pasien) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Pasien");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+        //System.out.println("Client Melakukan Proses Get By Id pada Tabel Pasien");
         Pasien pasien = null;
         return pasien;
     }
 
     public List<Pasien> getPasien() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Pasien");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+        //System.out.println("Client Melakukan Proses Get All pada Tabel Pasien");
         List<Pasien> list = new ArrayList<Pasien>();
         return list;
     }
 
     public Antrian getAntrian(int Id_Antrian) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Antrian");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Antrian");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+       // System.out.println("Client Melakukan Proses Get By Id pada Tabel Antrian");
         Antrian antrian = null;
         return antrian;
     }
 
     public List<Antrian> getAntrian() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Antrian");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Antrian");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+        
+        //System.out.println("Client Melakukan Proses Get All pada Tabel Antrian");
         List<Antrian> list = new ArrayList<Antrian>();
         return list;
     }
 
     public Obat_detailResep getObat_detailResep(int Id_Obat) throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+        //System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Resep");
         Obat_detailResep detail_resep = null;
         return detail_resep;
     }
 
     public List<Obat_detailResep> getObat_detailResep() throws RemoteException {
 
-        System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses Get All pada Tabel Detail Resep");
+        Log.setAktor("Kepala Klinik");
+        tablemodellog.insert(Log);
+
+        
+        //System.out.println("Client Melakukan Proses Get All pada Tabel Detail Resep");
         List<Obat_detailResep> list = new ArrayList<Obat_detailResep>();
         return list;
     }
