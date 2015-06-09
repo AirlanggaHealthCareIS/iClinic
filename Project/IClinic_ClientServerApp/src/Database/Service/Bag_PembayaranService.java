@@ -27,12 +27,13 @@ public interface Bag_PembayaranService extends Remote {
 
     List<Pembayaran> getPembayaran() throws RemoteException;
 
-    List<Pembayaran> getPembayaranPrint(String idPmbayaran) throws RemoteException;
+    List<Pembayaran> getPembayaranPrintLk(String idPmbayaran) throws RemoteException;
+
+    List<Pembayaran> getPembayaranPrintPo(String idPmbayaran) throws RemoteException;
 
     public List<Obat_detailResep> getObat_detailresep(String ID_RESEP) throws RemoteException;
 
 //    List<Obat_detailResepPrint> getObat_detailresepPrint(String ID_RESEP) throws RemoteException;
-
     Pembayaran MeihatTotalTagihanPembayaran(String ID_PASIEN) throws RemoteException;
 
     public Pembayaran MeihatTotalTagihanPembelianObat(String Id_Resep) throws RemoteException;

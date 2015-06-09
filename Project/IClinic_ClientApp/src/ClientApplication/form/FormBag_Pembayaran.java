@@ -664,7 +664,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private void buttonLk_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLk_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
-            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrint(FieldLk_idPembayaran.getText()));
+            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrintLk(FieldLk_idPembayaran.getText()));
             JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
             HashMap hash = new HashMap();
             //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());
@@ -766,7 +766,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private void buttonPo_PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPo_PrintActionPerformed
         JasperPrint jasperPrint = null;
         try {
-            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrint(FieldLk_idPembayaran.getText()));
+            tableModelPembayaranPrint.setData(this.bag_PembayaranService.getPembayaranPrintPo(FieldPo_idPembayaran.getText()));
             JasperCompileManager.compileReportToFile("src/Report/buktiPembayaran.jrxml");
             HashMap hash = new HashMap();
             //            hash.put("ID_PEMBAYARAN",FieldLk_idPembayaran.getText());

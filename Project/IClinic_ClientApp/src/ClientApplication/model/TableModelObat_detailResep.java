@@ -61,7 +61,6 @@ public class TableModelObat_detailResep extends AbstractTableModel {
 
 
     public int getRowCount() {
-        System.out.println(list.size());
         return list.size();
     }
 

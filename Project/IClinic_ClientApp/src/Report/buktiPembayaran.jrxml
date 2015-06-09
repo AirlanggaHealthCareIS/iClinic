@@ -187,7 +187,7 @@ WHERE
 				<text><![CDATA[BIAYA DOKTER]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="268" y="56" width="92" height="18" uuid="456e1f5b-bfad-4853-9069-2dd0c5d04c80"/>
+				<reportElement style="Detail" positionType="Float" x="268" y="74" width="92" height="18" uuid="456e1f5b-bfad-4853-9069-2dd0c5d04c80"/>
 				<textElement>
 					<font fontName="Caviar Dreams" size="14"/>
 				</textElement>
@@ -201,7 +201,7 @@ WHERE
 				<text><![CDATA[BIAYA OBAT]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="268" y="74" width="92" height="18" uuid="f5ab2fe2-5133-4f6f-95cb-86c2cdf23ee4"/>
+				<reportElement style="Detail" positionType="Float" x="268" y="56" width="92" height="18" uuid="f5ab2fe2-5133-4f6f-95cb-86c2cdf23ee4"/>
 				<textElement>
 					<font fontName="Caviar Dreams" size="14"/>
 				</textElement>
@@ -264,14 +264,14 @@ WHERE
 				<textFieldExpression><![CDATA[$F{TOTAL_LAB}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="360" y="56" width="94" height="18" uuid="7155621d-022f-4e0b-b74d-42581bf2fe20"/>
+				<reportElement style="Detail" positionType="Float" x="360" y="74" width="94" height="18" uuid="7155621d-022f-4e0b-b74d-42581bf2fe20"/>
 				<textElement>
 					<font fontName="Caviar Dreams" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_RESEP}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="360" y="74" width="94" height="18" uuid="d672a348-7d4a-4802-ac22-aa11213dd23b"/>
+				<reportElement style="Detail" positionType="Float" x="360" y="56" width="94" height="18" uuid="d672a348-7d4a-4802-ac22-aa11213dd23b"/>
 				<textElement>
 					<font fontName="Caviar Dreams" size="14"/>
 				</textElement>

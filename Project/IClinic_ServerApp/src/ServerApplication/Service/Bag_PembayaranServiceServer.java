@@ -283,7 +283,7 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
         }
     }
 
-    public List<Pembayaran> getPembayaranPrint(String idPembayaran) throws RemoteException {
+    public List<Pembayaran> getPembayaranPrintLk(String idPembayaran) throws RemoteException {
         log Log = new log();
         Log.setTanggal(Calendar.getInstance().getTime());
         Log.setKegiatan("Melakukan Proses Get All pada Tabel Pembayaran");
@@ -358,6 +358,56 @@ public class Bag_PembayaranServiceServer extends UnicastRemoteObject implements 
                 result = statement.executeQuery();
                 if (result.next()) {
                     pembayaran.setTOTAL_KECANTIKAN(result.getInt("KECANTIKAN"));
+                }
+                list.add(pembayaran);
+            }
+            return list;
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+    }
+    public List<Pembayaran> getPembayaranPrintPo(String idPembayaran) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Pembayaran");
+        Log.setAktor("Bagian Pembayaran");
+        tableModelLog.insert(Log);
+
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        try {
+            statement = DatabaseUtilities.getConnection().prepareStatement(
+                    "SELECT pembayaran.ID_PEMBAYARAN AS ID, pembayaran.TANGGAL_BAYAR AS TANGGAL, pembayaran.TOTAL_HARGA AS TOTAL_HARGA, pembayaran.STATUS AS STATUS\n"
+                    + "FROM pembayaran\n"
+                    + "WHERE pembayaran.ID_PEMBAYARAN = '" + idPembayaran + "'");
+            result = statement.executeQuery();
+            List<Pembayaran> list = new ArrayList<Pembayaran>();
+            Pembayaran pembayaran = null;
+            while (result.next()) {
+                pembayaran = new Pembayaran();
+                pembayaran.setID_PEMBAYARAN(result.getString("ID"));
+                pembayaran.setNAMA_PASIEN("PEMBELIAN OBAT");
+                pembayaran.setTANGGAL_BAYAR(result.getDate("TANGGAL"));
+                pembayaran.setTOTAL_HARGA(result.getInt("TOTAL_HARGA"));
+                pembayaran.setSTATUS(result.getString("STATUS"));
+
+                statement = DatabaseUtilities.getConnection().prepareStatement(
+                        "SELECT resep.TOTAL_HARGA AS RESEP "
+                        + "FROM resep,pembayaran "
+                        + "WHERE pembayaran.ID_PEMBAYARAN = '" + idPembayaran + "' "
+                        + "AND pembayaran.ID_RESEP = resep.ID_RESEP");
+                result = statement.executeQuery();
+                if (result.next()) {
+                    pembayaran.setTOTAL_RESEP(result.getInt("RESEP"));
                 }
                 list.add(pembayaran);
             }

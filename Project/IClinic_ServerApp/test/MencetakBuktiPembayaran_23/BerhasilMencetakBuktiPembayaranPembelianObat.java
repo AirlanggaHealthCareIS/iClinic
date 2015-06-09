@@ -48,7 +48,7 @@ public class BerhasilMencetakBuktiPembayaranPembelianObat implements Remote {
     }
 
     @Test
-    public void testMencetakBuktiPembayaranLayananKesehatan() throws Exception {
+    public void testMencetakBuktiPembayaranPembelianObat() throws Exception {
         System.out.println("MencetakBuktiPembayaranLayananKesehatan");
 
         bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
