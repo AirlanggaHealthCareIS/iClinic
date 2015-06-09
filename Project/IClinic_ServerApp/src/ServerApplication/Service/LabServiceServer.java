@@ -12,6 +12,8 @@ import Database.Entity.Pembayaran;
 import java.sql.Blob;
 import Database.Service.LabService;
 import ServerApplication.Utilities.DatabaseUtilities;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
@@ -21,6 +23,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,14 +34,21 @@ import java.util.logging.Logger;
  */
 
 public class LabServiceServer extends UnicastRemoteObject implements LabService {
+TableModelLog tableModelLog;
 
-    public LabServiceServer() throws RemoteException {
+    public LabServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+         this.tableModelLog = tableModelLog1;
     }
 
     
     public boolean insertLab_detailLab (Lab_detailLab detail_lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Insert pada Tabel Detail Lab");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Detail Lab");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try {
@@ -72,6 +82,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     public Lab_detailLab getLab_detailLab(String Id_Detail_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Detail Lab");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Detail Lab");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         Lab_detailLab detail_lab = null;
         return detail_lab;
@@ -80,12 +95,22 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
      public List<Lab_detailLab> getLab_detailLab() throws RemoteException {
 
         System.out.println("Client Melakukan Proses Get All pada Tabel Detail Lab");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Detail Lab");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         
         List<Lab_detailLab> list = new ArrayList<Lab_detailLab>();
         return list;
     }
      
     public boolean insertLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Transaksi Lab");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
     PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -113,12 +138,22 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         }
     }
     public void updateLab_transaksiLab(Lab_transaksiLab transaksi_lab) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Transaksi Layanan Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         System.out.println("Client Melakukan Proses Update pada Tabel Transaksi Layanan Laboratorium");
 
     }
 
     public void deleteLab_transaksiLab(int Id_Transaksi_Lab) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Transaksi Layanan Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Transaksi Layanan Laboratorium");
 
@@ -126,6 +161,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 
     
      public Lab_transaksiLab getLab_transaksiLab (int Id_Transaksi_Lab) throws RemoteException {
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get By Id pada Tabel Transaksi Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         System.out.println("Client Melakukan Proses Get By Id pada Tabel Transaksi Laboratorium");
 
@@ -137,6 +177,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
       public List<Lab_transaksiLab> getLab_transaksiLab() throws RemoteException {
         
         System.out.println("Client Melakukan Proses Get All pada Tabel Transaksi Laboratorium");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Transaksi Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         List<Lab_transaksiLab> list = new ArrayList<Lab_transaksiLab>();
         return list;
@@ -146,6 +191,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     public List<Lab_tabelMaster> getLaboratorium() throws RemoteException {
         
         System.out.println("Client Melakukan Proses Get All pada Tabel Laboratorium");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         PreparedStatement statement = null;
         try{
@@ -185,6 +235,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
         System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         Statement state = null;
         ResultSet rs = null;
@@ -211,6 +266,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     
     public Pembayaran getPembayaranDariPembayaran (String idPembayaran)throws RemoteException {
         System.out.println("Client Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         System.out.println(date);
         PreparedStatement statement = null;
@@ -253,6 +313,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     
     public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idTransaksiLab, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Pembayaran");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try{
@@ -286,6 +351,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     
     public String getAutoNumberDariPembayaran() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         Statement state = null;
         ResultSet rs = null;
         
@@ -331,6 +401,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     
     public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiLab, int Harga) throws RemoteException {
         System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Proses Insert pada Tabel Pembayaran");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         PreparedStatement statement = null;
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         try{
@@ -364,6 +439,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     }
 
      public Antrian getPasienSelanjutnya() throws RemoteException {
+         log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses getPasienSelanjutnya pada Database Antrian");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -394,6 +474,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
         }
     }
       public Boolean getPasienId(String Id_Pasien) throws RemoteException {
+          log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses getPasienId pada DataBase Pasien");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -421,6 +506,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
       }
 
     public String getNamaPasien(String Id_Pasien) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses getNamaPasien pada database Pasien");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -448,6 +538,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
     }
 
     public Boolean updateAntrian(Antrian antrian) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update Status Antrian pada DataBase");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         PreparedStatement statement = null;
         try{
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -474,6 +569,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 
     public String getAutoNumberTransaksi() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Transaksi");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         Statement state = null;
         ResultSet rs = null;
         String number = "";
@@ -522,6 +622,11 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
 
     public String getAutoNumberDetailTransaksi() throws RemoteException {
         System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Detail Transaksi");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
         Statement state = null;
         ResultSet rs = null;
         String number = "";
@@ -571,12 +676,22 @@ public class LabServiceServer extends UnicastRemoteObject implements LabService 
  public void updateLab_detailLab(Lab_detailLab detail_lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Update pada Tabel Detail Layanan Laboratorium");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update pada Tabel Detail Layanan Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
     }
 
     public void deleteLab_detailLab(int Id_Detail_Lab) throws RemoteException {
 
         System.out.println("Client Melakukan Proses Delete pada Tabel Detail Layanan Laboratorium");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Delete pada Tabel Detail Layanan Laboratorium");
+        Log.setAktor("Bagian Laboratorium");
+       tableModelLog.insert(Log);
 
         
          

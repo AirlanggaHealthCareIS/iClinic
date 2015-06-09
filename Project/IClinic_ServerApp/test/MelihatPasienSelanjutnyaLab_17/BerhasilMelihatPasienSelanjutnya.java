@@ -6,6 +6,7 @@ package MelihatPasienSelanjutnyaLab_17;
 
 import Database.Entity.Antrian;
 import ServerApplication.Service.LabServiceServer;
+import ServerApplication.model.TableModelLog;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.junit.After;
@@ -16,6 +17,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+
 /**
  *
  * @author Erin
@@ -25,22 +27,52 @@ import static org.junit.Assert.fail;
 
 
 public class BerhasilMelihatPasienSelanjutnya implements Remote{
-
+    LabServiceServer labServiceServer;
+    TableModelLog tableModelLog = new TableModelLog();
     
     public BerhasilMelihatPasienSelanjutnya() throws RemoteException{
-        
+        this.labServiceServer = new LabServiceServer(tableModelLog);
+    }
+    
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() throws RemoteException {
+    }
+
+    @After
+    public void tearDown() {
     }
     
     
      @Test
     public void testGetPasienSelanjutnya() throws Exception {
         System.out.println("getPasienSelanjutnya");
-        LabServiceServer instance = new LabServiceServer();
-        Antrian expResult = null;
-        Antrian result = instance.getPasienSelanjutnya();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Antrian instance = new Antrian();
+        instance.setId_Antrian("ANT0001");
+        instance.setId_Pasien("P0001");
+        instance.setJenis_Antrian("LABORATORIUM");
+        instance.setKeterangan("BELUM");
+        
+        Antrian expResult = new Antrian();
+        expResult.setId_Antrian("ANT0001");
+        expResult.setId_Pasien("P0001");
+        expResult.setJenis_Antrian("LABORATORIUM");
+        expResult.setKeterangan("BELUM");
+        
+        Antrian result = labServiceServer.getPasienSelanjutnya();
+        assertEquals(expResult.getId_Antrian(), result.getId_Antrian());
+        assertEquals(expResult.getId_Pasien(), result.getId_Pasien());
+        assertEquals(expResult.getJenis_Antrian(), result.getJenis_Antrian());
+        assertEquals(expResult.getKeterangan(), result.getKeterangan());
     }
 
     /**
@@ -49,13 +81,8 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     @Test
     public void testGetPasienId() throws Exception {
         System.out.println("getPasienId");
-        String Id_Pasien = "";
-        LabServiceServer instance = new LabServiceServer();
-        Boolean expResult = null;
-        Boolean result = instance.getPasienId(Id_Pasien);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        
     }
 
     /**
@@ -64,31 +91,8 @@ public class BerhasilMelihatPasienSelanjutnya implements Remote{
     @Test
     public void testGetNamaPasien() throws Exception {
         System.out.println("getNamaPasien");
-        String Id_Pasien = "P0001";
-        LabServiceServer instance = new LabServiceServer();
-        String expResult = "Agus";
-        String result = instance.getNamaPasien(Id_Pasien);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
-    /**
-     * Test of updateAntrian method, of class LabServiceServer.
-     */
-//    @Test
-//    public void testUpdateAntrian() throws Exception {
-//        System.out.println("updateAntrian");
-//        Antrian antrian = null;
-//        LabServiceServer instance = new LabServiceServer();
-//        Boolean expResult = null;
-//        Boolean result = instance.updateAntrian(antrian);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
-    
-//    } 
-   
-    
     
