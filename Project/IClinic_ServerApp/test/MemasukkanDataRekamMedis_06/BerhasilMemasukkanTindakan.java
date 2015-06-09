@@ -50,6 +50,7 @@ public class BerhasilMemasukkanTindakan implements Remote{
     public void testGetAutoNumberDetail() throws Exception {
         System.out.println("getAutoNumberDetail");
         
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);        
         String expResult = "DET0001";
         String result = dokterServiceServer.getAutoNumberNoDetail();
         assertEquals(expResult, result);
@@ -58,7 +59,7 @@ public class BerhasilMemasukkanTindakan implements Remote{
     @Test
     public void testInsertDetail() throws Exception {
         System.out.println("insertDetail");
-        
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);        
         Tindakan_detailTindakan instance = new Tindakan_detailTindakan();
 //        instance.setNo_Detail("DET0001");
   //      instance.setId_Rekam("REK0006");
@@ -80,6 +81,7 @@ public class BerhasilMemasukkanTindakan implements Remote{
 
     @Test
     public void testGetAutoNumberDetailTindakan() throws Exception {
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);
         System.out.println("getAutoNumberDetailTindakan");
         
         String expResult = "DET0001";

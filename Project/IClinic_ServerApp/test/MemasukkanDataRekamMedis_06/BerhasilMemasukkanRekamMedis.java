@@ -60,6 +60,7 @@ public class BerhasilMemasukkanRekamMedis implements Remote{
     public void testInsertRekam() throws Exception {
         System.out.println("insertRekam");
         
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);
         Rekam_Medis instance = new Rekam_Medis();
         instance.setId_Penyakit("P0001");
         instance.setTinggi(123);
@@ -98,6 +99,7 @@ public class BerhasilMemasukkanRekamMedis implements Remote{
 
     @Test
     public void testGetAutoNumberRekam() throws Exception {
+        this.dokterServiceServer = new DokterServiceServer(tableModelLog);        
         System.out.println("getAutoNumberRekam");
         
         String expResult = "REK0007";
