@@ -8,7 +8,6 @@ package ClientApplication.form;
 import ClientApplication.FormLogin;
 import ClientApplication.Splash;
 import ClientApplication.model.TableModelObat_detailResep;
-import ClientApplication.model.TableModelObat_detailResepPrint;
 import ClientApplication.model.TableModelPembayaran;
 import ClientApplication.model.TableModelPembayaranPrint;
 import Database.Entity.Pembayaran;
@@ -59,7 +58,7 @@ public class FormBag_Pembayaran extends javax.swing.JFrame {
     private TableModelPembayaranPrint tableModelPembayaranPrint = new TableModelPembayaranPrint();
     private TableModelPembayaran tableModelPembayaran = new TableModelPembayaran();
     private TableModelObat_detailResep tableModelObat_detailResep = new TableModelObat_detailResep();
-    private TableModelObat_detailResepPrint tableModelObat_detailResepPrint = new TableModelObat_detailResepPrint();
+//    private TableModelObat_detailResepPrint tableModelObat_detailResepPrint = new TableModelObat_detailResepPrint();
     private Bag_PembayaranService bag_PembayaranService;
     
     public FormBag_Pembayaran(Bag_PembayaranService bag_PembayaranService) {
