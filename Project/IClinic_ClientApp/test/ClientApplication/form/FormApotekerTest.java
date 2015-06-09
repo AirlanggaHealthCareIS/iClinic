@@ -43,7 +43,7 @@ public class FormApotekerTest {
     public void testClear() {
         System.out.println("clear");
         FormApoteker instance = null;
-        instance.clear();
+//        instance.clear();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

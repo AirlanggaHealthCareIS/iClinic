@@ -96,9 +96,7 @@ public class FormApoteker extends javax.swing.JFrame {
         });
     }
 
-    public void clear() {
-        TextField_IdResep.setText("");
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -239,11 +237,6 @@ public class FormApoteker extends javax.swing.JFrame {
         jTotalHargaPRLabel21.setBounds(350, 580, 106, 22);
 
         TotalHargaPRTextField13.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        TotalHargaPRTextField13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TotalHargaPRTextField13ActionPerformed(evt);
-            }
-        });
         jPanel5.add(TotalHargaPRTextField13);
         TotalHargaPRTextField13.setBounds(480, 580, 189, 31);
 
@@ -329,29 +322,14 @@ public class FormApoteker extends javax.swing.JFrame {
         jJumlahPRLabel.setBounds(690, 450, 106, 22);
 
         jTotalPRTextField1.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jTotalPRTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTotalPRTextField1ActionPerformed(evt);
-            }
-        });
         jPanel5.add(jTotalPRTextField1);
         jTotalPRTextField1.setBounds(800, 510, 189, 33);
 
         jNamaObatPRTextField2.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jNamaObatPRTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNamaObatPRTextField2ActionPerformed(evt);
-            }
-        });
         jPanel5.add(jNamaObatPRTextField2);
         jNamaObatPRTextField2.setBounds(134, 448, 186, 33);
 
         jJumlahPRTextField3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jJumlahPRTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jJumlahPRTextField3ActionPerformed(evt);
-            }
-        });
         jJumlahPRTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jJumlahPRTextField3KeyReleased(evt);
@@ -361,11 +339,6 @@ public class FormApoteker extends javax.swing.JFrame {
         jJumlahPRTextField3.setBounds(800, 450, 186, 33);
 
         jHargaPRTextField4.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
-        jHargaPRTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jHargaPRTextField4ActionPerformed(evt);
-            }
-        });
         jPanel5.add(jHargaPRTextField4);
         jHargaPRTextField4.setBounds(134, 515, 186, 33);
 
@@ -406,22 +379,17 @@ public class FormApoteker extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 namaObatComboBoxItemStateChanged(evt);
-            }
-        });
-        namaObatComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaObatComboBoxActionPerformed(evt);
             }
         });
 
@@ -432,19 +400,9 @@ public class FormApoteker extends javax.swing.JFrame {
 
         takaranSatuanWaktuComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         takaranSatuanWaktuComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sehari", "seminggu" }));
-        takaranSatuanWaktuComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                takaranSatuanWaktuComboBoxActionPerformed(evt);
-            }
-        });
 
         pemakaianComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         pemakaianComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Cara Pemakaian --", "Diminum", "Dioleskan", "Disuntukkan" }));
-        pemakaianComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pemakaianComboBoxActionPerformed(evt);
-            }
-        });
 
         hargaField.setEditable(false);
         hargaField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
@@ -580,11 +538,6 @@ public class FormApoteker extends javax.swing.JFrame {
 
         totalHargaObatField.setEditable(false);
         totalHargaObatField.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
-        totalHargaObatField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalHargaObatFieldActionPerformed(evt);
-            }
-        });
 
         prosesButton.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         prosesButton.setText("Proses");
@@ -681,6 +634,9 @@ public class FormApoteker extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void HapusMelihatResep() {
+        TextField_IdResep.setText("");
+    }
 
      private void clearFormPembelianObat() {
         idResepField.setText("");
@@ -704,6 +660,8 @@ public class FormApoteker extends javax.swing.JFrame {
         TotalHargaPRTextField13.setText("");
     }
      
+     //Melihat Resep
+     
     private void Button_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_SearchActionPerformed
         if (TextField_IdResep.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Anda Belum menginputkan ID RESEP");
@@ -719,12 +677,11 @@ public class FormApoteker extends javax.swing.JFrame {
                 exception.printStackTrace();
             }
         }
+        HapusMelihatResep();
     }//GEN-LAST:event_Button_SearchActionPerformed
 
-    private void TotalHargaPRTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalHargaPRTextField13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TotalHargaPRTextField13ActionPerformed
-
+    //Penukaran Resep
+    
     private void PenukaranResepTable3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PenukaranResepTable3KeyReleased
         int row = PenukaranResepTable3.getSelectedRow();
 
@@ -777,6 +734,7 @@ public class FormApoteker extends javax.swing.JFrame {
         Obat_resep resep = new Obat_resep();
         try {
             apotekerService.updateResep(resep, IDResepPRTextField1.getText(), Integer.parseInt(TotalHargaPRTextField13.getText()));
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dikirim ke Bagian Pembayaran");
             //-----Pembayaran-----//
             String idResepPR = IDResepPRTextField1.getText();
             int harga = Integer.parseInt(TotalHargaPRTextField13.getText());
@@ -799,10 +757,6 @@ public class FormApoteker extends javax.swing.JFrame {
         clearFormPenukaranResep();
     }//GEN-LAST:event_ProsesPRButton3ActionPerformed
 
-    private void jNamaObatPRTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNamaObatPRTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNamaObatPRTextField2ActionPerformed
-
     private void jJumlahPRTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jJumlahPRTextField3KeyReleased
         int row = PenukaranResepTable3.getSelectedRow();
         int totalPerObat = 0;
@@ -823,11 +777,15 @@ public class FormApoteker extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jJumlahPRTextField3KeyReleased
 
+    // Melihat Resep
+    
     private void GoToPenukaranResepButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToPenukaranResepButton1ActionPerformed
         LihatResepTabbedPane1.setEnabledAt(1, true);
         LihatResepTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_GoToPenukaranResepButton1ActionPerformed
 
+    // Pembelian Obat
+    
     private void namaObatComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_namaObatComboBoxPopupMenuWillBecomeVisible
 
         namaObatComboBox.removeAllItems();
@@ -855,18 +813,6 @@ public class FormApoteker extends javax.swing.JFrame {
             Logger.getLogger(FormApoteker.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_namaObatComboBoxItemStateChanged
-
-    private void namaObatComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaObatComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namaObatComboBoxActionPerformed
-
-    private void takaranSatuanWaktuComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takaranSatuanWaktuComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_takaranSatuanWaktuComboBoxActionPerformed
-
-    private void pemakaianComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemakaianComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pemakaianComboBoxActionPerformed
 
      
     private void simpanObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanObatButtonActionPerformed
@@ -908,6 +854,7 @@ public class FormApoteker extends javax.swing.JFrame {
                 exception.printStackTrace();
             }
         }
+        clearFormPembelianObat();
     }//GEN-LAST:event_simpanObatButtonActionPerformed
 
     private void tambahObatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahObatButtonActionPerformed
@@ -958,6 +905,7 @@ public class FormApoteker extends javax.swing.JFrame {
         Obat_resep resep = new Obat_resep();
         try {
             apotekerService.updateResep(resep, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dikirim ke Bagian Pembayaran");
             //-----Pembayaran-----//
             String idPembayaran = apotekerService.getAutoNumberDariPembayaran();
             apotekerService.insertPembayaranDariPembayaran(idPembayaran, null, idResepField.getText(), Integer.parseInt(totalHargaObatField.getText()));
@@ -966,22 +914,6 @@ public class FormApoteker extends javax.swing.JFrame {
             Logger.getLogger(FormDokter.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_prosesButtonActionPerformed
-
-    private void jTotalPRTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTotalPRTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTotalPRTextField1ActionPerformed
-
-    private void jHargaPRTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHargaPRTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jHargaPRTextField4ActionPerformed
-
-    private void jJumlahPRTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jJumlahPRTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jJumlahPRTextField3ActionPerformed
-
-    private void totalHargaObatFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalHargaObatFieldActionPerformed
-
-    }//GEN-LAST:event_totalHargaObatFieldActionPerformed
     /**
      * @param args the command line arguments
      */
