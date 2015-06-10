@@ -464,6 +464,12 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
     }
 
     public List<LaporanResepPasien> getLaporanResepPasien() throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Client Melakukan Proses getLaporanResepPasien");
+        Log.setAktor("Dokter");
+        tableModelLog.insert(Log);
+
 
         //System.out.println("Client Melakukan Proses Get By Id pada Tabel Pembayaran");
         PreparedStatement statement = null;
@@ -487,14 +493,14 @@ public class DokterServiceServer extends UnicastRemoteObject implements DokterSe
 
             if (result.next()) {
                 LaporanResepPasien laporanResepPasien = new LaporanResepPasien();
-                laporanResepPasien.setobat_NAMA_OBAT(result.getString("obat_NAMA_OBAT"));
-                laporanResepPasien.setobat_HARGA_OBAT(result.getInt("obat_HARGA_OBAT"));
-                laporanResepPasien.setresep_ID_RESEP(result.getString("resep_ID_RESEP"));
-                laporanResepPasien.setresep_TOTAL_HARGA(result.getInt("resep_TOTAL_HARGA"));
-                laporanResepPasien.setdetail_resep_TAKARAN(result.getString("detail_resep_TAKARAN"));
-                laporanResepPasien.setdetail_resep_PEMAKAIAN(result.getString("detail_resep_PEMAKAIAN"));
-                laporanResepPasien.setdetail_resep_JUMLAH(result.getInt("detail_resep_JUMLAH"));
-                laporanResepPasien.setdetail_resep_KETERANGAN(result.getString("detail_resep_KETERANGAN"));
+                laporanResepPasien.setNAMA_OBAT(result.getString("obat_NAMA_OBAT"));
+                laporanResepPasien.setHARGA_OBAT(result.getInt("obat_HARGA_OBAT"));
+                laporanResepPasien.setID_RESEP(result.getString("resep_ID_RESEP"));
+                laporanResepPasien.setTOTAL_HARGA(result.getInt("resep_TOTAL_HARGA"));
+                laporanResepPasien.setTAKARAN(result.getString("detail_resep_TAKARAN"));
+                laporanResepPasien.setPEMAKAIAN(result.getString("detail_resep_PEMAKAIAN"));
+                laporanResepPasien.setJUMLAH(result.getInt("detail_resep_JUMLAH"));
+                laporanResepPasien.setKETERANGAN(result.getString("detail_resep_KETERANGAN"));
                 
                 
                 

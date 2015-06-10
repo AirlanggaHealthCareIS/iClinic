@@ -66,14 +66,14 @@ public class TableModelLaporanResepPasien extends AbstractTableModel{
  
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 0 : return list.get(rowIndex).getobat_NAMA_OBAT();
-            case 1 : return list.get(rowIndex).getobat_HARGA_OBAT();
-            case 2 : return list.get(rowIndex).getresep_ID_RESEP();
-            case 3 : return list.get(rowIndex).getresep_TOTAL_HARGA();
-            case 4 : return list.get(rowIndex).getdetail_resep_TAKARAN();
-            case 5 : return list.get(rowIndex).getdetail_resep_PEMAKAIAN();
-            case 6 : return list.get(rowIndex).getdetail_resep_JUMLAH();
-            case 7 : return list.get(rowIndex).getdetail_resep_KETERANGAN();
+            case 0 : return list.get(rowIndex).getNAMA_OBAT();
+            case 1 : return list.get(rowIndex).getHARGA_OBAT();
+            case 2 : return list.get(rowIndex).getID_RESEP();
+            case 3 : return list.get(rowIndex).getTOTAL_HARGA();
+            case 4 : return list.get(rowIndex).getTAKARAN();
+            case 5 : return list.get(rowIndex).getPEMAKAIAN();
+            case 6 : return list.get(rowIndex).getJUMLAH();
+            case 7 : return list.get(rowIndex).getKETERANGAN();
             default : return null;
         }
     }
