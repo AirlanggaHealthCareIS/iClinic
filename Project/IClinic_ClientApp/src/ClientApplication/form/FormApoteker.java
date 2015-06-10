@@ -235,11 +235,11 @@ public class FormApoteker extends javax.swing.JFrame {
         jTotalHargaPRLabel21.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jTotalHargaPRLabel21.setText("Total Harga");
         jPanel5.add(jTotalHargaPRLabel21);
-        jTotalHargaPRLabel21.setBounds(350, 580, 106, 22);
+        jTotalHargaPRLabel21.setBounds(350, 560, 106, 22);
 
         TotalHargaPRTextField13.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jPanel5.add(TotalHargaPRTextField13);
-        TotalHargaPRTextField13.setBounds(480, 580, 189, 31);
+        TotalHargaPRTextField13.setBounds(480, 560, 189, 31);
 
         PenukaranResepTable3.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         PenukaranResepTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -300,7 +300,7 @@ public class FormApoteker extends javax.swing.JFrame {
             }
         });
         jPanel5.add(ProsesPRButton3);
-        ProsesPRButton3.setBounds(10, 660, 980, 40);
+        ProsesPRButton3.setBounds(10, 620, 980, 40);
 
         jTotalPRLabel.setFont(new java.awt.Font("Caviar Dreams", 1, 14)); // NOI18N
         jTotalPRLabel.setText("Total");
@@ -380,12 +380,12 @@ public class FormApoteker extends javax.swing.JFrame {
         namaObatComboBox.setFont(new java.awt.Font("Caviar Dreams", 0, 14)); // NOI18N
         namaObatComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Nama Obat --" }));
         namaObatComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 namaObatComboBoxPopupMenuWillBecomeVisible(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
         });
         namaObatComboBox.addItemListener(new java.awt.event.ItemListener() {
@@ -610,7 +610,7 @@ public class FormApoteker extends javax.swing.JFrame {
         );
 
         jPanel2.add(resepPanel);
-        resepPanel.setBounds(0, 220, 1280, 429);
+        resepPanel.setBounds(0, 210, 1280, 429);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background/3.jpg"))); // NOI18N
         jPanel2.add(jLabel2);

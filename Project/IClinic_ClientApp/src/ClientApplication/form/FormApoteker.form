@@ -210,7 +210,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="580" width="106" height="22"/>
+                  <AbsoluteConstraints x="350" y="560" width="106" height="22"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -222,7 +222,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="480" y="580" width="189" height="31"/>
+                  <AbsoluteConstraints x="480" y="560" width="189" height="31"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -327,7 +327,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="660" width="980" height="40"/>
+                  <AbsoluteConstraints x="10" y="620" width="980" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -464,7 +464,7 @@
             <Container class="javax.swing.JPanel" name="resepPanel">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="220" width="1280" height="-1"/>
+                  <AbsoluteConstraints x="0" y="210" width="1280" height="-1"/>
                 </Constraint>
               </Constraints>
 
