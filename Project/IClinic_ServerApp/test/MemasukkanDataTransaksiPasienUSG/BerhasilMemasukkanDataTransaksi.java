@@ -16,22 +16,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import ServerApplication.model.TableModelLog;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author Arline
  */
-public class BerhasilMemasukkanDataTransaksi {
+public class BerhasilMemasukkanDataTransaksi implements Remote{
+        USGServiceServer usgServiceServer;
+        TableModelLog tableModelLog = new TableModelLog();
     
+     public BerhasilMemasukkanDataTransaksi ()throws RemoteException {
+        this.usgServiceServer = new USGServiceServer(tableModelLog);
+    }
+     
+     
      /**
      * Test of getUSG method, of class USGServiceServer.
      */
     @Test
     public void testGetUSG_String() throws Exception {
         System.out.println("getUSG");
+        this.usgServiceServer = new USGServiceServer(tableModelLog);
         USG usg=new USG();
-        usg.setId_USG("USG0007");
-        usg.setId_pasien("P0003");
+        usg.setId_USG("USG0001");
+        usg.setId_pasien("P0001");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
           Date date = new Date();
           String now = dateFormat.format(date);
@@ -44,18 +55,19 @@ public class BerhasilMemasukkanDataTransaksi {
         usg.setHasil(null);
         usg.setDeskripsi("sehat");
         usg.setHarga(100000);
-        String Id_USG = "USG0007";
-        USGServiceServer instance = new USGServiceServer();
-        instance.insertUSG(usg);
+        String Id_USG = "USG0001";
+        USG instance = usgServiceServer.getUSG(Id_USG);
+        System.out.println(instance);
+//        USGServiceServer instance = new USGServiceServer();
+//        instance.insertUSG(usg);
         USG expResult = usg;
-        USG result = instance.getUSG(Id_USG);
-        assertEquals(expResult.getId_USG(),result.getId_USG());
-        assertEquals(expResult.getId_pasien(),result.getId_pasien());
-        assertEquals(expResult.getTanggal(),result.getTanggal());
-        assertEquals(expResult.getHasil(),result.getHasil());
-        assertEquals(expResult.getDeskripsi(),result.getDeskripsi());
-        assertEquals(expResult.getHarga(),result.getHarga());
-        // TODO review the generated test code and remove the default call to fail.
+//        USG result = instance.getUSG(Id_USG);
+        assertEquals(expResult.getId_USG(),instance.getId_USG());
+        assertEquals(expResult.getId_pasien(),instance.getId_pasien());
+        assertEquals(expResult.getTanggal(),instance.getTanggal());
+        assertEquals(expResult.getHasil(),instance.getHasil());
+        assertEquals(expResult.getDeskripsi(),instance.getDeskripsi());
+        assertEquals(expResult.getHarga(),instance.getHarga());
     }
     
 }

@@ -20,19 +20,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ServerApplication.entity.log;
+import ServerApplication.model.TableModelLog;
+import java.util.Calendar;
 
 /**
  *
  * @author Arlin
  */
 public class USGServiceServer extends UnicastRemoteObject implements USGService {
+        TableModelLog tableModelLog;
 
-    public USGServiceServer() throws RemoteException {
+    public USGServiceServer(TableModelLog tableModelLog1) throws RemoteException {
+        this.tableModelLog = tableModelLog1;
     }
 
     public void insertUSG(USG usg) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Insert pada Tabel usg");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
         try {
@@ -68,6 +77,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
      public String Nama_pasien(String id_pasien) throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Nama Pasien pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         String Nama_pasien = null;
         try {
@@ -83,6 +98,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
      
     public Antrian Id_pasien(Antrian antrian)throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Id Pasien pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -107,6 +128,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
         }
 }
     public void ubahstatus(String ID_ANTRIAN)throws RemoteException{
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Ubah Status pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         try {
             statement = DatabaseUtilities.getConnection().prepareStatement(
@@ -118,6 +145,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
     
     public String Id_usg()throws RemoteException {
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get Id USG pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
         PreparedStatement statement = null;
         int id;
         String IdUsg;
@@ -206,8 +239,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
 //       }
 //    }
     public USG getUSG(String Id_USG) throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get By Id pada Tabel USG");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get by Id USG pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
 
         PreparedStatement statement = null;
         try {
@@ -245,8 +282,12 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public List<USG> getUSG() throws RemoteException {
-
-        System.out.println("Client Melakukan Proses Get All pada Tabel USG");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Get All pada Tabel USG");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
 
         Statement statement = null;
         try {
@@ -288,7 +329,13 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     
     //-----Pembayaran-----//
     public String mencariIdPembayaranDariPembayaran(String idPasien) throws RemoteException {
-        System.out.println("Client Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian ID PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
+        
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         Statement state = null;
         ResultSet rs = null;
@@ -313,7 +360,13 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public Pembayaran getPembayaranDariPembayaran(String idPembayaran) throws RemoteException {
-        System.out.println("Client Melakukan Proses Pencarian get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Pencarian Get PEMBAYARAN dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
+        
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         System.out.println(date);
         PreparedStatement statement = null;
@@ -354,7 +407,13 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public void updatePembayaranDariPembayaran(Pembayaran pembayaranDB, String idTransaksiUSG, int Harga) throws RemoteException {
-        System.out.println("Client Melakukan Proses Update pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Update dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
+        
         int totalHarga = pembayaranDB.getTOTAL_HARGA() + Harga;
         PreparedStatement statement = null;
         try {
@@ -387,7 +446,13 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public String getAutoNumberDariPembayaran() throws RemoteException {
-        System.out.println("Client Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Auto Number dengan Mengakses Tabel Pembayaran");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
+        
         Statement state = null;
         ResultSet rs = null;
 
@@ -428,7 +493,13 @@ public class USGServiceServer extends UnicastRemoteObject implements USGService 
     }
 
     public void insertPembayaranDariPembayaran(String idPembayaran, String idPasien, String idTransaksiUSG, int Harga) throws RemoteException {
-        System.out.println("Client Melakukan Proses Insert pada Tabel Pembayaran");
+        log Log = new log();
+        Log.setTanggal(Calendar.getInstance().getTime());
+        Log.setKegiatan("Melakukan Proses Insert pada Tabel Pembayaran");
+        Log.setAktor("Bagian USG");
+        tableModelLog.insert(Log);
+        
+        
         PreparedStatement statement = null;
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         try {

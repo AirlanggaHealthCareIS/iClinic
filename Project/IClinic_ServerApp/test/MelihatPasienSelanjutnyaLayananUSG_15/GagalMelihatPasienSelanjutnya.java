@@ -14,29 +14,35 @@ import java.rmi.RemoteException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import org.junit.Test;
-
+import ServerApplication.model.TableModelLog;
 /**
  *
  * @author Arline
  */
 public class GagalMelihatPasienSelanjutnya implements Remote{
-//    Server server;
+        USGServiceServer usgServiceServer;
+        TableModelLog tableModelLog = new TableModelLog();
     
     public GagalMelihatPasienSelanjutnya() throws RemoteException{
-//        this.server = new Server();
+        this.usgServiceServer = new USGServiceServer(tableModelLog);
     }
+    
+    
    /**
      * Test of Id_usg method, of class USGServiceServer.
      */
     @Test
     public void testId_usg() throws Exception {
         System.out.println("Id_usg");
-        USGServiceServer instance = new USGServiceServer();
-        String expResult = "USG0005";
-        String result = instance.Id_usg();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        this.usgServiceServer = new USGServiceServer(tableModelLog);
+//        USGServiceServer instance = new USGServiceServer();
+        String instance = usgServiceServer.Id_usg();
+        System.out.println(instance);
+        String expResult = "USG0002";
+//        String result = instance.Id_usg();
+        assertEquals(expResult, instance);
     }
+    
     
     /**
      * Test of Id_pasien method, of class USGServiceServer.
@@ -46,11 +52,13 @@ public class GagalMelihatPasienSelanjutnya implements Remote{
         System.out.println("Id_pasien");
         Antrian antrian = new Antrian();
         antrian.setId_Antrian("kosong");
-        USGServiceServer instance = new USGServiceServer();
+        Antrian instance = usgServiceServer.Id_pasien(antrian);
+        System.out.println(instance);
+//        USGServiceServer instance = new USGServiceServer();
         Antrian expResult = antrian;
-        Antrian result = new Antrian();
-        result = instance.Id_pasien(antrian);
-        assertEquals(expResult, result);
+//        Antrian result = new Antrian();
+//        result = instance.Id_pasien(antrian);
+        assertEquals(expResult, instance);
         // TODO review the generated test code and remove the default call to fail.
     }
 

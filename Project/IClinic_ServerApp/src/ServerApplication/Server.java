@@ -38,7 +38,7 @@ public class Server extends javax.swing.JFrame {
     KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer();
     KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer(tableModelLog);
     LabServiceServer labServiceServer = new LabServiceServer();
-    USGServiceServer uSGServiceServer = new USGServiceServer();
+    USGServiceServer uSGServiceServer = new USGServiceServer(tableModelLog);
 
     public Server() throws RemoteException {
         initComponents();
