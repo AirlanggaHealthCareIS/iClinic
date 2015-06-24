@@ -34,11 +34,19 @@ public class Server extends javax.swing.JFrame {
     ApotekerServiceServer apotekerServiceServer = new ApotekerServiceServer(tableModelLog);
     Bag_PembayaranServiceServer bag_PembayaranServiceServer = new Bag_PembayaranServiceServer(tableModelLog);
     Bag_PendaftaranServiceServer bag_PendaftaranServiceServer = new Bag_PendaftaranServiceServer(tableModelLog);
+<<<<<<< Updated upstream
     DokterServiceServer dokterServiceServer = new DokterServiceServer(tableModelLog);
     KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer(tableModelLog);
     KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer(tableModelLog);
     LabServiceServer labServiceServer = new LabServiceServer(tableModelLog);
     USGServiceServer uSGServiceServer = new USGServiceServer(tableModelLog);
+=======
+    DokterServiceServer dokterServiceServer = new DokterServiceServer();
+    KecantikanServiceServer kecantikanServiceServer = new KecantikanServiceServer();
+    KepalaKlinikServiceServer kepalaKlinikServiceServer = new KepalaKlinikServiceServer();
+    LabServiceServer labServiceServer = new LabServiceServer();
+    USGServiceServer uSGServiceServer = new USGServiceServer();
+>>>>>>> Stashed changes
 
     public Server() throws RemoteException {
         initComponents();
